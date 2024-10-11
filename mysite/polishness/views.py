@@ -32,3 +32,6 @@ def contact(request):
     else:
         form = ContactForm()
         return render(request, "polishness/contact.html", {"form": form})
+
+def monuments(request):
+    return render(request, "polishness/monuments.html", {})
