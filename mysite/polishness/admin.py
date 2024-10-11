@@ -1,3 +1,9 @@
 from django.contrib import admin
+from .models import Monument
 
-# Register your models here.
+
+class MonumentAdmin(admin.ModelAdmin):
+    list_display = ("name", "function", "voivodeship", "county", "parish", "locality")
+
+
+admin.site.register(Monument, MonumentAdmin)
