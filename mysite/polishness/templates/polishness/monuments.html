@@ -6,6 +6,8 @@ poznajmypolske.pl
 
 
 {% block content %}
+
+{% if not monuments %}
    <div class="home" id="home">
        <br>
        <div class="row m-2">
@@ -15,33 +17,47 @@ poznajmypolske.pl
    </div>
 
 
-
 	<form action="/monuments/" method="post" style="border: 2px solid #000; padding: 20px;">
-        <div class="row">
         {% csrf_token %}
+        <div class="row m-4">
         <div class="col-12">
-        <br>
             <span>
                 <input type="text" name="locality" placeholder="...wpisz miejscowość..." autocomplete="off"/>
                 <input type="text" name="parish" placeholder="...wpisz gminę..." autocomplete="off"/>
                 <input type="text" name="county" placeholder="...wpisz powiat..." autocomplete="off"/>
                 <input type="text" name="voivodeship" placeholder="...wpisz województwo..." autocomplete="off"/>
-                <input type="text" name="anyword" placeholder="...dowolne słowo klucz..." autocomplete="off"/>
             </span>
         </div>
         </div>
 
-        <br>
-        <div class="row">
+        <div class="row m-4">
             <div class="col-8">
                 <label for="quantity" style="font-family: Arial, sans-serif; font-size: 22px; color: #333;">Maksymalna liczba wynikowych wierszy:</label>
                 <input type="number" id="quantity" name="quantity" placeholder="...wpisz liczbę..." value="12" autocomplete="off"></label>
             </div>
-            <div class="col-4">
+            <div class="col-2">
                 <input type="submit" value="Szukaj" class="btn btn-dark">
             </div>
         </div>
     </form>
+
+{% else %}
+<h2 class="m-4">Znalezione zabytki:</h2>
+    <div class="row m-2 p-2">
+    {% for monument in monuments %}
+                     <div class="col-md-3">
+                        <div class="card mb-4 box-shadow" style="border: 2px solid #000; padding: 2px;">
+
+                            <div class="card-body">
+                                <h4 class=""><a href="/{{monument.id}}/">{{monument.name}}</a></h4>
+                            </div>
+                        </div>
+                    </div>
+
+    {% endfor %}
+    </div>
+
+{% endif %}
 
 
 {% endblock %}

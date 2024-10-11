@@ -1,10 +1,23 @@
+from django.http import QueryDict
 from django.shortcuts import render, HttpResponseRedirect
 
 from django.contrib import messages
 from django.core.mail import send_mail
 
 from .forms import ContactForm
+from .models import Monument
 
+
+def __get_monument_query_params(posta_data: QueryDict) -> dict:
+    query_params = {
+        "locality": posta_data["locality"],
+        "parish": posta_data["parish"],
+        "county": posta_data["county"],
+        "voivodeship": posta_data["voivodeship"],
+        "quantity": posta_data["quantity"],
+    }
+
+    return {key: value for key, value in query_params.items() if value}
 
 
 def home(request):
@@ -34,4 +47,13 @@ def contact(request):
         return render(request, "polishness/contact.html", {"form": form})
 
 def monuments(request):
-    return render(request, "polishness/monuments.html", {})
+    monuments = None
+    if request.method == 'POST':
+        cleaned_query_params = __get_monument_query_params(request.POST)
+        limit_quatity = cleaned_query_params.pop("quantity")
+        monuments = Monument.objects.filter(**cleaned_query_params)[:int(limit_quatity)]
+
+        for monument_item in monuments:
+            print(monument_item)
+
+    return render(request, "polishness/monuments.html", {"monuments": monuments})
