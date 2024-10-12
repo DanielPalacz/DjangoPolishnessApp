@@ -36,13 +36,13 @@ def contact(request):
 
             # Send the email
             send_mail(
-                subject=f"Formularz kontaktowy z poznajmypolske.pl - widadomość od: {name} [{email}].",  # Subject of the email
+                subject=f"[Formularz kontaktowy][poznajmypolske.pl] - wiadomość od: {name} [{email}].",  # Subject of the email
                 message=message,  # Message content
                 from_email='daniel.palacz@pyx.solutions',  # From email
                 recipient_list=['daniel.palacz@pyx.solutions'],  # Recipient email list
                 fail_silently=False,  # Raise exception if the email fails to send
             )
-            messages.success(request, f"Cześć {name}, Twoja wiadomość została wysłana do mnie. Dziękuję.")
+            messages.success(request, f"Cześć {name}, Twoja wiadomość została właśnie wysłana do mnie.")
             return HttpResponseRedirect("/contact/")
     else:
         form = ContactForm()

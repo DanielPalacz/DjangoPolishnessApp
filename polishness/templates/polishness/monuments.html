@@ -46,6 +46,7 @@ poznajmypolske.pl
        <br>
        <div class="row m-2">
             <h2 align="left">Tutaj możesz skorzystać z wyszukiwarki zabytków.</h2>
+
        <hr>
        </div>
    </div>
@@ -74,18 +75,19 @@ poznajmypolske.pl
             </div>
         </div>
     </form>
+    <small>Wyszukiwarka rozróżnia małe i duże litery.</small>
 
 {% else %}
 
     {% if not monuments %}
     <div class="row m-2 p-2">
-        <div class="col-6">
+        <div class="col">
             <div class="error">Niestety, nie znaleziono zabytków.</div><br>
         </div>
     </div>
     {% else %}
     <div class="row m-2 p-2">
-        <div class="col-4">
+        <div class="col">
             <div class="success">Znalezione zabytki:</div>
         </div>
     </div>
