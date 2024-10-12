@@ -67,6 +67,32 @@
             transform-origin: bottom left;
         }
 
+	/* Style for success message */
+	.success {
+		color: #3c763d;           /* Green text color indicating success */
+		background-color: #dff0d8; /* Light green background for success */
+		border: 1px solid #d6e9c6; /* Border in a darker shade of green */
+		padding: 10px;            /* Internal padding */
+		margin-bottom: 15px;       /* Spacing below */
+		border-radius: 5px;        /* Rounded corners */
+		font-weight: bold;         /* Bold text */
+        font-size: 24px;
+	}
+
+	/* Style for error message */
+	.error {
+		color: #a94442;            /* Red text color indicating an error */
+		background-color: #f2dede; /* Light red background for error */
+		border: 1px solid #ebccd1; /* Border in a darker shade of red */
+		padding: 10px;             /* Internal padding */
+		margin-bottom: 15px;        /* Spacing below */
+		border-radius: 5px;         /* Rounded corners */
+		font-weight: bold;          /* Bold text */
+	    font-size: 24px;
+	}
+
+
+
     {% block style %}
     {% endblock %}
     </style>

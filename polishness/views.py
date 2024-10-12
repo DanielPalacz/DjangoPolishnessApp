@@ -34,13 +34,13 @@ def contact(request):
 
             # Send the email
             send_mail(
-                subject=f"Contact form message from {name} [{email}].",  # Subject of the email
+                subject=f"Formularz kontaktowy z poznajmypolske.pl - widadomość od: {name} [{email}].",  # Subject of the email
                 message=message,  # Message content
                 from_email='daniel.palacz@pyx.solutions',  # From email
                 recipient_list=['daniel.palacz@pyx.solutions'],  # Recipient email list
                 fail_silently=False,  # Raise exception if the email fails to send
             )
-            messages.success(request, f"{name}, Twoja wiadomość właśnie została wysłana do mnie. Dziękuję.")
+            messages.success(request, f"Cześć {name}, Twoja wiadomość została wysłana do mnie. Dziękuję.")
             return HttpResponseRedirect("/contact/")
     else:
         form = ContactForm()
@@ -54,3 +54,10 @@ def monuments(request):
         monuments = Monument.objects.filter(**cleaned_query_params)[:int(limit_quatity)]
 
     return render(request, "polishness/monuments.html", {"monuments": monuments})
+
+def monument_single(request, pk):
+    monument_item = Monument.objects.get(id=pk)
+    print(pk)
+    print(pk)
+    print(pk)
+    return render(request, "polishness/monument_single.html", {"monument": monument_item})
