@@ -1,0 +1,88 @@
+{% extends "polishness/base.html" %}
+
+{% block title %}
+poznajmypolske.pl
+{% endblock %}
+
+
+
+
+{% block content %}
+
+{% if request.method == 'GET' %}
+   <div class="home" id="home">
+       <br>
+       <div class="row m-2">
+            <h2 align="left">Generator wycieczek. W budowie.</h2>
+
+       <hr>
+       </div>
+   </div>
+
+    <form action="/trips/" method="post" class="p-4 border border-dark custom-rounded">
+        {% csrf_token %}
+        <div class="row mb-3">
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <input type="text" name="locality" placeholder="...wpisz miejscowość..." class="form-control custom-rounded" autocomplete="off">
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <input type="text" name="parish" placeholder="...wpisz gminę..." class="form-control custom-rounded" autocomplete="off">
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <input type="text" name="county" placeholder="...wpisz powiat..." class="form-control custom-rounded" autocomplete="off">
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12">
+                <input type="text" name="voivodeship" placeholder="...wpisz województwo..." class="form-control custom-rounded" autocomplete="off">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+        <div class="col-lg-8 col-md-8 col-sm-12 d-flex align-items-center">
+            <label for="quantity" class="form-label mb-0 me-2">Maksymalna liczba odwiedzanych zabytków:</label>
+            <input type="number" id="quantity" name="quantity" class="form-control custom-rounded" placeholder="...wpisz liczbę..." value="10" autocomplete="off" style="flex-grow: 1;">
+        </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 text-center">
+                <input type="submit" value="Szukaj" class="btn btn-dark btn-lg mt-3 custom-rounded">
+            </div>
+        </div>
+        <small>Maksymalnie można wygenerować wycieczkę złożoną z 10 zabytków.</small>
+    </form>
+
+    <small>Wyszukiwarka rozróżnia duże i małe litery. Źródłem zabytków jest <a href="https://dane.gov.pl/pl/dataset/1130,rejestr-zabytkow-nieruchomych"> Rejestr zabytków nieruchomych</a>.</small>
+
+
+
+{% else %}
+
+    {% if not monuments %}
+    <div class="row m-2 p-2">
+        <div class="col">
+            <div class="error">Niestety, nie znaleziono zabytków.</div><br>
+        </div>
+    </div>
+    {% else %}
+    <div class="row m-2 p-2">
+        <div class="col">
+            <div class="success">Znalezione zabytki:</div>
+        </div>
+    </div>
+    <div class="row m-2 p-2">
+    {% for monument in monuments %}
+                     <div class="col-md-3">
+                        <div class="card mb-4 box-shadow" style="border: 2px solid #000; padding: 2px;">
+
+                            <div class="card-body">
+                                <h4 class=""><a href="/{{monument.id}}/">{{monument.name}}</a></h4>
+                            </div>
+                        </div>
+                    </div>
+
+    {% endfor %}
+    </div>
+
+    {% endif %}
+
+
+{% endif %}
+
+{% endblock %}

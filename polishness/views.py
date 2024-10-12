@@ -1,24 +1,11 @@
-from django.http import QueryDict
 from django.shortcuts import render, HttpResponseRedirect
 
 from django.contrib import messages
 from django.core.mail import send_mail
 
-from tools import get_polish_photo_link
+from tools import get_polish_photo_link, get_monument_query_params, randomize_monuments
 from .forms import ContactForm
 from .models import Monument
-
-
-def __get_monument_query_params(posta_data: QueryDict) -> dict:
-    query_params = {
-        "locality": posta_data["locality"],
-        "parish": posta_data["parish"],
-        "county": posta_data["county"],
-        "voivodeship": posta_data["voivodeship"],
-        "quantity": posta_data["quantity"],
-    }
-
-    return {key: value for key, value in query_params.items() if value}
 
 
 def home(request):
@@ -49,14 +36,27 @@ def contact(request):
         return render(request, "polishness/contact.html", {"form": form})
 
 def monuments(request):
-    monuments = None
+    monument_items = None
     if request.method == 'POST':
-        cleaned_query_params = __get_monument_query_params(request.POST)
-        limit_quatity = cleaned_query_params.pop("quantity")
-        monuments = Monument.objects.filter(**cleaned_query_params)[:int(limit_quatity)]
+        query_params = get_monument_query_params(request.POST)
+        quantity = query_params.pop("quantity")
+        monument_items_cleaned = Monument.objects.exclude(latitude="nan", longitude="nan").filter(**query_params)
+        monument_items = randomize_monuments(quantity=int(quantity), monuments=monument_items_cleaned)
 
-    return render(request, "polishness/monuments.html", {"monuments": monuments})
+    return render(request, "polishness/monuments.html", {"monuments": monument_items})
 
 def monument_single(request, pk):
     monument_item = Monument.objects.get(id=pk)
     return render(request, "polishness/monument_single.html", {"monument": monument_item})
+
+
+def trips(request):
+    monument_items = None
+    if request.method == 'POST':
+        query_params = get_monument_query_params(request.POST)
+        quantity = query_params.pop("quantity")
+        quantity = 10 if int(quantity) > 10 else int(quantity)
+        monument_items_cleaned = Monument.objects.exclude(latitude="nan", longitude="nan").filter(**query_params)
+        monument_items = randomize_monuments(quantity=int(quantity), monuments=monument_items_cleaned)
+
+    return render(request, "polishness/trips.html", {"monuments": monument_items})
