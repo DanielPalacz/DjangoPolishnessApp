@@ -52,6 +52,9 @@ def monuments(request):
     monuments = None
     if request.method == 'POST':
         cleaned_query_params = __get_monument_query_params(request.POST)
+        print(cleaned_query_params)
+        print(cleaned_query_params)
+        print(cleaned_query_params)
         limit_quatity = cleaned_query_params.pop("quantity")
         monuments = Monument.objects.filter(**cleaned_query_params)[:int(limit_quatity)]
 
@@ -59,7 +62,4 @@ def monuments(request):
 
 def monument_single(request, pk):
     monument_item = Monument.objects.get(id=pk)
-    print(pk)
-    print(pk)
-    print(pk)
     return render(request, "polishness/monument_single.html", {"monument": monument_item})

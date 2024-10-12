@@ -7,19 +7,86 @@ poznajmypolske.pl
 
 {% block content %}
 
-    <div class="container my-5">
-        <div class="row">
-            <div class="col-8">
-                  <div class="card">
-                  <img src="https://picsum.photos/300/200" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                  </div>
+<br>
+<div class="row" style="border: 3px solid #000; padding: 20px;">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <!-- Title of the Monument -->
+                <h2 class="card-title" style="font-weight: bold;">{{ monument.name|capfirst }}</h2>
+
+                <!-- Table with monument details -->
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover table-sm">
+                        <tbody>
+                            <tr>
+                                <td class="fw-bold text-end">Funkcja</td>
+                                <td>{{ monument.function }}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-end">Forma ochrony</td>
+                                <td>{{ monument.security_form }}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-end">Dokładność położenia</td>
+                                <td>{{ monument.location_accuracy }}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-end">Chronologia</td>
+                                <td>{{ monument.chronology }}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-end">Wykaz dokumentów</td>
+                                <td>{{ monument.documents }}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-end">Data wpisu</td>
+                                <td>{{ monument.registration_date }}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-end">Województwo</td>
+                                <td>{{ monument.voivodeship }}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-end">Powiat</td>
+                                <td>{{ monument.county }}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-end">Gmina</td>
+                                <td>{{ monument.parish }}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-end">Miejscowość</td>
+                                <td>{{ monument.locality }}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-end">Ulica</td>
+                                <td>{% if monument.street == "nan" %}-{% else %}{{ monument.street }}{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-end">Numer domu</td>
+                                <td>{% if monument.address_number == "nan" %}-{% else %}{{ monument.address_number }}{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-end">Szerokość geograficzna</td>
+                                <td>{% if monument.latitude == "nan" %}-{% else %}{{ monument.latitude }}{% endif %}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-end">Długość geograficzna</td>
+                                <td>{% if monument.longitude == "nan" %}-{% else %}{{ monument.longitude }}{% endif %}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+
             </div>
+            <!-- Button with call-to-action -->
+            <a href="#" class="btn btn-primary btn-lg mt-3" style="font-weight: bold;">Zapytaj sztucznej inteligencji o to miejsce</a>
         </div>
     </div>
+</div>
+<br>
+
+
 
 {% endblock %}
