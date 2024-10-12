@@ -47,6 +47,7 @@
             background-color: rgba(255, 255, 255, 0.5); /* Add background on hover */
             transform: scale(1.1); /* Slightly enlarge the brand */
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow */
+            border-radius: 8px; /* Dodanie zaokrąglenia podczas hover */
         }
 
         nav .navbar-brand:before {
@@ -105,9 +106,6 @@
 
       <div class="navbar-nav mr-auto">
           <strong><a class="navbar-brand m-2 p-2 btn-dark" href="{% url 'polishness:home' %}">poznajmypolske.pl</a></strong>
-      </div>
-
-      <div class="navbar-nav mr-auto">
           <strong><a class="navbar-brand m-2 p-2 btn-dark" href="{% url 'polishness:monuments' %}">Zabytki</a></strong>
       </div>
 

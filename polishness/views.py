@@ -4,6 +4,7 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.contrib import messages
 from django.core.mail import send_mail
 
+from tools import get_polish_photo_link
 from .forms import ContactForm
 from .models import Monument
 
@@ -21,7 +22,8 @@ def __get_monument_query_params(posta_data: QueryDict) -> dict:
 
 
 def home(request):
-    return render(request, "polishness/home.html", {})
+    photo_link = get_polish_photo_link()
+    return render(request, "polishness/home.html", {"photo_link": photo_link})
 
 def contact(request):
     if request.method == 'POST':
