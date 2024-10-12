@@ -53,7 +53,4 @@ def monuments(request):
         limit_quatity = cleaned_query_params.pop("quantity")
         monuments = Monument.objects.filter(**cleaned_query_params)[:int(limit_quatity)]
 
-        for monument_item in monuments:
-            print(monument_item)
-
     return render(request, "polishness/monuments.html", {"monuments": monuments})
