@@ -22,6 +22,9 @@
  - tools.populate_db()
 
 5. Run:
-export UNPLASH_API_KEY="UNPLASH_API_KEY_VALUE"
+ - export UNPLASH_API_KEY="UNPLASH_API_KEY_VALUE"
+
+6. Run:
+ - export OPENAI_API_KEY="OPENAI_API_KEY_VALUE"
 
 ```
