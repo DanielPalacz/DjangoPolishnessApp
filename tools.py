@@ -60,7 +60,6 @@ def get_monument_query_params(posta_data: QueryDict) -> dict:
 
 def randomize_monuments(quantity: int, monuments: QuerySet[Monument]) -> list[Monument]:
     monuments_len = len(monuments)
-    print(monuments_len)
     if quantity > monuments_len:
         return [monument for monument in monuments]
 
