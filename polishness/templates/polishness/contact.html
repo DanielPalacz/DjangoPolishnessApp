@@ -1,13 +1,25 @@
 {% extends "polishness/base.html" %}
 
 {% block title %}
-Contact page.
+poznajmypolske.pl
 {% endblock %}
+
+{% block style %}
+
+  input[type="text"], input[type="email"], textarea.textarea.form-control {
+    border-width: 2px;
+    border-style: solid;
+  }
+
+
+{% endblock %}
+
+
 
 {% load crispy_forms_tags %}
 
 {% block content %}
-		<div class="main container" id="contact">
+		<div id="contact">
 			<br>
 			<h2 align="left">Formularz kontaktowy:</h2>
 			<div class="row">
