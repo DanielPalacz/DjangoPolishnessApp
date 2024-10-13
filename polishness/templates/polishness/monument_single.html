@@ -34,6 +34,10 @@ poznajmypolske.pl
                                 <td>{{ monument.function }}</td>
                             </tr>
                             <tr>
+                                <td class="fw-bold text-end">Numer identyfikacyjny zabytku</td>
+                                <td>{{ monument.library_id }}</td>
+                            </tr>
+                            <tr>
                                 <td class="fw-bold text-end">Forma ochrony</td>
                                 <td>{{ monument.security_form }}</td>
                             </tr>
@@ -91,7 +95,9 @@ poznajmypolske.pl
 
             </div>
             <!-- Button with call-to-action -->
-            <a href="#" class="btn btn-primary btn-lg mt-3" style="font-weight: bold;">Zapytaj sztucznej inteligencji o to miejsce.</a>
+                <a href="https://zabytek.pl/pl/obiekty/zabytek?inspire_id={{monument.library_id}}&rejestr=rejestr-zabytk%C3%B3w" class="btn btn-primary btn-lg mt-3" style="font-weight: bold; text-align: center;">Informacje na portalu zabytek.pl.</a>
+                <a href="#" class="btn btn-primary btn-lg mt-3" style="font-weight: bold; text-align: center;">Zapytaj sztucznej inteligencji o to miejsce.</a>
+
         </div>
     </div>
 </div>
