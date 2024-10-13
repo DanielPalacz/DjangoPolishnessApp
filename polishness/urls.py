@@ -9,8 +9,5 @@ urlpatterns = [
     path('monuments/', views.monuments, name='monuments'),
     path('trips/', views.trips, name='trips'),
     path('<int:pk>/', views.monument_single, name='monument_single'),
-    # path('projects/', views.projects, name='projects'),
-    # path('blog/', views.blog, name='blog'),
-    # path('blog/<slug:post_slug>/', views.post_single, name='post_single'),
-    # path('int:pk>/', views.monument_single, name='monument_single'),
+    path('<int:pk>/ai/', views.monument_single_ai, name='monument_single_ai'),
 ]

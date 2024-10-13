@@ -4,11 +4,29 @@ from django.db.models.query import QuerySet
 import pandas as pd
 from os.path import dirname
 from os import getenv
-from math import hypot
 import requests
 from random import randint
+from openai import OpenAI
+
 
 from polishness.models import Monument
+
+def ask_ai(ask: str) -> str:
+    client = OpenAI(
+        # This is the default and can be omitted
+        api_key=getenv("OPENAI_API_KEY"),
+    )
+    chat_completion = client.chat.completions.create(
+        messages=[
+            {
+                "role": "user",
+                "content": ask,
+            }
+        ],
+        model="gpt-3.5-turbo",
+    )
+    return chat_completion.choices[0].message.content
+
 
 
 def get_static_dir() -> str:

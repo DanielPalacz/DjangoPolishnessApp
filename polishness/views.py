@@ -3,7 +3,7 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.contrib import messages
 from django.core.mail import send_mail
 
-from tools import get_polish_photo_link, get_monument_query_params, randomize_monuments, TripGenerator
+from tools import get_polish_photo_link, get_monument_query_params, randomize_monuments, TripGenerator, ask_ai
 from .forms import ContactForm
 from .models import Monument
 
@@ -63,3 +63,20 @@ def trips(request):
         monument_items = trip_generator.generate_trip()
 
     return render(request, "polishness/trips.html", {"monuments": monument_items})
+
+
+def monument_single_ai(request, pk):
+    monument_item = Monument.objects.get(id=pk)
+
+    ask_text = f"Opowiedz mi o zabytku: {monument_item.name}, {monument_item.locality}"
+    if monument_item.street and monument_item.street != "nan":
+        ask_text += f", {monument_item.street}"
+
+    if monument_item.address_number and monument_item.address_number != "nan":
+        ask_text += f", {monument_item.address_number}"
+
+    response_ai = ask_ai(ask=ask_text)
+
+    return render(request,
+                  "polishness/monument_single_ai.html",
+                  {"monument": monument_item, "response_ai": response_ai})

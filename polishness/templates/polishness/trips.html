@@ -74,9 +74,17 @@ poznajmypolske.pl
                             <div class="card-body">
                                 <h4 class=""><a href="/{{monument.id}}/">{{monument.name}}</a></h4>
                                 {% if monument.street == "nan" %}
-                                    <small>{{monument.locality}}, {{monument.address_number}}</small>
+                                    {% if monument.address_number == "nan" %}
+                                        <small>{{monument.locality}}</small>
+                                    {% else %}
+                                        <small>{{monument.locality}}, {{monument.address_number}}</small>
+                                    {% endif%}
                                 {% else %}
-                                    <small>{{monument.locality}}, {{monument.street}}/{{monument.address_number}}</small>
+                                    {% if monument.address_number == "nan" %}
+                                        <small>{{monument.locality}}, {{monument.street}}</small>
+                                    {% else %}
+                                        <small>{{monument.locality}}, {{monument.street}}/{{monument.address_number}}</small>
+                                    {% endif%}
                                 {% endif%}
                             </div>
                         </div>

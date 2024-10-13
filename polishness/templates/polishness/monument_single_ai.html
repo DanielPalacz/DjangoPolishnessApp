@@ -1,0 +1,52 @@
+{% extends "polishness/base.html" %}
+
+{% block title %}
+poznajmypolske.pl
+{% endblock %}
+
+{% block style %}
+
+
+ .table-hover tbody tr:hover {
+    background-color: yellow;
+}
+
+
+{% endblock %}
+
+{% block content %}
+
+
+<br>
+<small>Odpowiedź z openai.com:</small>
+<div class="row" style="border: 3px solid #000; padding: 20px;">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <!-- Title of the Monument -->
+                <h2 class="card-title" style="font-weight: bold;">{{ monument.name|capfirst }}</h2>
+                                {% if monument.street == "nan" %}
+                                    {% if monument.address_number == "nan" %}
+                                        <small>{{monument.locality}}</small>
+                                    {% else %}
+                                        <small>{{monument.locality}}, {{monument.address_number}}</small>
+                                    {% endif%}
+                                {% else %}
+                                    {% if monument.address_number == "nan" %}
+                                        <small>{{monument.locality}}, {{monument.street}}</small>
+                                    {% else %}
+                                        <small>{{monument.locality}}, {{monument.street}}/{{monument.address_number}}</small>
+                                    {% endif%}
+                                {% endif%}
+                <br>
+                <br>
+                <h5>{{response_ai}}</h5>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+
+
+{% endblock %}
