@@ -80,7 +80,7 @@ def randomize_monuments(quantity: int, monuments: QuerySet[Monument]) -> list[Mo
 class TripGenerator:
     QUANTITY_LIMIT = 10
 
-    def __init__(self, quantity: int, monuments: QuerySet[Monument]):
+    def __init__(self, quantity: int, monuments: list[Monument]):
         self.__monuments = monuments
         if quantity > self.QUANTITY_LIMIT:
             self.__quantity = 10
@@ -90,55 +90,54 @@ class TripGenerator:
             self.__quantity = quantity
 
     def generate_trip(self) -> list:
-        pass
+        return self.__sort_monuments()
 
-    def sort_monuments(self) -> list:
+    def __sort_monuments(self) -> list[Monument]:
         monument_items = []
-        for monument_data in self.__monuments.values():
-            latitude = monument_data.pop("latitude")
-            longitude = monument_data.pop("longitude")
-            monument_item = MonumentItem(data=monument_data)
+        for monument in self.__monuments:
+            latitude = monument.latitude
+            longitude = monument.longitude
+            monument_item = MonumentItem(data=monument, latitude=latitude, longitude=longitude)
             monument_items.append(monument_item)
 
         monument_items.sort()
-        return monument_items
+        return [monument_item.monument for monument_item in monument_items]
 
 
 class MonumentItem:
-    # The southwestern tip of Poland:
-    LATITUDE_REF = 52.3366
-    LONGITUDE_REF = 14.5663
 
-    def __init__(self, data: dict, latitude: str, longitude: str):
+    def __init__(self, data: Monument, latitude: str, longitude: str):
         self.__data = data
         self.__latitude = float(latitude)
         self.__longitude = float(longitude)
-        self.__reference_distance = self.calc_reference_distance()
+        self.__reference_distance = self.calc_reference_measure()
 
     @property
-    def reference_distance(self):
+    def monument(self):
+        return self.__data
+
+    @property
+    def reference_measure(self):
         return self.__reference_distance
 
-    def calc_reference_distance(self):
-        delta_lat = self.__latitude - self.LATITUDE_REF
-        delta_lon = self.__longitude - self.LONGITUDE_REF
-        distance = hypot(delta_lat * 111320, delta_lon * 68500)
-        return distance
+    def calc_reference_measure(self):
+        measure = self.__latitude * self.__latitude + self.__longitude * self.__longitude
+        return measure
 
     def __lt__(self, other):
-        return self.reference_distance < other.reference_distance
+        return self.reference_measure < other.reference_measure
 
     def __le__(self, other):
-        return self.reference_distance <= other.reference_distance
+        return self.reference_measure <= other.reference_measure
 
     def __eq__(self, other):
-        return self.reference_distance == other.reference_distance
+        return self.reference_measure == other.reference_measure
 
     def __ne__(self, other):
-        return self.reference_distance != other.reference_distance
+        return self.reference_measure != other.reference_measure
 
     def __gt__(self, other):
-        return self.reference_distance > other.reference_distance
+        return self.reference_measure > other.reference_measure
 
     def __ge__(self, other):
-        return self.reference_distance >= other.reference_distance
+        return self.reference_measure >= other.reference_measure

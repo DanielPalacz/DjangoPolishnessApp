@@ -3,7 +3,7 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.contrib import messages
 from django.core.mail import send_mail
 
-from tools import get_polish_photo_link, get_monument_query_params, randomize_monuments
+from tools import get_polish_photo_link, get_monument_query_params, randomize_monuments, TripGenerator
 from .forms import ContactForm
 from .models import Monument
 
@@ -58,5 +58,8 @@ def trips(request):
         quantity = 10 if int(quantity) > 10 else int(quantity)
         monument_items_cleaned = Monument.objects.exclude(latitude="nan", longitude="nan").filter(**query_params)
         monument_items = randomize_monuments(quantity=int(quantity), monuments=monument_items_cleaned)
+
+        trip_generator = TripGenerator(quantity=quantity, monuments=monument_items)
+        monument_items = trip_generator.generate_trip()
 
     return render(request, "polishness/trips.html", {"monuments": monument_items})
