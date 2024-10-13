@@ -40,7 +40,7 @@ def monuments(request):
     if request.method == 'POST':
         query_params = get_monument_query_params(request.POST)
         quantity = query_params.pop("quantity")
-        monument_items_cleaned = Monument.objects.exclude(latitude="nan", longitude="nan").filter(**query_params)
+        monument_items_cleaned = Monument.objects.filter(**query_params)
         monument_items = randomize_monuments(quantity=int(quantity), monuments=monument_items_cleaned)
 
     return render(request, "polishness/monuments.html", {"monuments": monument_items})

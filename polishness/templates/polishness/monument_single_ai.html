@@ -35,7 +35,7 @@ poznajmypolske.pl
                                     {% if monument.address_number == "nan" %}
                                         <small>{{monument.locality}}, {{monument.street}}</small>
                                     {% else %}
-                                        <small>{{monument.locality}}, {{monument.street}}/{{monument.address_number}}</small>
+                                        <small>{{monument.locality}}, {{monument.street}} {{monument.address_number}}</small>
                                     {% endif%}
                                 {% endif%}
                 <br>
