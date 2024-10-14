@@ -1,0 +1,17 @@
+[Unit]
+Description=Gunicorn instance to serve polishness Django  application
+After=network.target
+
+[Service]
+User=danielp
+Group=www-data
+WorkingDirectory=/home/danielp/DjangoPolishnessApp
+Environment="PATH=/home/danielp/DjangoPolishnessApp/venv/bin:/home/danielp/DjangoPolishnessApp"
+Environment="SENDGRID_API_KEY= .... "
+Environment="UNPLASH_API_KEY= ... "
+Environment="OPENAI_API_KEY= ... "
+ExecStart=/home/danielp/DjangoPolishnessApp/venv/bin/gunicorn --workers 3 --pythonpath mysite mysite.wsgi:application
+
+
+[Install]
+WantedBy=multi-user.target
