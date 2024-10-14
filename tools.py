@@ -63,8 +63,13 @@ def get_polish_photo_link() -> str:
     unplash_api_key = getenv("UNPLASH_API_KEY")
     url_request = f"https://api.unsplash.com/photos/random?query=poland&client_id={unplash_api_key}&count=1"
     response = requests.get(url_request)
-    photo_link = response.json()[0]["urls"]["full"]
-    return photo_link
+    print(response.content)
+    print(response.status_code)
+    print(response)
+    if response.status_code == 200:
+        photo_link = response.json()[0]["urls"]["full"]
+        return photo_link
+    return ""
 
 def get_monument_query_params(posta_data: QueryDict) -> dict:
     query_params = {
