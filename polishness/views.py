@@ -80,3 +80,10 @@ def monument_single_ai(request, pk):
     return render(request,
                   "polishness/monument_single_ai.html",
                   {"monument": monument_item, "response_ai": response_ai})
+
+def poland_in_numbers(request):
+    return render(request, "polishness/poland_in_numbers.html", {})
+
+def history(request):
+    return render(request, "polishness/history.html", {})
+
