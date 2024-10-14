@@ -9,8 +9,8 @@ from .models import Monument
 
 
 def home(request):
-    photo_link = get_polish_photo_link()
-    return render(request, "polishness/home.html", {"photo_link": photo_link})
+    photo_data = get_polish_photo_link()
+    return render(request, "polishness/home.html", photo_data)
 
 def contact(request):
     if request.method == 'POST':
