@@ -9,7 +9,8 @@ WorkingDirectory=/home/danielp/DjangoPolishnessApp
 Environment="PATH=/home/danielp/DjangoPolishnessApp/venv/bin:/home/danielp/DjangoPolishnessApp"
 Environment="SENDGRID_API_KEY= .... "
 Environment="UNPLASH_API_KEY= ... "
-Environment="OPENAI_API_KEY= ... "
+Environment="UNPLASH_API_KEY= ... "
+Environment="GUS_DBW_API_KEY= ... "
 ExecStart=/home/danielp/DjangoPolishnessApp/venv/bin/gunicorn --workers 3 --pythonpath mysite mysite.wsgi:application
 
 

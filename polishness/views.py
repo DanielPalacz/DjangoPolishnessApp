@@ -3,7 +3,8 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.contrib import messages
 from django.core.mail import send_mail
 
-from tools import get_polish_photo_link, get_monument_query_params, randomize_monuments, TripGenerator, ask_ai
+from tools import get_polish_photo_link, get_monument_query_params, randomize_monuments, TripGenerator, ask_ai, \
+    get_dbw_fields, get_dbw_field_variables, get_dbw_root_fields
 from .forms import ContactForm
 from .models import Monument
 
@@ -82,7 +83,20 @@ def monument_single_ai(request, pk):
                   {"monument": monument_item, "response_ai": response_ai})
 
 def poland_in_numbers(request):
-    return render(request, "polishness/poland_in_numbers.html", {})
+    root_fields = get_dbw_root_fields()
+    return render(request, "polishness/poland_in_numbers.html", {"root_fields": root_fields})
+
+def poland_in_numbers_fields(request, field_id):
+    fields = get_dbw_fields(root_field=field_id)
+    field_variables = get_dbw_field_variables(field_id=field_id)
+
+    return render(request, "polishness/poland_in_numbers_fields.html",
+                  {"fields": fields, "field_variables": field_variables})
+
+def poland_in_numbers_field_viewing(request, field_id, field_name):
+    return render(request, "polishness/poland_in_numbers_field_viewing.html", {"field_name": field_name})
+
+
 
 def history(request):
     return render(request, "polishness/history.html", {})

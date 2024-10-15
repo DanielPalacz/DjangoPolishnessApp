@@ -6,14 +6,25 @@ poznajmypolske.pl
 
 
 {% block content %}
-
-<div id="home">
     <div class="row m-2">
         <div class="col-12 col-md-8 col-md-4">
-            <h3 class="text-start">W budowie.</h3>
+            <h3 class="text-start">Wybierz poniżej kategorię, która Cię interesuje.</h3>
         </div>
     </div>
-    <hr />
-</div>
+    <hr>
+
+    <div class="row m-2 p-2">
+    {% for root_field in root_fields %}
+                     <div class="col-md-4">
+                        <div class="card mb-4 box-shadow" style="border: 2px solid #000; padding: 2px;">
+
+                            <div class="card-body">
+                                 <h4 class=""><a href="/poland-in-numbers/{{root_field.field_id}}/">{{root_field.field_name}}</a></h4>
+                            </div>
+                        </div>
+                    </div>
+
+    {% endfor %}
+    </div>
 
 {% endblock %}

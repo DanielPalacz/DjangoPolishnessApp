@@ -25,6 +25,11 @@
 5. Run:
  - export OPENAI_API_KEY="OPENAI_API_KEY_VALUE"
 
+6. Run:
+ - export GUS_DBW_API_KEY="GUS_DBW_API_KEY_VALUE"
+
+
+
 6. Prepare database. Run from Django shell:
  - python manage.py shell_plus --ipython
  - import tools

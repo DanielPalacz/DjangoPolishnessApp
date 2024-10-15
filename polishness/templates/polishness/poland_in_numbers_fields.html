@@ -1,0 +1,42 @@
+{% extends "polishness/base.html" %}
+
+{% block title %}
+poznajmypolske.pl
+{% endblock %}
+
+
+{% block content %}
+    <div class="row m-2">
+        <div class="col-12 col-md-8 col-md-4">
+            <h3 class="text-start">Wybierz poniżej dziedzinę, która Cię interesuje.</h3>
+        </div>
+    </div>
+    <hr>
+
+    <div class="row m-2 p-2">
+    {% for field in fields %}
+                     <div class="col-md-4">
+                        <div class="card mb-4 box-shadow" style="border: 2px solid #000; padding: 2px;">
+                            <div class="card-body">
+                                     <h4 class=""><a href="/poland-in-numbers/{{field.field_id}}/">{{field.field_name}}</a></h4>
+                            </div>
+                        </div>
+                    </div>
+
+    {% endfor %}
+        {% for field in field_variables %}
+                     <div class="col-md-4">
+                        <div class="card mb-4 box-shadow" style="border: 2px solid #000; padding: 2px;">
+                            <div class="card-body">
+                                     <h4 class=""><a href="/poland-in-numbers/{{field.field_variable_id}}/{{field.field_variable_name}}/">{{field.field_variable_name}}</a></h4>
+                            </div>
+                        </div>
+                    </div>
+
+        {% endfor %}
+    </div>
+
+
+
+
+{% endblock %}

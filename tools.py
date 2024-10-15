@@ -1,3 +1,5 @@
+from dataclasses import field
+
 from django.http import QueryDict
 from django.db.models.query import QuerySet
 
@@ -163,3 +165,55 @@ class MonumentItem:
 
     def __ge__(self, other):
         return self.reference_measure >= other.reference_measure
+
+
+# API DBW
+# https://api-dbw.stat.gov.pl/apidocs/index.html
+
+def get_dbw_root_fields() -> []:
+    dbw_api_key = getenv("GUS_DBW_API_KEY")
+    url_request = "https://api-dbw.stat.gov.pl/api/1.1.0/area/area-area?lang=pl"
+    request_headers = {
+        "accept": "application/json",
+        "X-ClientId": dbw_api_key
+    }
+    response = requests.get(url_request, headers=request_headers)
+    if response.status_code == 200:
+        root_fields = [
+            {
+                "field_id": field_data.get("id"),
+                "field_name": field_data.get("nazwa")
+            } for field_data in response.json() if field_data.get("id-nadrzedny-element") is None]
+        return root_fields
+    return []
+
+def get_dbw_fields(root_field: int) -> []:
+    dbw_api_key = getenv("GUS_DBW_API_KEY")
+    url_request = "https://api-dbw.stat.gov.pl/api/1.1.0/area/area-area?lang=pl"
+    request_headers = {
+        "accept": "application/json",
+        "X-ClientId": dbw_api_key
+    }
+    response = requests.get(url_request, headers=request_headers)
+    if response.status_code == 200:
+        fields = [
+            {
+                "field_id": field_data.get("id"),
+                "field_name": field_data.get("nazwa"),
+                "field_variables": field_data.get("czy-zmienne")
+            } for field_data in response.json() if field_data.get("id-nadrzedny-element") == root_field]
+        return fields
+    return []
+
+def get_dbw_field_variables(field_id) -> []:
+    dbw_api_key = getenv("GUS_DBW_API_KEY")
+    url_request = f"https://api-dbw.stat.gov.pl/api/1.1.0/area/area-variable?id-obszaru={field_id}&lang=pl"
+    request_headers = {
+        "accept": "application/json",
+        "X-ClientId": dbw_api_key
+    }
+    response = requests.get(url_request, headers=request_headers)
+    if response.status_code == 200:
+        field_variables = [{"field_variable_id": field_data.get("id"), "field_variable_name": field_data.get("nazwa-zmienna")} for field_data in response.json()]
+        return field_variables
+    return []
