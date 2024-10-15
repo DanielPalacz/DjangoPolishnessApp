@@ -7,14 +7,33 @@ poznajmypolske.pl
 
 {% block content %}
 
-<div id="home">
-    <div class="row m-2">
-        <div class="col-12 col-md-8 col-md-4">
-            <h3 class="text-start">W budowie.</h3>
-        </div>
-    </div>
-    <hr />
-</div>
+                <!-- Title of the Monument -->
+                <h2 class="card-title" style="font-weight: bold;">{{ field_variable_name|capfirst }}</h2>
 
+                <!-- Table with monument details -->
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover table-sm">
+                        <thead>
+                            <tr>
+                                <th>Przekrój</th>
+                                <th>Wymiar</th>
+                                <th>Okres</th>
+                                <th>Sposób reprezentacji (miara)</th>
+                                <th>Wartość</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for stats in stats_data %}
+                            <tr>
+                                <td>{{section_name}}</td>
+                                <td>{{stats.dimension_description}}</td>
+                                <td>{{period_description}}</td>
+                                <td>{{stats.representation_description}}</td>
+                                <td>{{stats.wartosc}}</td>
+                            </tr>
+                           {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
 
 {% endblock %}

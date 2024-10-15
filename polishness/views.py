@@ -5,7 +5,7 @@ from django.core.mail import send_mail
 
 from tools import get_polish_photo_link, get_monument_query_params, randomize_monuments, TripGenerator, ask_ai, \
     get_dbw_fields, get_dbw_field_variables, get_dbw_root_fields, get_variable_section_periods, get_periods, \
-    get_stats_data
+    get_stats_data, get_dimension_description, get_representation_description
 from .forms import ContactForm
 from .models import Monument
 
@@ -97,15 +97,35 @@ def poland_in_numbers_fields(request, field_id):
 def poland_in_numbers_field_viewing(request, field_id, field_variable_id, field_variable_name):
 
     if request.method == 'POST':
-        section, section_id, period_id = request.POST["przekroj__przekrojid__okresid"].split("__")
+        section_name, section_id, period_id, period_description = request.POST["przekroj__przekrojid__okresid"].split("__")
         year_id = request.POST["rok"]
-        print(section)
+        print(section_name)
         print(section_id)
         print(period_id)
         print(year_id)
+        print(period_description)
 
         stats_data = get_stats_data(field_variable_id, section_id, year_id, period_id)
-        return render(request, "polishness/poland_in_numbers_field_viewing.html", {"stats_data": stats_data})
+
+        for stats in stats_data:
+            dimension_id = stats["id-wymiar-1"]
+            dimension_position_id = stats["id-pozycja-1"]
+            dimension_description = get_dimension_description(dimension_id, dimension_position_id)
+            stats["dimension_description"] = dimension_description
+
+            representation_id = stats["id-sposob-prezentacji-miara"]
+            stats["representation_description"] = get_representation_description(representation_id)
+
+        return render(request, "polishness/poland_in_numbers_field_viewing.html",
+                  {
+                      "field_id": field_id,
+                      "field_variable_id": field_variable_id,
+                      "field_variable_name": field_variable_name,
+                      "section_name": section_name,
+                      "period_description": period_description,
+                      "stats_data": stats_data,
+                  }
+                  )
 
     section_periods = get_variable_section_periods(field_variable_id=field_variable_id)
 

@@ -276,3 +276,39 @@ def get_stats_data(field_variable_id, section_id, year_id, period_id) -> list:
         return stats_data
 
     return []
+
+def get_dimension_description(dimension_id, dimension_position_id) -> str:
+    dbw_api_key = getenv("GUS_DBW_API_KEY")
+    url_request = f"https://api-dbw.stat.gov.pl/api/1.1.0/variable/variable-section-position?id-przekroj={dimension_id}&lang=pl"
+    request_headers = {
+        "accept": "application/json",
+        "X-ClientId": dbw_api_key
+    }
+    response = requests.get(url_request, headers=request_headers)
+    if response.status_code == 200:
+        dimensions = response.json()
+
+        print(dimensions)
+        for dim in dimensions:
+            if dim.get("id-pozycja") == dimension_position_id:
+                return dim.get("nazwa-wymiar")
+
+    return ""
+
+# get_representation_description(representation_id)
+
+def get_representation_description(representation_id) -> str:
+    dbw_api_key = getenv("GUS_DBW_API_KEY")
+    url_request = "https://api-dbw.stat.gov.pl/api/1.1.0/dictionaries/way-of-presentation?page=1&page-size=5000&lang=pl"
+    request_headers = {
+        "accept": "application/json",
+        "X-ClientId": dbw_api_key
+    }
+    response = requests.get(url_request, headers=request_headers)
+    if response.status_code == 200:
+        representation_measures = response.json()["data"]
+        for representation in representation_measures:
+            if representation.get("id-sposob-prezentacji-miara") == representation_id:
+                return representation.get("nazwa")
+
+    return ""
