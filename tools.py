@@ -240,7 +240,7 @@ def get_variable_section_periods(field_variable_id: int) -> []:
 
 
     response2 = requests.get(url_request2, headers=request_headers)
-    if response1.status_code == 200:
+    if response2.status_code == 200:
         for item in response2.json()["data"]:
             if item.get("id-zmienna") == field_variable_id:
                 section_periods.append(item)
