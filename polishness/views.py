@@ -4,7 +4,8 @@ from django.contrib import messages
 from django.core.mail import send_mail
 
 from tools import get_polish_photo_link, get_monument_query_params, randomize_monuments, TripGenerator, ask_ai, \
-    get_dbw_fields, get_dbw_field_variables, get_dbw_root_fields
+    get_dbw_fields, get_dbw_field_variables, get_dbw_root_fields, get_variable_section_periods, get_periods, \
+    get_stats_data
 from .forms import ContactForm
 from .models import Monument
 
@@ -93,8 +94,40 @@ def poland_in_numbers_fields(request, field_id):
     return render(request, "polishness/poland_in_numbers_fields.html",
                   {"fields": fields, "field_variables": field_variables})
 
-def poland_in_numbers_field_viewing(request, field_id, field_name):
-    return render(request, "polishness/poland_in_numbers_field_viewing.html", {"field_name": field_name})
+def poland_in_numbers_field_viewing(request, field_id, field_variable_id, field_variable_name):
+
+    if request.method == 'POST':
+        section, section_id, period_id = request.POST["przekroj__przekrojid__okresid"].split("__")
+        year_id = request.POST["rok"]
+        print(section)
+        print(section_id)
+        print(period_id)
+        print(year_id)
+
+        stats_data = get_stats_data(field_variable_id, section_id, year_id, period_id)
+        return render(request, "polishness/poland_in_numbers_field_viewing.html", {"stats_data": stats_data})
+
+    section_periods = get_variable_section_periods(field_variable_id=field_variable_id)
+
+    section_periods_cleaned = []
+    periods = get_periods()
+
+    for item_section_periods in section_periods:
+        item_section_periods["nazwa_przekroj"] = item_section_periods["nazwa-przekroj"]
+        item_section_periods["id_przekroj"] = item_section_periods["id-przekroj"]
+        item_section_periods["id_okres"] = item_section_periods["id-okres"]
+
+        for period in periods:
+            if period["id-okres"] == item_section_periods["id_okres"]:
+                item_section_periods["opis_okres"] = period["opis"]
+
+    return render(request, "polishness/poland_in_numbers_field_browser.html",
+                  {
+                      "field_id": field_id,
+                      "field_variable_id": field_variable_id,
+                      "field_variable_name": field_variable_name, "section_periods": section_periods
+                  }
+                  )
 
 
 

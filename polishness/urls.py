@@ -12,6 +12,6 @@ urlpatterns = [
     path('monument/<int:pk>/ai/', views.monument_single_ai, name='monument_single_ai'),
     path('poland-in-numbers/', views.poland_in_numbers, name='poland_in_numbers'),
     path('poland-in-numbers/<int:field_id>/', views.poland_in_numbers_fields, name='poland_in_numbers_fields'),
-    path('poland-in-numbers/<int:field_id>/<str:field_name>/', views.poland_in_numbers_field_viewing, name='poland_in_numbers_field_viewing'),
+    path('poland-in-numbers/<int:field_id>/<int:field_variable_id>/<str:field_variable_name>/', views.poland_in_numbers_field_viewing, name='poland_in_numbers_field_viewing'),
     path('history/', views.history, name='history'),
 ]

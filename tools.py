@@ -214,6 +214,65 @@ def get_dbw_field_variables(field_id) -> []:
     }
     response = requests.get(url_request, headers=request_headers)
     if response.status_code == 200:
-        field_variables = [{"field_variable_id": field_data.get("id"), "field_variable_name": field_data.get("nazwa-zmienna")} for field_data in response.json()]
+        field_variables = [
+            {"field_id": field_data.get("id"),
+             "field_variable_id": field_data.get("id-zmienna"),
+             "field_variable_name": field_data.get("nazwa-zmienna")
+             } for field_data in response.json()]
+
         return field_variables
+    return []
+
+def get_variable_section_periods(field_variable_id: int) -> []:
+    dbw_api_key = getenv("GUS_DBW_API_KEY")
+    url_request1 = "https://api-dbw.stat.gov.pl/api/1.1.0/variable/variable-section-periods?ile-na-stronie=5000&numer-strony=0&lang=pl"
+    url_request2 = "https://api-dbw.stat.gov.pl/api/1.1.0/variable/variable-section-periods?ile-na-stronie=5000&numer-strony=1&lang=pl"
+    request_headers = {
+        "accept": "application/json",
+        "X-ClientId": dbw_api_key
+    }
+    section_periods = []
+    response1 = requests.get(url_request1, headers=request_headers)
+    if response1.status_code == 200:
+        for item in response1.json()["data"]:
+            if item.get("id-zmienna") == field_variable_id:
+                section_periods.append(item)
+
+
+    response2 = requests.get(url_request2, headers=request_headers)
+    if response1.status_code == 200:
+        for item in response2.json()["data"]:
+            if item.get("id-zmienna") == field_variable_id:
+                section_periods.append(item)
+
+
+    return section_periods
+
+
+def get_periods() -> []:
+    dbw_api_key = getenv("GUS_DBW_API_KEY")
+    url_request = "https://api-dbw.stat.gov.pl/api/1.1.0/dictionaries/periods-dictionary?page=1&page-size=100&lang=pl"
+    request_headers = {
+        "accept": "application/json",
+        "X-ClientId": dbw_api_key
+    }
+    response = requests.get(url_request, headers=request_headers)
+    periods = response.json()["data"]
+
+    return periods
+
+
+def get_stats_data(field_variable_id, section_id, year_id, period_id) -> list:
+    dbw_api_key = getenv("GUS_DBW_API_KEY")
+    url_request = f"https://api-dbw.stat.gov.pl/api/1.1.0/variable/variable-data-section?id-zmienna={field_variable_id}&id-przekroj={section_id}&id-rok={year_id}&id-okres={period_id}&ile-na-stronie=5000&numer-strony=0&lang=pl"
+    request_headers = {
+        "accept": "application/json",
+        "X-ClientId": dbw_api_key
+    }
+    response = requests.get(url_request, headers=request_headers)
+    if response.status_code == 200:
+        stats_data = response.json()["data"]
+        print(stats_data)
+        return stats_data
+
     return []
