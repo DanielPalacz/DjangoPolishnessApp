@@ -65,10 +65,15 @@ def get_polish_photo_link() -> dict:
     unplash_api_key = getenv("UNPLASH_API_KEY")
     url_request = f"https://api.unsplash.com/photos/random?query=poland&client_id={unplash_api_key}&count=1"
     response = requests.get(url_request)
+
+    # print(response.json()[0]["user"]["html"])
+    print(response.json()[0]["user"]["links"]["html"])
+    print(response.status_code)
     if response.status_code == 200:
         return {
             "photo_link": response.json()[0]["urls"]["full"],
             "photo_author": response.json()[0]["user"]["name"],
+            "photo_author_link": response.json()[0]["user"]["links"]["html"],
             "photo_city": response.json()[0]["location"]["city"]
         }
     return {}
