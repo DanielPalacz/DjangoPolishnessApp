@@ -103,6 +103,33 @@
         border-radius: 8px; /* Delikatne zaokrąglenie */
     }
 
+    .card {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        border: 2px solid #000;
+    }
+
+    .card:hover {
+        border-color: #007bff;
+        transform: scale(1.1); /* Slightly enlarge the brand */
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-body h4 a {
+        color: #333;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .card-body h4 a:hover {
+        color: #28a745;
+    }
+
+    .monument-title {
+        font-size: 1.25rem;
+    }
 
 
     {% block style %}
@@ -117,7 +144,7 @@
 
       <div class="navbar-nav mr-auto">
           <strong><a class="navbar-brand m-3 p-2 btn-dark" href="{% url 'polishness:home' %}">poznajmypolske.pl</a></strong>
-          <strong><a class="navbar-brand m-3 p-2 btn-dark" href="{% url 'polishness:history' %}">Historia</a></strong>
+      <!--    <strong><a class="navbar-brand m-3 p-2 btn-dark" href="{% url 'polishness:history' %}">Historia</a></strong> -->
           <strong><a class="navbar-brand m-3 p-2 btn-dark" href="{% url 'polishness:poland_in_numbers' %}">Polska w liczbach</a></strong>
           <strong><a class="navbar-brand m-3 p-2 btn-dark" href="{% url 'polishness:monuments' %}">Zabytki</a></strong>
           <strong><a class="navbar-brand m-3 p-2 btn-dark" href="{% url 'polishness:trips' %}">Wycieczki</a></strong>

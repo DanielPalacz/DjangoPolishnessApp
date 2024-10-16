@@ -65,10 +65,6 @@ def get_polish_photo_link() -> dict:
     unplash_api_key = getenv("UNPLASH_API_KEY")
     url_request = f"https://api.unsplash.com/photos/random?query=poland&client_id={unplash_api_key}&count=1"
     response = requests.get(url_request)
-
-    # print(response.json()[0]["user"]["html"])
-    print(response.json()[0]["user"]["links"]["html"])
-    print(response.status_code)
     if response.status_code == 200:
         return {
             "photo_link": response.json()[0]["urls"]["full"],
@@ -277,7 +273,6 @@ def get_stats_data(field_variable_id, section_id, year_id, period_id) -> list:
     response = requests.get(url_request, headers=request_headers)
     if response.status_code == 200:
         stats_data = response.json()["data"]
-        print(stats_data)
         return stats_data
 
     return []
@@ -292,8 +287,6 @@ def get_dimension_description(dimension_id, dimension_position_id) -> str:
     response = requests.get(url_request, headers=request_headers)
     if response.status_code == 200:
         dimensions = response.json()
-
-        print(dimensions)
         for dim in dimensions:
             if dim.get("id-pozycja") == dimension_position_id:
                 return dim.get("nazwa-wymiar")

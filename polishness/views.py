@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.shortcuts import render, HttpResponseRedirect
 
 from django.contrib import messages
@@ -94,7 +96,7 @@ def poland_in_numbers_fields(request, field_id):
     return render(request, "polishness/poland_in_numbers_fields.html",
                   {"fields": fields, "field_variables": field_variables})
 
-def poland_in_numbers_field_viewing(request, field_id, field_variable_id, field_variable_name):
+def poland_in_numbers_field_browser(request, field_id, field_variable_id, field_variable_name):
 
     if request.method == 'POST':
         section_name, section_id, period_id, period_description = request.POST["przekroj__przekrojid__okresid"].split("__")
@@ -141,11 +143,16 @@ def poland_in_numbers_field_viewing(request, field_id, field_variable_id, field_
             if period["id-okres"] == item_section_periods["id_okres"]:
                 item_section_periods["opis_okres"] = period["opis"]
 
+    current_year = datetime.now().year
+    years = range(2000, current_year + 1)
+
     return render(request, "polishness/poland_in_numbers_field_browser.html",
                   {
                       "field_id": field_id,
                       "field_variable_id": field_variable_id,
-                      "field_variable_name": field_variable_name, "section_periods": section_periods
+                      "field_variable_name": field_variable_name,
+                      "section_periods": section_periods,
+                      'years': years,
                   }
                   )
 
@@ -153,4 +160,3 @@ def poland_in_numbers_field_viewing(request, field_id, field_variable_id, field_
 
 def history(request):
     return render(request, "polishness/history.html", {})
-
