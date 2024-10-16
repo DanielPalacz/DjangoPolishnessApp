@@ -263,7 +263,7 @@ class GusApiDbwClient:
 
         else:
             cls.DBW_LOGGER.error(f"Nieudane zapytanie, zostanie zwrócona pusta lista bez zmiennych (wyszukiwanych dla "
-                                 f"{field_name!r}.")
+                                 f"{field_name!r}).")
             return []
 
     @classmethod
@@ -303,7 +303,7 @@ class GusApiDbwClient:
 
             with open(filename_path, "w", encoding='utf-8') as json_file:
                 json.dump(responses_data, json_file, indent=4)
-                cls.DBW_LOGGER.info(f"Zapisano wszystkie przekroje/okresy do pliku {filename_path}.")
+                cls.DBW_LOGGER.info(f"Zapisano wszystkie przekroje/okresy do pliku {filename_path!r}.")
 
         cls.DBW_LOGGER.info(f"Ustalenie przekrojów i okresów dla zmiennej {field_variable_name!r}.")
         for item in responses_data:

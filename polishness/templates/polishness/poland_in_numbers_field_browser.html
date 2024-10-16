@@ -19,16 +19,16 @@ poznajmypolske.pl
     </div>
     <hr>
 
-    <form action="{% url 'polishness:poland_in_numbers_field_browser' field_id field_variable_id field_variable_name %}" method="post" class="p-4 border border-dark custom-rounded">
+    <form action="{% url 'polishness:poland_in_numbers_field_browser' field_id field_variable_id field_variable_name %}" method="post" class="custom-rounded custom-form">
 
         {% csrf_token %}
 
     <div class="row">
         <!-- Pierwsza kolumna - Przekrój -->
         <div class="col-12 col-md-6 mb-3">
-            <fieldset class="p-3 border border-dark custom-rounded">
+            <fieldset class="p-3 border custom-fieldset">
                 <label for="przekroj__przekrojid__okresid" style="text-decoration: underline;">Przekrój [okres]:</label>
-                <select class="form-control" id="przekroj__przekrojid__okresid" name="przekroj__przekrojid__okresid" aria-label="Przekrój okres" required title="Proszę wybrać opcję w tym polu.">
+                <select class="form-control custom-rounded" id="przekroj__przekrojid__okresid" name="przekroj__przekrojid__okresid" aria-label="Przekrój okres" required title="Proszę wybrać opcję w tym polu.">
                     <option value="" disabled selected>Wybierz przekrój i okres</option>
                     {% for item_section_period in section_periods %}
                         <option value="{{item_section_period.nazwa_przekroj}}__{{item_section_period.id_przekroj}}__{{item_section_period.id_okres}}__{{item_section_period.opis_okres}}">
@@ -41,9 +41,9 @@ poznajmypolske.pl
 
         <!-- Druga kolumna - Wybór roku -->
         <div class="col-12 col-md-6 mb-3">
-            <fieldset class="p-3 border border-dark custom-rounded">
+            <fieldset class="p-3 border custom-fieldset">
                 <label for="rok" style="text-decoration: underline;">Wybierz rok:</label>
-                <select class="form-control" id="rok" name="rok" aria-label="Wybierz rok" required title="Proszę wybrać opcję w tym polu.">
+                <select class="form-control custom-rounded" id="rok" name="rok" aria-label="Wybierz rok" required title="Proszę wybrać opcję w tym polu.">
                     <option value="" disabled selected>Wybierz rok</option>
                     {% for year in years %}
                         <option value="{{ year }}">{{ year }}</option>

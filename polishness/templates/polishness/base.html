@@ -98,9 +98,27 @@
 	    font-size: 24px;
 	}
 
+    .custom-form {
+            border: 2px solid #343a40; /* Pogrubienie krawędzi formularza */
+            border-radius: 10px; /* Zaokrąglenie krawędzi formularza */
+            padding: 20px; /* Padding wewnętrzny formularza */
+    }
 
-    .custom-rounded {
-        border-radius: 8px; /* Delikatne zaokrąglenie */
+    /* Stylizacja fieldset */
+    .custom-fieldset {
+            border: 2px solid #343a40; /* Pogrubienie krawędzi fieldset */
+            border-radius: 10px; /* Zaokrąglenie krawędzi fieldset */
+            padding: 15px; /* Padding wewnętrzny fieldset */
+            margin-bottom: 15px; /* Odstęp dolny fieldset */
+            background-color: #f8f9fa; /* Kolor tła fieldset */
+    }
+
+    .form-control.custom-rounded {
+            border-radius: 5px; /* Zaokrąglenie krawędzi inputów */
+    }
+
+    .btn.custom-rounded {
+            border-radius: 5px; /* Zaokrąglenie krawędzi dla przycisku */
     }
 
     .card {
@@ -163,8 +181,8 @@
     <div class="container content-wrapper">
         {% block content%}
         {% endblock %}
+        <br>
     </div>
-
 
    {% include "polishness/footer.html" %}
 
