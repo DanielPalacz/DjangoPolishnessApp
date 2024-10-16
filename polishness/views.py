@@ -5,9 +5,8 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.contrib import messages
 from django.core.mail import send_mail
 
-from tools import get_polish_photo_link, get_monument_query_params, randomize_monuments, TripGenerator, ask_ai, \
-    get_dbw_fields, get_dbw_field_variables, get_dbw_root_fields, get_variable_section_periods, get_periods, \
-    get_stats_data, get_dimension_description, get_representation_description
+from tools import GusApiDbwClient, get_polish_photo_link, get_monument_query_params, randomize_monuments, \
+    TripGenerator, ask_ai
 from .forms import ContactForm
 from .models import Monument
 
@@ -86,12 +85,12 @@ def monument_single_ai(request, pk):
                   {"monument": monument_item, "response_ai": response_ai})
 
 def poland_in_numbers(request):
-    root_fields = get_dbw_root_fields()
+    root_fields = GusApiDbwClient.get_dbw_root_fields()
     return render(request, "polishness/poland_in_numbers.html", {"root_fields": root_fields})
 
 def poland_in_numbers_fields(request, field_id):
-    fields = get_dbw_fields(root_field=field_id)
-    field_variables = get_dbw_field_variables(field_id=field_id)
+    fields = GusApiDbwClient.get_dbw_fields(root_field=field_id)
+    field_variables = GusApiDbwClient.get_dbw_field_variables(field_id=field_id)
 
     return render(request, "polishness/poland_in_numbers_fields.html",
                   {"fields": fields, "field_variables": field_variables})
@@ -107,16 +106,16 @@ def poland_in_numbers_field_browser(request, field_id, field_variable_id, field_
         print(year_id)
         print(period_description)
 
-        stats_data = get_stats_data(field_variable_id, section_id, year_id, period_id)
+        stats_data = GusApiDbwClient.get_stats_data(field_variable_id, section_id, year_id, period_id)
 
         for stats in stats_data:
             dimension_id = stats["id-wymiar-1"]
             dimension_position_id = stats["id-pozycja-1"]
-            dimension_description = get_dimension_description(dimension_id, dimension_position_id)
+            dimension_description = GusApiDbwClient.get_dimension_description(dimension_id, dimension_position_id)
             stats["dimension_description"] = dimension_description
 
             representation_id = stats["id-sposob-prezentacji-miara"]
-            stats["representation_description"] = get_representation_description(representation_id)
+            stats["representation_description"] = GusApiDbwClient.get_representation_description(representation_id)
 
         return render(request, "polishness/poland_in_numbers_field_viewing.html",
                   {
@@ -129,10 +128,10 @@ def poland_in_numbers_field_browser(request, field_id, field_variable_id, field_
                   }
                   )
 
-    section_periods = get_variable_section_periods(field_variable_id=field_variable_id)
+    section_periods = GusApiDbwClient.get_variable_section_periods(field_variable_id=field_variable_id)
 
     section_periods_cleaned = []
-    periods = get_periods()
+    periods = GusApiDbwClient.get_periods()
 
     for item_section_periods in section_periods:
         item_section_periods["nazwa_przekroj"] = item_section_periods["nazwa-przekroj"]

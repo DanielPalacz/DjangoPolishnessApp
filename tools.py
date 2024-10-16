@@ -171,142 +171,124 @@ class MonumentItem:
 # API DBW
 # https://api-dbw.stat.gov.pl/apidocs/index.html
 
-def get_dbw_root_fields() -> []:
-    dbw_api_key = getenv("GUS_DBW_API_KEY")
-    url_request = "https://api-dbw.stat.gov.pl/api/1.1.0/area/area-area?lang=pl"
-    request_headers = {
+
+class GusApiDbwClient:
+    """ Delivers client functionalities for GUS DBW (Dziedzinowe Bazy Wiedzy)
+
+    Documentation: https://api-dbw.stat.gov.pl/apidocs/index.html
+    """
+    GUS_DBW_API_KEY = getenv("GUS_DBW_API_KEY")
+    REQUEST_HEADERS = {
         "accept": "application/json",
-        "X-ClientId": dbw_api_key
+        "X-ClientId": GUS_DBW_API_KEY
     }
-    response = requests.get(url_request, headers=request_headers)
-    if response.status_code == 200:
-        root_fields = [
-            {
-                "field_id": field_data.get("id"),
-                "field_name": field_data.get("nazwa")
-            } for field_data in response.json() if field_data.get("id-nadrzedny-element") is None]
-        return root_fields
-    return []
 
-def get_dbw_fields(root_field: int) -> []:
-    dbw_api_key = getenv("GUS_DBW_API_KEY")
-    url_request = "https://api-dbw.stat.gov.pl/api/1.1.0/area/area-area?lang=pl"
-    request_headers = {
-        "accept": "application/json",
-        "X-ClientId": dbw_api_key
-    }
-    response = requests.get(url_request, headers=request_headers)
-    if response.status_code == 200:
-        fields = [
-            {
-                "field_id": field_data.get("id"),
-                "field_name": field_data.get("nazwa"),
-                "field_variables": field_data.get("czy-zmienne")
-            } for field_data in response.json() if field_data.get("id-nadrzedny-element") == root_field]
-        return fields
-    return []
+    @classmethod
+    def get_dbw_root_fields(cls) -> list:
+        url_request = "https://api-dbw.stat.gov.pl/api/1.1.0/area/area-area?lang=pl"
+        response = requests.get(url_request, headers=cls.REQUEST_HEADERS)
+        if response.status_code == 200:
+            root_fields = [
+                {
+                    "field_id": field_data.get("id"),
+                    "field_name": field_data.get("nazwa")
+                } for field_data in response.json() if field_data.get("id-nadrzedny-element") is None]
+            return root_fields
+        return []
 
-def get_dbw_field_variables(field_id) -> []:
-    dbw_api_key = getenv("GUS_DBW_API_KEY")
-    url_request = f"https://api-dbw.stat.gov.pl/api/1.1.0/area/area-variable?id-obszaru={field_id}&lang=pl"
-    request_headers = {
-        "accept": "application/json",
-        "X-ClientId": dbw_api_key
-    }
-    response = requests.get(url_request, headers=request_headers)
-    if response.status_code == 200:
-        field_variables = [
-            {"field_id": field_data.get("id"),
-             "field_variable_id": field_data.get("id-zmienna"),
-             "field_variable_name": field_data.get("nazwa-zmienna")
-             } for field_data in response.json()]
+    @classmethod
+    def get_dbw_fields(cls, root_field: int) -> list:
+        url_request = "https://api-dbw.stat.gov.pl/api/1.1.0/area/area-area?lang=pl"
+        response = requests.get(url_request, headers=cls.REQUEST_HEADERS)
 
-        return field_variables
-    return []
+        if response.status_code == 200:
+            fields = [
+                {
+                    "field_id": field_data.get("id"),
+                    "field_name": field_data.get("nazwa"),
+                    "field_variables": field_data.get("czy-zmienne")
+                } for field_data in response.json() if field_data.get("id-nadrzedny-element") == root_field]
+            return fields
+        return []
 
-def get_variable_section_periods(field_variable_id: int) -> []:
-    dbw_api_key = getenv("GUS_DBW_API_KEY")
-    url_request1 = "https://api-dbw.stat.gov.pl/api/1.1.0/variable/variable-section-periods?ile-na-stronie=5000&numer-strony=0&lang=pl"
-    url_request2 = "https://api-dbw.stat.gov.pl/api/1.1.0/variable/variable-section-periods?ile-na-stronie=5000&numer-strony=1&lang=pl"
-    request_headers = {
-        "accept": "application/json",
-        "X-ClientId": dbw_api_key
-    }
-    section_periods = []
-    response1 = requests.get(url_request1, headers=request_headers)
-    if response1.status_code == 200:
-        for item in response1.json()["data"]:
-            if item.get("id-zmienna") == field_variable_id:
-                section_periods.append(item)
+    @classmethod
+    def get_dbw_field_variables(cls, field_id) -> []:
+        url_request = f"https://api-dbw.stat.gov.pl/api/1.1.0/area/area-variable?id-obszaru={field_id}&lang=pl"
+        response = requests.get(url_request, headers=cls.REQUEST_HEADERS)
 
+        if response.status_code == 200:
+            field_variables = [
+                {"field_id": field_data.get("id"),
+                 "field_variable_id": field_data.get("id-zmienna"),
+                 "field_variable_name": field_data.get("nazwa-zmienna")
+                 } for field_data in response.json()]
 
-    response2 = requests.get(url_request2, headers=request_headers)
-    if response2.status_code == 200:
-        for item in response2.json()["data"]:
-            if item.get("id-zmienna") == field_variable_id:
-                section_periods.append(item)
+            return field_variables
+        return []
+
+    @classmethod
+    def get_variable_section_periods(cls, field_variable_id: int) -> []:
+        url_request1 = "https://api-dbw.stat.gov.pl/api/1.1.0/variable/variable-section-periods?ile-na-stronie=5000&numer-strony=0&lang=pl"
+        url_request2 = "https://api-dbw.stat.gov.pl/api/1.1.0/variable/variable-section-periods?ile-na-stronie=5000&numer-strony=1&lang=pl"
+        section_periods = []
+
+        response1 = requests.get(url_request1, headers=cls.REQUEST_HEADERS)
+        if response1.status_code == 200:
+            for item in response1.json()["data"]:
+                if item.get("id-zmienna") == field_variable_id:
+                    section_periods.append(item)
+
+        response2 = requests.get(url_request2, headers=cls.REQUEST_HEADERS)
+        if response2.status_code == 200:
+            for item in response2.json()["data"]:
+                if item.get("id-zmienna") == field_variable_id:
+                    section_periods.append(item)
 
 
-    return section_periods
+        return section_periods
 
 
-def get_periods() -> []:
-    dbw_api_key = getenv("GUS_DBW_API_KEY")
-    url_request = "https://api-dbw.stat.gov.pl/api/1.1.0/dictionaries/periods-dictionary?page=1&page-size=100&lang=pl"
-    request_headers = {
-        "accept": "application/json",
-        "X-ClientId": dbw_api_key
-    }
-    response = requests.get(url_request, headers=request_headers)
-    periods = response.json()["data"]
-
-    return periods
+    @classmethod
+    def get_periods(cls) -> []:
+        url_request = "https://api-dbw.stat.gov.pl/api/1.1.0/dictionaries/periods-dictionary?page=1&page-size=100&lang=pl"
+        response = requests.get(url_request, headers=cls.REQUEST_HEADERS)
+        periods = response.json()["data"]
+        return periods
 
 
-def get_stats_data(field_variable_id, section_id, year_id, period_id) -> list:
-    dbw_api_key = getenv("GUS_DBW_API_KEY")
-    url_request = f"https://api-dbw.stat.gov.pl/api/1.1.0/variable/variable-data-section?id-zmienna={field_variable_id}&id-przekroj={section_id}&id-rok={year_id}&id-okres={period_id}&ile-na-stronie=5000&numer-strony=0&lang=pl"
-    request_headers = {
-        "accept": "application/json",
-        "X-ClientId": dbw_api_key
-    }
-    response = requests.get(url_request, headers=request_headers)
-    if response.status_code == 200:
-        stats_data = response.json()["data"]
-        return stats_data
+    @classmethod
+    def get_stats_data(cls, field_variable_id, section_id, year_id, period_id) -> list:
+        url_request = f"https://api-dbw.stat.gov.pl/api/1.1.0/variable/variable-data-section?id-zmienna={field_variable_id}&id-przekroj={section_id}&id-rok={year_id}&id-okres={period_id}&ile-na-stronie=5000&numer-strony=0&lang=pl"
+        response = requests.get(url_request, headers=cls.REQUEST_HEADERS)
 
-    return []
+        if response.status_code == 200:
+            stats_data = response.json()["data"]
+            return stats_data
 
-def get_dimension_description(dimension_id, dimension_position_id) -> str:
-    dbw_api_key = getenv("GUS_DBW_API_KEY")
-    url_request = f"https://api-dbw.stat.gov.pl/api/1.1.0/variable/variable-section-position?id-przekroj={dimension_id}&lang=pl"
-    request_headers = {
-        "accept": "application/json",
-        "X-ClientId": dbw_api_key
-    }
-    response = requests.get(url_request, headers=request_headers)
-    if response.status_code == 200:
-        dimensions = response.json()
-        for dim in dimensions:
-            if dim.get("id-pozycja") == dimension_position_id:
-                return dim.get("nazwa-wymiar")
+        return []
 
-    return ""
+    @classmethod
+    def get_dimension_description(cls, dimension_id, dimension_position_id) -> str:
+        dbw_api_key = getenv("GUS_DBW_API_KEY")
+        url_request = f"https://api-dbw.stat.gov.pl/api/1.1.0/variable/variable-section-position?id-przekroj={dimension_id}&lang=pl"
+        response = requests.get(url_request, headers=cls.REQUEST_HEADERS)
+        if response.status_code == 200:
+            dimensions = response.json()
+            for dim in dimensions:
+                if dim.get("id-pozycja") == dimension_position_id:
+                    return dim.get("nazwa-wymiar")
 
-# get_representation_description(representation_id)
+        return ""
 
-def get_representation_description(representation_id) -> str:
-    dbw_api_key = getenv("GUS_DBW_API_KEY")
-    url_request = "https://api-dbw.stat.gov.pl/api/1.1.0/dictionaries/way-of-presentation?page=1&page-size=5000&lang=pl"
-    request_headers = {
-        "accept": "application/json",
-        "X-ClientId": dbw_api_key
-    }
-    response = requests.get(url_request, headers=request_headers)
-    if response.status_code == 200:
-        representation_measures = response.json()["data"]
-        for representation in representation_measures:
-            if representation.get("id-sposob-prezentacji-miara") == representation_id:
-                return representation.get("nazwa")
+    @classmethod
+    def get_representation_description(cls, representation_id) -> str:
+        dbw_api_key = getenv("GUS_DBW_API_KEY")
+        url_request = "https://api-dbw.stat.gov.pl/api/1.1.0/dictionaries/way-of-presentation?page=1&page-size=5000&lang=pl"
+        response = requests.get(url_request, headers=cls.REQUEST_HEADERS)
+        if response.status_code == 200:
+            representation_measures = response.json()["data"]
+            for representation in representation_measures:
+                if representation.get("id-sposob-prezentacji-miara") == representation_id:
+                    return representation.get("nazwa")
 
-    return ""
+        return ""
