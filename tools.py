@@ -1,6 +1,7 @@
 import json
 from os.path import exists, getsize
 import logging
+from typing import Optional
 
 from django.http import QueryDict
 from django.db.models.query import QuerySet
@@ -261,6 +262,10 @@ class GusApiDbwClient:
 
             return field_variables
 
+        elif response.status_code == 404:
+            cls.DBW_LOGGER.info(f"Dany obszar najprawdopodobniej nie posiada zmiennych statystycznych, zostanie "
+                                 f"zwrócona pusta lista bez zmiennych (wyszukiwanie dla {field_name!r}).")
+
         else:
             cls.DBW_LOGGER.error(f"Nieudane zapytanie, zostanie zwrócona pusta lista bez zmiennych (wyszukiwanych dla "
                                  f"{field_name!r}).")
@@ -272,9 +277,9 @@ class GusApiDbwClient:
 
         section_periods = []
         responses_data = []
-        filename_path = "static/section_periods.json"
+        filename_path = "static/all_section_periods.json"
 
-        if exists(filename_path) and not getsize(filename_path):
+        if exists(filename_path) and getsize(filename_path):
             cls.DBW_LOGGER.debug(f"Plik {filename_path!r} jest już na dysku, więc zostanie wykorzystany przy ustalaniu "
                                  f"przekrojów i okresów dla zmiennej {field_variable_name!r}.")
             with open(filename_path, "r", encoding='utf-8') as json_file:
@@ -282,7 +287,7 @@ class GusApiDbwClient:
 
         else:
             cls.DBW_LOGGER.debug(f"Pliku {filename_path!r} nie ma jeszcze na dysku, więc wszystkie przekroje i okresy "
-                                 f"{field_variable_name!r} zostaną wczytane z DBW API.")
+                                 f"zostaną wczytane z DBW API.")
             url_request1 = "https://api-dbw.stat.gov.pl/api/1.1.0/variable/variable-section-periods?ile-na-stronie=5000&numer-strony=0&lang=pl"
             url_request2 = "https://api-dbw.stat.gov.pl/api/1.1.0/variable/variable-section-periods?ile-na-stronie=5000&numer-strony=1&lang=pl"
 
@@ -316,46 +321,97 @@ class GusApiDbwClient:
 
 
     @classmethod
-    def get_periods(cls) -> []:
-        url_request = "https://api-dbw.stat.gov.pl/api/1.1.0/dictionaries/periods-dictionary?page=1&page-size=100&lang=pl"
-        response = requests.get(url_request, headers=cls.REQUEST_HEADERS)
-        periods = response.json()["data"]
-        return periods
+    def get_periods(cls) -> list:
+        filename_path = "static/all_periods.json"
+
+        if exists(filename_path) and getsize(filename_path):
+            cls.DBW_LOGGER.debug(f"Plik {filename_path!r} jest już na dysku, więc zostanie wykorzystany. ")
+            with open(filename_path, "r", encoding='utf-8') as json_file:
+                periods = json.load(json_file)
+                cls.DBW_LOGGER.info(f"Wczytano wszystkie okresy z pliku {filename_path!r}. "
+                                    f"(Liczba okresów: {len(periods)}). Zostaną dalej wykorzystane.")
+                return periods
+
+        else:
+            cls.DBW_LOGGER.debug(f"Pliku {filename_path!r} nie ma jeszcze na dysku, więc wszystkie okresy "
+                                 f" zostaną wczytane z DBW API.")
+            url_request = "https://api-dbw.stat.gov.pl/api/1.1.0/dictionaries/periods-dictionary"
+            response = requests.get(url_request, headers=cls.REQUEST_HEADERS)
+            periods = response.json()["data"]
+            with open(filename_path, "w", encoding='utf-8') as json_file:
+                json.dump(periods, json_file, indent=4)
+                cls.DBW_LOGGER.info(f"Zapisano wszystkie okresy do pliku {filename_path!r}. "
+                                    f"(Liczba okresów: {len(periods)}). Zostaną dalej wykorzystane.")
+            return periods
 
 
     @classmethod
     def get_stats_data(cls, field_variable_id, section_id, year_id, period_id) -> list:
-        url_request = f"https://api-dbw.stat.gov.pl/api/1.1.0/variable/variable-data-section?id-zmienna={field_variable_id}&id-przekroj={section_id}&id-rok={year_id}&id-okres={period_id}&ile-na-stronie=5000&numer-strony=0&lang=pl"
+        url_request = (f"https://api-dbw.stat.gov.pl/api/1.1.0/variable/variable-data-section?"
+                       f"id-zmienna={field_variable_id}&"
+                       f"id-przekroj={section_id}&"
+                       f"id-rok={year_id}&"
+                       f"id-okres={period_id}&"
+                       f"ile-na-stronie=5000&numer-strony=0&lang=pl")
+        cls.DBW_LOGGER.debug(f"Zostanie wykonane zapytanie pobierające dane statystyczne ({url_request}).")
         response = requests.get(url_request, headers=cls.REQUEST_HEADERS)
+        cls.DBW_LOGGER.info(f"Wykonano zapytanie pobierające dane statystyczne ({url_request}). "
+                            f"Zwrócony kod odpowiedzi: {response.status_code}.")
 
         if response.status_code == 200:
             stats_data = response.json()["data"]
+            cls.DBW_LOGGER.info(f"Pobrane dane statystyczne ({url_request}): {stats_data}.")
             return stats_data
 
+        cls.DBW_LOGGER.info(f"Dany obszar najprawdopodobniej nie posiada danych statystycznych, zostanie zwrócona "
+                            f"pusta lista bez danych.")
         return []
 
     @classmethod
-    def get_dimension_description(cls, dimension_id, dimension_position_id) -> str:
-        dbw_api_key = getenv("GUS_DBW_API_KEY")
-        url_request = f"https://api-dbw.stat.gov.pl/api/1.1.0/variable/variable-section-position?id-przekroj={dimension_id}&lang=pl"
+    def get_dimension_description(cls, section_id: int, dimension_id: int, dimension_position_id: Optional) -> str:
+        if dimension_id is None or dimension_position_id is None:
+            err_message = \
+                "Zmienne dimension_id i dimension_position_id muszą być typu integer przy ustalaniu opisu wymiaru."
+            cls.DBW_LOGGER.error(err_message)
+            raise ValueError(err_message)
+
+
+        cls.DBW_LOGGER.info(f"Nastąpi ustalanie opisu dla wymiaru {dimension_id!r} "
+                             f"(id pozycji: {dimension_position_id}, id przekroju: {section_id}).")
+        url_request = \
+            f"https://api-dbw.stat.gov.pl/api/1.1.0/variable/variable-section-position?id-przekroj={section_id}&lang=pl"
+        cls.DBW_LOGGER.debug(f"Zostanie wykonane zapytanie pobierające dane wymarów dla przekroju {section_id!r} "
+                             f"(id pozycji: {dimension_position_id}, id wymiaru: {dimension_id}) ({url_request}).")
         response = requests.get(url_request, headers=cls.REQUEST_HEADERS)
+        cls.DBW_LOGGER.info(f"Wykonano zapytanie pobierające dane wymarów dla przekroju {dimension_id!r} "
+                            f"({url_request}). Zwrócony kod odpowiedzi: {response.status_code}.")
         if response.status_code == 200:
             dimensions = response.json()
+            cls.DBW_LOGGER.info(f"Pobrane dane wymiarów przekroju {section_id!r}: ({dimensions}).")
             for dim in dimensions:
                 if dim.get("id-pozycja") == dimension_position_id:
-                    return dim.get("nazwa-wymiar")
+                    dim_description = dim.get("nazwa-wymiar")
+                    cls.DBW_LOGGER.info(f"Ustalono opis wymiaru dla {dimension_id!r} "
+                                        f"(id pozycji: {dimension_position_id}): {dim_description!r}.")
+                    return dim_description
 
         return ""
 
     @classmethod
     def get_representation_description(cls, representation_id) -> str:
-        dbw_api_key = getenv("GUS_DBW_API_KEY")
+        cls.DBW_LOGGER.info(f"Nastąpi ustalanie opisu dla miary (id miary: {representation_id!r}).")
         url_request = "https://api-dbw.stat.gov.pl/api/1.1.0/dictionaries/way-of-presentation?page=1&page-size=5000&lang=pl"
+        cls.DBW_LOGGER.debug(f"Zostanie wykonane zapytanie pobierające dane opisu miar ({url_request}).")
         response = requests.get(url_request, headers=cls.REQUEST_HEADERS)
+        cls.DBW_LOGGER.info(f"Wykonano zapytanie pobierające dane opisu miar ({url_request}). "
+                            f"Zwrócony kod odpowiedzi: {response.status_code}.")
         if response.status_code == 200:
             representation_measures = response.json()["data"]
+            cls.DBW_LOGGER.info(f"Pobrane dane opisu miar: {representation_measures}.")
             for representation in representation_measures:
                 if representation.get("id-sposob-prezentacji-miara") == representation_id:
-                    return representation.get("nazwa")
+                    measure_name = representation.get("nazwa")
+                    cls.DBW_LOGGER.info(f"Ustalono nazwę miary dla id miary {representation_id!r} => {measure_name!r}.")
+                    return measure_name
 
         return ""

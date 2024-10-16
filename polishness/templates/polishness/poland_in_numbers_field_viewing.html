@@ -8,7 +8,7 @@ poznajmypolske.pl
 {% block content %}
 
                 <!-- Title of the Monument -->
-                <h1 style="font-weight: bold;" class="p-2">{{ field_variable_name|capfirst }}:</h1>
+                <h1 style="font-weight: bold;" class="mt-4">{{ field_variable_name|capfirst }}:</h1>
 
                 <!-- Table with monument details -->
                 <div class="table-responsive">
@@ -16,7 +16,8 @@ poznajmypolske.pl
                         <thead>
                             <tr>
                                 <th>Przekrój</th>
-                                <th>Wymiar</th>
+                                <th>Wymiar-1</th>
+                                <th>Wymiar-2</th>
                                 <th>Okres</th>
                                 <th>Sposób reprezentacji (miara)</th>
                                 <th>Wartość</th>
@@ -27,6 +28,7 @@ poznajmypolske.pl
                             <tr>
                                 <td>{{section_name}}</td>
                                 <td>{{stats.dimension_description}}</td>
+                                <td>{{stats.dimension_description_beta}}</td>
                                 <td>{{period_description}}</td>
                                 <td>{{stats.representation_description}}</td>
                                 <td>{{stats.wartosc}}</td>

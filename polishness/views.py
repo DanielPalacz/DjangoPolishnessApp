@@ -1,4 +1,5 @@
 from datetime import datetime
+from django.utils.text import slugify
 
 from django.shortcuts import render, HttpResponseRedirect
 
@@ -101,19 +102,32 @@ def poland_in_numbers_field_browser(request, field_id, field_variable_id, field_
     if request.method == 'POST':
         section_name, section_id, period_id, period_description = request.POST["przekroj__przekrojid__okresid"].split("__")
         year_id = request.POST["rok"]
-        print(section_name)
-        print(section_id)
-        print(period_id)
-        print(year_id)
-        print(period_description)
-
+        GusApiDbwClient.DBW_LOGGER.info(f"Dla następujących parametrów zostaną pobrane dane statystyczne. "
+                                        f"Przekrój: {section_name} (przekroj_id={section_id}). "
+                                        f"Zmienna: {field_variable_name} (zmienna_id={field_variable_id}). "
+                                        f"Okres: {period_description} (okres_id={period_id}). "
+                                        f"Rok: {year_id}.")
         stats_data = GusApiDbwClient.get_stats_data(field_variable_id, section_id, year_id, period_id)
 
+        GusApiDbwClient.DBW_LOGGER.info("Zostaną wzbogacone pobrane statystyki.")
         for stats in stats_data:
+            GusApiDbwClient.DBW_LOGGER.info(f"Wzbogacanie następującego rekordu statystyk: {stats}.")
             dimension_id = stats["id-wymiar-1"]
             dimension_position_id = stats["id-pozycja-1"]
-            dimension_description = GusApiDbwClient.get_dimension_description(dimension_id, dimension_position_id)
+            dimension_description = GusApiDbwClient.get_dimension_description(
+                section_id=section_id, dimension_id=dimension_id, dimension_position_id=dimension_position_id)
             stats["dimension_description"] = dimension_description
+
+            try:
+                dimension_id_beta = stats.get("id-wymiar-2", None)
+                dimension_position_id_beta = stats.get("id-pozycja-2", None)
+                dimension_description_beta = GusApiDbwClient.get_dimension_description(
+                    section_id=section_id, dimension_id=dimension_id_beta,
+                    dimension_position_id=dimension_position_id_beta
+                )
+                stats["dimension_description_beta"] = dimension_description_beta
+            except ValueError:
+                stats["dimension_description_beta"] = "-"
 
             representation_id = stats["id-sposob-prezentacji-miara"]
             stats["representation_description"] = GusApiDbwClient.get_representation_description(representation_id)
