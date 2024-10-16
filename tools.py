@@ -1,4 +1,6 @@
-from dataclasses import field
+import json
+from os.path import exists, getsize
+import logging
 
 from django.http import QueryDict
 from django.db.models.query import QuerySet
@@ -177,6 +179,14 @@ class GusApiDbwClient:
 
     Documentation: https://api-dbw.stat.gov.pl/apidocs/index.html
     """
+    DBW_LOGGER = logging.getLogger("autor_log")
+    DBW_LOGGER.setLevel(logging.DEBUG)
+    DBW_LOGGER_HANDLER = logging.FileHandler("logs/dbw.log")
+    DBW_LOGGER_HANDLER.setLevel(logging.DEBUG)
+    DBW_LOGGER_FORMATTER = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+    DBW_LOGGER_HANDLER.setFormatter(DBW_LOGGER_FORMATTER)
+    DBW_LOGGER.addHandler(DBW_LOGGER_HANDLER)
+
     GUS_DBW_API_KEY = getenv("GUS_DBW_API_KEY")
     REQUEST_HEADERS = {
         "accept": "application/json",
@@ -185,21 +195,35 @@ class GusApiDbwClient:
 
     @classmethod
     def get_dbw_root_fields(cls) -> list:
+        """" Delivers 'Podstawowe Dziedziny Wiedzy' from DBW GUS API. """
         url_request = "https://api-dbw.stat.gov.pl/api/1.1.0/area/area-area?lang=pl"
+        cls.DBW_LOGGER.info(f"Zostaną pobrane podstawowe dziedziny.")
+        cls.DBW_LOGGER.debug(f"Zostanie wykonane zapytanie pobierające wszystkie dziedziny wiedzy ({url_request}).")
         response = requests.get(url_request, headers=cls.REQUEST_HEADERS)
+        cls.DBW_LOGGER.info(f"Wykonano zapytanie pobierające wszystkie dziedziny wiedzy ({url_request}). "
+                            f"Zwrócony kod odpowiedzi: {response.status_code}.")
         if response.status_code == 200:
             root_fields = [
                 {
                     "field_id": field_data.get("id"),
                     "field_name": field_data.get("nazwa")
                 } for field_data in response.json() if field_data.get("id-nadrzedny-element") is None]
+            cls.DBW_LOGGER.debug(f"Odszukano podstawowe dziedziny ({root_fields}).")
             return root_fields
-        return []
+
+        else:
+            cls.DBW_LOGGER.error("Nieudane zapytanie, zostanie zwrócona pusta lista bez podstawowych dziedzin wiedzy.")
+            return []
 
     @classmethod
-    def get_dbw_fields(cls, root_field: int) -> list:
+    def get_dbw_fields(cls, field_id: int, field_name: str) -> list:
+        """" Delivers 'Podkategorie Dziedzinowe Wiedzy' from DBW GUS API. """
         url_request = "https://api-dbw.stat.gov.pl/api/1.1.0/area/area-area?lang=pl"
+        cls.DBW_LOGGER.info(f"Zostaną wyszukane podkategorie dziedzin wiedzy dla: {field_name} (field_id={field_id}).")
+        cls.DBW_LOGGER.debug(f"Zostanie wykonane zapytanie pobierające wszystkie dziedziny wiedzy ({url_request}).")
         response = requests.get(url_request, headers=cls.REQUEST_HEADERS)
+        cls.DBW_LOGGER.info(f"Wykonano zapytanie pobierające wszystkie dziedziny wiedzy ({url_request}). "
+                            f"Zwrócony kod odpowiedzi: {response.status_code}.")
 
         if response.status_code == 200:
             fields = [
@@ -207,14 +231,24 @@ class GusApiDbwClient:
                     "field_id": field_data.get("id"),
                     "field_name": field_data.get("nazwa"),
                     "field_variables": field_data.get("czy-zmienne")
-                } for field_data in response.json() if field_data.get("id-nadrzedny-element") == root_field]
+                } for field_data in response.json() if field_data.get("id-nadrzedny-element") == field_id]
+            cls.DBW_LOGGER.info(f"Odszukano podkategorie dziedzin wiedzy dla: {field_name} (field_id={field_id}). "
+                                f"Znaleziono: {fields}.")
             return fields
-        return []
+
+        else:
+           cls.DBW_LOGGER.error("Nieudane zapytanie, zostanie zwrócona pusta lista bez podkategorii dziedzin wiedzy.")
+           return []
 
     @classmethod
-    def get_dbw_field_variables(cls, field_id) -> []:
+    def get_dbw_field_variables(cls, field_id: int, field_name: str) -> list:
+        """" Delivers 'Zmienne dla Kategorii Dziedzin Wiedzy' from DBW GUS API. """
         url_request = f"https://api-dbw.stat.gov.pl/api/1.1.0/area/area-variable?id-obszaru={field_id}&lang=pl"
+        cls.DBW_LOGGER.info(f"Zostaną wyszukane zmienne dla {field_name!r} (field_id={field_id}).")
+        cls.DBW_LOGGER.debug(f"Zostanie wykonane zapytanie pobierające zmienne dla {field_name!r} ({url_request}).")
         response = requests.get(url_request, headers=cls.REQUEST_HEADERS)
+        cls.DBW_LOGGER.info(f"Wykonano zapytanie pobierające zmienne dla {field_name!r} ({url_request}). "
+                            f"Zwrócony kod odpowiedzi: {response.status_code}.")
 
         if response.status_code == 200:
             field_variables = [
@@ -222,28 +256,61 @@ class GusApiDbwClient:
                  "field_variable_id": field_data.get("id-zmienna"),
                  "field_variable_name": field_data.get("nazwa-zmienna")
                  } for field_data in response.json()]
+            cls.DBW_LOGGER.info(f"Wyszukano zmienne dla: {field_name!r} (field_id={field_id}). "
+                                f"Znaleziono: {field_variables}.")
 
             return field_variables
-        return []
+
+        else:
+            cls.DBW_LOGGER.error(f"Nieudane zapytanie, zostanie zwrócona pusta lista bez zmiennych (wyszukiwanych dla "
+                                 f"{field_name!r}.")
+            return []
 
     @classmethod
-    def get_variable_section_periods(cls, field_variable_id: int) -> []:
-        url_request1 = "https://api-dbw.stat.gov.pl/api/1.1.0/variable/variable-section-periods?ile-na-stronie=5000&numer-strony=0&lang=pl"
-        url_request2 = "https://api-dbw.stat.gov.pl/api/1.1.0/variable/variable-section-periods?ile-na-stronie=5000&numer-strony=1&lang=pl"
+    def get_variable_section_periods(cls, field_variable_id: int, field_variable_name: str) -> list:
+        """" Delivers 'Przekroje i okresy dla Zmiennej' from DBW GUS API. """
+
         section_periods = []
+        responses_data = []
+        filename_path = "static/section_periods.json"
 
-        response1 = requests.get(url_request1, headers=cls.REQUEST_HEADERS)
-        if response1.status_code == 200:
-            for item in response1.json()["data"]:
-                if item.get("id-zmienna") == field_variable_id:
-                    section_periods.append(item)
+        if exists(filename_path) and not getsize(filename_path):
+            cls.DBW_LOGGER.debug(f"Plik {filename_path!r} jest już na dysku, więc zostanie wykorzystany przy ustalaniu "
+                                 f"przekrojów i okresów dla zmiennej {field_variable_name!r}.")
+            with open(filename_path, "r", encoding='utf-8') as json_file:
+                responses_data = json.load(json_file)
 
-        response2 = requests.get(url_request2, headers=cls.REQUEST_HEADERS)
-        if response2.status_code == 200:
-            for item in response2.json()["data"]:
-                if item.get("id-zmienna") == field_variable_id:
-                    section_periods.append(item)
+        else:
+            cls.DBW_LOGGER.debug(f"Pliku {filename_path!r} nie ma jeszcze na dysku, więc wszystkie przekroje i okresy "
+                                 f"{field_variable_name!r} zostaną wczytane z DBW API.")
+            url_request1 = "https://api-dbw.stat.gov.pl/api/1.1.0/variable/variable-section-periods?ile-na-stronie=5000&numer-strony=0&lang=pl"
+            url_request2 = "https://api-dbw.stat.gov.pl/api/1.1.0/variable/variable-section-periods?ile-na-stronie=5000&numer-strony=1&lang=pl"
 
+            cls.DBW_LOGGER.info(f"Zostaną pobrane wszystkie przekroje/okresy z DBW API. "
+                                f"Wykonane będą dwa zapytania (1: {url_request1}, 2: {url_request2}).")
+
+            response1 = requests.get(url_request1, headers=cls.REQUEST_HEADERS)
+
+            cls.DBW_LOGGER.info(f"Wykonano zapytanie pobierające przekroje/okresy z DBW API ({url_request1}). "
+                                f"Zwrócony kod odpowiedzi: {response1.status_code}.")
+            if response1.status_code == 200:
+                responses_data = response1.json()["data"]
+            response2 = requests.get(url_request2, headers=cls.REQUEST_HEADERS)
+            cls.DBW_LOGGER.info(f"Wykonano zapytanie pobierające przekroje/okresy z DBW API ({url_request2}). "
+                                f"Zwrócony kod odpowiedzi: {response2.status_code}.")
+            if response2.status_code == 200:
+                responses_data += response2.json()["data"]
+
+            with open(filename_path, "w", encoding='utf-8') as json_file:
+                json.dump(responses_data, json_file, indent=4)
+                cls.DBW_LOGGER.info(f"Zapisano wszystkie przekroje/okresy do pliku {filename_path}.")
+
+        cls.DBW_LOGGER.info(f"Ustalenie przekrojów i okresów dla zmiennej {field_variable_name!r}.")
+        for item in responses_data:
+            if item.get("id-zmienna") == field_variable_id:
+                section_periods.append(item)
+
+        cls.DBW_LOGGER.info(f"Ustalono przekroje i okresy dla zmiennej {field_variable_name!r} ({section_periods}).")
 
         return section_periods
 

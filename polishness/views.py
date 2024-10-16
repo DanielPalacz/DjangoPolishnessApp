@@ -85,12 +85,13 @@ def monument_single_ai(request, pk):
                   {"monument": monument_item, "response_ai": response_ai})
 
 def poland_in_numbers(request):
+    """" Presents root fields (Podstawowe Dziedziny Wiedzy) from DBW GUS API. """
     root_fields = GusApiDbwClient.get_dbw_root_fields()
     return render(request, "polishness/poland_in_numbers.html", {"root_fields": root_fields})
 
-def poland_in_numbers_fields(request, field_id):
-    fields = GusApiDbwClient.get_dbw_fields(root_field=field_id)
-    field_variables = GusApiDbwClient.get_dbw_field_variables(field_id=field_id)
+def poland_in_numbers_fields(request, field_id, field_name):
+    fields = GusApiDbwClient.get_dbw_fields(field_id=field_id, field_name=field_name)
+    field_variables = GusApiDbwClient.get_dbw_field_variables(field_id=field_id, field_name=field_name)
 
     return render(request, "polishness/poland_in_numbers_fields.html",
                   {"fields": fields, "field_variables": field_variables})
@@ -128,9 +129,9 @@ def poland_in_numbers_field_browser(request, field_id, field_variable_id, field_
                   }
                   )
 
-    section_periods = GusApiDbwClient.get_variable_section_periods(field_variable_id=field_variable_id)
+    section_periods = GusApiDbwClient.get_variable_section_periods(
+        field_variable_id=field_variable_id, field_variable_name=field_variable_name)
 
-    section_periods_cleaned = []
     periods = GusApiDbwClient.get_periods()
 
     for item_section_periods in section_periods:
