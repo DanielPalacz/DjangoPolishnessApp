@@ -4,11 +4,19 @@
 poznajmypolske.pl
 {% endblock %}
 
+{% block style %}
+    .card:hover {
+        border-color: #007bff;
+        transform: scale(1.1); /* Slightly enlarge the brand */
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+{% endblock %}
 
 {% block content %}
     <div class="row mt-4">
         <div class="col">
-            <h4 class="text-start">W tym miejscu przedstawiane są dane z <b><a style="color: black; href="https://api-dbw.stat.gov.pl/apidocs/index.html">API Dziedzinowych Baz Wiedzy</a></b> Głównego Urzędu Statystycznego.  </h4>
+            <h4 class="text-start">W tym miejscu przedstawiane są dane z <b><a style="color: black;" href="https://api-dbw.stat.gov.pl/apidocs/index.html">API Dziedzinowych Baz Wiedzy</a></b> Głównego Urzędu Statystycznego.  </h4>
         </div>
     </div>
     <div class="row mt-4">
