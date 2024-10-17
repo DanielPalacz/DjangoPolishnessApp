@@ -23,8 +23,8 @@ poznajmypolske.pl
 			<br>
 			<h2 align="left">Formularz kontaktowy:</h2>
 			<div class="row">
-				<div class="col-8">
-				<form method="post" action="/contact/" class="form-group">
+				<div class="col">
+				<form method="post" action="/contact/" class="form-group custom-rounded">
 					{% csrf_token %}
 					{{form|crispy}}
 					<input type="submit" value="Wyślij" class="btn btn-outline-dark btn-lg">
