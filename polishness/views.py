@@ -1,5 +1,4 @@
 from datetime import datetime
-from django.utils.text import slugify
 
 from django.shortcuts import render, HttpResponseRedirect
 

@@ -1,24 +1,21 @@
 import json
 from os.path import exists, getsize
-import logging
 from typing import Optional
 
 from django.http import QueryDict
 from django.db.models.query import QuerySet
 
 import pandas as pd
-from os.path import dirname
 from os import getenv
 import requests
 from random import randint
 from openai import OpenAI
 
-
+from helpers import configure_logger, get_static_dir
 from polishness.models import Monument
 
 def ask_ai(ask: str) -> str:
     client = OpenAI(
-        # This is the default and can be omitted
         api_key=getenv("OPENAI_API_KEY"),
     )
     chat_completion = client.chat.completions.create(
@@ -33,15 +30,9 @@ def ask_ai(ask: str) -> str:
     return chat_completion.choices[0].message.content
 
 
-
-def get_static_dir() -> str:
-    return dirname(__file__) + "/static/"
-
-STATIC_DIR = get_static_dir()
-CSV_DB_PATH = STATIC_DIR + "monuments.csv"
-
 def populate_db() -> None:
-    df_data = pd.read_csv(CSV_DB_PATH, dtype=object)
+    csv_db_path = get_static_dir() + "monuments.csv"
+    df_data = pd.read_csv(csv_db_path, dtype=object)
     df_size = len(df_data.index)
     for number in range(df_size):
         input_data = tuple(df_data.iloc[number])
@@ -170,23 +161,13 @@ class MonumentItem:
     def __ge__(self, other):
         return self.reference_measure >= other.reference_measure
 
-
 # API DBW
-# https://api-dbw.stat.gov.pl/apidocs/index.html
-
-
 class GusApiDbwClient:
     """ Delivers client functionalities for GUS DBW (Dziedzinowe Bazy Wiedzy)
 
     Documentation: https://api-dbw.stat.gov.pl/apidocs/index.html
     """
-    DBW_LOGGER = logging.getLogger("autor_log")
-    DBW_LOGGER.setLevel(logging.DEBUG)
-    DBW_LOGGER_HANDLER = logging.FileHandler("logs/dbw.log")
-    DBW_LOGGER_HANDLER.setLevel(logging.DEBUG)
-    DBW_LOGGER_FORMATTER = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
-    DBW_LOGGER_HANDLER.setFormatter(DBW_LOGGER_FORMATTER)
-    DBW_LOGGER.addHandler(DBW_LOGGER_HANDLER)
+    DBW_LOGGER = configure_logger(logger_name="dbw_log")
 
     GUS_DBW_API_KEY = getenv("GUS_DBW_API_KEY")
     REQUEST_HEADERS = {
