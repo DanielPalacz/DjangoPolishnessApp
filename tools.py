@@ -14,6 +14,7 @@ from openai import OpenAI
 from helpers import configure_logger, get_static_dir
 from polishness.models import Monument
 
+
 def ask_ai(ask: str) -> str:
     client = OpenAI(
         api_key=getenv("OPENAI_API_KEY"),
@@ -28,6 +29,20 @@ def ask_ai(ask: str) -> str:
         model="gpt-3.5-turbo",
     )
     return chat_completion.choices[0].message.content
+
+
+def get_polish_photo_link() -> dict:
+    unplash_api_key = getenv("UNPLASH_API_KEY")
+    url_request = f"https://api.unsplash.com/photos/random?query=poland&client_id={unplash_api_key}&count=1"
+    response = requests.get(url_request)
+    if response.status_code == 200:
+        return {
+            "photo_link": response.json()[0]["urls"]["full"],
+            "photo_author": response.json()[0]["user"]["name"],
+            "photo_author_link": response.json()[0]["user"]["links"]["html"],
+            "photo_city": response.json()[0]["location"]["city"]
+        }
+    return {}
 
 
 def populate_db() -> None:
@@ -55,46 +70,36 @@ def populate_db() -> None:
             longitude=input_data[15]
         )
 
-def get_polish_photo_link() -> dict:
-    unplash_api_key = getenv("UNPLASH_API_KEY")
-    url_request = f"https://api.unsplash.com/photos/random?query=poland&client_id={unplash_api_key}&count=1"
-    response = requests.get(url_request)
-    if response.status_code == 200:
-        return {
-            "photo_link": response.json()[0]["urls"]["full"],
-            "photo_author": response.json()[0]["user"]["name"],
-            "photo_author_link": response.json()[0]["user"]["links"]["html"],
-            "photo_city": response.json()[0]["location"]["city"]
+class MonumentsSupport:
+    @staticmethod
+    def get_monument_query_params(post_data: QueryDict) -> dict:
+        query_params = {
+            "locality": post_data["locality"],
+            "parish": post_data["parish"],
+            "county": post_data["county"],
+            "voivodeship": post_data["voivodeship"],
+            "quantity": post_data["quantity"]
         }
-    return {}
+        return {key: value for key, value in query_params.items() if value}
 
-def get_monument_query_params(posta_data: QueryDict) -> dict:
-    query_params = {
-        "locality": posta_data["locality"],
-        "parish": posta_data["parish"],
-        "county": posta_data["county"],
-        "voivodeship": posta_data["voivodeship"],
-        "quantity": posta_data["quantity"],
-    }
-    return {key: value for key, value in query_params.items() if value}
+    @staticmethod
+    def randomize_monuments(quantity: int, monuments: QuerySet[Monument]) -> list[Monument]:
+        monuments_len = len(monuments)
+        if quantity > monuments_len:
+            return [monument for monument in monuments]
 
-def randomize_monuments(quantity: int, monuments: QuerySet[Monument]) -> list[Monument]:
-    monuments_len = len(monuments)
-    if quantity > monuments_len:
-        return [monument for monument in monuments]
+        randomized_monuments = []
+        random_numbers = []
+        for num in range(quantity):
+            random_number = randint(1, monuments_len - 1)
+            while random_number in random_numbers:
+                random_number = randint(1, monuments_len)
 
-    randomized_monuments = []
-    random_numbers = []
-    for num in range(quantity):
-        random_number = randint(1, monuments_len - 1)
-        while random_number in random_numbers:
-            random_number = randint(1, monuments_len)
+            random_monument = monuments[random_number]
+            randomized_monuments.append(random_monument)
+            random_numbers.append(random_number)
 
-        random_monument = monuments[random_number]
-        randomized_monuments.append(random_monument)
-        random_numbers.append(random_number)
-
-    return randomized_monuments
+        return randomized_monuments
 
 class TripGenerator:
     QUANTITY_LIMIT = 10

@@ -1,3 +1,4 @@
+from inspect import currentframe
 import logging
 from os import getenv
 from os.path import dirname
@@ -45,3 +46,8 @@ def configure_logger(logger_name: str):
 
 def get_static_dir() -> str:
     return dirname(__file__) + "/static/"
+
+
+def parent_function_name() -> str:
+    frame = currentframe().f_back
+    return frame.f_code.co_name
