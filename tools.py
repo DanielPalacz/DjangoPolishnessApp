@@ -172,7 +172,7 @@ class GusApiDbwClient:
 
     Documentation: https://api-dbw.stat.gov.pl/apidocs/index.html
     """
-    DBW_LOGGER = configure_logger(logger_name="dbw_log")
+    DBW_LOGGER = configure_logger(logger_name="dbw")
 
     GUS_DBW_API_KEY = getenv("GUS_DBW_API_KEY")
     REQUEST_HEADERS = {
@@ -184,7 +184,7 @@ class GusApiDbwClient:
     def get_dbw_root_fields(cls) -> list:
         """" Delivers 'Podstawowe Dziedziny Wiedzy' from DBW GUS API. """
         url_request = "https://api-dbw.stat.gov.pl/api/1.1.0/area/area-area?lang=pl"
-        cls.DBW_LOGGER.info(f"Zostaną pobrane podstawowe dziedziny.")
+        cls.DBW_LOGGER.info(f"Zostaną pobrane podstawowe dziedziny wiedzy.")
         cls.DBW_LOGGER.debug(f"Zostanie wykonane zapytanie pobierające wszystkie dziedziny wiedzy ({url_request}).")
         response = requests.get(url_request, headers=cls.REQUEST_HEADERS)
         cls.DBW_LOGGER.info(f"Wykonano zapytanie pobierające wszystkie dziedziny wiedzy ({url_request}). "
@@ -195,7 +195,7 @@ class GusApiDbwClient:
                     "field_id": field_data.get("id"),
                     "field_name": field_data.get("nazwa")
                 } for field_data in response.json() if field_data.get("id-nadrzedny-element") is None]
-            cls.DBW_LOGGER.debug(f"Odszukano podstawowe dziedziny ({root_fields}).")
+            cls.DBW_LOGGER.debug(f"Odszukano podstawowe dziedziny wiedzy ({root_fields}).")
             return root_fields
 
         else:
@@ -362,14 +362,14 @@ class GusApiDbwClient:
             raise ValueError(err_message)
 
 
-        cls.DBW_LOGGER.info(f"Nastąpi ustalanie opisu dla wymiaru {dimension_id!r} "
+        cls.DBW_LOGGER.info(f"Nastąpi ustalanie opisu dla wymiaru '{dimension_id}' "
                              f"(id pozycji: {dimension_position_id}, id przekroju: {section_id}).")
         url_request = \
             f"https://api-dbw.stat.gov.pl/api/1.1.0/variable/variable-section-position?id-przekroj={section_id}&lang=pl"
         cls.DBW_LOGGER.debug(f"Zostanie wykonane zapytanie pobierające dane wymarów dla przekroju {section_id!r} "
                              f"(id pozycji: {dimension_position_id}, id wymiaru: {dimension_id}) ({url_request}).")
         response = requests.get(url_request, headers=cls.REQUEST_HEADERS)
-        cls.DBW_LOGGER.info(f"Wykonano zapytanie pobierające dane wymarów dla przekroju {dimension_id!r} "
+        cls.DBW_LOGGER.info(f"Wykonano zapytanie pobierające dane wymarów dla przekroju '{dimension_id}' "
                             f"({url_request}). Zwrócony kod odpowiedzi: {response.status_code}.")
         if response.status_code == 200:
             dimensions = response.json()
@@ -377,27 +377,44 @@ class GusApiDbwClient:
             for dim in dimensions:
                 if dim.get("id-pozycja") == dimension_position_id:
                     dim_description = dim.get("nazwa-wymiar")
-                    cls.DBW_LOGGER.info(f"Ustalono opis wymiaru dla {dimension_id!r} "
+                    cls.DBW_LOGGER.info(f"Ustalono opis wymiaru dla '{dimension_id}' "
                                         f"(id pozycji: {dimension_position_id}): {dim_description!r}.")
-                    return dim_description
+                    return f"{dim_description} / {dim.get('nazwa-pozycja')}"
 
         return ""
 
     @classmethod
     def get_representation_description(cls, representation_id) -> str:
-        cls.DBW_LOGGER.info(f"Nastąpi ustalanie opisu dla miary (id miary: {representation_id!r}).")
-        url_request = "https://api-dbw.stat.gov.pl/api/1.1.0/dictionaries/way-of-presentation?page=1&page-size=5000&lang=pl"
-        cls.DBW_LOGGER.debug(f"Zostanie wykonane zapytanie pobierające dane opisu miar ({url_request}).")
-        response = requests.get(url_request, headers=cls.REQUEST_HEADERS)
-        cls.DBW_LOGGER.info(f"Wykonano zapytanie pobierające dane opisu miar ({url_request}). "
-                            f"Zwrócony kod odpowiedzi: {response.status_code}.")
-        if response.status_code == 200:
-            representation_measures = response.json()["data"]
-            cls.DBW_LOGGER.info(f"Pobrane dane opisu miar: {representation_measures}.")
-            for representation in representation_measures:
-                if representation.get("id-sposob-prezentacji-miara") == representation_id:
-                    measure_name = representation.get("nazwa")
-                    cls.DBW_LOGGER.info(f"Ustalono nazwę miary dla id miary {representation_id!r} => {measure_name!r}.")
-                    return measure_name
+        filename_path = "static/all_representation_measures.json"
+        representation_measures = []
+
+        cls.DBW_LOGGER.info(f"Nastąpi ustalenie opisu dla miary (id miary: '{representation_id}').")
+
+        if exists(filename_path) and getsize(filename_path):
+            cls.DBW_LOGGER.debug(f"Plik {filename_path!r} jest już na dysku, więc zostanie wykorzystany przy ustalaniu "
+                                 f"opisu dla miary (id miary: {representation_id!r}).")
+            with open(filename_path, "r", encoding='utf-8') as json_file:
+                representation_measures = json.load(json_file)
+        else:
+
+            url_request = "https://api-dbw.stat.gov.pl/api/1.1.0/dictionaries/way-of-presentation?page=1&page-size=5000&lang=pl"
+            cls.DBW_LOGGER.debug(f"Zostanie wykonane zapytanie pobierające dane opisu miar ({url_request}).")
+            response = requests.get(url_request, headers=cls.REQUEST_HEADERS)
+            cls.DBW_LOGGER.info(f"Wykonano zapytanie pobierające wszystkie dane opisujące miary ({url_request}). "
+                                f"Zwrócony kod odpowiedzi: {response.status_code}.")
+            if response.status_code == 200:
+                representation_measures = response.json()["data"]
+                cls.DBW_LOGGER.info(f"Pobrane dane opisu miar: {representation_measures}.")
+
+            with open(filename_path, "w", encoding='utf-8') as json_file:
+                json.dump(representation_measures, json_file, indent=4)
+                cls.DBW_LOGGER.info(f"Zapisano wszystkie dane opisujące miary do pliku {filename_path!r}. "
+                                    f"(Liczba elementów: {len(representation_measures)}). Zostaną dalej wykorzystane.")
+
+        for representation in representation_measures:
+            if representation.get("id-sposob-prezentacji-miara") == representation_id:
+                measure_name = representation.get("nazwa")
+                cls.DBW_LOGGER.info(f"Ustalono nazwę miary dla id miary {representation_id!r} => {measure_name!r}.")
+                return measure_name
 
         return ""

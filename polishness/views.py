@@ -129,9 +129,9 @@ def poland_in_numbers_field_browser(request, field_id, field_variable_id, field_
                                         f"Rok: {year_id}.")
         stats_data = GusApiDbwClient.get_stats_data(field_variable_id, section_id, year_id, period_id)
 
-        GusApiDbwClient.DBW_LOGGER.info("Zostaną wzbogacone pobrane statystyki.")
+        GusApiDbwClient.DBW_LOGGER.info("Zostaną wzbogacone pobrane dane statystyczne.")
         for stats in stats_data:
-            GusApiDbwClient.DBW_LOGGER.info(f"Wzbogacanie następującego rekordu statystyk: {stats}.")
+            GusApiDbwClient.DBW_LOGGER.info(f"Wzbogacanie następującego rekordu danych statystycznych: {stats}.")
             dimension_id = stats["id-wymiar-1"]
             dimension_position_id = stats["id-pozycja-1"]
             dimension_description = GusApiDbwClient.get_dimension_description(
@@ -180,7 +180,7 @@ def poland_in_numbers_field_browser(request, field_id, field_variable_id, field_
                 item_section_periods["opis_okres"] = period["opis"]
 
     current_year = datetime.now().year
-    years = range(2000, current_year + 1)
+    years = range(2011, current_year + 1)
 
     LOGGER_VIEWS.debug(f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
                       f"(view: {parent_function_name()!r}, path: {request.path!r}).")

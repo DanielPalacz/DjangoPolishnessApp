@@ -7,17 +7,18 @@ poznajmypolske.pl
 
 {% block content %}
 
-                <!-- Title of the Monument -->
-                <h4 style="font-weight: bold;" class="mt-4">{{ field_variable_name|capfirst }}:</h4>
+                {% if not stats_data %}
+                <h4 style="font-weight: bold;" class="mt-4">Dla zadanych parametrów wyszukiwania nie odnaleziono danych statystycznych.</h4>
 
-                <!-- Table with monument details -->
+                {% else %}
+                <h4 style="font-weight: bold;" class="mt-4">{{ field_variable_name|capfirst }}:</h4>
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-hover table-sm">
                         <thead>
                             <tr>
                                 <th>Przekrój</th>
-                                <th>Wymiar-1</th>
-                                <th>Wymiar-2</th>
+                                <th>Wymiar-1 / pozycja-1</th>
+                                <th>Wymiar-2 / pozycja-2</th>
                                 <th>Okres</th>
                                 <th>Sposób reprezentacji (miara)</th>
                                 <th>Wartość</th>
@@ -37,5 +38,6 @@ poznajmypolske.pl
                         </tbody>
                     </table>
                 </div>
+                {% endif %}
 
 {% endblock %}
