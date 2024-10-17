@@ -16,7 +16,7 @@ LOGGER_VIEWS = configure_logger("views")
 
 def home(request):
     photo_data = get_polish_photo_link()
-    LOGGER_VIEWS.info(f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, (view: {parent_function_name()}, "
+    LOGGER_VIEWS.debug(f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, (view: {parent_function_name()}, "
                       f"path: {request.path!r}).")
     return render(request, "polishness/home.html", photo_data)
 
@@ -38,12 +38,12 @@ def contact(request):
                 fail_silently=False,  # Raise exception if the email fails to send
             )
             messages.success(request, f"Cześć {name}, Twoja wiadomość została właśnie wysłana do mnie.")
-            LOGGER_VIEWS.info(f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
+            LOGGER_VIEWS.debug(f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
                               f"(view: {parent_function_name()!r}, path: {request.path!r}).")
             return HttpResponseRedirect("/contact/")
     else:
         form = ContactForm()
-        LOGGER_VIEWS.info(f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
+        LOGGER_VIEWS.debug(f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
                           f"(view: {parent_function_name()!r}, path: {request.path!r}).")
         return render(request, "polishness/contact.html", {"form": form})
 
@@ -55,13 +55,13 @@ def monuments(request):
         monument_items_cleaned = Monument.objects.filter(**query_params)
         monument_items = MonumentsSupport.randomize_monuments(quantity=int(quantity), monuments=monument_items_cleaned)
 
-        LOGGER_VIEWS.info(f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
+        LOGGER_VIEWS.debug(f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
                           f"(view: {parent_function_name()!r}, path: {request.path!r}).")
     return render(request, "polishness/monuments.html", {"monuments": monument_items})
 
 def monument_single(request, pk):
     monument_item = Monument.objects.get(id=pk)
-    LOGGER_VIEWS.info(f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
+    LOGGER_VIEWS.debug(f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
                       f"(view: {parent_function_name()!r}, path: {request.path!r}).")
     return render(request, "polishness/monument_single.html", {"monument": monument_item})
 
@@ -78,7 +78,7 @@ def trips(request):
         trip_generator = TripGenerator(quantity=quantity, monuments=monument_items)
         monument_items = trip_generator.generate_trip()
 
-    LOGGER_VIEWS.info(f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
+    LOGGER_VIEWS.debug(f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
                       f"(view: {parent_function_name()!r}, path: {request.path!r}).")
     return render(request, "polishness/trips.html", {"monuments": monument_items})
 
@@ -95,7 +95,7 @@ def monument_single_ai(request, pk):
 
     response_ai = ask_ai(ask=ask_text)
 
-    LOGGER_VIEWS.info(f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
+    LOGGER_VIEWS.debug(f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
                       f"(view: {parent_function_name()!r}, path: {request.path!r}).")
     return render(request,
                   "polishness/monument_single_ai.html",
@@ -104,7 +104,7 @@ def monument_single_ai(request, pk):
 def poland_in_numbers(request):
     """" Presents root fields (Podstawowe Dziedziny Wiedzy) from DBW GUS API. """
     root_fields = GusApiDbwClient.get_dbw_root_fields()
-    LOGGER_VIEWS.info(f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
+    LOGGER_VIEWS.debug(f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
                       f"(view: {parent_function_name()!r}, path: {request.path!r}).")
     return render(request, "polishness/poland_in_numbers.html", {"root_fields": root_fields})
 
@@ -112,7 +112,7 @@ def poland_in_numbers_fields(request, field_id, field_name):
     fields = GusApiDbwClient.get_dbw_fields(field_id=field_id, field_name=field_name)
     field_variables = GusApiDbwClient.get_dbw_field_variables(field_id=field_id, field_name=field_name)
 
-    LOGGER_VIEWS.info(f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
+    LOGGER_VIEWS.debug(f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
                       f"(view: {parent_function_name()!r}, path: {request.path!r}).")
     return render(request, "polishness/poland_in_numbers_fields.html",
                   {"fields": fields, "field_variables": field_variables})
@@ -152,7 +152,7 @@ def poland_in_numbers_field_browser(request, field_id, field_variable_id, field_
             representation_id = stats["id-sposob-prezentacji-miara"]
             stats["representation_description"] = GusApiDbwClient.get_representation_description(representation_id)
 
-        LOGGER_VIEWS.info(f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
+        LOGGER_VIEWS.debug(f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
                           f"(view: {parent_function_name()!r}, path: {request.path!r}).")
         return render(request, "polishness/poland_in_numbers_field_viewing.html",
                   {
@@ -182,7 +182,7 @@ def poland_in_numbers_field_browser(request, field_id, field_variable_id, field_
     current_year = datetime.now().year
     years = range(2000, current_year + 1)
 
-    LOGGER_VIEWS.info(f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
+    LOGGER_VIEWS.debug(f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
                       f"(view: {parent_function_name()!r}, path: {request.path!r}).")
     return render(request, "polishness/poland_in_numbers_field_browser.html",
                   {
@@ -197,6 +197,6 @@ def poland_in_numbers_field_browser(request, field_id, field_variable_id, field_
 
 
 def history(request):
-    LOGGER_VIEWS.info(f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
+    LOGGER_VIEWS.debug(f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
                       f"(view: {parent_function_name()!r}, path: {request.path!r}).")
     return render(request, "polishness/history.html", {})
