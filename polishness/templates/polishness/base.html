@@ -161,26 +161,26 @@
   </head>
   <body>
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-      <div class="navbar-nav mr-auto">
-          <strong><a class="navbar-brand m-3 p-2 btn-dark" href="{% url 'polishness:home' %}">poznajmypolske.pl</a></strong>
-      <!--    <strong><a class="navbar-brand m-3 p-2 btn-dark" href="{% url 'polishness:history' %}">Historia</a></strong> -->
-          <strong><a class="navbar-brand m-3 p-2 btn-dark" href="{% url 'polishness:poland_in_numbers' %}">Polska w liczbach</a></strong>
-          <strong><a class="navbar-brand m-3 p-2 btn-dark" href="{% url 'polishness:monuments' %}">Zabytki</a></strong>
-          <strong><a class="navbar-brand m-3 p-2 btn-dark" href="{% url 'polishness:trips' %}">Wycieczki</a></strong>
-      </div>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <strong><a class="navbar-brand m-3 p-2 btn-dark" href="{% url 'polishness:home' %}">poznajmypolske.pl</a></strong>
 
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-     <div class="navbar-nav ml-auto">
-     <!--    <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Szukaj" aria-label="Szukaj">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Szukaj</button>
-        </form>
-     -->
-          <strong><a class="navbar-brand m-3 p-2" href="{% url 'polishness:contact' %}">Kontakt</a></strong>
-      </div>
-  </nav>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="navbar-nav mr-auto">
+            <strong><a class="navbar-brand m-3 p-2 btn-dark" href="{% url 'polishness:poland_in_numbers' %}">Polska w liczbach</a></strong>
+            <strong><a class="navbar-brand m-3 p-2 btn-dark" href="{% url 'polishness:monuments' %}">Zabytki</a></strong>
+            <strong><a class="navbar-brand m-3 p-2 btn-dark" href="{% url 'polishness:trips' %}">Wycieczki</a></strong>
+        </div>
+
+        <div class="navbar-nav ml-auto">
+            <strong><a class="navbar-brand m-3 p-2" href="{% url 'polishness:contact' %}">Kontakt</a></strong>
+        </div>
+    </div>
+</nav>
 
 
 
