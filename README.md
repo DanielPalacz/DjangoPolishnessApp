@@ -2,42 +2,53 @@
 
 ###### Deployed here: http://poznajmypolske.pl/
 
+### Development usage
+```
+Additional tools used in development / debug phase:
+
+Django Debug Toolbar:
+https://django-debug-toolbar.readthedocs.io/en/latest/index.html
+```
+
 
 ### Production deployment
 ```
-1. Setup/ensure ngnix/domain configuration is correct.
+1. Download repository, create virtual env, install python requirements:
+ - git clone <repositoty link>
+ - python -m venv <virtual env>
+ - pip install -r requirments.txt
+
+2. Setup/ensure ngnix/domain configuration is correct:
     - DNS, SSL, ngnix configuration
 
-
-2. Run the following:
+3. Run the following:
  - python manage.py makemigration
  - python manage.py migrate
  - python manage.py createsuperuser
  - python manage.py collectstatic
+ 
+4. Prepare database. Run from Django shell:
+ - python manage.py shell_plus --ipython
+ - import tools
+ - tools.populate_monument_db_table()
 
-3. Run:
+
+5A. Setup env variables:
  - export SENDGRID_API_KEY="SENDGRID_API_KEY_VALUE"
-
-4. Run:
  - export UNPLASH_API_KEY="UNPLASH_API_KEY_VALUE"
-
-5. Run:
  - export OPENAI_API_KEY="OPENAI_API_KEY_VALUE"
-
-6. Run:
  - export GUS_DBW_API_KEY="GUS_DBW_API_KEY_VALUE"
+ - export LOG_LEVEL_NAME="LOG_LEVEL_NAME_VALUE" 
+   (one of the values:  "CRITICAL", "FATAL", "ERROR", "WARNING", "INFO", "DEBUG")
 
-3-4-5-6: Instead of these points "create linux service with env vars loaded".
+5B. Instead of manually exporting env variables - create linux service with env vars loaded.
+ - Use configuration README.md
  - sudo vi /etc/systemd/system/polishness.service
  - sudo systemctl enable polishness
  - sudo systemctl start polishness
  - sudo systemctl restart polishness
- 
- 
 
-7. Prepare database. Run from Django shell:
- - python manage.py shell_plus --ipython
- - import tools
- - tools.populate_db()
+5C. Also, for some time when you may manually run gunicorn.
+    gunicorn  --workers 3 --pythonpath mysite mysite.wsgi:application
 
 ```

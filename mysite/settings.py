@@ -148,6 +148,13 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 # EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 # DEFAULT_FROM_EMAIL = 'daniel.palacz@pyx.solutions'
 
+
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1",
+    # ...
+]
+
 # moved to use web api instead of smtp
 # https://github.com/sklarsa/django-sendgrid-v5
 EMAIL_BACKEND = 'sendgrid_backend.SendgridBackend'
