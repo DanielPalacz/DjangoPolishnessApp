@@ -49,7 +49,7 @@ def get_polish_photo_data() -> dict:
     """
     unplash_api_key = getenv("UNPLASH_API_KEY")
     url_request = f"https://api.unsplash.com/photos/random?query=poland&client_id={unplash_api_key}&count=1"
-    response = requests.get(url_request)
+    response = requests.get(url_request, timeout=60)
     if response.status_code == 200:
         return {
             "photo_link": response.json()[0]["urls"]["full"],
@@ -286,7 +286,7 @@ class GusApiDbwClient:
         url_request = "https://api-dbw.stat.gov.pl/api/1.1.0/area/area-area?lang=pl"
         cls.DBW_LOGGER.info("Zostaną pobrane podstawowe dziedziny wiedzy.")
         cls.DBW_LOGGER.debug(f"Zostanie wykonane zapytanie pobierające wszystkie dziedziny wiedzy ({url_request}).")
-        response = requests.get(url_request, headers=cls.REQUEST_HEADERS)
+        response = requests.get(url_request, headers=cls.REQUEST_HEADERS, timeout=60)
         cls.DBW_LOGGER.info(
             f"Wykonano zapytanie pobierające wszystkie dziedziny wiedzy ({url_request}). "
             f"Zwrócony kod odpowiedzi: {response.status_code}."
@@ -322,7 +322,7 @@ class GusApiDbwClient:
         url_request = "https://api-dbw.stat.gov.pl/api/1.1.0/area/area-area?lang=pl"
         cls.DBW_LOGGER.info(f"Zostaną wyszukane podkategorie dziedzin wiedzy dla: {field_name} (field_id={field_id}).")
         cls.DBW_LOGGER.debug(f"Zostanie wykonane zapytanie pobierające wszystkie dziedziny wiedzy ({url_request}).")
-        response = requests.get(url_request, headers=cls.REQUEST_HEADERS)
+        response = requests.get(url_request, headers=cls.REQUEST_HEADERS, timeout=60)
         cls.DBW_LOGGER.info(
             f"Wykonano zapytanie pobierające wszystkie dziedziny wiedzy ({url_request}). "
             f"Zwrócony kod odpowiedzi: {response.status_code}."
@@ -369,7 +369,7 @@ class GusApiDbwClient:
         url_request = f"https://api-dbw.stat.gov.pl/api/1.1.0/area/area-variable?id-obszaru={field_id}&lang=pl"
         cls.DBW_LOGGER.info(f"Zostaną wyszukane zmienne dla {field_name!r} (field_id={field_id}).")
         cls.DBW_LOGGER.debug(f"Zostanie wykonane zapytanie pobierające zmienne dla {field_name!r} ({url_request}).")
-        response = requests.get(url_request, headers=cls.REQUEST_HEADERS)
+        response = requests.get(url_request, headers=cls.REQUEST_HEADERS, timeout=60)
         cls.DBW_LOGGER.info(
             f"Wykonano zapytanie pobierające zmienne dla {field_name!r} ({url_request}). "
             f"Zwrócony kod odpowiedzi: {response.status_code}."
@@ -456,7 +456,7 @@ class GusApiDbwClient:
                 f"Wykonane będą dwa zapytania (1: {url_request1}, 2: {url_request2})."
             )
 
-            response1 = requests.get(url_request1, headers=cls.REQUEST_HEADERS)
+            response1 = requests.get(url_request1, headers=cls.REQUEST_HEADERS, timeout=60)
 
             cls.DBW_LOGGER.info(
                 f"Wykonano zapytanie pobierające przekroje/okresy z DBW API ({url_request1}). "
@@ -464,7 +464,7 @@ class GusApiDbwClient:
             )
             if response1.status_code == 200:
                 responses_data = response1.json()["data"]
-            response2 = requests.get(url_request2, headers=cls.REQUEST_HEADERS)
+            response2 = requests.get(url_request2, headers=cls.REQUEST_HEADERS, timeout=60)
             cls.DBW_LOGGER.info(
                 f"Wykonano zapytanie pobierające przekroje/okresy z DBW API ({url_request2}). "
                 f"Zwrócony kod odpowiedzi: {response2.status_code}."
@@ -521,7 +521,7 @@ class GusApiDbwClient:
                 f" zostaną wczytane z DBW API."
             )
             url_request = "https://api-dbw.stat.gov.pl/api/1.1.0/dictionaries/periods-dictionary"
-            response = requests.get(url_request, headers=cls.REQUEST_HEADERS)
+            response = requests.get(url_request, headers=cls.REQUEST_HEADERS, timeout=60)
             periods = response.json()["data"]
             with open(filename_path, "w", encoding="utf-8") as json_file:
                 json.dump(periods, json_file, indent=4)
@@ -563,7 +563,7 @@ class GusApiDbwClient:
             f"ile-na-stronie=5000&numer-strony=0&lang=pl"
         )
         cls.DBW_LOGGER.debug(f"Zostanie wykonane zapytanie pobierające dane statystyczne ({url_request}).")
-        response = requests.get(url_request, headers=cls.REQUEST_HEADERS)
+        response = requests.get(url_request, headers=cls.REQUEST_HEADERS, timeout=60)
         cls.DBW_LOGGER.info(
             f"Wykonano zapytanie pobierające dane statystyczne ({url_request}). "
             f"Zwrócony kod odpowiedzi: {response.status_code}."
@@ -610,13 +610,15 @@ class GusApiDbwClient:
             f"(id pozycji: {dimension_position_id}, id przekroju: {section_id})."
         )
         url_request = (
-            f"https://api-dbw.stat.gov.pl/api/1.1.0/variable/variable-section-position?id-przekroj={section_id}&lang=pl"
+            f"https://api-dbw.stat.gov.pl/api/1.1.0/variable/variable-section-position?"
+            f"id-przekroj={section_id}&lang=pl"
         )
+
         cls.DBW_LOGGER.debug(
             f"Zostanie wykonane zapytanie pobierające dane wymarów dla przekroju {section_id!r} "
             f"(id pozycji: {dimension_position_id}, id wymiaru: {dimension_id}) ({url_request})."
         )
-        response = requests.get(url_request, headers=cls.REQUEST_HEADERS)
+        response = requests.get(url_request, headers=cls.REQUEST_HEADERS, timeout=60)
         cls.DBW_LOGGER.info(
             f"Wykonano zapytanie pobierające dane wymarów dla przekroju '{dimension_id}' "
             f"({url_request}). Zwrócony kod odpowiedzi: {response.status_code}."
@@ -655,7 +657,7 @@ class GusApiDbwClient:
                 "https://api-dbw.stat.gov.pl/api/1.1.0/dictionaries/way-of-presentation?page=1&page-size=5000&lang=pl"
             )
             cls.DBW_LOGGER.debug(f"Zostanie wykonane zapytanie pobierające dane opisu miar ({url_request}).")
-            response = requests.get(url_request, headers=cls.REQUEST_HEADERS)
+            response = requests.get(url_request, headers=cls.REQUEST_HEADERS, timeout=60)
             cls.DBW_LOGGER.info(
                 f"Wykonano zapytanie pobierające wszystkie dane opisujące miary ({url_request}). "
                 f"Zwrócony kod odpowiedzi: {response.status_code}."

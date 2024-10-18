@@ -5,8 +5,10 @@
 ### Development usage
 ```
 Additional tools used in development / debug phase:
+1. pre-commit
+https://pre-commit.com/
 
-Django Debug Toolbar:
+2. Django Debug Toolbar:
 https://django-debug-toolbar.readthedocs.io/en/latest/index.html
 ```
 
