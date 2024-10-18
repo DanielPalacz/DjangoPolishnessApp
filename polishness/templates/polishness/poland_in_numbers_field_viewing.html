@@ -5,6 +5,29 @@ poznajmypolske.pl
 {% endblock %}
 
 
+
+{% block style %}
+
+    table.table-bordered,
+    table.table-bordered th,
+    table.table-bordered td {
+        border: 1px solid #000 !important; /* Wymuszenie czarnych obramowań */
+        border-collapse: collapse; /* Zapewnienie łączenia krawędzi */
+    }
+
+    table thead {
+        background-color: #87CEEB; /* Intensywny niebieski */
+        border: 1px solid #000;
+        border-bottom: 2px solid #000; /* Czarna dolna krawędź */
+    }
+
+    table, th, td {
+        border: 1px solid #000; /* Czarna obramówka wokół tabeli, nagłówków i komórek */
+    }
+
+{% endblock %}
+
+
 {% block content %}
 
                 {% if not stats_data %}
