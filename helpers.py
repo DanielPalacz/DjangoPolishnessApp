@@ -4,7 +4,7 @@ from os import getenv
 from os.path import dirname
 
 
-def configure_logger(logger_name: str):
+def configure_logger(logger_name: str) -> logging.Logger:
     """ Configures logger.
 
     Uses env variable LOG_LEVEL_NAME:
@@ -19,7 +19,7 @@ def configure_logger(logger_name: str):
         logger_name: Logger name.
 
     Returns:
-        The return value. True for success, False otherwise.
+        Logger object.
     """
     log_level_matrix = {
         "CRITICAL": 50,
@@ -45,9 +45,19 @@ def configure_logger(logger_name: str):
 
 
 def get_static_dir() -> str:
+    """ Provides absolute path for static directory.
+
+    Returns:
+        The absolute path for static directory.
+    """
     return dirname(__file__) + "/static/"
 
 
 def parent_function_name() -> str:
+    """ Provides name of parent function.
+
+    Returns:
+        The name of parent function.
+    """
     frame = currentframe().f_back
     return frame.f_code.co_name

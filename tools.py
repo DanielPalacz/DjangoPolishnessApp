@@ -16,6 +16,14 @@ from polishness.models import Monument
 
 
 def ask_ai(ask: str) -> str:
+    """ Asks openai question.
+
+    Args:
+        ask: Question text.
+
+    Returns:
+        Answer text from the openai.
+    """
     client = OpenAI(
         api_key=getenv("OPENAI_API_KEY"),
     )
@@ -31,7 +39,12 @@ def ask_ai(ask: str) -> str:
     return chat_completion.choices[0].message.content
 
 
-def get_polish_photo_link() -> dict:
+def get_polish_photo_data() -> dict:
+    """ Download polish photo data from the unplash api.
+
+    Returns:
+        The polish photo data dictionary (photo_link, photo_author, photo_author_link, photo_city)
+    """
     unplash_api_key = getenv("UNPLASH_API_KEY")
     url_request = f"https://api.unsplash.com/photos/random?query=poland&client_id={unplash_api_key}&count=1"
     response = requests.get(url_request)
@@ -45,7 +58,12 @@ def get_polish_photo_link() -> dict:
     return {}
 
 
-def populate_db() -> None:
+def populate_monument_db_table() -> None:
+    """ Populates data for the monuments table.
+
+    Returns:
+        None
+    """
     csv_db_path = get_static_dir() + "monuments.csv"
     df_data = pd.read_csv(csv_db_path, dtype=object)
     df_size = len(df_data.index)
@@ -71,19 +89,33 @@ def populate_db() -> None:
         )
 
 class MonumentsSupport:
+    """ Class with static method for supporting monuments functionalities. """
+
     @staticmethod
     def get_monument_query_params(post_data: QueryDict) -> dict:
+        """ Parse monument query POST request
+
+        Returns:
+            Dictionary with parsed monument query/
+        """
         query_params = {
-            "locality": post_data["locality"],
-            "parish": post_data["parish"],
-            "county": post_data["county"],
-            "voivodeship": post_data["voivodeship"],
-            "quantity": post_data["quantity"]
+            "locality": post_data.get("locality"),
+            "parish": post_data.get("parish"),
+            "county": post_data.get("county"),
+            "voivodeship": post_data.get("voivodeship"),
+            "quantity": post_data.get("quantity")
         }
         return {key: value for key, value in query_params.items() if value}
 
     @staticmethod
     def randomize_monuments(quantity: int, monuments: QuerySet[Monument]) -> list[Monument]:
+        """ Randomize queried monuments
+
+        Because of the method always different monuments are queried.
+
+        Returns:
+            List with randomized monuments.
+        """
         monuments_len = len(monuments)
         if quantity > monuments_len:
             return [monument for monument in monuments]
@@ -102,6 +134,18 @@ class MonumentsSupport:
         return randomized_monuments
 
 class TripGenerator:
+    """ Class for generating a trip.
+
+    Args:
+        quantity (int): Size of the trip.
+        monuments (list[Monument]): Base list of monuments.
+
+    Attributes:
+        QUANTITY_LIMIT (int): Limit for trip generation.
+        __quantity (int): Size of the trip.
+        __monuments (list[Monument]): Base list of monuments.
+    """
+
     QUANTITY_LIMIT = 10
 
     def __init__(self, quantity: int, monuments: list[Monument]):
@@ -113,10 +157,22 @@ class TripGenerator:
         else:
             self.__quantity = quantity
 
-    def generate_trip(self) -> list:
+    def generate_trip(self) -> list[Monument]:
+        """ Generates trip.
+
+        Returns:
+            List with monuments for the trip.
+        """
         return self.__sort_monuments()
 
     def __sort_monuments(self) -> list[Monument]:
+        """ Sort list of monuments.
+
+        Sorting is handled by the 'MonumentItem' functionalities.
+
+        Returns:
+            List of sorted monuments for the trip.
+        """
         monument_items = []
         for monument in self.__monuments:
             latitude = monument.latitude
@@ -129,22 +185,49 @@ class TripGenerator:
 
 
 class MonumentItem:
+    """ Class for representing monuments and solving sorting issue.
 
+    Args:
+        data (Monument): Monument from the 'Monument' model class.
+        latitude (str): Latitude of the monument.
+        longitude (str): Longitude of the monument.
+
+    Attributes:
+        __data (Monument): Monument object (from the 'Monument' model class).
+        __latitude (float): Latitude of the monument.
+        __longitude (float): Longitude of the monument.
+        __reference_measure (float): Calculated reference measure.
+    """
     def __init__(self, data: Monument, latitude: str, longitude: str):
         self.__data = data
         self.__latitude = float(latitude)
         self.__longitude = float(longitude)
-        self.__reference_distance = self.calc_reference_measure()
+        self.__reference_measure = self.calc_reference_measure()
 
     @property
     def monument(self):
+        """ Provides monument object (from the 'Monument' model class).
+
+        Returns:
+            Monument object (from the 'Monument' model class).
+        """
         return self.__data
 
     @property
     def reference_measure(self):
-        return self.__reference_distance
+        """ Provides calculated reference measure.
 
-    def calc_reference_measure(self):
+        Returns:
+            Calculated reference measure.
+        """
+        return self.__reference_measure
+
+    def calc_reference_measure(self) -> float:
+        """ Provides calculated reference measure.
+
+        Returns:
+            Calculated reference measure (float).
+        """
         measure = self.__latitude * self.__latitude + self.__longitude * self.__longitude
         return measure
 
@@ -168,9 +251,14 @@ class MonumentItem:
 
 # API DBW
 class GusApiDbwClient:
-    """ Delivers client functionalities for GUS DBW (Dziedzinowe Bazy Wiedzy)
+    """ Delivers client functionalities for GUS DBW API
 
     Documentation: https://api-dbw.stat.gov.pl/apidocs/index.html
+
+    Attributes:
+        DBW_LOGGER (logging.Logger): Dedicated logger object for the DBW API.
+        GUS_DBW_API_KEY (str): DBW API key.
+        REQUEST_HEADERS (float): Setuped request headers.
     """
     DBW_LOGGER = configure_logger(logger_name="dbw")
 
@@ -181,8 +269,16 @@ class GusApiDbwClient:
     }
 
     @classmethod
-    def get_dbw_root_fields(cls) -> list:
-        """" Delivers 'Podstawowe Dziedziny Wiedzy' from DBW GUS API. """
+    def get_dbw_root_fields(cls) -> list[dict]:
+        """" Delivers Base Knowledge Fields from.
+
+        Returns:
+            List with Base Knowledge Fields data dictionaries.
+            For example:
+                [{"field_id":727, "field_name": "Gospodarka"}, ...]
+
+            If there was no 200 response code then empty list is returned.
+        """
         url_request = "https://api-dbw.stat.gov.pl/api/1.1.0/area/area-area?lang=pl"
         cls.DBW_LOGGER.info(f"Zostaną pobrane podstawowe dziedziny wiedzy.")
         cls.DBW_LOGGER.debug(f"Zostanie wykonane zapytanie pobierające wszystkie dziedziny wiedzy ({url_request}).")
@@ -203,8 +299,20 @@ class GusApiDbwClient:
             return []
 
     @classmethod
-    def get_dbw_fields(cls, field_id: int, field_name: str) -> list:
-        """" Delivers 'Podkategorie Dziedzinowe Wiedzy' from DBW GUS API. """
+    def get_dbw_fields(cls, field_id: int, field_name: str) -> list[dict]:
+        """" Delivers Knowledge Fields categories.
+
+        Args:
+            field_id: Knowledge field id.
+            field_name: Knowledge field category name.
+
+        Returns:
+            List with Knowledge Fields category data grouped in dictionaries.
+            For example:
+                [{"field_id":1, "field_name": "Ceny", "field_variables": False}, ...]
+
+            If there was no 200 response code then empty list is returned.
+        """
         url_request = "https://api-dbw.stat.gov.pl/api/1.1.0/area/area-area?lang=pl"
         cls.DBW_LOGGER.info(f"Zostaną wyszukane podkategorie dziedzin wiedzy dla: {field_name} (field_id={field_id}).")
         cls.DBW_LOGGER.debug(f"Zostanie wykonane zapytanie pobierające wszystkie dziedziny wiedzy ({url_request}).")
@@ -228,8 +336,23 @@ class GusApiDbwClient:
            return []
 
     @classmethod
-    def get_dbw_field_variables(cls, field_id: int, field_name: str) -> list:
-        """" Delivers 'Zmienne dla Kategorii Dziedzin Wiedzy' from DBW GUS API. """
+    def get_dbw_field_variables(cls, field_id: int, field_name: str) -> list[dict]:
+        """" Delivers Knowledge Fields category variables.
+
+        Args:
+            field_id: Knowledge field id.
+            field_name: Knowledge field category name.
+
+        Returns:
+            List with Knowledge Fields category variables data grouped in dictionaries.
+            For example:
+                [{
+                "field_id":3, "field_variable_id": 313,
+                "field_variable_name": "Ceny producentów wyrobów spożywczych"}, ...]
+
+            If there was no 200 response code then most probably category doesn't have statistical variables.
+            Empty list is returned.
+        """
         url_request = f"https://api-dbw.stat.gov.pl/api/1.1.0/area/area-variable?id-obszaru={field_id}&lang=pl"
         cls.DBW_LOGGER.info(f"Zostaną wyszukane zmienne dla {field_name!r} (field_id={field_id}).")
         cls.DBW_LOGGER.debug(f"Zostanie wykonane zapytanie pobierające zmienne dla {field_name!r} ({url_request}).")
@@ -251,6 +374,7 @@ class GusApiDbwClient:
         elif response.status_code == 404:
             cls.DBW_LOGGER.info(f"Dany obszar najprawdopodobniej nie posiada zmiennych statystycznych, zostanie "
                                  f"zwrócona pusta lista bez zmiennych (wyszukiwanie dla {field_name!r}).")
+            return []
 
         else:
             cls.DBW_LOGGER.error(f"Nieudane zapytanie, zostanie zwrócona pusta lista bez zmiennych (wyszukiwanych dla "
@@ -258,9 +382,26 @@ class GusApiDbwClient:
             return []
 
     @classmethod
-    def get_variable_section_periods(cls, field_variable_id: int, field_variable_name: str) -> list:
-        """" Delivers 'Przekroje i okresy dla Zmiennej' from DBW GUS API. """
+    def get_variable_section_periods(cls, field_variable_id: int, field_variable_name: str) -> list[dict]:
+        """" Delivers sections and periods for the given variable.
 
+        Args:
+            field_variable_id: Variable id.
+            field_variable_name: Variable name.
+
+        Returns:
+            List with Knowledge Fields category variable - sections and periods - data grouped in dictionaries.
+            For example:
+                [...
+                    {
+                        "id-zmienna": 1679,
+                        "nazwa-zmienna": "Wysokie Koszty, Niskie Dochody - wska\u017anik",
+                        "id-przekroj": 2,
+                        "nazwa-przekroj": "Polska, wojew\u00f3dztwa",
+                        "id-okres": 282
+                    },
+                ...]
+        """
         section_periods = []
         responses_data = []
         filename_path = "static/all_section_periods.json"
@@ -307,7 +448,23 @@ class GusApiDbwClient:
 
 
     @classmethod
-    def get_periods(cls) -> list:
+    def get_periods(cls) -> list[dict]:
+        """" Delivers all periods data.
+
+        Returns:
+            List with all periods data, grouped in dictionaries.
+            For example:
+                [...
+                    "id-okres": 247,
+                    "symbol": "M01",
+                    "opis": "miesi\u0105c - dane miesi\u0119czne - stycze\u0144",
+                    "id-czestotliwosc": 3,
+                    "nazwa-czestotliwosc": "Miesi\u0105c",
+                    "id-typ": 1,
+                    "nazwa-typ": "dane miesi\u0119czne"
+                },
+                ...]
+        """
         filename_path = "static/all_periods.json"
 
         if exists(filename_path) and getsize(filename_path):
@@ -332,7 +489,28 @@ class GusApiDbwClient:
 
 
     @classmethod
-    def get_stats_data(cls, field_variable_id, section_id, year_id, period_id) -> list:
+    def get_stats_data(cls, field_variable_id: int, section_id: int, period_id: int, year_id: int) -> list[dict]:
+        """" Delivers stats data for the given query.
+
+        Args:
+            field_variable_id: Variable id.
+            section_id: Section id.
+            period_id: Period id.
+            year_id: Year number.
+
+        Returns:
+            List with Knowledge Fields category variable - sections and periods - data grouped in dictionaries.
+            For example:
+            [{
+                'rownumber': 1, 'id-zmienna': 313, 'id-przekroj': 655, 'id-wymiar-1': 2, 'id-pozycja-1': 33617,
+                'id-wymiar-2': 490, 'id-pozycja-2': 7289157000018, 'id-okres': 247, 'id-sposob-prezentacji-miara': 180,
+                'id-daty': 2024, 'id-brak-wartosci': 253, 'id-tajnosci': 43, 'id-flaga': 36, 'wartosc': 8.53,
+                'precyzja': 2}, ...
+            ]
+
+            If there was no 200 response code then most probably stats data don't exist for the such query.
+            Then empty list is returned.
+        """
         url_request = (f"https://api-dbw.stat.gov.pl/api/1.1.0/variable/variable-data-section?"
                        f"id-zmienna={field_variable_id}&"
                        f"id-przekroj={section_id}&"
@@ -354,10 +532,25 @@ class GusApiDbwClient:
         return []
 
     @classmethod
-    def get_dimension_description(cls, section_id: int, dimension_id: int, dimension_position_id: Optional) -> str:
-        if dimension_id is None or dimension_position_id is None:
-            err_message = \
-                "Zmienne dimension_id i dimension_position_id muszą być typu integer przy ustalaniu opisu wymiaru."
+    def get_dimension_description(cls, section_id: int, dimension_id: int, dimension_position_id: int) -> str:
+        """" Delivers dimension description for the given query.
+
+        Args:
+            section_id: Section id.
+            dimension_id: Dimension id.
+            dimension_position_id: Dimension position id.
+
+        Returns:
+            Text with dimension description built as below:
+             - dim.get('nazwa-wymiar') / dim.get('nazwa-pozycja')
+             For example:
+             - 'Wyroby spożywcze / Cukier biały kryształ, workowany [kg]'
+
+            If there was no 200 response code then empty string is returned.
+        """
+        if not dimension_id or not dimension_position_id:
+            err_message = "Zmienne dimension_id i dimension_position_id muszą mieć niezerową wartość typu integer " \
+                          "przy ustalaniu opisu wymiaru."
             cls.DBW_LOGGER.error(err_message)
             raise ValueError(err_message)
 
@@ -376,10 +569,10 @@ class GusApiDbwClient:
             cls.DBW_LOGGER.info(f"Pobrane dane wymiarów przekroju {section_id!r}: ({dimensions}).")
             for dim in dimensions:
                 if dim.get("id-pozycja") == dimension_position_id:
-                    dim_description = dim.get("nazwa-wymiar")
+                    dim_description = f"{dim.get('nazwa-wymiar')} / {dim.get('nazwa-pozycja')}"
                     cls.DBW_LOGGER.info(f"Ustalono opis wymiaru dla '{dimension_id}' "
                                         f"(id pozycji: {dimension_position_id}): {dim_description!r}.")
-                    return f"{dim_description} / {dim.get('nazwa-pozycja')}"
+                    return dim_description
 
         return ""
 

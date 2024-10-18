@@ -5,7 +5,7 @@ from django.shortcuts import render, HttpResponseRedirect
 from django.contrib import messages
 from django.core.mail import send_mail
 
-from tools import GusApiDbwClient, get_polish_photo_link, MonumentsSupport, TripGenerator, ask_ai
+from tools import GusApiDbwClient, get_polish_photo_data, MonumentsSupport, TripGenerator, ask_ai
 from .forms import ContactForm
 from .models import Monument
 
@@ -15,7 +15,7 @@ LOGGER_VIEWS = configure_logger("views")
 
 
 def home(request):
-    photo_data = get_polish_photo_link()
+    photo_data = get_polish_photo_data()
     LOGGER_VIEWS.debug(f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, (view: {parent_function_name()}, "
                       f"path: {request.path!r}).")
     return render(request, "polishness/home.html", photo_data)
@@ -127,7 +127,7 @@ def poland_in_numbers_field_browser(request, field_id, field_variable_id, field_
                                         f"Zmienna: {field_variable_name} (zmienna_id={field_variable_id}). "
                                         f"Okres: {period_description} (okres_id={period_id}). "
                                         f"Rok: {year_id}.")
-        stats_data = GusApiDbwClient.get_stats_data(field_variable_id, section_id, year_id, period_id)
+        stats_data = GusApiDbwClient.get_stats_data(field_variable_id, section_id, period_id, year_id)
 
         GusApiDbwClient.DBW_LOGGER.info("Zostaną wzbogacone pobrane dane statystyczne.")
         for stats in stats_data:
@@ -139,10 +139,11 @@ def poland_in_numbers_field_browser(request, field_id, field_variable_id, field_
             stats["dimension_description"] = dimension_description
 
             try:
-                dimension_id_beta = stats.get("id-wymiar-2", None)
-                dimension_position_id_beta = stats.get("id-pozycja-2", None)
+                dimension_id_beta = stats.get("id-wymiar-2", False)
+                dimension_position_id_beta = stats.get("id-pozycja-2", False)
                 dimension_description_beta = GusApiDbwClient.get_dimension_description(
-                    section_id=section_id, dimension_id=dimension_id_beta,
+                    section_id=section_id,
+                    dimension_id=dimension_id_beta,
                     dimension_position_id=dimension_position_id_beta
                 )
                 stats["dimension_description_beta"] = dimension_description_beta
