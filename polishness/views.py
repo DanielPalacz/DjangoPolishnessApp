@@ -55,8 +55,8 @@ def monuments(request):
         monument_items_cleaned = Monument.objects.filter(**query_params)
         monument_items = MonumentsSupport.randomize_monuments(quantity=int(quantity), monuments=monument_items_cleaned)
 
-        LOGGER_VIEWS.debug(f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
-                          f"(view: {parent_function_name()!r}, path: {request.path!r}).")
+    LOGGER_VIEWS.debug(f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
+                       f"(view: {parent_function_name()!r}, path: {request.path!r}).")
     return render(request, "polishness/monuments.html", {"monuments": monument_items})
 
 def monument_single(request, pk):
