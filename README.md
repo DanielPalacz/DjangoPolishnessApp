@@ -26,7 +26,7 @@ https://django-debug-toolbar.readthedocs.io/en/latest/index.html
  - python manage.py migrate
  - python manage.py createsuperuser
  - python manage.py collectstatic
- 
+
 4. Prepare database. Run from Django shell:
  - python manage.py shell_plus --ipython
  - import tools
@@ -38,7 +38,7 @@ https://django-debug-toolbar.readthedocs.io/en/latest/index.html
  - export UNPLASH_API_KEY="UNPLASH_API_KEY_VALUE"
  - export OPENAI_API_KEY="OPENAI_API_KEY_VALUE"
  - export GUS_DBW_API_KEY="GUS_DBW_API_KEY_VALUE"
- - export LOG_LEVEL_NAME="LOG_LEVEL_NAME_VALUE" 
+ - export LOG_LEVEL_NAME="LOG_LEVEL_NAME_VALUE"
    (one of the values:  "CRITICAL", "FATAL", "ERROR", "WARNING", "INFO", "DEBUG")
 
 5B. Instead of manually exporting env variables - create linux service with env vars loaded.
