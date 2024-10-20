@@ -8,17 +8,25 @@ poznajmypolske.pl
 
 {% block style %}
 
-  .table-responsive {
+    /* Styl dla kontenera tabeli, aby umożliwić przewijanie poziome */
+    .table-responsive {
+        overflow-x: auto !important;  /* Wymuszenie przewijania poziomego */
+        overflow-y: hidden;           /* Ukrycie przewijania pionowego, jeśli nie jest potrzebne */
+        width: 100%;                  /* Upewnij się, że kontener wypełnia całą szerokość */
+        -webkit-overflow-scrolling: touch; /* Płynne przewijanie na urządzeniach mobilnych */
         border-radius: 10px; /* Zaokrąglenie kontenera */
-        overflow: hidden; /* Ukrywa nadmiar */
         border: 3px solid #000; /* Opcjonalne obramowanie kontenera */
         background-color: #fff; /* Ustaw kolor tła kontenera */
     }
+
 
     .table {
         border-collapse: collapse; /* Umożliwia zaokrąglenie */
         margin: 0; /* Upewnij się, że nie ma marginesu */
         border: 3px solid #000; /* Opcjonalne obramowanie kontenera */
+        width: 100%; /* Ustawienie szerokości tabeli na 100% */
+        table-layout: auto; /* Ustawienie równej szerokości kolumn */
+        min-width: 600px;          /* Minimalna szerokość, aby wymusić przewijanie */
     }
 
     .table th, .table td {
@@ -66,6 +74,31 @@ poznajmypolske.pl
     }
 
 
+    /* Media queries dla mniejszych ekranów */
+    @media (max-width: 768px) {
+        .table th, .table td {
+            padding: 4px; /* Zmniejszenie paddingu dla telefonów */
+            font-size: 14px; /* Zmniejszenie rozmiaru czcionki */
+        }
+
+        .table {
+            font-size: 12px; /* Zmniejszenie całej czcionki tabeli */
+            width: 100%; /* Zapewnienie pełnej szerokości na telefonach */
+        }
+
+        /* Opcjonalne zawijanie tekstu w komórkach */
+        .table th, .table td {
+            word-break: break-word; /* Zawijanie treści, gdy jest zbyt długa */
+        }
+    }
+
+    .table td:last-child {
+        width: 80px; /* Dostosuj szerokość według swoich potrzeb */
+    }
+
+    .table th:last-child {
+        width: 80px; /* Dopasuj szerokość nagłówka do szerokości ostatniej kolumny */
+    }
 
 {% endblock %}
 
