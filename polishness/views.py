@@ -165,12 +165,16 @@ def poland_in_numbers_field_browser(request, field_id, field_variable_id, field_
         stats_data = GusApiDbwClient.get_stats_data(field_variable_id, section_id, period_id, year_id)
 
         GusApiDbwClient.DBW_LOGGER.info("Zostaną wzbogacone pobrane dane statystyczne.")
+        section_dimensions = GusApiDbwClient.get_section_dimensions(section_id=section_id)
         for stats in stats_data:
             GusApiDbwClient.DBW_LOGGER.info(f"Wzbogacanie następującego rekordu danych statystycznych: {stats}.")
             dimension_id = stats["id-wymiar-1"]
             dimension_position_id = stats["id-pozycja-1"]
             dimension_description = GusApiDbwClient.get_dimension_description(
-                section_id=section_id, dimension_id=dimension_id, dimension_position_id=dimension_position_id
+                section_id=section_id,
+                dimension_id=dimension_id,
+                dimension_position_id=dimension_position_id,
+                section_dimensions=section_dimensions,
             )
             stats["dimension_description"] = dimension_description
 
@@ -181,6 +185,7 @@ def poland_in_numbers_field_browser(request, field_id, field_variable_id, field_
                     section_id=section_id,
                     dimension_id=dimension_id_beta,
                     dimension_position_id=dimension_position_id_beta,
+                    section_dimensions=section_dimensions,
                 )
                 stats["dimension_description_beta"] = dimension_description_beta
             except ValueError:

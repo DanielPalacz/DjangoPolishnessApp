@@ -274,7 +274,7 @@ class GusApiDbwClient:
 
     @classmethod
     def get_dbw_root_fields(cls) -> list[dict]:
-        """ " Delivers Base Knowledge Fields from.
+        """Delivers Base Knowledge Fields from.
 
         Returns:
             List with Base Knowledge Fields data dictionaries.
@@ -306,7 +306,7 @@ class GusApiDbwClient:
 
     @classmethod
     def get_dbw_fields(cls, field_id: int, field_name: str) -> list[dict]:
-        """ " Delivers Knowledge Fields categories.
+        """Delivers Knowledge Fields categories.
 
         Args:
             field_id: Knowledge field id.
@@ -487,7 +487,7 @@ class GusApiDbwClient:
 
     @classmethod
     def get_periods(cls) -> list[dict]:
-        """ " Delivers all periods data.
+        """Delivers all periods data.
 
         Returns:
             List with all periods data, grouped in dictionaries.
@@ -533,7 +533,7 @@ class GusApiDbwClient:
 
     @classmethod
     def get_stats_data(cls, field_variable_id: int, section_id: int, period_id: int, year_id: int) -> list[dict]:
-        """ " Delivers stats data for the given query.
+        """Delivers stats data for the given query.
 
         Args:
             field_variable_id: Variable id.
@@ -581,13 +581,16 @@ class GusApiDbwClient:
         return []
 
     @classmethod
-    def get_dimension_description(cls, section_id: int, dimension_id: int, dimension_position_id: int) -> str:
-        """ " Delivers dimension description for the given query.
+    def get_dimension_description(
+        cls, section_id: int, dimension_id: int, dimension_position_id: int, section_dimensions: list
+    ) -> str:
+        """Delivers dimension description for the given query.
 
         Args:
             section_id: Section id.
             dimension_id: Dimension id.
             dimension_position_id: Dimension position id.
+            section_dimensions: List with all dimensions data for the given section, grouped in dictionaries.
 
         Returns:
             Text with dimension description built as below:
@@ -609,33 +612,21 @@ class GusApiDbwClient:
             f"Nastąpi ustalanie opisu dla wymiaru '{dimension_id}' "
             f"(id pozycji: {dimension_position_id}, id przekroju: {section_id})."
         )
-        url_request = (
-            f"https://api-dbw.stat.gov.pl/api/1.1.0/variable/variable-section-position?"
-            f"id-przekroj={section_id}&lang=pl"
-        )
 
-        cls.DBW_LOGGER.debug(
-            f"Zostanie wykonane zapytanie pobierające dane wymarów dla przekroju {section_id!r} "
-            f"(id pozycji: {dimension_position_id}, id wymiaru: {dimension_id}) ({url_request})."
-        )
-        response = requests.get(url_request, headers=cls.REQUEST_HEADERS, timeout=60)
-        cls.DBW_LOGGER.info(
-            f"Wykonano zapytanie pobierające dane wymarów dla przekroju '{dimension_id}' "
-            f"({url_request}). Zwrócony kod odpowiedzi: {response.status_code}."
-        )
-        if response.status_code == 200:
-            dimensions = response.json()
-            cls.DBW_LOGGER.info(f"Pobrane dane wymiarów przekroju {section_id!r}: ({dimensions}).")
-            for dim in dimensions:
-                if dim.get("id-pozycja") == dimension_position_id:
-                    dim_description = f"{dim.get('nazwa-wymiar')} / {dim.get('nazwa-pozycja')}"
-                    cls.DBW_LOGGER.info(
-                        f"Ustalono opis wymiaru dla '{dimension_id}' "
-                        f"(id pozycji: {dimension_position_id}): {dim_description!r}."
-                    )
-                    return dim_description
-
-        return ""
+        for dim in section_dimensions:
+            if dim.get("id-pozycja") == dimension_position_id:
+                dim_description = f"{dim.get('nazwa-wymiar')} / {dim.get('nazwa-pozycja')}"
+                cls.DBW_LOGGER.info(
+                    f"Ustalono opis wymiaru dla '{dimension_id}' "
+                    f"(id pozycji: {dimension_position_id}): {dim_description!r}."
+                )
+                return dim_description
+        else:
+            cls.DBW_LOGGER.info(
+                f"Nie ustalono opisu wymiaru dla '{dimension_id}' "
+                f"(id pozycji: {dimension_position_id}). Zostanie zwrócony pusty string."
+            )
+            return ""
 
     @classmethod
     def get_representation_description(cls, representation_id) -> str:
@@ -680,3 +671,43 @@ class GusApiDbwClient:
                 return measure_name
 
         return ""
+
+    @classmethod
+    def get_section_dimensions(cls, section_id: int) -> list[dict]:
+        """Delivers dimensions data for the given section.
+
+        Args:
+            section_id: Section id.
+
+        Returns:
+            List with all dimensions data for the given section, grouped in dictionaries.
+            For example:
+                [
+                {'id-przekroj': 485, 'id-wymiar': 10, 'nazwa-wymiar': 'Polska, województwa, powiaty',
+                'id-pozycja': 33617, 'nazwa-pozycja': 'POLSKA'}, ...
+                ]
+            If there was no 200 response code then empty list is returned.
+        """
+        cls.DBW_LOGGER.debug(
+            f"Zostanie wykonane zapytanie pobierające wszystkie dane wymiarów dla przekroju {section_id!r}."
+        )
+        url_request = (
+            f"https://api-dbw.stat.gov.pl/api/1.1.0/variable/variable-section-position?"
+            f"id-przekroj={section_id}&lang=pl"
+        )
+
+        response = requests.get(url_request, headers=cls.REQUEST_HEADERS, timeout=60)
+        cls.DBW_LOGGER.info(
+            f"Wykonano zapytanie pobierające dane wymiarów dla przekroju '{section_id}'. "
+            f"Zwrócony kod odpowiedzi: {response.status_code}."
+        )
+        if response.status_code == 200:
+            dimensions = response.json()
+            cls.DBW_LOGGER.debug(f"Pobrane dane wymiarów przekroju {section_id!r}: ({dimensions}).")
+            return dimensions
+
+        cls.DBW_LOGGER.error(
+            f"Nieudane zapytanie - pobierające wszystkie dane wymiarów dla przekroju {section_id!r} - "
+            f"zostanie zwrócona pusta lista."
+        )
+        return []
