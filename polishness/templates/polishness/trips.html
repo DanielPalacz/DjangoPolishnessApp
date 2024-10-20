@@ -11,7 +11,6 @@ poznajmypolske.pl
 
 {% if request.method == 'GET' %}
    <div class="home" id="home">
-       <br>
        <div class="row m-2">
             <h2 align="left">Generator wycieczek.</h2>
 
@@ -19,6 +18,7 @@ poznajmypolske.pl
        </div>
    </div>
 
+    <div class="py-1">
     <form action="/trips/" method="post" class="custom-rounded custom-form">
         {% csrf_token %}
         <div class="row mb-3">
@@ -49,7 +49,7 @@ poznajmypolske.pl
     </form>
 
     <small>Wyszukiwarka rozróżnia duże i małe litery. Źródłem zabytków jest <a href="https://dane.gov.pl/pl/dataset/1130,rejestr-zabytkow-nieruchomych"> Rejestr zabytków nieruchomych</a>.</small>
-
+    </div>
 
 
 {% else %}
