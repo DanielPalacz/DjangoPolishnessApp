@@ -293,7 +293,7 @@ class GusApiDbwClient:
         )
         if response.status_code == 200:
             root_fields = [
-                {"field_id": field_data.get("id"), "field_name": field_data.get("nazwa")}
+                {"field_id": field_data.get("id"), "field_name": field_data.get("nazwa").replace("/", "-")}
                 for field_data in response.json()
                 if field_data.get("id-nadrzedny-element") is None
             ]
@@ -332,7 +332,7 @@ class GusApiDbwClient:
             fields = [
                 {
                     "field_id": field_data.get("id"),
-                    "field_name": field_data.get("nazwa"),
+                    "field_name": field_data.get("nazwa").replace("/", "-"),
                     "field_variables": field_data.get("czy-zmienne"),
                 }
                 for field_data in response.json()
@@ -380,7 +380,7 @@ class GusApiDbwClient:
                 {
                     "field_id": field_data.get("id"),
                     "field_variable_id": field_data.get("id-zmienna"),
-                    "field_variable_name": field_data.get("nazwa-zmienna"),
+                    "field_variable_name": field_data.get("nazwa-zmienna").replace("/", "-"),
                 }
                 for field_data in response.json()
             ]

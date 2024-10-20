@@ -27,7 +27,7 @@ poznajmypolske.pl
         <div class="row m-2 p-1">
         {% for field in field_variables %}
                      <div class="col-md-4">
-                        <div class="card mb-4 box-shadow" style="border: 2px solid #000; padding: 2px;">
+                        <div class="card mb-4 box-shadow" style="border: 2px solid #000;">
                             <div class="card-body">
                                      <h4 class=""><a href="{% url 'polishness:poland_in_numbers_field_browser' field.field_id field.field_variable_id field.field_variable_name %}">{{field.field_variable_name}}</a></h4>
                             </div>

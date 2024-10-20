@@ -26,10 +26,10 @@ poznajmypolske.pl
     </div>
     <hr>
 
-    <div class="row m-2 p-2">
+    <div class="row">
     {% for root_field in root_fields %}
-                     <div class="col-md-4">
-                        <div class="card mb-4 box-shadow" style="border: 2px solid #000; padding: 2px;">
+                     <div class="col-md-3">
+                        <div class="card box-shadow" style="border: 2px solid #000;">
 
                             <div class="card-body">
                                  <h4 class=""><a href="{% url 'polishness:poland_in_numbers_fields' root_field.field_id root_field.field_name %}">{{root_field.field_name}}</a></h4>
