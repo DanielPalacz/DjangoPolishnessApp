@@ -55,7 +55,11 @@ poznajmypolske.pl
                                 <td>{{stats.dimension_description_beta}}</td>
                                 <td>{{period_description}}</td>
                                 <td>{{stats.representation_description}}</td>
-                                <td>{{stats.wartosc}}</td>
+                                {% if stats.wartosc == 0.0 %}
+                                    <td>-</td>
+                                {% else %}
+                                    <td>{{stats.wartosc}}</td>
+                                {% endif %}
                             </tr>
                            {% endfor %}
                         </tbody>
