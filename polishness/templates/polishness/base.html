@@ -111,6 +111,11 @@
             background-color: #d0e7f7; /* Kolor tła */
     }
 
+     .form-control {
+        background-color: #d0e7f9;
+        border: 1px outset #000;
+    }
+
     /* Stylizacja fieldset */
     .custom-fieldset {
             border: 2px solid #343a40; /* Pogrubienie krawędzi fieldset */
@@ -143,7 +148,7 @@
 
     .card-body {
 		padding: 8px;            /* Internal padding */
-		margin: 8px;            /* Internal margin */
+		margin: 0px;            /* Internal margin */
     }
 
     .card-body h4 a {
@@ -161,45 +166,6 @@
     }
 
 
-    .table-responsive {
-        border-radius: 10px; /* Zaokrąglenie kontenera */
-        overflow: hidden; /* Ukrywa nadmiar */
-        border: 3px solid #000; /* Opcjonalne obramowanie kontenera */
-        background-color: #fff; /* Ustaw kolor tła kontenera */
-    }
-
-    .table {
-        border-collapse: collapse; /* Umożliwia zaokrąglenie */
-        margin: 0; /* Upewnij się, że nie ma marginesu */
-        border: 3px solid #000; /* Opcjonalne obramowanie kontenera */
-    }
-
-    .table th, .table td {
-        border: 1px solid #000; /* Kolor obramowania komórek */
-        padding: 8px; /* Dodaj padding dla lepszej prezentacji */
-    }
-
-    /* Specjalne zaokrąglenia dla rogów */
-    .table th:first-child {
-        border-top-left-radius: 10px; /* Lewy górny róg */
-    }
-
-    .table th:last-child {
-        border-top-right-radius: 10px; /* Prawy górny róg */
-    }
-
-    .table tr:last-child td:first-child {
-        border-bottom-left-radius: 10px; /* Lewy dolny róg */
-    }
-
-    .table tr:last-child td:last-child {
-        border-bottom-right-radius: 10px; /* Prawy dolny róg */
-    }
-
-
-    th, td {
-      border: 1px solid #000; /* Add borders if needed */
-    }
 
     .table-striped tbody tr:nth-of-type(2n+1) {
         background-color: #f0fff0; /* Delikatny zielony kolor */
@@ -225,10 +191,6 @@
         transform: scale(1.01); /* Slightly enlarge the brand */
     }
 
-     .form-control {
-        background-color: #d0e7f9;
-        border: 1px dotted #000;
-    }
 
     {% block style %}
     {% endblock %}

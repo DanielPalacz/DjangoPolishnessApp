@@ -8,6 +8,46 @@ poznajmypolske.pl
 
 {% block style %}
 
+  .table-responsive {
+        border-radius: 10px; /* Zaokrąglenie kontenera */
+        overflow: hidden; /* Ukrywa nadmiar */
+        border: 3px solid #000; /* Opcjonalne obramowanie kontenera */
+        background-color: #fff; /* Ustaw kolor tła kontenera */
+    }
+
+    .table {
+        border-collapse: collapse; /* Umożliwia zaokrąglenie */
+        margin: 0; /* Upewnij się, że nie ma marginesu */
+        border: 3px solid #000; /* Opcjonalne obramowanie kontenera */
+    }
+
+    .table th, .table td {
+        border: 1px solid #000; /* Kolor obramowania komórek */
+        padding: 8px; /* Dodaj padding dla lepszej prezentacji */
+    }
+
+    /* Specjalne zaokrąglenia dla rogów */
+    .table th:first-child {
+        border-top-left-radius: 10px; /* Lewy górny róg */
+    }
+
+    .table th:last-child {
+        border-top-right-radius: 10px; /* Prawy górny róg */
+    }
+
+    .table tr:last-child td:first-child {
+        border-bottom-left-radius: 10px; /* Lewy dolny róg */
+    }
+
+    .table tr:last-child td:last-child {
+        border-bottom-right-radius: 10px; /* Prawy dolny róg */
+    }
+
+
+    th, td {
+      border: 1px solid #000; /* Add borders if needed */
+    }
+
     table.table-bordered,
     table.table-bordered th,
     table.table-bordered td {
@@ -24,6 +64,8 @@ poznajmypolske.pl
     table, th, td {
         border: 1px solid #000; /* Czarna obramówka wokół tabeli, nagłówków i komórek */
     }
+
+
 
 {% endblock %}
 
