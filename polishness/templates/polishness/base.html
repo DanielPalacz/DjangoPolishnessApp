@@ -151,7 +151,24 @@
 		margin: 0px;            /* Internal margin */
     }
 
+    .card-body h5 a {
+        color: #333;
+        text-decoration: none;
+    }
+
     .card-body h4 a {
+        color: #333;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .card-body h3 a {
+        color: #333;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .card-body h2 a {
         color: #333;
         text-decoration: none;
         font-weight: bold;
@@ -191,6 +208,17 @@
         transform: scale(1.01); /* Slightly enlarge the brand */
     }
 
+  input[type="submit"] {
+    border-width: 2px;
+    border-style: solid;
+    border: 6px solid #d6e9c6; /* Border in a darker shade of green */
+    color: #d6e9c6; /* a darker shade of green */
+   }
+
+   input[type="submit"]:hover {
+            border: 6px solid #d6e9c6; /* Border in a darker shade of green */
+            color: #d6e9c6; /* a darker shade of green */
+    }
 
     {% block style %}
     {% endblock %}

@@ -4,20 +4,6 @@
 poznajmypolske.pl
 {% endblock %}
 
-{% block style %}
-    .select-section {
-        width: 40%; /* Zajmie 40% dostępnej szerokości */
-    }
-
-
-  input[type="submit"] {
-    border-width: 2px;
-    border-style: solid;
-    border: 1px solid #000;
-  }
-
-
-{% endblock %}
 
 {% block content %}
 
@@ -36,7 +22,7 @@ poznajmypolske.pl
         <!-- Pierwsza kolumna - Przekrój -->
         <div class="col-12 col-md-6">
             <fieldset class="p-2 border custom-fieldset">
-                <label for="przekroj__przekrojid__okresid" style="text-decoration: underline;">Przekrój [okres]:</label>
+                <label for="przekroj__przekrojid__okresid" style="text-decoration: underline; font-weight: bold;">Przekrój [okres]:</label>
                 <select class="form-control custom-rounded" id="przekroj__przekrojid__okresid" name="przekroj__przekrojid__okresid" aria-label="Przekrój okres" required title="Proszę wybrać opcję w tym polu.">
                     <option value="" disabled selected>Wybierz przekrój [okres]</option>
                     {% for item_section_period in section_periods %}
@@ -52,7 +38,7 @@ poznajmypolske.pl
         <!-- Druga kolumna - Wybór roku -->
         <div class="col-12 col-md-6 mb-3">
             <fieldset class="p-2 border custom-fieldset">
-                <label for="rok" style="text-decoration: underline;">Wybierz rok:</label>
+                <label for="rok" style="text-decoration: underline; font-weight: bold;">Rok:</label>
                 <select class="form-control custom-rounded" id="rok" name="rok" aria-label="Wybierz rok" required title="Proszę wybrać opcję w tym polu.">
                     <option value="" disabled selected>Wybierz rok</option>
                     {% for year in years %}

@@ -6,30 +6,32 @@ poznajmypolske.pl
 
 
 {% block content %}
-    <div class="row py-4">
+    <div class="row py-3">
         <div class="col-12 col-md-8 col-md-4">
             <h4 class="text-start">Wybierz poniżej obszar, który Cię interesuje.</h4>
         </div>
     </div>
-    <hr>
+    <hr class="mt-0">
 
     <div class="row">
     {% for field in fields %}
-                     <div class="col-md-4">
+                     <div class="col-md-6 col-lg-4 py-1">
                         <div class="card mb-4 box-shadow" style="border: 2px solid #000; padding: 2px;">
                             <div class="card-body">
-                                     <h4 class=""><a href="{% url 'polishness:poland_in_numbers_fields' field.field_id field.field_name %}">{{field.field_name}}</a></h4>
+                                     <h5 class=""><a href="{% url 'polishness:poland_in_numbers_fields' field.field_id field.field_name %}">{{field.field_name}}</a></h5>
                             </div>
                         </div>
+                    </div>
+    {% endfor %}
     </div>
 
-    {% endfor %}
+
         <div class="row">
         {% for field in field_variables %}
-                     <div class="col-md-4">
+                     <div class="col-md-6 col-lg-4 py-1">
                         <div class="card mb-4 box-shadow" style="border: 2px solid #000;">
                             <div class="card-body">
-                                     <h4 class=""><a href="{% url 'polishness:poland_in_numbers_field_browser' field.field_id field.field_variable_id field.field_variable_name %}">{{field.field_variable_name}}</a></h4>
+                                     <h5 class=""><a href="{% url 'polishness:poland_in_numbers_field_browser' field.field_id field.field_variable_id field.field_variable_name %}">{{field.field_variable_name}}</a></h5>
                             </div>
                         </div>
                     </div>
