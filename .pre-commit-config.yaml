@@ -33,7 +33,7 @@ repos:
   - id: bandit
     name: bandit
     entry: bandit
-    args: ["-r", ".", "--exclude", "./venv/", "-s", "B311"]
+    args: ["-r", ".", "--exclude", "./venv/"]
     language: python
     types: [python]
     pass_filenames: false

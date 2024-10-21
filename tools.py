@@ -4,7 +4,7 @@ import json
 from os import getenv
 from os.path import exists
 from os.path import getsize
-from random import randint
+from secrets import randbelow
 
 import pandas as pd
 import requests
@@ -126,9 +126,9 @@ class MonumentsSupport:
         randomized_monuments = []
         random_numbers = []
         for num in range(quantity):
-            random_number = randint(1, monuments_len - 1)
+            random_number = randbelow(monuments_len)
             while random_number in random_numbers:
-                random_number = randint(1, monuments_len)
+                random_number = randbelow(monuments_len)
 
             random_monument = monuments[random_number]
             randomized_monuments.append(random_monument)
