@@ -21,13 +21,53 @@ poznajmypolske.pl
 {% if request.method == 'GET' %}
    <div id="trips" class="mt-3">
        <div class="row">
+           <div class="col">
+               <h4 align="left">Ideą strony jest promocja <strong>Generatorów wycieczek</strong>, czyli narzędzi pomagających zaplanować podróż, sugerując ciekawe trasy turystyczne. Poniżej znajdziesz kilka rekomendacji, gdzie możesz szukać takich generatorów.</h4>
+           </div>
+       </div>
+
+       <div class="row mt-4">
+           <div class="col">
+               <h3 style="font-weight: bold;">1. Polskie Portale Turystyczne</h3>
+                   <ul>
+                        <li><a href="https://zabytek.pl/">Zabytek.pl</a> – serwis Narodowego Instytutu Dziedzictwa oferujący bogatą bazę miejsc dziedzictwa kulturowego, które można odwiedzić.</li>
+                        <li><a href="https://www.polska.travel/">Polska Travel</a> – strona Polskiej Organizacji Turystycznej, gdzie znajdziesz inspiracje do podróży, a także gotowe propozycje tras i miejsc wartych odwiedzenia.</li>
+                        <li><a href="https://www.traseo.pl/">Traseo</a> – platforma z trasami wycieczek pieszych, rowerowych i innych aktywności. Możesz tu znaleźć gotowe trasy turystyczne oraz stworzyć własne.</li>
+                        <li><a href="https://mytripmap.pl/">MyTrip</a> – narzędzie do tworzenia map podróży, gdzie możesz planować wycieczki po Polsce.</li>
+                    </ul>
+           </div>
+       </div>
+
+       <div class="row">
+           <div class="col">
+                   <h3 style="font-weight: bold;">2. Aplikacje Mobilne</h3>
+                    <ul>
+                        <li><strong>Google Trips</strong> (integracja z Mapami Google) – funkcje planowania podróży dostępne bezpośrednio w Mapach Google, gdzie możesz tworzyć własne trasy, dodawać atrakcje i automatycznie dostosowywać plany.</li>
+                        <li><a href="https://www.komoot.com/">Komoot</a> – aplikacja do planowania tras turystycznych pieszych i rowerowych, z możliwością wyznaczania tras w różnych regionach Polski.</li>
+                        <li><a href="https://www.czasnaszlak.pl/">Czas na Szlak</a> – aplikacja skupiająca się na szlakach turystycznych w Polsce, idealna dla osób planujących wycieczki piesze.</li>
+                    </ul>
+           </div>
+       </div>
+
+       <div class="row">
+           <div class="col">
+                   <h3 style="font-weight: bold;">3. Blogi i Strony Podróżnicze</h3>
+                    <ul>
+                        <li><a href="https://www.znajkraj.pl/">Znajkraj</a> – blog i portal poświęcony rowerowym wycieczkom po Polsce z trasami i propozycjami wycieczek.</li>
+                        <li><a href="https://www.podroze.pl/">Podroze.pl</a> – portal oferujący artykuły z pomysłami na wycieczki po różnych regionach Polski.</li>
+                    </ul>
+           </div>
+       </div>
+
+       <div class="row mt-4">
             <div class="col">
-            <h2 align="left">Generator wycieczek:</h2>
+                <h3 style="font-weight: bold;">4. Prosty generator wycieczek - poznajmypolske.pl </h3>
+
             </div>
        </div>
    </div>
 
-    <div class="py-1">
+    <div class="ml-4">
     <form action="/trips/" method="post" class="custom-rounded custom-form">
         {% csrf_token %}
         <div class="row mb-3">
@@ -54,10 +94,11 @@ poznajmypolske.pl
                 <input type="submit" value="Szukaj" class="btn btn-dark btn-lg mt-3 custom-rounded">
             </div>
         </div>
-        <small>Maksymalnie można wygenerować wycieczkę złożoną z 10 zabytków.</small>
-    </form>
+        <small>Maksymalnie można wygenerować wycieczkę złożoną z 10 zabytków.</small><br>
+        <small>Generator rozróżnia duże i małe litery. Źródłem atrakcji turystycznych jest <a href="https://dane.gov.pl/pl/dataset/1130,rejestr-zabytkow-nieruchomych"> Rejestr zabytków nieruchomych</a>.</small>
 
-    <small>Wyszukiwarka rozróżnia duże i małe litery. Źródłem zabytków jest <a href="https://dane.gov.pl/pl/dataset/1130,rejestr-zabytkow-nieruchomych"> Rejestr zabytków nieruchomych</a>.</small>
+
+    </form>
     </div>
 
 
