@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import logging
 from inspect import currentframe
+from logging.handlers import RotatingFileHandler
 from os import getenv
 from os.path import dirname
 
@@ -29,9 +30,8 @@ def configure_logger(logger_name: str) -> logging.Logger:
     log_level_value = log_level_matrix[log_level_name]
 
     logger = logging.getLogger(logger_name)
-    logger.setLevel(logging.DEBUG)
-    logger_handler = logging.FileHandler(f"logs/{logger_name}.log")
-    logger_handler.setLevel(log_level_value)
+    logger.setLevel(log_level_value)
+    logger_handler = RotatingFileHandler(f"logs/{logger_name}.log", maxBytes=100 * 1024 * 1024, backupCount=20)
     logger_formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
     logger_handler.setFormatter(logger_formatter)
     logger.addHandler(logger_handler)

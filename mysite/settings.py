@@ -178,7 +178,7 @@ LOGGING = {
     "handlers": {
         "file": {
             "level": "ERROR",
-            "class": "logging.FileHandler",
+            "class": "logging.handlers.RotatingFileHandler",
             "filename": BASE_DIR / "logs" / "django_error.log",
             "formatter": "verbose",
         },
