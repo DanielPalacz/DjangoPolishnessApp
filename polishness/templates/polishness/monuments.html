@@ -13,6 +13,15 @@ poznajmypolske.pl
      .form-control {
         background-color: #E6E6FA;
     }
+
+    .card {
+        background-color: #E6E6FA;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        border: 2px solid #000;
+    }
+
 {% endblock %}
 
 
@@ -20,38 +29,26 @@ poznajmypolske.pl
 {% block content %}
 
 {% if request.method == 'GET' %}
+
    <div class="mt-3" id="monuments">
 
        <div class="row">
-           <div class="col">
-           <h2 class="mb-0" align="left">Tutaj możesz skorzystać z wyszukiwarki zabytków:</h2>
+           <div class="col mb-0">
+           <h2 class="mb-2" align="left">Na tej stronie możesz skorzystać z wyszukiwarki zabytków:</h2>
+               <ul>
+                   <li>źródłem zabytków jest <a style="font-weight: bold; color: black;" href="https://dane.gov.pl/pl/dataset/1130,rejestr-zabytkow-nieruchomych">Rejestr zabytków nieruchomych</a> utrzymywany przez <a href="https://nid.pl" style="font-weight: bold; color: black;">Narodowy Instytut Dziedzictwa</a>,</li>
+                   <li>dla powiatów i gmin listy rozwijalne pojawiają się po wybraniu nadrzędnych jednostek administracyjnych,</li>
+                   <li>każdy wyszukany zabytek pozwala na zobaczenie go na portalu <a href="https://zabytek.pl" style="font-weight: bold; color: black;">zabytek.pl</a> albo zapytania o niego sztuczną inteligencję (<a href="https://openai.com" style="color: black;">openai.com</a>)</li>
+               </ul>
            </div>
-       <hr>
        </div>
    </div>
 
-<div class="m-1 py-1">
+<div class="m-1">
 <form action="/monuments/" method="post" class="custom-rounded custom-form">
     {% csrf_token %}
     <div class="row mb-1 p-2">
-        <div class="col-lg-3 col-md-6 col-sm-12 p-1">
-            <input type="text" name="locality" placeholder="...wpisz miejscowość..." class="form-control custom-rounded" autocomplete="off">
-        </div>
-
-        <div class="col-lg-3 col-md-6 col-sm-12 p-1">
-            <input type="text" id="parish" name="parish" placeholder="...wpisz lub wybierz gminę..." list="parishList" class="form-control custom-rounded" autocomplete="off">
-            <datalist id="parishList">
-                <!-- Lista gmin będzie dynamicznie wypełniana -->
-            </datalist>
-        </div>
-
-        <div class="col-lg-3 col-md-6 col-sm-12 p-1">
-            <input type="text" id="county" name="county" placeholder="...wpisz lub wybierz powiat..." list="countyList" class="form-control custom-rounded" autocomplete="off">
-            <datalist id="countyList">
-                <!-- Zostanie dynamicznie wypełnione przez skrypt -->
-            </datalist>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-12 p-1">
+        <div class="col-lg-6 col-md-6 col-sm-12 p-1">
             <select name="voivodeship" id="voivodeship"  class="form-control custom-rounded">
                 <option value="" disabled selected>...wybierz województwo...</option>
                 <option value="dolnośląskie">Dolnośląskie</option>
@@ -72,8 +69,23 @@ poznajmypolske.pl
                 <option value="zachodniopomorskie">Zachodniopomorskie</option>
             </select>
         </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 p-1">
+            <input type="text" id="county" name="county" placeholder="...wpisz lub wybierz powiat..." list="countyList" class="form-control custom-rounded" autocomplete="off">
+            <datalist id="countyList">
+                <!-- Zostanie dynamicznie wypełnione przez skrypt -->
+            </datalist>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12 p-1">
+            <input type="text" id="parish" name="parish" placeholder="...wpisz lub wybierz gminę..." list="parishList" class="form-control custom-rounded" autocomplete="off">
+            <datalist id="parishList">
+                <!-- Lista gmin będzie dynamicznie wypełniana -->
+            </datalist>
+        </div>
+    <div class="col-md-6 col-sm-12 p-1">
+            <input type="text" name="locality" placeholder="...wpisz miejscowość..." class="form-control custom-rounded" autocomplete="off">
     </div>
 
+    </div>
     <div class="row mb-3">
     <div class="col-lg-8 col-md-8 col-sm-12 d-flex align-items-center">
         <label for="quantity" class="form-label mb-0 me-2">Maksymalna liczba wynikowych wierszy:</label>
@@ -84,7 +96,6 @@ poznajmypolske.pl
         </div>
     </div>
 </form>
-<small>Wyszukiwarka rozróżnia duże i małe litery. Źródłem zabytków jest <a href="https://dane.gov.pl/pl/dataset/1130,rejestr-zabytkow-nieruchomych"> Rejestr zabytków nieruchomych</a>.</small>
 </div>
 
 {% else %}
