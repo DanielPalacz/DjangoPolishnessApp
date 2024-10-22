@@ -1,0 +1,2378 @@
+[
+    {
+        "id-sposob-prezentacji-miara": 1,
+        "nazwa": "2015=100 [-]",
+        "nazwa-sposob-prezentacji": "2015=100; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 2,
+        "nazwa": "okres poprzedni=100 [-]",
+        "nazwa-sposob-prezentacji": "okres poprzedni=100; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 3,
+        "nazwa": "okres poprzedni=100  [-]",
+        "nazwa-sposob-prezentacji": "okres poprzedni=100; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 5,
+        "nazwa": "analogiczny okres roku poprzedniego=100 [-]",
+        "nazwa-sposob-prezentacji": "analogiczny okres roku poprzedniego=100; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 6,
+        "nazwa": "analogiczny okres roku poprzedniego=100  [-]",
+        "nazwa-sposob-prezentacji": "analogiczny okres roku poprzedniego=100; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 7,
+        "nazwa": "analogiczny okres roku poprzedniego=100 ceny sta\u0142e [-]",
+        "nazwa-sposob-prezentacji": "analogiczny okres roku poprzedniego=100; szereg niewyr\u00f3wnany; ceny sta\u0142e",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 8,
+        "nazwa": "grudzie\u0144 roku poprzedniego=100 [-]",
+        "nazwa-sposob-prezentacji": "grudzie\u0144 roku poprzedniego=100; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 9,
+        "nazwa": "grudzie\u0144 roku poprzedniego=100  [-]",
+        "nazwa-sposob-prezentacji": "grudzie\u0144 roku poprzedniego=100; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 10,
+        "nazwa": "grudzie\u0144 roku poprzedniego=100 ceny sta\u0142e [-]",
+        "nazwa-sposob-prezentacji": "grudzie\u0144 roku poprzedniego=100; szereg niewyr\u00f3wnany; ceny sta\u0142e",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 11,
+        "nazwa": "przeci\u0119tna miesi\u0119czna 2000=100 [-]",
+        "nazwa-sposob-prezentacji": "przeci\u0119tna miesi\u0119czna 2000=100; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 12,
+        "nazwa": "przeci\u0119tna miesi\u0119czna 2000=100  [-]",
+        "nazwa-sposob-prezentacji": "przeci\u0119tna miesi\u0119czna 2000=100; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 13,
+        "nazwa": "przeci\u0119tna miesi\u0119czna 2000=100 ceny sta\u0142e [-]",
+        "nazwa-sposob-prezentacji": "przeci\u0119tna miesi\u0119czna 2000=100; szereg niewyr\u00f3wnany; ceny sta\u0142e",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 14,
+        "nazwa": "przeci\u0119tna miesi\u0119czna 2005=100 [-]",
+        "nazwa-sposob-prezentacji": "przeci\u0119tna miesi\u0119czna 2005=100; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 15,
+        "nazwa": "przeci\u0119tna miesi\u0119czna 2005=100  [-]",
+        "nazwa-sposob-prezentacji": "przeci\u0119tna miesi\u0119czna 2005=100; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 16,
+        "nazwa": "przeci\u0119tna miesi\u0119czna 2005=100 ceny sta\u0142e [-]",
+        "nazwa-sposob-prezentacji": "przeci\u0119tna miesi\u0119czna 2005=100; szereg niewyr\u00f3wnany; ceny sta\u0142e",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 17,
+        "nazwa": "przeci\u0119tna miesi\u0119czna 2010=100 [-]",
+        "nazwa-sposob-prezentacji": "przeci\u0119tna miesi\u0119czna 2010=100; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 18,
+        "nazwa": "przeci\u0119tna miesi\u0119czna 2010=100  [-]",
+        "nazwa-sposob-prezentacji": "przeci\u0119tna miesi\u0119czna 2010=100; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 19,
+        "nazwa": "przeci\u0119tna miesi\u0119czna 2010=100 ceny sta\u0142e [-]",
+        "nazwa-sposob-prezentacji": "przeci\u0119tna miesi\u0119czna 2010=100; szereg niewyr\u00f3wnany; ceny sta\u0142e",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 21,
+        "nazwa": "przeci\u0119tna miesi\u0119czna 2015=100  [-]",
+        "nazwa-sposob-prezentacji": "przeci\u0119tna miesi\u0119czna 2015=100; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 22,
+        "nazwa": "przeci\u0119tna miesi\u0119czna 2015=100 ceny sta\u0142e [-]",
+        "nazwa-sposob-prezentacji": "przeci\u0119tna miesi\u0119czna 2015=100; szereg niewyr\u00f3wnany; ceny sta\u0142e",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 24,
+        "nazwa": "Polska=100 [%]",
+        "nazwa-sposob-prezentacji": "Polska=100; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 25,
+        "nazwa": "Polska=100  [%]",
+        "nazwa-sposob-prezentacji": "Polska=100; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 26,
+        "nazwa": "wojew\u00f3dztwo=100 [%]",
+        "nazwa-sposob-prezentacji": "wojew\u00f3dztwo=100; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 39,
+        "nazwa": "[tys. szt.]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 6,
+        "oznaczenie-jednostki": "tys. szt.",
+        "nazwa-jednostki": "tysi\u0105c sztuk"
+    },
+    {
+        "id-sposob-prezentacji-miara": 40,
+        "nazwa": "[mln szt.]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 7,
+        "oznaczenie-jednostki": "mln szt.",
+        "nazwa-jednostki": "milion sztuk"
+    },
+    {
+        "id-sposob-prezentacji-miara": 41,
+        "nazwa": "[mld szt.]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 8,
+        "oznaczenie-jednostki": "mld szt.",
+        "nazwa-jednostki": "miliard sztuk"
+    },
+    {
+        "id-sposob-prezentacji-miara": 42,
+        "nazwa": "[100 szt.]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 275,
+        "oznaczenie-jednostki": "100 szt.",
+        "nazwa-jednostki": "sto  sztuk"
+    },
+    {
+        "id-sposob-prezentacji-miara": 45,
+        "nazwa": "[tys. t]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 20,
+        "oznaczenie-jednostki": "tys. t",
+        "nazwa-jednostki": "tysi\u0105c  ton"
+    },
+    {
+        "id-sposob-prezentacji-miara": 92,
+        "nazwa": "okres poprzedni=100 ceny sta\u0142e [-]",
+        "nazwa-sposob-prezentacji": "okres poprzedni=100; szereg niewyr\u00f3wnany; ceny sta\u0142e",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 93,
+        "nazwa": "[osoba]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 106,
+        "oznaczenie-jednostki": "osoba",
+        "nazwa-jednostki": "osoba"
+    },
+    {
+        "id-sposob-prezentacji-miara": 94,
+        "nazwa": "[szt.]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 5,
+        "oznaczenie-jednostki": "szt.",
+        "nazwa-jednostki": "sztuka"
+    },
+    {
+        "id-sposob-prezentacji-miara": 95,
+        "nazwa": "[%]",
+        "nazwa-sposob-prezentacji": "relacja; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 96,
+        "nazwa": "[p.proc.]",
+        "nazwa-sposob-prezentacji": "relacja; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 371,
+        "oznaczenie-jednostki": "<p>\n\tp.proc.</p>\n",
+        "nazwa-jednostki": "punkt procentowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 97,
+        "nazwa": "[-]",
+        "nazwa-sposob-prezentacji": "relacja; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 98,
+        "nazwa": "[tys. os\u00f3b]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 107,
+        "oznaczenie-jednostki": "tys. os\u00f3b",
+        "nazwa-jednostki": "tysi\u0105c os\u00f3b"
+    },
+    {
+        "id-sposob-prezentacji-miara": 99,
+        "nazwa": "udzia\u0142 w pozycji og\u00f3\u0142em [%]",
+        "nazwa-sposob-prezentacji": "udzia\u0142 w pozycji og\u00f3\u0142em; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 100,
+        "nazwa": "na 1 mieszka\u0144ca [-]",
+        "nazwa-sposob-prezentacji": "na 1 mieszka\u0144ca; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 105,
+        "nazwa": "[mln z\u0142]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 3,
+        "oznaczenie-jednostki": "mln z\u0142",
+        "nazwa-jednostki": "milion z\u0142otych"
+    },
+    {
+        "id-sposob-prezentacji-miara": 106,
+        "nazwa": "[m2]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 35,
+        "oznaczenie-jednostki": "m\u00b2",
+        "nazwa-jednostki": "metr kwadratowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 107,
+        "nazwa": "[m3]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 44,
+        "oznaczenie-jednostki": "m\u00b3",
+        "nazwa-jednostki": "metr sze\u015bcienny"
+    },
+    {
+        "id-sposob-prezentacji-miara": 109,
+        "nazwa": "na 1000 pracuj\u0105cych [osoba]",
+        "nazwa-sposob-prezentacji": "na 1000 pracuj\u0105cych; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 106,
+        "oznaczenie-jednostki": "osoba",
+        "nazwa-jednostki": "osoba"
+    },
+    {
+        "id-sposob-prezentacji-miara": 110,
+        "nazwa": "udzia\u0142 w danym rodzaju dzia\u0142alno\u015bci [%]",
+        "nazwa-sposob-prezentacji": "udzia\u0142 w danym rodzaju dzia\u0142alno\u015bci; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 111,
+        "nazwa": "udzia\u0142 w danej grupie przedsi\u0119biorstw [%]",
+        "nazwa-sposob-prezentacji": "udzia\u0142 w danej grupie przedsi\u0119biorstw; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 112,
+        "nazwa": "[tys. JI]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 449,
+        "oznaczenie-jednostki": "<P>tys. JI</P>",
+        "nazwa-jednostki": "tysi\u0105c jednostek inwentarzowych"
+    },
+    {
+        "id-sposob-prezentacji-miara": 114,
+        "nazwa": "na 1000 zawartych ma\u0142\u017ce\u0144stw [szt.]",
+        "nazwa-sposob-prezentacji": "na 1000 zawartych ma\u0142\u017ce\u0144stw; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 508,
+        "oznaczenie-jednostki": "szt.",
+        "nazwa-jednostki": "ilo\u015b\u0107 sztuk"
+    },
+    {
+        "id-sposob-prezentacji-miara": 115,
+        "nazwa": "udzia\u0142 w danej grupie os\u00f3b [%]",
+        "nazwa-sposob-prezentacji": "udzia\u0142 w danej grupie os\u00f3b; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 116,
+        "nazwa": "udzia\u0142 w danej grupie gospodarstw domowych [%]",
+        "nazwa-sposob-prezentacji": "udzia\u0142 w danej grupie gospodarstw domowych; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 117,
+        "nazwa": "[-]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 118,
+        "nazwa": "na 1 mieszkanie [m2]",
+        "nazwa-sposob-prezentacji": "na 1 mieszkanie; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 35,
+        "oznaczenie-jednostki": "m\u00b2",
+        "nazwa-jednostki": "metr kwadratowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 119,
+        "nazwa": "[EPC]",
+        "nazwa-sposob-prezentacji": "relacja; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 163,
+        "oznaczenie-jednostki": "EPC",
+        "nazwa-jednostki": "EPC - ekwiwalent pe\u0142nego czasu pracy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 120,
+        "nazwa": "[km]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 30,
+        "oznaczenie-jednostki": "km",
+        "nazwa-jednostki": "kilometr"
+    },
+    {
+        "id-sposob-prezentacji-miara": 121,
+        "nazwa": "na 1 milion ludno\u015bci [szt.]",
+        "nazwa-sposob-prezentacji": "na 1 milion ludno\u015bci; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 508,
+        "oznaczenie-jednostki": "szt.",
+        "nazwa-jednostki": "ilo\u015b\u0107 sztuk"
+    },
+    {
+        "id-sposob-prezentacji-miara": 122,
+        "nazwa": "na 1 mieszka\u0144ca  [z\u0142]",
+        "nazwa-sposob-prezentacji": "na 1 mieszka\u0144ca; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 1,
+        "oznaczenie-jednostki": "z\u0142",
+        "nazwa-jednostki": "z\u0142oty"
+    },
+    {
+        "id-sposob-prezentacji-miara": 123,
+        "nazwa": "[ha]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 38,
+        "oznaczenie-jednostki": "ha",
+        "nazwa-jednostki": "hektar"
+    },
+    {
+        "id-sposob-prezentacji-miara": 124,
+        "nazwa": "na 1 mieszka\u0144ca [m2]",
+        "nazwa-sposob-prezentacji": "na 1 mieszka\u0144ca; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 35,
+        "oznaczenie-jednostki": "m\u00b2",
+        "nazwa-jednostki": "metr kwadratowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 125,
+        "nazwa": "udzia\u0142 w powierzchni og\u00f3\u0142em powiatu [%]",
+        "nazwa-sposob-prezentacji": "udzia\u0142 w powierzchni og\u00f3\u0142em powiatu; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 126,
+        "nazwa": "udzia\u0142 w powierzchni og\u00f3\u0142em wojew\u00f3dztwa [%]",
+        "nazwa-sposob-prezentacji": "udzia\u0142 w powierzchni og\u00f3\u0142em wojew\u00f3dztwa; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 127,
+        "nazwa": "udzia\u0142 w powierzchni og\u00f3\u0142em kraju [%]",
+        "nazwa-sposob-prezentacji": "udzia\u0142 w powierzchni og\u00f3\u0142em kraju; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 129,
+        "nazwa": "[1 000 m3]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 339,
+        "oznaczenie-jednostki": "<p>1000 m\u00b3</p>",
+        "nazwa-jednostki": "tysi\u0105c metr\u00f3w sze\u015bciennych"
+    },
+    {
+        "id-sposob-prezentacji-miara": 130,
+        "nazwa": "na 1 mieszka\u0144ca [a]",
+        "nazwa-sposob-prezentacji": "na 1 mieszka\u0144ca; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 43,
+        "oznaczenie-jednostki": "a",
+        "nazwa-jednostki": "ar"
+    },
+    {
+        "id-sposob-prezentacji-miara": 131,
+        "nazwa": "na 1 mieszka\u0144ca [m3]",
+        "nazwa-sposob-prezentacji": "na 1 mieszka\u0144ca; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 44,
+        "oznaczenie-jednostki": "m\u00b3",
+        "nazwa-jednostki": "metr sze\u015bcienny"
+    },
+    {
+        "id-sposob-prezentacji-miara": 132,
+        "nazwa": "na 100 ha powierzchni lasu [m3]",
+        "nazwa-sposob-prezentacji": "na 100 ha powierzchni lasu; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 44,
+        "oznaczenie-jednostki": "m\u00b3",
+        "nazwa-jednostki": "metr sze\u015bcienny"
+    },
+    {
+        "id-sposob-prezentacji-miara": 134,
+        "nazwa": "[t]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 19,
+        "oznaczenie-jednostki": "t",
+        "nazwa-jednostki": "tona"
+    },
+    {
+        "id-sposob-prezentacji-miara": 135,
+        "nazwa": "[m3/d]",
+        "nazwa-sposob-prezentacji": "relacja; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 365,
+        "oznaczenie-jednostki": "<p>\n\tm\u00b3/d</p>",
+        "nazwa-jednostki": "metr sze\u015bcienny/dob\u0119"
+    },
+    {
+        "id-sposob-prezentacji-miara": 136,
+        "nazwa": "[t s.m.]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 364,
+        "oznaczenie-jednostki": "<p>\n\tt s.m.</p>",
+        "nazwa-jednostki": "tona suchej masy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 137,
+        "nazwa": "[RLM]",
+        "nazwa-sposob-prezentacji": "relacja; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 358,
+        "oznaczenie-jednostki": "<p>\n\tRLM</p>",
+        "nazwa-jednostki": "r\u00f3wnowa\u017cna liczba mieszka\u0144c\u00f3w"
+    },
+    {
+        "id-sposob-prezentacji-miara": 138,
+        "nazwa": "[gosp.]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 168,
+        "oznaczenie-jednostki": "gosp.",
+        "nazwa-jednostki": "gospodarstwo domowe"
+    },
+    {
+        "id-sposob-prezentacji-miara": 139,
+        "nazwa": "na 1 mieszka\u0144ca [szt.]",
+        "nazwa-sposob-prezentacji": "na 1 mieszka\u0144ca; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 508,
+        "oznaczenie-jednostki": "szt.",
+        "nazwa-jednostki": "ilo\u015b\u0107 sztuk"
+    },
+    {
+        "id-sposob-prezentacji-miara": 140,
+        "nazwa": "na 10 tysi\u0119cy ludno\u015bci [szt.]",
+        "nazwa-sposob-prezentacji": "na 10 tysi\u0119cy ludno\u015bci; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 508,
+        "oznaczenie-jednostki": "szt.",
+        "nazwa-jednostki": "ilo\u015b\u0107 sztuk"
+    },
+    {
+        "id-sposob-prezentacji-miara": 141,
+        "nazwa": "na 1000 ludno\u015bci [szt.]",
+        "nazwa-sposob-prezentacji": "na 1000 ludno\u015bci; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 508,
+        "oznaczenie-jednostki": "szt.",
+        "nazwa-jednostki": "ilo\u015b\u0107 sztuk"
+    },
+    {
+        "id-sposob-prezentacji-miara": 142,
+        "nazwa": "na 1000 ludno\u015bci [osoba]",
+        "nazwa-sposob-prezentacji": "na 1000 ludno\u015bci; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 106,
+        "oznaczenie-jednostki": "osoba",
+        "nazwa-jednostki": "osoba"
+    },
+    {
+        "id-sposob-prezentacji-miara": 143,
+        "nazwa": "na 100 tysi\u0119cy ludno\u015bci [szt.]",
+        "nazwa-sposob-prezentacji": "na 100 tysi\u0119cy ludno\u015bci; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 508,
+        "oznaczenie-jednostki": "szt.",
+        "nazwa-jednostki": "ilo\u015b\u0107 sztuk"
+    },
+    {
+        "id-sposob-prezentacji-miara": 144,
+        "nazwa": "na 1000 ludno\u015bci [m2]",
+        "nazwa-sposob-prezentacji": "na 1000 ludno\u015bci; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 35,
+        "oznaczenie-jednostki": "m\u00b2",
+        "nazwa-jednostki": "metr kwadratowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 145,
+        "nazwa": "[dam3]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 50,
+        "oznaczenie-jednostki": "<p>\n\tdam\u00b3</p>",
+        "nazwa-jednostki": "dekametr sze\u015bcienny"
+    },
+    {
+        "id-sposob-prezentacji-miara": 146,
+        "nazwa": "[km2]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 37,
+        "oznaczenie-jednostki": "<p>\n\tkm\u00b2</p>",
+        "nazwa-jednostki": "kilometr kwadratowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 147,
+        "nazwa": "[hm3]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 51,
+        "oznaczenie-jednostki": "<p>\n\thm\u00b3</p>",
+        "nazwa-jednostki": "hektometr sze\u015bcienny"
+    },
+    {
+        "id-sposob-prezentacji-miara": 148,
+        "nazwa": "[tys. m2]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 36,
+        "oznaczenie-jednostki": "<p>\n\ttys. m\u00b2</p>",
+        "nazwa-jednostki": "tysi\u0105c metr\u00f3w kwadratowych"
+    },
+    {
+        "id-sposob-prezentacji-miara": 149,
+        "nazwa": "udzia\u0142 w zanieczyszczeniach wytworzonych [%]",
+        "nazwa-sposob-prezentacji": "udzia\u0142 w zanieczyszczeniach wytworzonych; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 150,
+        "nazwa": "udzia\u0142 w ludno\u015bci og\u00f3\u0142em [%]",
+        "nazwa-sposob-prezentacji": "udzia\u0142 w ludno\u015bci og\u00f3\u0142em; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 151,
+        "nazwa": "udzia\u0142 w \u015bciekach wymagaj\u0105cych oczyszczenia [%]",
+        "nazwa-sposob-prezentacji": "udzia\u0142 w \u015bciekach wymagaj\u0105cych oczyszczenia; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 152,
+        "nazwa": "[tys. t/rok]",
+        "nazwa-sposob-prezentacji": "relacja; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 452,
+        "oznaczenie-jednostki": "<P>tys. t/rok</P>",
+        "nazwa-jednostki": "tysi\u0105ce ton na rok"
+    },
+    {
+        "id-sposob-prezentacji-miara": 153,
+        "nazwa": "[tys. z\u0142]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 2,
+        "oznaczenie-jednostki": "tys. z\u0142",
+        "nazwa-jednostki": "tysi\u0105c z\u0142otych"
+    },
+    {
+        "id-sposob-prezentacji-miara": 155,
+        "nazwa": "udzia\u0142 w danej grupie organizacji [%]",
+        "nazwa-sposob-prezentacji": "udzia\u0142 w danej grupie organizacji; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 156,
+        "nazwa": "[\u00b5g/m3]",
+        "nazwa-sposob-prezentacji": "relacja; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 433,
+        "oznaczenie-jednostki": "<P>\u00b5g/m\u00b3</P>",
+        "nazwa-jednostki": "mikrogram na metr sze\u015bcienny"
+    },
+    {
+        "id-sposob-prezentacji-miara": 157,
+        "nazwa": "na 1 mieszka\u0144ca [t]",
+        "nazwa-sposob-prezentacji": "na 1 mieszka\u0144ca; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 19,
+        "oznaczenie-jednostki": "t",
+        "nazwa-jednostki": "tona"
+    },
+    {
+        "id-sposob-prezentacji-miara": 158,
+        "nazwa": "[TJ]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 62,
+        "oznaczenie-jednostki": "TJ",
+        "nazwa-jednostki": "terad\u017cul (warto\u015b\u0107 opa\u0142owa g\u00f3rna)"
+    },
+    {
+        "id-sposob-prezentacji-miara": 159,
+        "nazwa": "[p]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 512,
+        "oznaczenie-jednostki": "<p>\n\tp</p>\n",
+        "nazwa-jednostki": "punkt"
+    },
+    {
+        "id-sposob-prezentacji-miara": 160,
+        "nazwa": "pozycja w rankingu [-]",
+        "nazwa-sposob-prezentacji": "pozycja w rankingu; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 161,
+        "nazwa": "na 1 mieszka\u0144ca [osoba]",
+        "nazwa-sposob-prezentacji": "na 1 mieszka\u0144ca; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 106,
+        "oznaczenie-jednostki": "osoba",
+        "nazwa-jednostki": "osoba"
+    },
+    {
+        "id-sposob-prezentacji-miara": 162,
+        "nazwa": "na 10 tysi\u0119cy ludno\u015bci [osoba]",
+        "nazwa-sposob-prezentacji": "na 10 tysi\u0119cy ludno\u015bci; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 106,
+        "oznaczenie-jednostki": "osoba",
+        "nazwa-jednostki": "osoba"
+    },
+    {
+        "id-sposob-prezentacji-miara": 163,
+        "nazwa": "na 100 tysi\u0119cy ludno\u015bci [osoba]",
+        "nazwa-sposob-prezentacji": "na 100 tysi\u0119cy ludno\u015bci; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 106,
+        "oznaczenie-jednostki": "osoba",
+        "nazwa-jednostki": "osoba"
+    },
+    {
+        "id-sposob-prezentacji-miara": 165,
+        "nazwa": "[min]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 79,
+        "oznaczenie-jednostki": "min",
+        "nazwa-jednostki": "minuta"
+    },
+    {
+        "id-sposob-prezentacji-miara": 166,
+        "nazwa": "na 1 osob\u0119 [m2]",
+        "nazwa-sposob-prezentacji": "na 1 osob\u0119; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 35,
+        "oznaczenie-jednostki": "m\u00b2",
+        "nazwa-jednostki": "metr kwadratowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 169,
+        "nazwa": "2010=100 [-]",
+        "nazwa-sposob-prezentacji": "2010=100; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 170,
+        "nazwa": "2008=100 [-]",
+        "nazwa-sposob-prezentacji": "2008=100; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 171,
+        "nazwa": "[mln EUR]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 252,
+        "oznaczenie-jednostki": "mln EUR",
+        "nazwa-jednostki": "milion euro"
+    },
+    {
+        "id-sposob-prezentacji-miara": 172,
+        "nazwa": "[mln USD]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 251,
+        "oznaczenie-jednostki": "mln USD",
+        "nazwa-jednostki": "milion dolar\u00f3w ameryka\u0144skich"
+    },
+    {
+        "id-sposob-prezentacji-miara": 173,
+        "nazwa": "[t km]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 115,
+        "oznaczenie-jednostki": "<p>\n\tt km</p>",
+        "nazwa-jednostki": "tonokilometr"
+    },
+    {
+        "id-sposob-prezentacji-miara": 174,
+        "nazwa": "[mln t km]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 117,
+        "oznaczenie-jednostki": "<P>mln t km</P>",
+        "nazwa-jednostki": "milion tonokilometr\u00f3w"
+    },
+    {
+        "id-sposob-prezentacji-miara": 178,
+        "nazwa": "udzia\u0142 w liczbie zatrudnionych [%]",
+        "nazwa-sposob-prezentacji": "udzia\u0142 w liczbie zatrudnionych; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 179,
+        "nazwa": "[z\u0142/ha]",
+        "nazwa-sposob-prezentacji": "relacja; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 510,
+        "oznaczenie-jednostki": "<p>\n\tz\u0142/ha</p>\n",
+        "nazwa-jednostki": "Z\u0142oty za hektar"
+    },
+    {
+        "id-sposob-prezentacji-miara": 180,
+        "nazwa": "[z\u0142]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 1,
+        "oznaczenie-jednostki": "z\u0142",
+        "nazwa-jednostki": "z\u0142oty"
+    },
+    {
+        "id-sposob-prezentacji-miara": 181,
+        "nazwa": "okres poprzedni=100; uj\u0119cie realne [-]",
+        "nazwa-sposob-prezentacji": "okres poprzedni=100; uj\u0119cie realne; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 182,
+        "nazwa": "analogiczny okres roku poprzedniego=100; uj\u0119cie realne [-]",
+        "nazwa-sposob-prezentacji": "analogiczny okres roku poprzedniego=100; uj\u0119cie realne; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 183,
+        "nazwa": "okres poprzedni=100; uj\u0119cie nominalne [-]",
+        "nazwa-sposob-prezentacji": "okres poprzedni=100; uj\u0119cie nominalne; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 184,
+        "nazwa": "analogiczny okres roku poprzedniego=100; uj\u0119cie nominalne [-]",
+        "nazwa-sposob-prezentacji": "analogiczny okres roku poprzedniego=100; uj\u0119cie nominalne; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 185,
+        "nazwa": "[m]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 28,
+        "oznaczenie-jednostki": "m",
+        "nazwa-jednostki": "metr"
+    },
+    {
+        "id-sposob-prezentacji-miara": 186,
+        "nazwa": "[MWh]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 73,
+        "oznaczenie-jednostki": "MWh",
+        "nazwa-jednostki": "megawatogodzina"
+    },
+    {
+        "id-sposob-prezentacji-miara": 187,
+        "nazwa": "[kWh]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 70,
+        "oznaczenie-jednostki": "kWh",
+        "nazwa-jednostki": "kilowatogodzina"
+    },
+    {
+        "id-sposob-prezentacji-miara": 188,
+        "nazwa": "na 1 mieszka\u0144ca [kWh]",
+        "nazwa-sposob-prezentacji": "na 1 mieszka\u0144ca; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 70,
+        "oznaczenie-jednostki": "kWh",
+        "nazwa-jednostki": "kilowatogodzina"
+    },
+    {
+        "id-sposob-prezentacji-miara": 189,
+        "nazwa": "na 1 odbiorc\u0119 [kWh]",
+        "nazwa-sposob-prezentacji": "na 1 odbiorc\u0119; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 70,
+        "oznaczenie-jednostki": "kWh",
+        "nazwa-jednostki": "kilowatogodzina"
+    },
+    {
+        "id-sposob-prezentacji-miara": 190,
+        "nazwa": "\u015brednia krajowa cena wyrob\u00f3w spo\u017cywczych [z\u0142/kg]",
+        "nazwa-sposob-prezentacji": "\u015brednia krajowa cena wyrob\u00f3w spo\u017cywczych; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 515,
+        "oznaczenie-jednostki": "z\u0142/kg",
+        "nazwa-jednostki": "z\u0142oty za kg"
+    },
+    {
+        "id-sposob-prezentacji-miara": 191,
+        "nazwa": "\u015brednia krajowa cena wyrob\u00f3w spo\u017cywczych [z\u0142/litr]",
+        "nazwa-sposob-prezentacji": "\u015brednia krajowa cena wyrob\u00f3w spo\u017cywczych; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 516,
+        "oznaczenie-jednostki": "z\u0142/litr",
+        "nazwa-jednostki": "z\u0142oty na litr"
+    },
+    {
+        "id-sposob-prezentacji-miara": 192,
+        "nazwa": "\u015brednia krajowa cena wyrob\u00f3w spo\u017cywczych [z\u0142/szt.]",
+        "nazwa-sposob-prezentacji": "\u015brednia krajowa cena wyrob\u00f3w spo\u017cywczych; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 503,
+        "oznaczenie-jednostki": "<p>z\u0142/szt.</p>",
+        "nazwa-jednostki": "z\u0142oty za sztuk\u0119"
+    },
+    {
+        "id-sposob-prezentacji-miara": 193,
+        "nazwa": "przeci\u0119tna miesi\u0119czna na 1 zatrudnionego [z\u0142]",
+        "nazwa-sposob-prezentacji": "przeci\u0119tna miesi\u0119czna na 1 zatrudnionego; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 1,
+        "oznaczenie-jednostki": "z\u0142",
+        "nazwa-jednostki": "z\u0142oty"
+    },
+    {
+        "id-sposob-prezentacji-miara": 194,
+        "nazwa": "przeci\u0119tna na 1 godzin\u0119 op\u0142acon\u0105 [z\u0142]",
+        "nazwa-sposob-prezentacji": "przeci\u0119tna na 1 godzin\u0119 op\u0142acon\u0105; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 1,
+        "oznaczenie-jednostki": "z\u0142",
+        "nazwa-jednostki": "z\u0142oty"
+    },
+    {
+        "id-sposob-prezentacji-miara": 195,
+        "nazwa": "przeci\u0119tna na 1 godzin\u0119 przepracowan\u0105 [z\u0142]",
+        "nazwa-sposob-prezentacji": "przeci\u0119tna na 1 godzin\u0119 przepracowan\u0105; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 1,
+        "oznaczenie-jednostki": "z\u0142",
+        "nazwa-jednostki": "z\u0142oty"
+    },
+    {
+        "id-sposob-prezentacji-miara": 196,
+        "nazwa": "na 1 odbiorc\u0119 [m3]",
+        "nazwa-sposob-prezentacji": "na 1 odbiorc\u0119; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 44,
+        "oznaczenie-jednostki": "m\u00b3",
+        "nazwa-jednostki": "metr sze\u015bcienny"
+    },
+    {
+        "id-sposob-prezentacji-miara": 199,
+        "nazwa": "[tys. EUR]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 335,
+        "oznaczenie-jednostki": "tys. EUR",
+        "nazwa-jednostki": "tysi\u0105c euro"
+    },
+    {
+        "id-sposob-prezentacji-miara": 200,
+        "nazwa": "[tys. USD]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 334,
+        "oznaczenie-jednostki": "tys. USD",
+        "nazwa-jednostki": "tysi\u0105c dolar\u00f3w ameryka\u0144skich"
+    },
+    {
+        "id-sposob-prezentacji-miara": 201,
+        "nazwa": "[tys. km]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 31,
+        "oznaczenie-jednostki": "tys. km",
+        "nazwa-jednostki": "tysi\u0105c kilometr\u00f3w"
+    },
+    {
+        "id-sposob-prezentacji-miara": 202,
+        "nazwa": "na 1 izb\u0119 [osoba]",
+        "nazwa-sposob-prezentacji": "na 1 izb\u0119; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 106,
+        "oznaczenie-jednostki": "osoba",
+        "nazwa-jednostki": "osoba"
+    },
+    {
+        "id-sposob-prezentacji-miara": 203,
+        "nazwa": "[mln m2]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 519,
+        "oznaczenie-jednostki": "<p>\n\tmln m2</p>\n",
+        "nazwa-jednostki": "milion metr\u00f3w kwadratowych"
+    },
+    {
+        "id-sposob-prezentacji-miara": 204,
+        "nazwa": "[osobnik]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 518,
+        "oznaczenie-jednostki": "<p>\n\tosobnik</p>\n",
+        "nazwa-jednostki": "osobnik (biologiczny)"
+    },
+    {
+        "id-sposob-prezentacji-miara": 205,
+        "nazwa": "[tys. min]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 379,
+        "oznaczenie-jednostki": "<p>\n\ttys. min</p>",
+        "nazwa-jednostki": "tysi\u0105c minut"
+    },
+    {
+        "id-sposob-prezentacji-miara": 206,
+        "nazwa": "[MB]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 234,
+        "oznaczenie-jednostki": "MB",
+        "nazwa-jednostki": "megabajt"
+    },
+    {
+        "id-sposob-prezentacji-miara": 207,
+        "nazwa": "[para]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 9,
+        "oznaczenie-jednostki": "para",
+        "nazwa-jednostki": "ilo\u015b\u0107 par"
+    },
+    {
+        "id-sposob-prezentacji-miara": 208,
+        "nazwa": "[r.]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 81,
+        "oznaczenie-jednostki": "r.",
+        "nazwa-jednostki": "rok"
+    },
+    {
+        "id-sposob-prezentacji-miara": 209,
+        "nazwa": "\u015brednia krajowa cena producenta [z\u0142/litr]",
+        "nazwa-sposob-prezentacji": "\u015brednia krajowa cena producenta; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 516,
+        "oznaczenie-jednostki": "z\u0142/litr",
+        "nazwa-jednostki": "z\u0142oty na litr"
+    },
+    {
+        "id-sposob-prezentacji-miara": 210,
+        "nazwa": "na 1000 zatrudnionych [osoba]",
+        "nazwa-sposob-prezentacji": "na 1000 zatrudnionych; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 106,
+        "oznaczenie-jednostki": "osoba",
+        "nazwa-jednostki": "osoba"
+    },
+    {
+        "id-sposob-prezentacji-miara": 211,
+        "nazwa": "[etat]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 164,
+        "oznaczenie-jednostki": "etat",
+        "nazwa-jednostki": "etat"
+    },
+    {
+        "id-sposob-prezentacji-miara": 212,
+        "nazwa": "ilo\u015b\u0107 [szt.]",
+        "nazwa-sposob-prezentacji": "ilo\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 508,
+        "oznaczenie-jednostki": "szt.",
+        "nazwa-jednostki": "ilo\u015b\u0107 sztuk"
+    },
+    {
+        "id-sposob-prezentacji-miara": 213,
+        "nazwa": "2000=100 [-]",
+        "nazwa-sposob-prezentacji": "2000=100; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 214,
+        "nazwa": "przeci\u0119tna miesi\u0119czna 2015=100 [-]",
+        "nazwa-sposob-prezentacji": "przeci\u0119tna miesi\u0119czna 2015=100; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 215,
+        "nazwa": "2005=100 [-]",
+        "nazwa-sposob-prezentacji": "2005=100; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 216,
+        "nazwa": "na 100 miejsc (\u0142\u00f3\u017cek) [osoba]",
+        "nazwa-sposob-prezentacji": "na 100 miejsc (\u0142\u00f3\u017cek); szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 106,
+        "oznaczenie-jednostki": "osoba",
+        "nazwa-jednostki": "osoba"
+    },
+    {
+        "id-sposob-prezentacji-miara": 217,
+        "nazwa": "na 1000 os\u00f3b aktywnych zawodowo [osoba]",
+        "nazwa-sposob-prezentacji": "na 1000 os\u00f3b aktywnych zawodowo; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 106,
+        "oznaczenie-jednostki": "osoba",
+        "nazwa-jednostki": "osoba"
+    },
+    {
+        "id-sposob-prezentacji-miara": 218,
+        "nazwa": "na 1 korzystaj\u0105cego [miejsce]",
+        "nazwa-sposob-prezentacji": "na 1 korzystaj\u0105cego; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 423,
+        "oznaczenie-jednostki": "<P>miejsce</P>",
+        "nazwa-jednostki": "miejsce"
+    },
+    {
+        "id-sposob-prezentacji-miara": 219,
+        "nazwa": "na 1 parafi\u0119 [osoba]",
+        "nazwa-sposob-prezentacji": "na 1 parafi\u0119; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 106,
+        "oznaczenie-jednostki": "osoba",
+        "nazwa-jednostki": "osoba"
+    },
+    {
+        "id-sposob-prezentacji-miara": 220,
+        "nazwa": "na 1 ksi\u0119dza [osoba]",
+        "nazwa-sposob-prezentacji": "na 1 ksi\u0119dza; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 106,
+        "oznaczenie-jednostki": "osoba",
+        "nazwa-jednostki": "osoba"
+    },
+    {
+        "id-sposob-prezentacji-miara": 221,
+        "nazwa": "udzia\u0142 w danej grupie wieku [%]",
+        "nazwa-sposob-prezentacji": "udzia\u0142 w danej grupie wieku; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 223,
+        "nazwa": "analogiczny okres roku poprzedniego=100 szereg wyr\u00f3wnany sezonowo ceny sta\u0142e [-]",
+        "nazwa-sposob-prezentacji": "analogiczny okres roku poprzedniego=100; szereg wyr\u00f3wnany sezonowo; ceny sta\u0142e",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 224,
+        "nazwa": "na 1000 dzieci w wieku 0-2 lat [szt.]",
+        "nazwa-sposob-prezentacji": "na 1000 dzieci w wieku 0-2 lat; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 5,
+        "oznaczenie-jednostki": "szt.",
+        "nazwa-jednostki": "sztuka"
+    },
+    {
+        "id-sposob-prezentacji-miara": 225,
+        "nazwa": "na 1000 dzieci w wieku 0-2 lat [osoba]",
+        "nazwa-sposob-prezentacji": "na 1000 dzieci w wieku 0-2 lat; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 106,
+        "oznaczenie-jednostki": "osoba",
+        "nazwa-jednostki": "osoba"
+    },
+    {
+        "id-sposob-prezentacji-miara": 226,
+        "nazwa": "na 100 miejsc [osoba]",
+        "nazwa-sposob-prezentacji": "na 100 miejsc; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 106,
+        "oznaczenie-jednostki": "osoba",
+        "nazwa-jednostki": "osoba"
+    },
+    {
+        "id-sposob-prezentacji-miara": 227,
+        "nazwa": "[osobolata]",
+        "nazwa-sposob-prezentacji": "relacja; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 517,
+        "oznaczenie-jednostki": "<p>\n\tosobolata</p>\n",
+        "nazwa-jednostki": "osobolata"
+    },
+    {
+        "id-sposob-prezentacji-miara": 228,
+        "nazwa": "udzia\u0142 w danej grupie przedsi\u0119biorstw aktywnych innowacyjnie [%]",
+        "nazwa-sposob-prezentacji": "udzia\u0142 w danej grupie przedsi\u0119biorstw aktywnych innowacyjnie; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 229,
+        "nazwa": "[tys. t km]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 116,
+        "oznaczenie-jednostki": "<p>\n\ttys. t km</p>",
+        "nazwa-jednostki": "tysi\u0105c tonokilometr\u00f3w"
+    },
+    {
+        "id-sposob-prezentacji-miara": 230,
+        "nazwa": "[mln pas km]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 131,
+        "oznaczenie-jednostki": "<P>mln pas km</P>",
+        "nazwa-jednostki": "milion pasa\u017cerokilometr\u00f3w"
+    },
+    {
+        "id-sposob-prezentacji-miara": 231,
+        "nazwa": "[tys. pas km]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 130,
+        "oznaczenie-jednostki": "<p>\n\ttys. pas km</p>",
+        "nazwa-jednostki": "tysi\u0105c pasa\u017cerokilometr\u00f3w"
+    },
+    {
+        "id-sposob-prezentacji-miara": 232,
+        "nazwa": "udzia\u0142 w sprzeda\u017cy og\u00f3\u0142em w danej grupie przedsi\u0119biorstw  [%]",
+        "nazwa-sposob-prezentacji": "udzia\u0142 w sprzeda\u017cy og\u00f3\u0142em w danej grupie przedsi\u0119biorstw; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 233,
+        "nazwa": "[tys. t/km2]",
+        "nazwa-sposob-prezentacji": "relacja; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 523,
+        "oznaczenie-jednostki": "<p>\n\ttys. t/km2</p>\n",
+        "nazwa-jednostki": "tysi\u0105c ton na kilometr kwadratowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 234,
+        "nazwa": "na 100 tysi\u0119cy ludno\u015bci [-]",
+        "nazwa-sposob-prezentacji": "na 100 tysi\u0119cy ludno\u015bci; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 235,
+        "nazwa": "przeci\u0119tna miesi\u0119czna 2015=100 szereg wyr\u00f3wnany sezonowo ceny sta\u0142e [-]",
+        "nazwa-sposob-prezentacji": "przeci\u0119tna miesi\u0119czna 2015=100; szereg wyr\u00f3wnany sezonowo; ceny sta\u0142e",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 236,
+        "nazwa": "okres poprzedni=100 szereg wyr\u00f3wnany sezonowo ceny sta\u0142e [-]",
+        "nazwa-sposob-prezentacji": "okres poprzedni=100; szereg wyr\u00f3wnany sezonowo; ceny sta\u0142e",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 237,
+        "nazwa": "na 1 mieszka\u0144ca ceny sta\u0142e [-]",
+        "nazwa-sposob-prezentacji": "na 1 mieszka\u0144ca; szereg niewyr\u00f3wnany; ceny sta\u0142e",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 238,
+        "nazwa": "[tys. wozo km]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 351,
+        "oznaczenie-jednostki": "tys. wozo km",
+        "nazwa-jednostki": "tysi\u0105c wozokilometr\u00f3w"
+    },
+    {
+        "id-sposob-prezentacji-miara": 239,
+        "nazwa": "[msc.]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 421,
+        "oznaczenie-jednostki": "<P>msc.</P>",
+        "nazwa-jednostki": "miejsce"
+    },
+    {
+        "id-sposob-prezentacji-miara": 240,
+        "nazwa": "[ktoe]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 521,
+        "oznaczenie-jednostki": "<p>\n\tktoe</p>\n",
+        "nazwa-jednostki": "kilotona oleju ekwiwalentnego"
+    },
+    {
+        "id-sposob-prezentacji-miara": 241,
+        "nazwa": "[Mtoe]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 257,
+        "oznaczenie-jednostki": "Mtoe",
+        "nazwa-jednostki": "milion ton oleju ekwiwalentnego"
+    },
+    {
+        "id-sposob-prezentacji-miara": 242,
+        "nazwa": "[GWh]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 74,
+        "oznaczenie-jednostki": "GWh",
+        "nazwa-jednostki": "gigawatogodzina"
+    },
+    {
+        "id-sposob-prezentacji-miara": 243,
+        "nazwa": "[z\u0142]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 1,
+        "oznaczenie-jednostki": "z\u0142",
+        "nazwa-jednostki": "z\u0142oty"
+    },
+    {
+        "id-sposob-prezentacji-miara": 244,
+        "nazwa": "okres poprzedni=100 szereg wyr\u00f3wnany dniami roboczymi ceny sta\u0142e [-]",
+        "nazwa-sposob-prezentacji": "okres poprzedni=100; szereg wyr\u00f3wnany dniami roboczymi; ceny sta\u0142e",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 245,
+        "nazwa": "przeci\u0119tna miesi\u0119czna 2015=100 szereg wyr\u00f3wnany dniami roboczymi ceny sta\u0142e [-]",
+        "nazwa-sposob-prezentacji": "przeci\u0119tna miesi\u0119czna 2015=100; szereg wyr\u00f3wnany dniami roboczymi; ceny sta\u0142e",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 246,
+        "nazwa": "przeci\u0119tna miesi\u0119czna 2010=100 szereg wyr\u00f3wnany sezonowo ceny sta\u0142e [-]",
+        "nazwa-sposob-prezentacji": "przeci\u0119tna miesi\u0119czna 2010=100; szereg wyr\u00f3wnany sezonowo; ceny sta\u0142e",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 247,
+        "nazwa": "przeci\u0119tna miesi\u0119czna 2010=100 szereg wyr\u00f3wnany dniami roboczymi ceny sta\u0142e [-]",
+        "nazwa-sposob-prezentacji": "przeci\u0119tna miesi\u0119czna 2010=100; szereg wyr\u00f3wnany dniami roboczymi; ceny sta\u0142e",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 248,
+        "nazwa": "analogiczny okres roku poprzedniego=100 szereg wyr\u00f3wnany dniami roboczymi ceny sta\u0142e [-]",
+        "nazwa-sposob-prezentacji": "analogiczny okres roku poprzedniego=100; szereg wyr\u00f3wnany dniami roboczymi; ceny sta\u0142e",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 249,
+        "nazwa": "grudzie\u0144 2018=100 [-]",
+        "nazwa-sposob-prezentacji": "grudzie\u0144 2018=100; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 250,
+        "nazwa": "[dt/ha]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 524,
+        "oznaczenie-jednostki": "<p>\n\tdt/ha</p>\n",
+        "nazwa-jednostki": "decytony z 1 hektara"
+    },
+    {
+        "id-sposob-prezentacji-miara": 251,
+        "nazwa": "na 1 mieszka\u0144ca, okres poprzedni=100  [-]",
+        "nazwa-sposob-prezentacji": "na 1 mieszka\u0144ca, okres poprzedni=100; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 252,
+        "nazwa": "na 1 mieszka\u0144ca, okres poprzedni=100 ceny sta\u0142e [-]",
+        "nazwa-sposob-prezentacji": "na 1 mieszka\u0144ca, okres poprzedni=100; szereg niewyr\u00f3wnany; ceny sta\u0142e",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 253,
+        "nazwa": "na 1 mieszka\u0144ca, Polska=100  [%]",
+        "nazwa-sposob-prezentacji": "na 1 mieszka\u0144ca, Polska=100; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 254,
+        "nazwa": "na 1 pracuj\u0105cego  [z\u0142]",
+        "nazwa-sposob-prezentacji": "na 1 pracuj\u0105cego; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 1,
+        "oznaczenie-jednostki": "z\u0142",
+        "nazwa-jednostki": "z\u0142oty"
+    },
+    {
+        "id-sposob-prezentacji-miara": 255,
+        "nazwa": "uj\u0119cie nominalne [mln z\u0142]",
+        "nazwa-sposob-prezentacji": "uj\u0119cie nominalne; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 3,
+        "oznaczenie-jednostki": "mln z\u0142",
+        "nazwa-jednostki": "milion z\u0142otych"
+    },
+    {
+        "id-sposob-prezentacji-miara": 256,
+        "nazwa": "na 1 mieszka\u0144ca, uj\u0119cie nominalne [z\u0142]",
+        "nazwa-sposob-prezentacji": "na 1 mieszka\u0144ca, uj\u0119cie nominalne; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 1,
+        "oznaczenie-jednostki": "z\u0142",
+        "nazwa-jednostki": "z\u0142oty"
+    },
+    {
+        "id-sposob-prezentacji-miara": 257,
+        "nazwa": "na 1 mieszka\u0144ca, Polska=100, uj\u0119cie nominalne [%]",
+        "nazwa-sposob-prezentacji": "na 1 mieszka\u0144ca, Polska=100, uj\u0119cie nominalne; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 258,
+        "nazwa": "na 1 mieszka\u0144ca, okres poprzedni=100, uj\u0119cie realne [-]",
+        "nazwa-sposob-prezentacji": "na 1 mieszka\u0144ca, okres poprzedni=100, uj\u0119cie realne; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 264,
+        "nazwa": "[mc]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 241,
+        "oznaczenie-jednostki": "mc",
+        "nazwa-jednostki": "miesi\u0105c"
+    },
+    {
+        "id-sposob-prezentacji-miara": 265,
+        "nazwa": "na 1 mieszka\u0144ca ceny sta\u0142e [z\u0142]",
+        "nazwa-sposob-prezentacji": "na 1 mieszka\u0144ca; szereg niewyr\u00f3wnany; ceny sta\u0142e",
+        "id-jednostka-miary": 1,
+        "oznaczenie-jednostki": "z\u0142",
+        "nazwa-jednostki": "z\u0142oty"
+    },
+    {
+        "id-sposob-prezentacji-miara": 266,
+        "nazwa": "[dt]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 23,
+        "oznaczenie-jednostki": "dt",
+        "nazwa-jednostki": "decytona"
+    },
+    {
+        "id-sposob-prezentacji-miara": 267,
+        "nazwa": "szereg wyr\u00f3wnany sezonowo [-]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg wyr\u00f3wnany sezonowo; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 268,
+        "nazwa": "szereg wyr\u00f3wnany sezonowo [%]",
+        "nazwa-sposob-prezentacji": "relacja; szereg wyr\u00f3wnany sezonowo; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 269,
+        "nazwa": "2000=100 ceny sta\u0142e [-]",
+        "nazwa-sposob-prezentacji": "2000=100; szereg niewyr\u00f3wnany; ceny sta\u0142e",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 270,
+        "nazwa": "2005=100 ceny sta\u0142e [-]",
+        "nazwa-sposob-prezentacji": "2005=100; szereg niewyr\u00f3wnany; ceny sta\u0142e",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 271,
+        "nazwa": "2010=100 ceny sta\u0142e [-]",
+        "nazwa-sposob-prezentacji": "2010=100; szereg niewyr\u00f3wnany; ceny sta\u0142e",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 272,
+        "nazwa": "2015=100 ceny sta\u0142e [-]",
+        "nazwa-sposob-prezentacji": "2015=100; szereg niewyr\u00f3wnany; ceny sta\u0142e",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 273,
+        "nazwa": "[tys. etat\u00f3w]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 520,
+        "oznaczenie-jednostki": "<p>\n\ttysi\u0105c etat\u00f3w</p>\n",
+        "nazwa-jednostki": "tysi\u0105c etat\u00f3w"
+    },
+    {
+        "id-sposob-prezentacji-miara": 274,
+        "nazwa": "na 1 mieszka\u0144ca, 2015=100 ceny sta\u0142e [-]",
+        "nazwa-sposob-prezentacji": "na 1 mieszka\u0144ca, 2015=100; szereg niewyr\u00f3wnany; ceny sta\u0142e",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 275,
+        "nazwa": "na 1000 urodze\u0144 \u017cywych [osoba]",
+        "nazwa-sposob-prezentacji": "na 1000 urodze\u0144 \u017cywych; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 106,
+        "oznaczenie-jednostki": "osoba",
+        "nazwa-jednostki": "osoba"
+    },
+    {
+        "id-sposob-prezentacji-miara": 276,
+        "nazwa": "[kg/ha]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 457,
+        "oznaczenie-jednostki": "<P>kg/ha</P>",
+        "nazwa-jednostki": "kilogram na hektar"
+    },
+    {
+        "id-sposob-prezentacji-miara": 277,
+        "nazwa": "[kg]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 18,
+        "oznaczenie-jednostki": "kg",
+        "nazwa-jednostki": "kilogram"
+    },
+    {
+        "id-sposob-prezentacji-miara": 278,
+        "nazwa": "[l]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 47,
+        "oznaczenie-jednostki": "l",
+        "nazwa-jednostki": "litr"
+    },
+    {
+        "id-sposob-prezentacji-miara": 279,
+        "nazwa": "[tys. l]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 338,
+        "oznaczenie-jednostki": "tys. l",
+        "nazwa-jednostki": "tysi\u0105c litr\u00f3w"
+    },
+    {
+        "id-sposob-prezentacji-miara": 280,
+        "nazwa": "[mln l]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 255,
+        "oznaczenie-jednostki": "mln l",
+        "nazwa-jednostki": "milion litr\u00f3w"
+    },
+    {
+        "id-sposob-prezentacji-miara": 281,
+        "nazwa": "[t wagi \u017cywej]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 525,
+        "oznaczenie-jednostki": "<p>\n\tt wagi \u017cywej</p>\n",
+        "nazwa-jednostki": "tona wagi \u017cywej"
+    },
+    {
+        "id-sposob-prezentacji-miara": 282,
+        "nazwa": "[t wagi bitej ciep\u0142ej]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 526,
+        "oznaczenie-jednostki": "<p>\n\tt wagi bitej ciep\u0142ej</p>\n",
+        "nazwa-jednostki": "tona wagi bitej ciep\u0142ej"
+    },
+    {
+        "id-sposob-prezentacji-miara": 286,
+        "nazwa": "[mld z\u0142]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 4,
+        "oznaczenie-jednostki": "mld z\u0142",
+        "nazwa-jednostki": "miliard z\u0142otych"
+    },
+    {
+        "id-sposob-prezentacji-miara": 287,
+        "nazwa": "[tys. t ekw. CO2]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 466,
+        "oznaczenie-jednostki": "<p>\n\ttys. t ekw. CO\u2082</p>\n",
+        "nazwa-jednostki": "tysi\u0105c ton ekwiwalentu dwutlenku w\u0119gla"
+    },
+    {
+        "id-sposob-prezentacji-miara": 288,
+        "nazwa": "[tys. z\u0142]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 2,
+        "oznaczenie-jednostki": "tys. z\u0142",
+        "nazwa-jednostki": "tysi\u0105c z\u0142otych"
+    },
+    {
+        "id-sposob-prezentacji-miara": 289,
+        "nazwa": "[tys. t s.m.]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 416,
+        "oznaczenie-jednostki": "<P>tys. t s.m.</P>",
+        "nazwa-jednostki": "tysi\u0105c ton suchej masy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 290,
+        "nazwa": "[kW]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 59,
+        "oznaczenie-jednostki": "kW",
+        "nazwa-jednostki": "kilowat"
+    },
+    {
+        "id-sposob-prezentacji-miara": 291,
+        "nazwa": "[GT]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 126,
+        "oznaczenie-jednostki": "GT",
+        "nazwa-jednostki": "pojemno\u015b\u0107 brutto statku"
+    },
+    {
+        "id-sposob-prezentacji-miara": 292,
+        "nazwa": "ilo\u015b\u0107 [dz.]",
+        "nazwa-sposob-prezentacji": "ilo\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 80,
+        "oznaczenie-jednostki": "dz.",
+        "nazwa-jednostki": "dzie\u0144"
+    },
+    {
+        "id-sposob-prezentacji-miara": 293,
+        "nazwa": "ilo\u015b\u0107 [ob.]",
+        "nazwa-sposob-prezentacji": "ilo\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 261,
+        "oznaczenie-jednostki": "ob.",
+        "nazwa-jednostki": "obiekt"
+    },
+    {
+        "id-sposob-prezentacji-miara": 294,
+        "nazwa": "[mb]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 239,
+        "oznaczenie-jednostki": "mb",
+        "nazwa-jednostki": "metr bie\u017c\u0105cy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 295,
+        "nazwa": "na 1 \u0142\u00f3\u017cko [osoba]",
+        "nazwa-sposob-prezentacji": "na 1 \u0142\u00f3\u017cko; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 106,
+        "oznaczenie-jednostki": "osoba",
+        "nazwa-jednostki": "osoba"
+    },
+    {
+        "id-sposob-prezentacji-miara": 296,
+        "nazwa": "na 1 mieszka\u0144ca, 2010=100 ceny sta\u0142e [-]",
+        "nazwa-sposob-prezentacji": "na 1 mieszka\u0144ca, 2010=100; szereg niewyr\u00f3wnany; ceny sta\u0142e",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 297,
+        "nazwa": "ceny sta\u0142e [mln z\u0142]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; ceny sta\u0142e",
+        "id-jednostka-miary": 3,
+        "oznaczenie-jednostki": "mln z\u0142",
+        "nazwa-jednostki": "milion z\u0142otych"
+    },
+    {
+        "id-sposob-prezentacji-miara": 298,
+        "nazwa": "wykonanie ustawy bud\u017cetowej [%]",
+        "nazwa-sposob-prezentacji": "wykonanie ustawy bud\u017cetowej; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 299,
+        "nazwa": "relacja do PKB  [%]",
+        "nazwa-sposob-prezentacji": "relacja do PKB; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 300,
+        "nazwa": "[mln z\u0142]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 3,
+        "oznaczenie-jednostki": "mln z\u0142",
+        "nazwa-jednostki": "milion z\u0142otych"
+    },
+    {
+        "id-sposob-prezentacji-miara": 301,
+        "nazwa": "2000=100  [-]",
+        "nazwa-sposob-prezentacji": "2000=100; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 302,
+        "nazwa": "2005=100  [-]",
+        "nazwa-sposob-prezentacji": "2005=100; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 303,
+        "nazwa": "2010=100  [-]",
+        "nazwa-sposob-prezentacji": "2010=100; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 304,
+        "nazwa": "2015=100  [-]",
+        "nazwa-sposob-prezentacji": "2015=100; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 305,
+        "nazwa": "skala wp\u0142ywu [p.proc.]",
+        "nazwa-sposob-prezentacji": "skala wp\u0142ywu; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 371,
+        "oznaczenie-jednostki": "<p>\n\tp.proc.</p>\n",
+        "nazwa-jednostki": "punkt procentowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 306,
+        "nazwa": "na 1 mieszka\u0144ca, 2005=100 ceny sta\u0142e [-]",
+        "nazwa-sposob-prezentacji": "na 1 mieszka\u0144ca, 2005=100; szereg niewyr\u00f3wnany; ceny sta\u0142e",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 307,
+        "nazwa": "na 1 mieszka\u0144ca, 2000=100 ceny sta\u0142e [-]",
+        "nazwa-sposob-prezentacji": "na 1 mieszka\u0144ca, 2000=100; szereg niewyr\u00f3wnany; ceny sta\u0142e",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 308,
+        "nazwa": "ceny sta\u0142e roku poprzedniego [mln z\u0142]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; ceny sta\u0142e roku poprzedniego",
+        "id-jednostka-miary": 3,
+        "oznaczenie-jednostki": "mln z\u0142",
+        "nazwa-jednostki": "milion z\u0142otych"
+    },
+    {
+        "id-sposob-prezentacji-miara": 309,
+        "nazwa": "ceny sta\u0142e z 2015 roku [mln z\u0142]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; ceny sta\u0142e z 2015 roku",
+        "id-jednostka-miary": 3,
+        "oznaczenie-jednostki": "mln z\u0142",
+        "nazwa-jednostki": "milion z\u0142otych"
+    },
+    {
+        "id-sposob-prezentacji-miara": 310,
+        "nazwa": "analogiczny okres roku poprzedniego=100 ceny sta\u0142e z 2015 roku [-]",
+        "nazwa-sposob-prezentacji": "analogiczny okres roku poprzedniego=100; szereg niewyr\u00f3wnany; ceny sta\u0142e z 2015 roku",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 311,
+        "nazwa": "okres poprzedni=100 szereg wyr\u00f3wnany sezonowo ceny sta\u0142e z 2015 roku [-]",
+        "nazwa-sposob-prezentacji": "okres poprzedni=100; szereg wyr\u00f3wnany sezonowo; ceny sta\u0142e z 2015 roku",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 312,
+        "nazwa": "analogiczny okres roku poprzedniego=100 szereg wyr\u00f3wnany sezonowo ceny sta\u0142e z 2015 roku [-]",
+        "nazwa-sposob-prezentacji": "analogiczny okres roku poprzedniego=100; szereg wyr\u00f3wnany sezonowo; ceny sta\u0142e z 2015 roku",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 313,
+        "nazwa": "szereg wyr\u00f3wnany sezonowo ceny sta\u0142e z 2015 roku [mln z\u0142]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg wyr\u00f3wnany sezonowo; ceny sta\u0142e z 2015 roku",
+        "id-jednostka-miary": 3,
+        "oznaczenie-jednostki": "mln z\u0142",
+        "nazwa-jednostki": "milion z\u0142otych"
+    },
+    {
+        "id-sposob-prezentacji-miara": 314,
+        "nazwa": "[EUR]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 165,
+        "oznaczenie-jednostki": "EUR",
+        "nazwa-jednostki": "euro"
+    },
+    {
+        "id-sposob-prezentacji-miara": 315,
+        "nazwa": "[USD]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 160,
+        "oznaczenie-jednostki": "USD",
+        "nazwa-jednostki": "dolar ameryka\u0144ski"
+    },
+    {
+        "id-sposob-prezentacji-miara": 316,
+        "nazwa": "[mld EUR]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 246,
+        "oznaczenie-jednostki": "mld EUR",
+        "nazwa-jednostki": "miliard euro"
+    },
+    {
+        "id-sposob-prezentacji-miara": 317,
+        "nazwa": "[mld USD]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 245,
+        "oznaczenie-jednostki": "mld USD",
+        "nazwa-jednostki": "miliard dolar\u00f3w ameryka\u0144skich"
+    },
+    {
+        "id-sposob-prezentacji-miara": 318,
+        "nazwa": "analogiczny okres roku poprzedniego=100 (EUR)  [-]",
+        "nazwa-sposob-prezentacji": "analogiczny okres roku poprzedniego=100 (EUR); szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 319,
+        "nazwa": "analogiczny okres roku poprzedniego=100 (USD)  [-]",
+        "nazwa-sposob-prezentacji": "analogiczny okres roku poprzedniego=100 (USD); szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 320,
+        "nazwa": "[TEU]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 161,
+        "oznaczenie-jednostki": "TEU",
+        "nazwa-jednostki": "dwudziestostopowa jednostka ekwiwalentna"
+    },
+    {
+        "id-sposob-prezentacji-miara": 321,
+        "nazwa": "relacja do zu\u017cycia po\u015bredniego [%]",
+        "nazwa-sposob-prezentacji": "relacja do zu\u017cycia po\u015bredniego; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 322,
+        "nazwa": "relacja do produkcji globalnej [%]",
+        "nazwa-sposob-prezentacji": "relacja do produkcji globalnej; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 323,
+        "nazwa": "relacja do warto\u015bci dodanej brutto [%]",
+        "nazwa-sposob-prezentacji": "relacja do warto\u015bci dodanej brutto; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 324,
+        "nazwa": "relacja do d\u0142ugu sektora instytucji rz\u0105dowych i samorz\u0105dowych [%]",
+        "nazwa-sposob-prezentacji": "relacja do d\u0142ugu sektora instytucji rz\u0105dowych i samorz\u0105dowych; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 325,
+        "nazwa": "relacja do wydatk\u00f3w podsektora funduszy zabezpieczenia spo\u0142ecznego [%]",
+        "nazwa-sposob-prezentacji": "relacja do wydatk\u00f3w podsektora funduszy zabezpieczenia spo\u0142ecznego; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 326,
+        "nazwa": "relacja do wydatk\u00f3w podsektora instytucji samorz\u0105dowych na szczeblu lokalnym [%]",
+        "nazwa-sposob-prezentacji": "relacja do wydatk\u00f3w podsektora instytucji samorz\u0105dowych na szczeblu lokalnym; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 327,
+        "nazwa": "relacja do wydatk\u00f3w podsektora instytucji rz\u0105dowych na szczeblu centralnym [%]",
+        "nazwa-sposob-prezentacji": "relacja do wydatk\u00f3w podsektora instytucji rz\u0105dowych na szczeblu centralnym; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 328,
+        "nazwa": "relacja do wydatk\u00f3w sektora instytucji rz\u0105dowych i samorz\u0105dowych [%]",
+        "nazwa-sposob-prezentacji": "relacja do wydatk\u00f3w sektora instytucji rz\u0105dowych i samorz\u0105dowych; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 329,
+        "nazwa": "relacja do dochod\u00f3w podsektora funduszy zabezpieczenia spo\u0142ecznego [%]",
+        "nazwa-sposob-prezentacji": "relacja do dochod\u00f3w podsektora funduszy zabezpieczenia spo\u0142ecznego; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 330,
+        "nazwa": "relacja do dochod\u00f3w podsektora instytucji samorz\u0105dowych na szczeblu lokalnym [%]",
+        "nazwa-sposob-prezentacji": "relacja do dochod\u00f3w podsektora instytucji samorz\u0105dowych na szczeblu lokalnym; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 331,
+        "nazwa": "relacja do dochod\u00f3w podsektora instytucji rz\u0105dowych na szczeblu centralnym [%]",
+        "nazwa-sposob-prezentacji": "relacja do dochod\u00f3w podsektora instytucji rz\u0105dowych na szczeblu centralnym; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 332,
+        "nazwa": "relacja do dochod\u00f3w sektora instytucji rz\u0105dowych i samorz\u0105dowych [%]",
+        "nazwa-sposob-prezentacji": "relacja do dochod\u00f3w sektora instytucji rz\u0105dowych i samorz\u0105dowych; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 112,
+        "oznaczenie-jednostki": "%",
+        "nazwa-jednostki": "procent"
+    },
+    {
+        "id-sposob-prezentacji-miara": 333,
+        "nazwa": "[mln os\u00f3b]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 527,
+        "oznaczenie-jednostki": "<p>\n\tmln os\u00f3b</p>\n",
+        "nazwa-jednostki": "milion os\u00f3b"
+    },
+    {
+        "id-sposob-prezentacji-miara": 334,
+        "nazwa": "przeci\u0119tna miesi\u0119czna 2015=100, uj\u0119cie realne [-]",
+        "nazwa-sposob-prezentacji": "przeci\u0119tna miesi\u0119czna 2015=100, uj\u0119cie realne; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 335,
+        "nazwa": "[osoba/km2]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 420,
+        "oznaczenie-jednostki": "<p>\n\tosoba/km\u00b2</p>",
+        "nazwa-jednostki": "osoba na kilometr kwadratowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 336,
+        "nazwa": "\u015brednia [kg]",
+        "nazwa-sposob-prezentacji": "\u015brednia; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 18,
+        "oznaczenie-jednostki": "kg",
+        "nazwa-jednostki": "kilogram"
+    },
+    {
+        "id-sposob-prezentacji-miara": 337,
+        "nazwa": "mediana [kg]",
+        "nazwa-sposob-prezentacji": "mediana; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 18,
+        "oznaczenie-jednostki": "kg",
+        "nazwa-jednostki": "kilogram"
+    },
+    {
+        "id-sposob-prezentacji-miara": 338,
+        "nazwa": "percentyl 25 [kg]",
+        "nazwa-sposob-prezentacji": "percentyl 25; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 18,
+        "oznaczenie-jednostki": "kg",
+        "nazwa-jednostki": "kilogram"
+    },
+    {
+        "id-sposob-prezentacji-miara": 339,
+        "nazwa": "percentyl 75 [kg]",
+        "nazwa-sposob-prezentacji": "percentyl 75; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 18,
+        "oznaczenie-jednostki": "kg",
+        "nazwa-jednostki": "kilogram"
+    },
+    {
+        "id-sposob-prezentacji-miara": 340,
+        "nazwa": "na 1 korzystaj\u0105cego [m3]",
+        "nazwa-sposob-prezentacji": "na 1 korzystaj\u0105cego; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 44,
+        "oznaczenie-jednostki": "m\u00b3",
+        "nazwa-jednostki": "metr sze\u015bcienny"
+    },
+    {
+        "id-sposob-prezentacji-miara": 341,
+        "nazwa": "na 1 mieszka\u0144ca [kg]",
+        "nazwa-sposob-prezentacji": "na 1 mieszka\u0144ca; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 18,
+        "oznaczenie-jednostki": "kg",
+        "nazwa-jednostki": "kilogram"
+    },
+    {
+        "id-sposob-prezentacji-miara": 342,
+        "nazwa": "na 1 mieszka\u0144ca [ha]",
+        "nazwa-sposob-prezentacji": "na 1 mieszka\u0144ca; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 38,
+        "oznaczenie-jednostki": "ha",
+        "nazwa-jednostki": "hektar"
+    },
+    {
+        "id-sposob-prezentacji-miara": 343,
+        "nazwa": "[obiekt/100 km2]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 528,
+        "oznaczenie-jednostki": "<p>\n\tobiekt/100 km2</p>\n",
+        "nazwa-jednostki": "obiekt na 100 kilometr\u00f3w kwadratowych"
+    },
+    {
+        "id-sposob-prezentacji-miara": 344,
+        "nazwa": "[szt./km2]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 522,
+        "oznaczenie-jednostki": "<p>\n\tszt./km2</p>\n",
+        "nazwa-jednostki": "sztuka na kilometr kwadratowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 345,
+        "nazwa": "\u015brednia [cm]",
+        "nazwa-sposob-prezentacji": "\u015brednia; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 27,
+        "oznaczenie-jednostki": "cm",
+        "nazwa-jednostki": "centymetr"
+    },
+    {
+        "id-sposob-prezentacji-miara": 346,
+        "nazwa": "mediana [cm]",
+        "nazwa-sposob-prezentacji": "mediana; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 27,
+        "oznaczenie-jednostki": "cm",
+        "nazwa-jednostki": "centymetr"
+    },
+    {
+        "id-sposob-prezentacji-miara": 347,
+        "nazwa": "percentyl 25 [cm]",
+        "nazwa-sposob-prezentacji": "percentyl 25; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 27,
+        "oznaczenie-jednostki": "cm",
+        "nazwa-jednostki": "centymetr"
+    },
+    {
+        "id-sposob-prezentacji-miara": 348,
+        "nazwa": "percentyl 75 [cm]",
+        "nazwa-sposob-prezentacji": "percentyl 75; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 27,
+        "oznaczenie-jednostki": "cm",
+        "nazwa-jednostki": "centymetr"
+    },
+    {
+        "id-sposob-prezentacji-miara": 349,
+        "nazwa": "[tys. par]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 10,
+        "oznaczenie-jednostki": "tys. par",
+        "nazwa-jednostki": "tysi\u0105c par"
+    },
+    {
+        "id-sposob-prezentacji-miara": 350,
+        "nazwa": "masa towarowa [t]",
+        "nazwa-sposob-prezentacji": "masa towarowa; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 19,
+        "oznaczenie-jednostki": "t",
+        "nazwa-jednostki": "tona"
+    },
+    {
+        "id-sposob-prezentacji-miara": 351,
+        "nazwa": "w przeliczeniu na substancj\u0119 czynn\u0105 [t]",
+        "nazwa-sposob-prezentacji": "w przeliczeniu na substancj\u0119 czynn\u0105; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 19,
+        "oznaczenie-jednostki": "t",
+        "nazwa-jednostki": "tona"
+    },
+    {
+        "id-sposob-prezentacji-miara": 352,
+        "nazwa": "okres poprzedni=100, masa towarowa [-]",
+        "nazwa-sposob-prezentacji": "okres poprzedni=100, masa towarowa; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 353,
+        "nazwa": "wska\u017anik precyzji [-]",
+        "nazwa-sposob-prezentacji": "wska\u017anik precyzji; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 354,
+        "nazwa": "2021=100 ceny sta\u0142e [-]",
+        "nazwa-sposob-prezentacji": "2021=100; szereg niewyr\u00f3wnany; ceny sta\u0142e",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 355,
+        "nazwa": "[tys. h przepracowanych]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 530,
+        "oznaczenie-jednostki": "<p>\n\ttys. h przepracowanych</p>\n",
+        "nazwa-jednostki": "tysi\u0105c godzin przepracowanych"
+    },
+    {
+        "id-sposob-prezentacji-miara": 356,
+        "nazwa": "[tys. miejsc]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 422,
+        "oznaczenie-jednostki": "<P>tys. miejsc</P>",
+        "nazwa-jednostki": "tysi\u0105c miejsc"
+    },
+    {
+        "id-sposob-prezentacji-miara": 357,
+        "nazwa": "przeci\u0119tna miesi\u0119czna 2021=100 ceny sta\u0142e [-]",
+        "nazwa-sposob-prezentacji": "przeci\u0119tna miesi\u0119czna 2021=100; szereg niewyr\u00f3wnany; ceny sta\u0142e",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 358,
+        "nazwa": "przeci\u0119tna miesi\u0119czna 2021=100 szereg wyr\u00f3wnany kalendarzowo ceny sta\u0142e [-]",
+        "nazwa-sposob-prezentacji": "przeci\u0119tna miesi\u0119czna 2021=100; szereg wyr\u00f3wnany kalendarzowo; ceny sta\u0142e",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 359,
+        "nazwa": "przeci\u0119tna miesi\u0119czna 2021=100 szereg wyr\u00f3wnany sezonowo ceny sta\u0142e [-]",
+        "nazwa-sposob-prezentacji": "przeci\u0119tna miesi\u0119czna 2021=100; szereg wyr\u00f3wnany sezonowo; ceny sta\u0142e",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 360,
+        "nazwa": "podstawa 2010-2019 [-]",
+        "nazwa-sposob-prezentacji": "podstawa 2010-2019; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 361,
+        "nazwa": "podstawa 2015-2019 [-]",
+        "nazwa-sposob-prezentacji": "podstawa 2015-2019; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 362,
+        "nazwa": "podstawa 2016-2019 [-]",
+        "nazwa-sposob-prezentacji": "podstawa 2016-2019; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 363,
+        "nazwa": "przeci\u0119tna miesi\u0119czna 2021=100 szereg wyr\u00f3wnany dniami roboczymi ceny sta\u0142e [-]",
+        "nazwa-sposob-prezentacji": "przeci\u0119tna miesi\u0119czna 2021=100; szereg wyr\u00f3wnany dniami roboczymi; ceny sta\u0142e",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 365,
+        "nazwa": "przeci\u0119tna miesi\u0119czna 2021=100  [-]",
+        "nazwa-sposob-prezentacji": "przeci\u0119tna miesi\u0119czna 2021=100; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 366,
+        "nazwa": "przeci\u0119tna miesi\u0119czna 2021=100 szereg wyr\u00f3wnany kalendarzowo  [-]",
+        "nazwa-sposob-prezentacji": "przeci\u0119tna miesi\u0119czna 2021=100; szereg wyr\u00f3wnany kalendarzowo; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 367,
+        "nazwa": "przeci\u0119tna miesi\u0119czna 2021=100 szereg wyr\u00f3wnany sezonowo  [-]",
+        "nazwa-sposob-prezentacji": "przeci\u0119tna miesi\u0119czna 2021=100; szereg wyr\u00f3wnany sezonowo; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 368,
+        "nazwa": "2021=100  [-]",
+        "nazwa-sposob-prezentacji": "2021=100; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 369,
+        "nazwa": "przeci\u0119tna miesi\u0119czna 2021=100, uj\u0119cie realne [-]",
+        "nazwa-sposob-prezentacji": "przeci\u0119tna miesi\u0119czna 2021=100, uj\u0119cie realne; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 370,
+        "nazwa": "okres poprzedni=100; precyzja  [-]",
+        "nazwa-sposob-prezentacji": "okres poprzedni=100; precyzja; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 371,
+        "nazwa": "analogiczny okres roku poprzedniego=100; precyzja  [-]",
+        "nazwa-sposob-prezentacji": "analogiczny okres roku poprzedniego=100; precyzja; szereg niewyr\u00f3wnany; ceny bie\u017c\u0105ce",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 372,
+        "nazwa": "przeci\u0119tna miesi\u0119czna 2021=100 [-]",
+        "nazwa-sposob-prezentacji": "przeci\u0119tna miesi\u0119czna 2021=100; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 373,
+        "nazwa": "przeci\u0119tna miesi\u0119czna 2021=100 szereg wyr\u00f3wnany kalendarzowo [-]",
+        "nazwa-sposob-prezentacji": "przeci\u0119tna miesi\u0119czna 2021=100; szereg wyr\u00f3wnany kalendarzowo; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 374,
+        "nazwa": "na 1 nauczyciela [osoba]",
+        "nazwa-sposob-prezentacji": "na 1 nauczyciela; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 106,
+        "oznaczenie-jednostki": "osoba",
+        "nazwa-jednostki": "osoba"
+    },
+    {
+        "id-sposob-prezentacji-miara": 375,
+        "nazwa": "na 1 przedszkole [osoba]",
+        "nazwa-sposob-prezentacji": "na 1 przedszkole; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 106,
+        "oznaczenie-jednostki": "osoba",
+        "nazwa-jednostki": "osoba"
+    },
+    {
+        "id-sposob-prezentacji-miara": 376,
+        "nazwa": "na 1000 dzieci w wieku 6 lat [osoba]",
+        "nazwa-sposob-prezentacji": "na 1000 dzieci w wieku 6 lat; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 106,
+        "oznaczenie-jednostki": "osoba",
+        "nazwa-jednostki": "osoba"
+    },
+    {
+        "id-sposob-prezentacji-miara": 377,
+        "nazwa": "na 1000 dzieci w wieku 3-6 lat [osoba]",
+        "nazwa-sposob-prezentacji": "na 1000 dzieci w wieku 3-6 lat; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 106,
+        "oznaczenie-jednostki": "osoba",
+        "nazwa-jednostki": "osoba"
+    },
+    {
+        "id-sposob-prezentacji-miara": 378,
+        "nazwa": "szereg wyr\u00f3wnany sezonowo [tys. os\u00f3b]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg wyr\u00f3wnany sezonowo; nie dotyczy",
+        "id-jednostka-miary": 107,
+        "oznaczenie-jednostki": "tys. os\u00f3b",
+        "nazwa-jednostki": "tysi\u0105c os\u00f3b"
+    },
+    {
+        "id-sposob-prezentacji-miara": 379,
+        "nazwa": "szereg wyr\u00f3wnany dniami roboczymi i sezonowo [tys. h przepracowanych]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg wyr\u00f3wnany dniami roboczymi i sezonowo; nie dotyczy",
+        "id-jednostka-miary": 530,
+        "oznaczenie-jednostki": "<p>\n\ttys. h przepracowanych</p>\n",
+        "nazwa-jednostki": "tysi\u0105c godzin przepracowanych"
+    },
+    {
+        "id-sposob-prezentacji-miara": 380,
+        "nazwa": "ilo\u015b\u0107 [-]",
+        "nazwa-sposob-prezentacji": "ilo\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 381,
+        "nazwa": "szereg wyr\u00f3wnany kalendarzowo [szt.]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg wyr\u00f3wnany kalendarzowo; nie dotyczy",
+        "id-jednostka-miary": 5,
+        "oznaczenie-jednostki": "szt.",
+        "nazwa-jednostki": "sztuka"
+    },
+    {
+        "id-sposob-prezentacji-miara": 382,
+        "nazwa": "szereg wyr\u00f3wnany sezonowo [szt.]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg wyr\u00f3wnany sezonowo; nie dotyczy",
+        "id-jednostka-miary": 5,
+        "oznaczenie-jednostki": "szt.",
+        "nazwa-jednostki": "sztuka"
+    },
+    {
+        "id-sposob-prezentacji-miara": 383,
+        "nazwa": "szereg wyr\u00f3wnany kalendarzowo [m2]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg wyr\u00f3wnany kalendarzowo; nie dotyczy",
+        "id-jednostka-miary": 35,
+        "oznaczenie-jednostki": "m\u00b2",
+        "nazwa-jednostki": "metr kwadratowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 384,
+        "nazwa": "szereg wyr\u00f3wnany sezonowo [m2]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg wyr\u00f3wnany sezonowo; nie dotyczy",
+        "id-jednostka-miary": 35,
+        "oznaczenie-jednostki": "m\u00b2",
+        "nazwa-jednostki": "metr kwadratowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 385,
+        "nazwa": "2021=100 [-]",
+        "nazwa-sposob-prezentacji": "2021=100; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 412,
+        "oznaczenie-jednostki": "bezwymiarowy",
+        "nazwa-jednostki": "bezwymiarowy"
+    },
+    {
+        "id-sposob-prezentacji-miara": 386,
+        "nazwa": "ilo\u015b\u0107 [tys. szt.]",
+        "nazwa-sposob-prezentacji": "ilo\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 6,
+        "oznaczenie-jednostki": "tys. szt.",
+        "nazwa-jednostki": "tysi\u0105c sztuk"
+    },
+    {
+        "id-sposob-prezentacji-miara": 387,
+        "nazwa": "[PB]",
+        "nazwa-sposob-prezentacji": "warto\u015b\u0107; szereg niewyr\u00f3wnany; nie dotyczy",
+        "id-jednostka-miary": 542,
+        "oznaczenie-jednostki": "<p>\n\tPB</p>\n",
+        "nazwa-jednostki": "petabajt"
+    }
+]

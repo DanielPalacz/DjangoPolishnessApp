@@ -5,6 +5,15 @@ poznajmypolske.pl
 {% endblock %}
 
 
+{% block style %}
+    .custom-form {
+            background-color: #d6e9c6; /* Kolor tła */
+    }
+
+     .form-control {
+        background-color: #d6e9c6;
+    }
+{% endblock %}
 
 
 {% block content %}
@@ -66,7 +75,7 @@ poznajmypolske.pl
             <div class="success">Poniżej Twoja wycieczka:</div>
         </div>
     </div>
-    <div class="row m-2 p-2">
+    <div class="row m-4">
     {% for monument in monuments %}
                      <div class="col-md-12">
                         <div class="card mb-4 box-shadow" style="border: 2px solid #000; padding: 2px;">
