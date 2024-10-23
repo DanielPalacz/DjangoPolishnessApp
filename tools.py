@@ -68,7 +68,6 @@ def populate_archeological_monument_db_table() -> None:
         None
     """
     csv_db_path = get_static_dir() + "archaeological_monuments.csv"
-    print(csv_db_path)
     df_data = pd.read_csv(csv_db_path, sep=";", dtype=object)
     df_size = len(df_data.index)
     for number in range(df_size):
