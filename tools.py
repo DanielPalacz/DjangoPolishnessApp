@@ -141,11 +141,12 @@ class MonumentsSupport:
             "county": post_data.get("county"),
             "voivodeship": post_data.get("voivodeship"),
             "quantity": post_data.get("quantity"),
+            "is_archeological": post_data.get("is_archeological"),
         }
         return {key: value for key, value in query_params.items() if value}
 
     @staticmethod
-    def randomize_monuments(quantity: int, monuments: QuerySet[Monument]) -> list[Monument]:
+    def randomize_monuments(quantity: int, monuments: QuerySet[Monument | ArcheologicalMonument]) -> list[Monument]:
         """Randomize queried monuments
 
         Because of the method always different monuments are queried.

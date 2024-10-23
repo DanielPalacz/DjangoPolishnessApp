@@ -8,6 +8,7 @@ from django.shortcuts import HttpResponseRedirect
 from django.shortcuts import render
 
 from .forms import ContactForm
+from .models import ArcheologicalMonument
 from .models import Monument
 from helpers import configure_logger
 from helpers import parent_function_name
@@ -18,10 +19,16 @@ from tools import MonumentsSupport
 from tools import TripGenerator
 
 LOGGER_VIEWS = configure_logger("views")
+LOGGER_CONTACT_FORM = configure_logger("contact_form")
 
 
 def home(request):
+    """Homepage view"""
     photo_data = get_polish_photo_data()
+    LOGGER_VIEWS.debug(
+        f"Zostanie wyświetlone losowe polskie zdjęcie {photo_data!r} {request.build_absolute_uri()!r}, "
+        f"(view: {parent_function_name()}, path: {request.path!r})."
+    )
     LOGGER_VIEWS.debug(
         f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, (view: {parent_function_name()}, "
         f"path: {request.path!r})."
@@ -30,6 +37,7 @@ def home(request):
 
 
 def contact(request):
+    """Contact view"""
     if request.method == "POST":
         form = ContactForm(request.POST)
         if form.is_valid():
@@ -37,10 +45,14 @@ def contact(request):
             name = form.cleaned_data["name"]
             email = form.cleaned_data["email"]
             message = form.cleaned_data["message"]
+            subject_text = f"[Formularz kontaktowy][poznajmypolske.pl] - wiadomość od: {name} [{email}]."
 
+            LOGGER_CONTACT_FORM.debug(
+                f"Zostanie wysłana wiadomość od: {name}/{email}. " f"Treść: {message}. Tytuł: {subject_text}"
+            )
             # Send the email
             send_mail(
-                subject=f"[Formularz kontaktowy][poznajmypolske.pl] - wiadomość od: {name} [{email}].",
+                subject=subject_text,
                 message=message,  # Message content
                 from_email="daniel.palacz@pyx.solutions",  # From email
                 recipient_list=["daniel.palacz@pyx.solutions"],  # Recipient email list
@@ -62,10 +74,25 @@ def contact(request):
 
 
 def monuments(request):
+    """Monuments view"""
     monument_items = None
+    archeo_monuments = None
+    is_archeological = None
     if request.method == "POST":
         query_params = MonumentsSupport.get_monument_query_params(request.POST)
         quantity = query_params.pop("quantity")
+        try:
+            is_archeological = bool(query_params.pop("is_archeological"))
+        except KeyError:
+            is_archeological = False
+
+        if is_archeological:
+            archeo_monuments_filtered = ArcheologicalMonument.objects.filter(**query_params)
+            archeo_monuments = MonumentsSupport.randomize_monuments(
+                quantity=int(quantity), monuments=archeo_monuments_filtered
+            )
+            return render(request, "polishness/archeological-monuments.html", {"archeo_monuments": archeo_monuments})
+
         monument_items_cleaned = Monument.objects.filter(**query_params)
         monument_items = MonumentsSupport.randomize_monuments(quantity=int(quantity), monuments=monument_items_cleaned)
 
@@ -77,6 +104,7 @@ def monuments(request):
 
 
 def monument_single(request, pk):
+    """Monuments single view"""
     monument_item = Monument.objects.get(id=pk)
     LOGGER_VIEWS.debug(
         f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
@@ -85,26 +113,18 @@ def monument_single(request, pk):
     return render(request, "polishness/monument_single.html", {"monument": monument_item})
 
 
-def trips(request):
-    monument_items = None
-    if request.method == "POST":
-        query_params = MonumentsSupport.get_monument_query_params(request.POST)
-        quantity = query_params.pop("quantity")
-        quantity = 10 if int(quantity) > 10 else int(quantity)
-        monument_items_cleaned = Monument.objects.exclude(latitude="nan", longitude="nan").filter(**query_params)
-        monument_items = MonumentsSupport.randomize_monuments(quantity=int(quantity), monuments=monument_items_cleaned)
-
-        trip_generator = TripGenerator(quantity=quantity, monuments=monument_items)
-        monument_items = trip_generator.generate_trip()
-
+def monument_single_archeo(request, pk):
+    """Archeological monument single view"""
+    monument_item = ArcheologicalMonument.objects.get(id=pk)
     LOGGER_VIEWS.debug(
         f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
         f"(view: {parent_function_name()!r}, path: {request.path!r})."
     )
-    return render(request, "polishness/trips.html", {"monuments": monument_items})
+    return render(request, "polishness/monument_single_archeo.html", {"monument": monument_item})
 
 
 def monument_single_ai(request, pk):
+    """Monument question to AI view"""
     monument_item = Monument.objects.get(id=pk)
 
     ask_text = f"Opowiedz mi o zabytku: {monument_item.name}, {monument_item.locality}"
@@ -125,8 +145,28 @@ def monument_single_ai(request, pk):
     )
 
 
+def monument_archeo_single_ai(request, pk):
+    """Archeological monument question to AI view"""
+    monument_item = ArcheologicalMonument.objects.get(id=pk)
+
+    ask_text = (
+        f"Opowiedz mi o zabytku archeogicznym: "
+        f"{monument_item.name}, {monument_item.locality}, {monument_item.chronology}, {monument_item.function}"
+    )
+
+    response_ai = ask_ai(ask=ask_text)
+
+    LOGGER_VIEWS.debug(
+        f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
+        f"(view: {parent_function_name()!r}, path: {request.path!r})."
+    )
+    return render(
+        request, "polishness/monument_single_archeo_ai.html", {"monument": monument_item, "response_ai": response_ai}
+    )
+
+
 def poland_in_numbers(request):
-    """ " Presents root fields (Podstawowe Dziedziny Wiedzy) from DBW GUS API."""
+    """Presents root fields view"""
     root_fields = GusApiDbwClient.get_dbw_root_fields()
     LOGGER_VIEWS.debug(
         f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
@@ -136,6 +176,7 @@ def poland_in_numbers(request):
 
 
 def poland_in_numbers_fields(request, field_id, field_name):
+    """Poland in numbers fields"""
     fields = GusApiDbwClient.get_dbw_fields(field_id=field_id, field_name=field_name)
     field_variables = GusApiDbwClient.get_dbw_field_variables(field_id=field_id, field_name=field_name)
 
@@ -149,7 +190,7 @@ def poland_in_numbers_fields(request, field_id, field_name):
 
 
 def poland_in_numbers_field_browser(request, field_id, field_variable_id, field_variable_name):
-
+    """Poland in numbers browser view"""
     if request.method == "POST":
         section_name, section_id, period_id, period_description = request.POST["przekroj__przekrojid__okresid"].split(
             "__"
@@ -252,3 +293,23 @@ def history(request):
         f"(view: {parent_function_name()!r}, path: {request.path!r})."
     )
     return render(request, "polishness/history.html", {})
+
+
+def trips(request):
+    """Trips generation view"""
+    monument_items = None
+    if request.method == "POST":
+        query_params = MonumentsSupport.get_monument_query_params(request.POST)
+        quantity = query_params.pop("quantity")
+        quantity = 10 if int(quantity) > 10 else int(quantity)
+        monument_items_cleaned = Monument.objects.exclude(latitude="nan", longitude="nan").filter(**query_params)
+        monument_items = MonumentsSupport.randomize_monuments(quantity=int(quantity), monuments=monument_items_cleaned)
+
+        trip_generator = TripGenerator(quantity=quantity, monuments=monument_items)
+        monument_items = trip_generator.generate_trip()
+
+    LOGGER_VIEWS.debug(
+        f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
+        f"(view: {parent_function_name()!r}, path: {request.path!r})."
+    )
+    return render(request, "polishness/trips.html", {"monuments": monument_items})

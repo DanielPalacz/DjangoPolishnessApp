@@ -1,0 +1,53 @@
+{% extends "polishness/base.html" %}
+
+{% block title %}
+poznajmypolske.pl
+{% endblock %}
+
+{% block style %}
+
+
+ .table-hover tbody tr:hover {
+    background-color: yellow;
+}
+
+    .card:hover {
+        border-color: #007bff;
+        transform: scale(1.01); /* Slightly enlarge the brand */
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .card {
+        background-color: #E6E6FA;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        border: 2px solid #000;
+    }
+
+{% endblock %}
+
+{% block content %}
+
+
+<br>
+<small>Odpowiedź z openai.com:</small>
+<div class="row"">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <!-- Title of the Monument -->
+                <h2 class="mb-0 card-title" style="font-weight: bold;">{{ monument.name|capfirst }}</h2>
+                <small>{{monument.function}}, {{monument.chronology}}</small>
+                <br>
+                <br>
+                <h5>{{response_ai}}</h5>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+
+
+
+{% endblock %}
