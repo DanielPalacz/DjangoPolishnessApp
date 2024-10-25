@@ -9,10 +9,12 @@ from django.shortcuts import render
 
 from .forms import ContactForm
 from .models import ArcheologicalMonument
+from .models import GeographicalObject
 from .models import Monument
 from helpers import configure_logger
 from helpers import parent_function_name
 from tools import ask_ai
+from tools import GeoObjectsSupport
 from tools import get_polish_photo_data
 from tools import GusApiDbwClient
 from tools import MonumentsSupport
@@ -169,11 +171,22 @@ def nature(request):
     """Nature view"""
     nature_items = None
     if request.method == "POST":
-        pass
-        # query_params = MonumentsSupport.get_monument_query_params(request.POST)
-        # quantity = query_params.pop("quantity")
+        print(request.POST)
+        query_params = GeoObjectsSupport.get_query_params(request.POST)
+        quantity = query_params.pop("quantity")
+        quantity = 100 if int(quantity) > 100 else int(quantity)
+        nature_object_type = query_params.get("nature_objects")
+        print(query_params)
+        print(quantity)
+        print(nature_object_type)
 
-        return render(request, "polishness/nature.html", {"nature_items": nature_items})
+        nature_items = GeographicalObject.objects.filter(**query_params)
+        if nature_object_type is None:
+            nature_items = GeographicalObject.objects.filter(**query_params)
+            nature_items = GeoObjectsSupport.randomize(quantity=quantity, geo_objects=nature_items)
+            return render(request, "polishness/nature.html", {"nature_items": nature_items})
+        else:
+            pass
 
     LOGGER_VIEWS.debug(
         f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "

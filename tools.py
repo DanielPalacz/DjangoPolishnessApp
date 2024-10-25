@@ -101,7 +101,7 @@ def populate_geographical_object_table() -> None:
         None
     """
     csv_db_path = get_static_dir() + "geographicalObjects.csv"
-    df_data = pd.read_csv(csv_db_path, dtype=object)
+    df_data = pd.read_csv(csv_db_path, sep=";", dtype=object)
     df_size = len(df_data.index)
     for number in range(df_size):
         input_data = tuple(df_data.iloc[number])
@@ -145,6 +145,54 @@ def populate_monument_db_table() -> None:
             latitude=input_data[14],
             longitude=input_data[15],
         )
+
+
+class GeoObjectsSupport:
+    """Class with static method for supporting geographical object functionalities."""
+
+    @staticmethod
+    def get_query_params(post_data: QueryDict) -> dict:
+        """Parse monument query POST request
+
+        Returns:
+            Dictionary with parsed monument query.
+        """
+        query_params = {
+            "parish": post_data.get("parish"),
+            "county": post_data.get("county"),
+            "voivodeship": post_data.get("voivodeship"),
+            "quantity": post_data.get("quantity"),
+            "nature_objects": post_data.get("nature_objects"),
+        }
+        return {key: value for key, value in query_params.items() if value}
+
+    @staticmethod
+    def randomize(quantity: int, geo_objects: QuerySet[GeographicalObject]) -> list[GeographicalObject]:
+        """Randomize queried geographical objects
+
+        Args:
+            quantity: quantity limit
+            geo_objects: geographical objects selection
+
+        Returns:
+            List with randomized geographical objects.
+        """
+        geo_objects_len = len(geo_objects)
+        if quantity > geo_objects_len:
+            return [geo_item for geo_item in geo_objects]
+
+        randomized_geo_objects = []
+        random_numbers = []
+        for num in range(quantity):
+            random_number = randbelow(geo_objects_len)
+            while random_number in random_numbers:
+                random_number = randbelow(geo_objects_len)
+
+            random_geo_object = geo_objects[random_number]
+            randomized_geo_objects.append(random_geo_object)
+            random_numbers.append(random_number)
+
+        return randomized_geo_objects
 
 
 class MonumentsSupport:

@@ -15,7 +15,7 @@ poznajmypolske.pl
     }
 
     .card {
-        background-color: #E6E6FA;
+        background-color: #f0fff0;
         border-radius: 8px;
         transition: all 0.3s ease;
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -54,7 +54,7 @@ poznajmypolske.pl
    </div>
 
 <div class="m-1">
-<form action="/monuments/" method="post" class="custom-rounded custom-form">
+<form action="/nature/" method="post" class="custom-rounded custom-form">
     {% csrf_token %}
     <div class="row mb-1 p-2">
         <div class="col-lg-6 col-md-6 col-sm-12 p-1">
@@ -92,7 +92,7 @@ poznajmypolske.pl
         </div>
 
         <div class="col-lg-6 col-md-6 col-sm-12 p-1">
-            <select name="natureObject" id="natureObject"  class="form-control custom-rounded">
+            <select name="nature_objects" id="nature_objects"  class="form-control custom-rounded">
                 <option value="" disabled selected>...wybierz obiekt przyrodniczy...</option>
                 <option value="doliny">Doliny, jary, wąwozy, rowy</option>
                 <option value="bagna">Bagna, błota, torfowiska</option>
@@ -123,30 +123,31 @@ poznajmypolske.pl
             <input type="submit" value="Szukaj" class="btn btn-dark btn-lg mt-3 custom-rounded">
         </div>
     </div>
+    <small> * maksymalnie można wyszukać 100 obiektów przyrodniczych</small><br>
 </form>
 </div>
 
 {% else %}
 
-    {% if not monuments %}
+    {% if not nature_items %}
     <div class="row m-2 p-2">
         <div class="col">
-            <div class="error">Niestety, nie znaleziono zabytków.</div><br>
+            <div class="error">Niestety, nie znaleziono obiektów przyrodniczych.</div><br>
         </div>
     </div>
     {% else %}
     <div class="row m-2 p-2">
         <div class="col">
-            <div class="success">Znalezione zabytki:</div>
+            <div class="success">Znalezione obiekty przyrodnicze:</div>
         </div>
     </div>
     <div class="row m-4">
-    {% for monument in monuments %}
+    {% for nature_item in nature_items %}
                      <div class="col-md-6 col-lg-4">
                         <div class="card mb-4 box-shadow" style="border: 2px solid #000; padding: 2px;">
 
                             <div class="card-body">
-                                <h4 class=""><a href="{% url 'polishness:monument_single' monument.id %}">{{monument.name|capfirst}}</a></h4>
+                                <h4 class=""><a href="{% url 'polishness:monument_single' nature_item.id %}">{{nature_item.name|capfirst}} ({{nature_item.geo_object_type}})</a></h4>
                             </div>
                         </div>
                     </div>
