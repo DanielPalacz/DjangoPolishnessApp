@@ -15,6 +15,7 @@ from openai import OpenAI
 from helpers import configure_logger
 from helpers import get_static_dir
 from polishness.models import ArcheologicalMonument
+from polishness.models import GeographicalObject
 from polishness.models import Monument
 
 
@@ -90,6 +91,28 @@ def populate_archeological_monument_db_table() -> None:
             parish=input_data[12],
             locality=input_data[13],
             link=input_data[14],
+        )
+
+
+def populate_geographical_object_table() -> None:
+    """Populates data for the monuments table.
+
+    Returns:
+        None
+    """
+    csv_db_path = get_static_dir() + "geographicalObjects.csv"
+    df_data = pd.read_csv(csv_db_path, dtype=object)
+    df_size = len(df_data.index)
+    for number in range(df_size):
+        input_data = tuple(df_data.iloc[number])
+        GeographicalObject.objects.create(
+            name=input_data[0],
+            geo_object_type=input_data[1],
+            parish=input_data[2],
+            county=input_data[3],
+            voivodeship=input_data[4],
+            latitude=input_data[5],
+            longitude=input_data[6],
         )
 
 

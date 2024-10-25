@@ -34,6 +34,7 @@ https://django-debug-toolbar.readthedocs.io/en/latest/index.html
  - import tools
  - tools.populate_monument_db_table()
  - tools.populate_archeological_monument_db_table()
+ - tools.populate_geographical_object_table()
 
 5A. Setup env variables:
  - export SENDGRID_API_KEY="SENDGRID_API_KEY_VALUE"
