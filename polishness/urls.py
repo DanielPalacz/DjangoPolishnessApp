@@ -26,5 +26,6 @@ urlpatterns = [
         views.poland_in_numbers_field_browser,
         name="poland_in_numbers_field_browser",
     ),
+    path("nature/", views.nature, name="nature"),
     path("history/", views.history, name="history"),
 ]

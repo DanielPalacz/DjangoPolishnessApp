@@ -165,6 +165,23 @@ def monument_archeo_single_ai(request, pk):
     )
 
 
+def nature(request):
+    """Nature view"""
+    nature_items = None
+    if request.method == "POST":
+        pass
+        # query_params = MonumentsSupport.get_monument_query_params(request.POST)
+        # quantity = query_params.pop("quantity")
+
+        return render(request, "polishness/nature.html", {"nature_items": nature_items})
+
+    LOGGER_VIEWS.debug(
+        f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
+        f"(view: {parent_function_name()!r}, path: {request.path!r})."
+    )
+    return render(request, "polishness/nature.html", {"nature_items": nature_items})
+
+
 def poland_in_numbers(request):
     """Presents root fields view"""
     root_fields = GusApiDbwClient.get_dbw_root_fields()

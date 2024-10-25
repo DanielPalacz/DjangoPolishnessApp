@@ -7,11 +7,11 @@ poznajmypolske.pl
 
 {% block style %}
     .custom-form {
-            background-color: #E6E6FA; /* Kolor tła */
+            background-color: #f0fff0; /* Kolor tła */
     }
 
      .form-control {
-        background-color: #E6E6FA;
+        background-color: #f0fff0;
     }
 
     .card {
@@ -43,11 +43,11 @@ poznajmypolske.pl
 
        <div class="row">
            <div class="col mb-0">
-           <h2 class="mb-2" align="left" style="text-decoration: underline;">Na tej stronie możesz skorzystać z wyszukiwarki zabytków:</h2>
+           <h2 class="mb-2" align="left" style="text-decoration: underline;">Skorzystaj z ogólnopolskiej przeglądarki obiektów przyrodniczych:</h2>
                <ul>
-                   <li>źródłem zabytków są <a style="font-weight: bold; color: black;" href="https://dane.gov.pl/pl/dataset/1130,rejestr-zabytkow-nieruchomych">Rejestr zabytków nieruchomych</a> oraz <a style="font-weight: bold; color: black;" href="https://dane.gov.pl/pl/dataset/210/resource/61339,rejestr-zabytkow-archeologicznych-plik-csv">Rejestr zabytków archeologicznych</a> utrzymywane przez <a href="https://nid.pl" style="font-weight: bold; color: black;">Narodowy Instytut Dziedzictwa</a>,</li>
+                   <li>źródłem danych jest <a style="font-weight: bold; color: black;" href="https://www.geoportal.gov.pl/pl/dane/panstwowy-rejestr-nazw-geograficznych-prng/">Państwowy Rejestr Nazw Geograficznych (PRNG),</a></li>
                    <li>dla powiatów i gmin listy rozwijalne pojawiają się po wybraniu nadrzędnych jednostek administracyjnych,</li>
-                   <li>każdy wyszukany zabytek pozwala na zobaczenie go na portalu <a href="https://zabytek.pl" style="font-weight: bold; color: black;">zabytek.pl</a> albo zapytania o niego sztuczną inteligencję (<a href="https://openai.com" style="color: black;">openai.com</a>).</li>
+                   <li>każdy wyszukany obiekt zawiera odnośnik do lokalizacji na mapie.</li>
                </ul>
            </div>
        </div>
@@ -90,21 +90,35 @@ poznajmypolske.pl
                 <!-- Lista gmin będzie dynamicznie wypełniana -->
             </datalist>
         </div>
-    <div class="col-md-6 col-sm-12 p-1">
-            <input type="text" name="locality" placeholder="...wpisz miejscowość..." class="form-control custom-rounded" autocomplete="off">
-    </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-12 p-1">
+            <select name="natureObject" id="natureObject"  class="form-control custom-rounded">
+                <option value="" disabled selected>...wybierz obiekt przyrodniczy...</option>
+                <option value="doliny">Doliny, jary, wąwozy, rowy</option>
+                <option value="bagna">Bagna, błota, torfowiska</option>
+                <option value="cyrki">Cyrki lodowcowe</option>
+                <option value="gory">Góry, szczyty, wzgórza, zbocza</option>
+                <option value="jaskinie">Jaskinie, groty</option>
+                <option value="jeziora">Jeziora, stawy, zbiorniki wodne</option>
+                <option value="lasy">Lasy</option>
+                <option value="mosty">Mosty</option>
+                <option value="parki">Parki</option>
+                <option value="wyspy">Półwyspy, wyspy, zatoki</option>
+                <option value="rzeki">Rzeki, potoki, strumyki, strugi, kanały</option>
+                <option value="skaly">Skały, głazy</option>
+                <option value="uroczyska">Uroczyska</option>
+                <option value="wydmy">Wydmy</option>
+                <option value="inne">Inne obiekty geograficzne</option>
+            </select>
+        </div>
 
     </div>
     <div class="row mb-3">
     <div class="col-lg-8 col-md-8 col-sm-12 d-flex align-items-center">
         <label for="quantity" class="form-label mb-0">Maksymalna liczba wynikowych wierszy:</label>
-        <input type="number" id="quantity" name="quantity" class="form-control custom-rounded" placeholder="...wpisz liczbę..." value="12" autocomplete="off" style="flex-grow: 1;">
+        <input type="number" id="quantity" name="quantity" class="form-control custom-rounded" placeholder="...wpisz liczbę..." value="20" autocomplete="off" style="flex-grow: 1;">
 
     </div>
-        <div class="col-lg-8 col-md-8 col-sm-12 d-flex align-items-center">
-          <label for="is_archeological" class="form-label mb-0">Wyszukaj zabytki archeologiczne: </label>
-          <input type="checkbox" id="is_archeological" name="is_archeological" class="m-2 form-control custom-rounded">
-        </div>
         <div class="col-lg-4 col-md-4 col-sm-12 text-center">
             <input type="submit" value="Szukaj" class="btn btn-dark btn-lg mt-3 custom-rounded">
         </div>
