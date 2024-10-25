@@ -150,6 +150,29 @@ def populate_monument_db_table() -> None:
 class GeoObjectsSupport:
     """Class with static method for supporting geographical object functionalities."""
 
+    MAPPER = {
+        "doliny": ["dolina", "jar", "wąwóz", "rów"],
+        "bagna": ["bagna/błota", "bagno/błoto", "torfowiska", "torfowisko"],
+        "cyrki": ["cyrk lodowcowy"],
+        "gory": ["góry", "góra/szczyt", "wzgórze/wzniesienie", "wzgórza/wzniesienia", "zbocze/stok"],
+        "groble": ["grobla"],
+        "jaskinie": ["jaskinia/grota", "bagno/błoto", "torfowiska", "torfowisko"],
+        "jeziora": ["jezioro", "jeziora", "staw", "stawy", "sztuczny zbiornik wodny"],
+        "lasy": ["las", "lasy", "część lasu"],
+        "mosty": ["most"],
+        "parki": ["park"],
+        "wydmy": ["wydma", "wydmy", "obszar piasków"],
+        "wyspy": ["półwysep", "wyspa", "zatoka"],
+        "regiony": ["region naturalny"],
+        "rzeki": ["rzeka", "potok", "struga", "strumień", "kanał"],
+        "skaly": ["skała", "skały", "głaz", "głazy"],
+        "uroczyska": ["uroczysko", "uroczysko/dawna miejscowość"],
+    }
+
+    MAPPER_ALL = []
+    for mapped_list in MAPPER.values():
+        MAPPER_ALL += mapped_list
+
     @staticmethod
     def get_query_params(post_data: QueryDict) -> dict:
         """Parse monument query POST request

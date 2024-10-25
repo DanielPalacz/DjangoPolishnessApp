@@ -171,22 +171,30 @@ def nature(request):
     """Nature view"""
     nature_items = None
     if request.method == "POST":
-        print(request.POST)
         query_params = GeoObjectsSupport.get_query_params(request.POST)
         quantity = query_params.pop("quantity")
         quantity = 100 if int(quantity) > 100 else int(quantity)
-        nature_object_type = query_params.get("nature_objects")
-        print(query_params)
-        print(quantity)
-        print(nature_object_type)
+        try:
+            nature_object_type = query_params.pop("nature_objects")
+        except KeyError:
+            nature_object_type = None
 
-        nature_items = GeographicalObject.objects.filter(**query_params)
+        nature_items_prefiltered = GeographicalObject.objects.filter(**query_params)
         if nature_object_type is None:
-            nature_items = GeographicalObject.objects.filter(**query_params)
-            nature_items = GeoObjectsSupport.randomize(quantity=quantity, geo_objects=nature_items)
+            nature_items = GeoObjectsSupport.randomize(quantity=quantity, geo_objects=nature_items_prefiltered)
             return render(request, "polishness/nature.html", {"nature_items": nature_items})
+
+        elif nature_object_type == "inne":
+            nature_items_filtered = nature_items_prefiltered.exclude(geo_object_type__in=GeoObjectsSupport.MAPPER_ALL)
+            nature_items = GeoObjectsSupport.randomize(quantity=quantity, geo_objects=nature_items_filtered)
+            return render(request, "polishness/nature.html", {"nature_items": nature_items})
+
         else:
-            pass
+            nature_items_filtered = nature_items_prefiltered.filter(
+                geo_object_type__in=GeoObjectsSupport.MAPPER[nature_object_type]
+            )
+            nature_items = GeoObjectsSupport.randomize(quantity=quantity, geo_objects=nature_items_filtered)
+            return render(request, "polishness/nature.html", {"nature_items": nature_items})
 
     LOGGER_VIEWS.debug(
         f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
