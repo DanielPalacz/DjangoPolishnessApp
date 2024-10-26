@@ -151,11 +151,11 @@ class GeoObjectsSupport:
     """Class with static method for supporting geographical object functionalities."""
 
     MAPPER = {
-        "doliny": ["dolina", "jar", "wąwóz", "rów"],
+        "doliny": ["dolina", "jar", "wąwóz", "rów", "obiniżenie", "zagłębienie"],
         "bagna": ["bagna/błota", "bagno/błoto", "torfowiska", "torfowisko"],
         "cyrki": ["cyrk lodowcowy"],
         "gory": ["góry", "góra/szczyt", "wzgórze/wzniesienie", "wzgórza/wzniesienia", "zbocze/stok", "pasmo górskie"],
-        "groble": ["grobla"],
+        "groble": ["grobla", "śluza"],
         "jaskinie": ["jaskinia/grota", "bagno/błoto", "torfowiska", "torfowisko"],
         "jeziora": ["jezioro", "jeziora", "staw", "stawy", "sztuczny zbiornik wodny"],
         "lasy": ["las", "lasy", "część lasu"],
@@ -166,6 +166,7 @@ class GeoObjectsSupport:
         "regiony": ["region naturalny"],
         "rzeki": ["rzeka", "potok", "struga", "strumień", "kanał"],
         "skaly": ["skała", "skały", "głaz", "głazy"],
+        "starorzecza": ["starorzecze", "stare koryto"],
         "uroczyska": ["uroczysko", "uroczysko/dawna miejscowość"],
         "wodospady": ["wodospad", "wodospady"],
     }
