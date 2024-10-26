@@ -173,7 +173,7 @@ def nature(request):
     if request.method == "POST":
         query_params = GeoObjectsSupport.get_query_params(request.POST)
         quantity = query_params.pop("quantity")
-        quantity = 100 if int(quantity) > 100 else int(quantity)
+        quantity = 1000 if int(quantity) > 1000 else int(quantity)
         try:
             nature_object_type = query_params.pop("nature_objects")
         except KeyError:
@@ -201,6 +201,34 @@ def nature(request):
         f"(view: {parent_function_name()!r}, path: {request.path!r})."
     )
     return render(request, "polishness/nature.html", {"nature_items": nature_items})
+
+
+def nature_single(request, pk):
+    """Nature single item view"""
+    nature_item = GeographicalObject.objects.get(id=pk)
+    LOGGER_VIEWS.debug(
+        f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
+        f"(view: {parent_function_name()!r}, path: {request.path!r})."
+    )
+    return render(request, "polishness/nature_single.html", {"nature_item": nature_item})
+
+
+def nature_single_ai(request, pk):
+    """Nature question to AI view"""
+    nature_item = GeographicalObject.objects.get(id=pk)
+
+    ask_text = (
+        f"Opowiedz mi o obiekcie przyrodniczym: {nature_item.name}. Typ obiektu: {nature_item.geo_object_type}."
+        f" Lokalizacja obiektu: województwo {nature_item.voivodeship}, powiat: {nature_item.county},"
+        f" gmina: {nature_item.parish}."
+    )
+    response_ai = ask_ai(ask=ask_text)
+
+    LOGGER_VIEWS.debug(
+        f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
+        f"(view: {parent_function_name()!r}, path: {request.path!r})."
+    )
+    return render(request, "polishness/nature_single_ai.html", {"nature_item": nature_item, "response_ai": response_ai})
 
 
 def poland_in_numbers(request):

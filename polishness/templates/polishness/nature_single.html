@@ -1,0 +1,94 @@
+{% extends "polishness/base.html" %}
+
+{% block title %}
+poznajmypolske.pl
+{% endblock %}
+
+{% block style %}
+    .card:hover {
+        border-color: #000;
+        transform: scale(1.02); /* Slightly enlarge the brand */
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+  .btn-primary:hover {
+    color: yellow;
+    text-decoration: underline;
+   }
+
+    .card {
+        background-color: #f0fff0;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        border: 2px solid #000;
+    }
+
+    table tbody tr:nth-child(even) {
+        background-color: #F5DECF; /* Delikatny pomarańczowy */
+    }
+
+    .table-striped tbody tr:nth-of-type(2n+1) {
+        background-color: #F5DE91; /* Delikatny pszeniczny kolor */
+    }
+
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<br>
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <!-- Title of the Monument -->
+                <h2 class="card-title" style="font-weight: bold;">{{ nature_item.name|capfirst }}</h2>
+
+                <!-- Table with monument details -->
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover table-sm">
+                        <tbody>
+                            <tr>
+                                <td class="fw-bold text-end">Rodzaj obiektu</td>
+                                <td>{{ nature_item.geo_object_type }}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-end">Województwo</td>
+                                <td>{{ nature_item.voivodeship }}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-end">Powiat</td>
+                                <td>{{ nature_item.county }}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-end">Gmina</td>
+                                <td>{{ nature_item.parish }}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-end">Szerokość geograficzna</td>
+                                <td>{{ nature_item.latitude }}</td>
+                            </tr>
+                            <tr>
+                                <td class="fw-bold text-end">Długość geograficzna</td>
+                                <td>{{ nature_item.longitude }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <!-- Button with call-to-action -->
+                <a href="https://www.google.com/maps?q={{nature_item.latitude}},{{nature_item.longitude}}" class="btn btn-primary btn-lg mt-3" style="font-weight: bold; text-align: center;">Link do miejsca na mapach Google.</a>
+                <a href="{% url 'polishness:nature_single_ai' nature_item.id %}" class="btn btn-primary btn-lg mt-3" style="font-weight: bold; text-align: center;">Zapytaj sztucznej inteligencji o to miejsce (openai.com).</a>
+
+        </div>
+    </div>
+</div>
+<br>
+
+
+
+{% endblock %}

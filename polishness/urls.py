@@ -27,5 +27,7 @@ urlpatterns = [
         name="poland_in_numbers_field_browser",
     ),
     path("nature/", views.nature, name="nature"),
+    path("nature/<int:pk>/", views.nature_single, name="nature_single"),
+    path("nature/<int:pk>/ai/", views.nature_single_ai, name="nature_single_ai"),
     path("history/", views.history, name="history"),
 ]
