@@ -167,6 +167,7 @@ class GeoObjectsSupport:
         "rzeki": ["rzeka", "potok", "struga", "strumień", "kanał"],
         "skaly": ["skała", "skały", "głaz", "głazy"],
         "uroczyska": ["uroczysko", "uroczysko/dawna miejscowość"],
+        "wodospady": ["wodospad", "wodospady"],
     }
 
     MAPPER_ALL = []
