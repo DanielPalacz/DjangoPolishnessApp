@@ -154,7 +154,7 @@ class GeoObjectsSupport:
         "doliny": ["dolina", "jar", "wąwóz", "rów"],
         "bagna": ["bagna/błota", "bagno/błoto", "torfowiska", "torfowisko"],
         "cyrki": ["cyrk lodowcowy"],
-        "gory": ["góry", "góra/szczyt", "wzgórze/wzniesienie", "wzgórza/wzniesienia", "zbocze/stok"],
+        "gory": ["góry", "góra/szczyt", "wzgórze/wzniesienie", "wzgórza/wzniesienia", "zbocze/stok", "pasmo górskie"],
         "groble": ["grobla"],
         "jaskinie": ["jaskinia/grota", "bagno/błoto", "torfowiska", "torfowisko"],
         "jeziora": ["jezioro", "jeziora", "staw", "stawy", "sztuczny zbiornik wodny"],
