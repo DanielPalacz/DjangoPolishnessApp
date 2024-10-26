@@ -213,6 +213,35 @@
     background-color: #000;
    }
 
+
+    @media only screen and (max-width: 767px) {
+        /* Zmniejszenie wysokości list rozwijalnych */
+        select, input[type="text"], input[type="number"] {
+            font-size: 14px; /* Mniejszy rozmiar tekstu */
+            padding: 8px; /* Mniejsze odstępy wewnętrzne */
+        }
+
+        /* Zmniejszenie marginesów między elementami */
+        .custom-form .row .p-1 {
+            padding: 5px;
+        }
+
+        /* Dopasowanie szerokości kolumn */
+        .col-sm-12 {
+            width: 100%;
+            padding: 5px;
+        }
+
+        /* Zmniejszenie przycisku */
+        .btn-lg {
+            font-size: 16px;
+            padding: 10px 20px;
+        }
+    }
+
+
+
+
     {% block style %}
     {% endblock %}
     </style>
