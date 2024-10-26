@@ -114,7 +114,24 @@
      .form-control {
         background-color: #d0e7f9;
         border: 1px outset #000;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 16px;
     }
+
+    @media only screen and (max-width: 767px) {
+    .form-control {
+        background-color: #d0e7f9;
+        border: 1px outset #000;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 14px;
+        padding: 6px; /* Mniejsze odstępy wewnętrzne */
+        }
+     label {
+        font-size: 14px !important;
+        padding: 6px; /* Mniejsze odstępy wewnętrzne */
+     }
+    }
+
 
     /* Stylizacja fieldset */
     .custom-fieldset {
@@ -211,29 +228,18 @@
   input[type="submit"] {
     color: #FFF;
     background-color: #000;
-   }
+  }
 
-
-    @media only screen and (max-width: 767px) {
-        /* Zmniejszenie wysokości list rozwijalnych */
-        select, input[type="text"], input[type="number"] {
-            font-size: 10px; /* Mniejszy rozmiar tekstu */
-            padding: 6px; /* Mniejsze odstępy wewnętrzne */
-        }
-
-        /* Zmniejszenie marginesów między elementami */
-        .custom-form .row .p-1 {
-            padding: 5px;
-        }
-
-        /* Dopasowanie szerokości kolumn */
-        .col-sm-12 {
-            width: 100%;
-            padding: 5px;
-        }
-
+    /* Ujednolicenie stylu tekstu we wszystkich inputach i selectach */
+    .form-control input[type="text"], select {
+        color: #333 !important; /* Ustawia jednolity kolor tekstu */
     }
 
+    /* Dodatkowy styl placeholdera, aby też był jednolity */
+    ::placeholder {
+        color: #333 !important; /* Kolor placeholdera, aby był jaśniejszy */
+        opacity: 1; /* Upewnia się, że przezroczystość placeholdera jest zachowana */
+    }
 
 
 
