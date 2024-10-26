@@ -63,14 +63,39 @@ poznajmypolske.pl
             <div class="col-lg-3 col-md-6 col-sm-12 p-1">
                 <input type="text" name="locality" placeholder="...wpisz miejscowość..." class="form-control custom-rounded" autocomplete="off">
             </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 p-1">
+            <input type="text" id="parish" name="parish" placeholder="...wpisz lub wybierz gminę..." list="parishList" class="form-control custom-rounded" autocomplete="off">
+            <datalist id="parishList">
+                <!-- Lista gmin będzie dynamicznie wypełniana -->
+            </datalist>
+        </div>
+
+        <div class="col-lg-3 col-md-6 col-sm-12 p-1">
+            <input type="text" id="county" name="county" placeholder="...wpisz lub wybierz powiat..." list="countyList" class="form-control custom-rounded" autocomplete="off">
+            <datalist id="countyList">
+                <!-- Zostanie dynamicznie wypełnione przez skrypt -->
+            </datalist>
+        </div>
             <div class="col-lg-3 col-md-6 col-sm-12 p-1">
-                <input type="text" name="parish" placeholder="...wpisz gminę..." class="form-control custom-rounded" autocomplete="off">
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 p-1">
-                <input type="text" name="county" placeholder="...wpisz powiat..." class="form-control custom-rounded" autocomplete="off">
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 p-1">
-                <input type="text" name="voivodeship" placeholder="...wpisz województwo..." class="form-control custom-rounded" autocomplete="off">
+                <select name="voivodeship" id="voivodeship"  class="form-control custom-rounded">
+                    <option value="" disabled selected>...wybierz województwo...</option>
+                    <option value="dolnośląskie">Dolnośląskie</option>
+                    <option value="kujawsko-pomorskie">Kujawsko-Pomorskie</option>
+                    <option value="lubelskie">Lubelskie</option>
+                    <option value="lubuskie">Lubuskie</option>
+                    <option value="łódzkie">Łódzkie</option>
+                    <option value="małopolskie">Małopolskie</option>
+                    <option value="mazowieckie">Mazowieckie</option>
+                    <option value="opolskie">Opolskie</option>
+                    <option value="podkarpackie">Podkarpackie</option>
+                    <option value="podlaskie">Podlaskie</option>
+                    <option value="pomorskie">Pomorskie</option>
+                    <option value="śląskie">Śląskie</option>
+                    <option value="świętokrzyskie">Świętokrzyskie</option>
+                    <option value="warminsko-mazurskie">Warmińsko-Mazurskie</option>
+                    <option value="wielkopolskie">Wielkopolskie</option>
+                    <option value="zachodniopomorskie">Zachodniopomorskie</option>
+                </select>
             </div>
         </div>
 
@@ -138,3 +163,520 @@ poznajmypolske.pl
 {% endif %}
 
 {% endblock %}
+
+
+
+    {% block script %}
+    <script>
+
+    const countiesByVoivodeship = {
+        "dolnośląskie": [
+            "bolesławiecki", "dzierżoniowski", "głogowski", "górowski", "jaworski", "karkonoski",
+            "kamiennogórski", "kłodzki", "legnicki", "lubański", "lubiński", "lwówecki", "milicki",
+            "oleśnicki", "oławski", "polkowicki", "strzeliński", "średzki", "świdnicki", "trzebnicki",
+            "wałbrzyski", "wołowski", "wrocławski", "ząbkowicki", "zgorzelecki", "złotoryjski",
+            "Wrocław", "Jelenia Góra", "Legnica", "Wałbrzych"
+        ],
+        "kujawsko-pomorskie": [
+            "aleksandrowski", "brodnicki", "bydgoski", "chełmiński", "golubsko-dobrzyński", "grudziądzki",
+            "inowrocławski", "lipnowski", "mogileński", "nakielski", "radziejowski", "rypiński",
+            "sępoleński", "świecki", "toruński", "tucholski", "wąbrzeski", "włocławski", "żniński",
+            "Bydgoszcz", "Grudziądz", "Toruń", "Włocławek"
+        ],
+        "lubelskie": [
+            "bialski", "biłgorajski", "chełmski", "hrubieszowski", "janowski", "krasnostawski", "kraśnicki",
+            "lubartowski", "lubelski", "łęczyński", "łukowski", "opolski", "parczewski", "puławski",
+            "radzyński", "rycki", "świdnicki", "tomaszowski", "włodawski", "zamojski",
+            "Biała Podlaska", "Chełm", "Lublin", "Zamość"
+        ],
+        "lubuskie": [
+            "gorzowski", "krośnieński", "międzyrzecki", "nowosolski", "słubicki", "strzelecko-drezdenecki",
+            "świebodziński", "wschowski", "zielonogórski", "żagański", "żarski",
+            "Gorzów Wielkopolski", "Zielona Góra"
+        ],
+        "łódzkie": [
+            "bełchatowski", "brzeziński", "kutnowski", "łaski", "łęczycki", "łowicki", "łódzki wschodni",
+            "opoczyński", "pabianicki", "pajęczański", "piotrkowski", "poddębicki", "radomszczański",
+            "rawski", "sieradzki", "skierniewicki", "tomaszowski", "wieluński", "wieruszowski",
+            "zduńskowolski", "zgierski", "Łódź", "Piotrków Trybunalski", "Skierniewice"
+        ],
+        "małopolskie": [
+            "bocheński", "brzeski", "chrzanowski", "dąbrowski", "gorlicki", "krakowski", "limanowski",
+            "miechowski", "myślenicki", "nowosądecki", "nowotarski", "olkuski", "oświęcimski",
+            "proszowicki", "suski", "tarnowski", "tatrzański", "wadowicki", "wielicki",
+            "Kraków", "Nowy Sącz", "Tarnów"
+        ],
+        "mazowieckie": [
+            "białobrzeski", "ciechanowski", "garwoliński", "gostyniński", "grodziski", "grójecki",
+            "kozienicki", "legionowski", "lipski", "łosicki", "makowski", "miński", "mławski",
+            "nowodworski", "ostrołęcki", "ostrowski", "otwocki", "piaseczyński", "płocki", "płoński",
+            "pruszkowski", "przasnyski", "przysuski", "pułtuski", "radomski", "siedlecki", "sierpecki",
+            "sochaczewski", "sokołowski", "szydłowiecki", "warszawski zachodni", "węgrowski", "wołomiński",
+            "wyszkowski", "zwoleński", "żuromiński", "żyrardowski",
+            "Ostrołęka", "Płock", "Radom", "Siedlce", "Warszawa"
+        ],
+        "opolskie": [
+            "brzeski", "głubczycki", "kędzierzyńsko-kozielski", "kluczborski", "krapkowicki", "namysłowski",
+            "nyski", "oleski", "opolski", "prudnicki", "strzelecki", "Opole"
+        ],
+        "podkarpackie": [
+            "bieszczadzki", "brzozowski", "dębicki", "jarosławski", "jasielski", "kolbuszowski",
+            "krośnieński", "leski", "leżajski", "lubaczowski", "łańcucki", "mielecki", "niżański",
+            "przemyski", "przeworski", "ropczycko-sędziszowski", "rzeszowski", "sanocki", "stalowowolski",
+            "strzyżowski", "tarnobrzeski", "Krosno", "Przemyśl", "Rzeszów", "Tarnobrzeg"
+        ],
+        "podlaskie": [
+            "augustowski", "białostocki", "bielski", "grajewski", "hajnowski", "kolneński", "łomżyński",
+            "moniecki", "sejneński", "siemiatycki", "sokólski", "suwalski", "wysokomazowiecki",
+            "zambrowski", "Białystok", "Łomża", "Suwałki"
+        ],
+        "pomorskie": [
+            "bytowski", "chojnicki", "człuchowski", "gdański", "kartuski", "kościerski", "kwidzyński",
+            "lęborski", "malborski", "nowodworski", "pucki", "słupski", "starogardzki", "sztumski",
+            "tczewski", "wejherowski", "Gdańsk", "Gdynia", "Słupsk", "Sopot"
+        ],
+        "śląskie": [
+            "będziński", "bielski", "bieruńsko-lędziński", "cieszyński", "częstochowski", "gliwicki",
+            "kłobucki", "lubliniecki", "mikołowski", "myszkowski", "pszczyński", "raciborski",
+            "rybnicki", "tarnogórski", "wodzisławski", "zawierciański", "żywiecki",
+            "Bielsko-Biała", "Bytom", "Chorzów", "Częstochowa", "Dąbrowa Górnicza", "Gliwice",
+            "Jastrzębie-Zdrój", "Jaworzno", "Katowice", "Mysłowice", "Piekary Śląskie", "Ruda Śląska",
+            "Rybnik", "Siemianowice Śląskie", "Sosnowiec", "Świętochłowice", "Tychy", "Zabrze", "Żory"
+        ],
+        "świętokrzyskie": [
+            "buski", "jędrzejowski", "kazimierski", "kielecki", "konecki", "opatowski", "ostrowiecki",
+            "pińczowski", "sandomierski", "skarżyski", "starachowicki", "staszowski", "włoszczowski",
+            "Kielce"
+        ],
+        "warmińsko-mazurskie": [
+            "bartoszycki", "braniewski", "działdowski", "elbląski", "ełcki", "giżycki", "gołdapski",
+            "iławski", "kętrzyński", "lidzbarski", "mrągowski", "nidzicki", "nowomiejski",
+            "olecki", "olsztyński", "ostródzki", "piski", "szczycieński", "węgorzewski",
+            "Elbląg", "Olsztyn"
+        ],
+        "wielkopolskie": [
+            "chodzieski", "czarnkowsko-trzcianecki", "gnieźnieński", "gostyński", "grodziski", "jarociński",
+            "kaliski", "kępiński", "kolski", "koniński", "kościański", "krotoszyński", "leszczyński",
+            "międzychodzki", "nowotomyski", "obornicki", "ostrowski", "ostrzeszowski", "pilski",
+            "pleszewski", "poznański", "rawicki", "słupecki", "szamotulski", "średzki", "śremski",
+            "turecki", "wągrowiecki", "wolsztyński", "wrzesiński", "złotowski",
+            "Kalisz", "Konin", "Leszno", "Poznań"
+        ],
+        "zachodniopomorskie": [
+            "białogardzki", "choszczeński", "drawski", "goleniowski", "gryficki", "gryfiński",
+            "kamieński", "kołobrzeski", "koszaliński", "łobeski", "myśliborski", "policki",
+            "pyrzycki", "sławieński", "stargardzki", "szczecinecki", "świdwiński", "wałecki",
+            "Koszalin", "Szczecin", "Świnoujście"
+        ]
+        };
+
+        const parishesByCounty = {
+            "bolesławiecki": ['Bolesławiec', 'Bolesławiec (gm. miejska)', 'Gromadka', 'Nowogrodziec - miasto', 'Nowogrodziec - obszar wiejski', 'Osiecznica', 'Warta Bolesławiecka'],
+            "dzierżoniowski": ['Bielawa', 'Dzierżoniów', 'Dzierżoniów (gm. miejska)', 'Łagiewniki', 'Niemcza - miasto', 'Niemcza - obszar wiejski', 'Pieszyce - miasto', 'Pieszyce - obszar wiejski', 'Piława Górna'],
+            "głogowski": ['Głogów', 'Głogów (gm. miejska)', 'Jerzmanowa', 'Kotla', 'Pęcław', 'Żukowice'],
+            "górowski": ['Góra - miasto', 'Góra - obszar wiejski', 'Jemielno', 'Niechlów', 'Wąsosz - miasto', 'Wąsosz - obszar wiejski'],
+            "jaworski": ['Bolków - miasto', 'Bolków - obszar wiejski', 'Jawor', 'Męcinka', 'Mściwojów', 'Paszowice', 'Wądroże Wielkie'],
+            "Jelenia Góra": ['Jelenia Góra'],
+            "jeleniogórski": ['Janowice Wielkie', 'Jeżów Sudecki', 'Karpacz', 'Kowary', 'Mysłakowice', 'Piechowice', 'Podgórzyn', 'Stara Kamienica', 'Szklarska Poręba'],
+            "kamiennogórski": ['Kamienna Góra', 'Kamienna Góra (gm. miejska)', 'Lubawka - miasto', 'Lubawka - obszar wiejski', 'Marciszów'],
+            "kłodzki": ['Bystrzyca Kłodzka - miasto', 'Bystrzyca Kłodzka - obszar wiejski', 'Duszniki-Zdrój', 'Kłodzko', 'Kłodzko (gm. miejska)', 'Kudowa-Zdrój', 'Lądek-Zdrój - miasto', 'Lądek-Zdrój - obszar wiejski', 'Lewin Kłodzki', 'Międzylesie - miasto', 'Międzylesie - obszar wiejski', 'Nowa Ruda', 'Nowa Ruda (gm. miejska)', 'Polanica-Zdrój', 'Radków - miasto', 'Radków - obszar wiejski', 'Stronie Śląskie - miasto', 'Stronie Śląskie - obszar wiejski', 'Szczytna - miasto', 'Szczytna - obszar wiejski'],
+            "Legnica": ['Legnica'],
+            "legnicki": ['Chojnów', 'Chojnów (gm. miejska)', 'Krotoszyce', 'Kunice', 'Legnickie Pole', 'Miłkowice', 'Prochowice - miasto', 'Prochowice - obszar wiejski', 'Ruja'],
+            "lubański": ['Leśna - miasto', 'Leśna - obszar wiejski', 'Lubań', 'Lubań (gm. miejska)', 'Olszyna - miasto', 'Olszyna - obszar wiejski', 'Platerówka', 'Siekierczyn', 'Świeradów-Zdrój'],
+            "lubiński": ['Lubin', 'Lubin (gm. miejska)', 'Rudna', 'Ścinawa - miasto', 'Ścinawa - obszar wiejski'],
+            "lwówecki": ['Gryfów Śląski - miasto', 'Gryfów Śląski - obszar wiejski', 'Lubomierz - miasto', 'Lubomierz - obszar wiejski', 'Lwówek Śląski - miasto', 'Lwówek Śląski - obszar wiejski', 'Mirsk - miasto', 'Mirsk - obszar wiejski', 'Wleń - miasto', 'Wleń - obszar wiejski'],
+            "milicki": ['Cieszków', 'Krośnice', 'Milicz - miasto', 'Milicz - obszar wiejski'],
+            "oleśnicki": ['Bierutów - miasto', 'Bierutów - obszar wiejski', 'Dobroszyce', 'Dziadowa Kłoda', 'Międzybórz - miasto', 'Międzybórz - obszar wiejski', 'Oleśnica', 'Oleśnica (gm. miejska)', 'Syców - miasto', 'Syców - obszar wiejski', 'Twardogóra - miasto', 'Twardogóra - obszar wiejski'],
+            "oławski": ['Domaniów', 'Jelcz-Laskowice - miasto', 'Jelcz-Laskowice - obszar wiejski', 'Oława', 'Oława (gm. miejska)'],
+            "polkowicki": ['Chocianów - miasto', 'Chocianów - obszar wiejski', 'Gaworzyce', 'Grębocice', 'Polkowice - miasto', 'Polkowice - obszar wiejski', 'Przemków - miasto', 'Przemków - obszar wiejski', 'Radwanice'],
+            "strzeliński": ['Borów', 'Kondratowice', 'Przeworno', 'Strzelin - miasto', 'Strzelin - obszar wiejski', 'Wiązów - miasto', 'Wiązów - obszar wiejski'],
+            "średzki": ['Kostomłoty', 'Malczyce', 'Miękinia', 'Środa Śląska - miasto', 'Środa Śląska - obszar wiejski', 'Udanin', 'Dominowo', 'Krzykosy', 'Nowe Miasto nad Wartą', 'Środa Wielkopolska - miasto', 'Środa Wielkopolska - obszar wiejski', 'Zaniemyśl'],
+            "świdnicki": ['Dobromierz', 'Jaworzyna śląska - miasto', 'Jaworzyna śląska - obszar wiejski', 'Marcinowice', 'Strzegom - miasto', 'Strzegom - obszar wiejski', 'Świdnica', 'Świdnica (gm. miejska)', 'Świebodzice', 'Żarów - miasto', 'Żarów - obszar wiejski', 'Mełgiew', 'Piaski - miasto', 'Piaski - obszar wiejski', 'Rybczewice', 'Trawniki'],
+            "trzebnicki": ['Oborniki Śląskie - miasto', 'Oborniki Śląskie - obszar wiejski', 'Prusice - miasto', 'Prusice - obszar wiejski', 'Trzebnica - miasto', 'Trzebnica - obszar wiejski', 'Wisznia Mała', 'Zawonia', 'Żmigród - miasto', 'Żmigród - obszar wiejski'],
+            "Wałbrzych": ['Wałbrzych'],
+            "wałbrzyski": ['Boguszów-Gorce', 'Czarny Bór', 'Głuszyca - miasto', 'Głuszyca - obszar wiejski', 'Jedlina-Zdrój', 'Mieroszów - miasto', 'Mieroszów - obszar wiejski', 'Stare Bogaczowice', 'Szczawno-Zdrój', 'Walim'],
+            "wołowski": ['Brzeg Dolny - miasto', 'Brzeg Dolny - obszar wiejski', 'Wińsko', 'Wołów - miasto', 'Wołów - obszar wiejski'],
+            "Wrocław": ['Wrocław'],
+            "wrocławski": ['Czernica', 'Długołęka', 'Jordanów Śląski', 'Kąty Wrocławskie - miasto', 'Kąty Wrocławskie - obszar wiejski', 'Kobierzyce', 'Mietków', 'Siechnice - obszar wiejski', 'Sobótka - miasto', 'Sobótka - obszar wiejski', 'Żórawina'],
+            "ząbkowicki": ['Bardo - miasto', 'Bardo - obszar wiejski', 'Ciepłowody', 'Kamieniec Ząbkowicki', 'Stoszowice', 'Ząbkowice Śląskie - miasto', 'Ząbkowice Śląskie - obszar wiejski', 'Ziębice - miasto', 'Ziębice - obszar wiejski', 'Złoty Stok- miasto', 'Złoty Stok- obszar wiejski'],
+            "zgorzelecki": ['Bogatynia - miasto', 'Bogatynia - obszar wiejski', 'Pieńsk - miasto', 'Pieńsk - obszar wiejski', 'Sulików', 'Węgliniec - miasto', 'Węgliniec - obszar wiejski', 'Zawidów', 'Zgorzelec', 'Zgorzelec (gm. miejska)'],
+            "złotoryjski": ['Pielgrzymka', 'Świerzawa - miasto', 'Świerzawa - obszar wiejski', 'Wojcieszów', 'Zagrodno', 'Złotoryja', 'Złotoryja (gm. miejska)'],
+            "aleksandrowski": ['Aleksandrów Kujawski', 'Aleksandrów Kujawski (gm. miejska)', 'Bądkowo', 'Ciechocinek', 'Koneck', 'Nieszawa', 'Raciążek', 'Waganiec', 'Zakrzewo'],
+            "brodnicki": ['Bartniczka', 'Bobrowo', 'Brodnica', 'Brodnica (gm. miejska)', 'Brzozie', 'Górzno - miasto', 'Górzno - obszar wiejski', 'Jabłonowo Pomorskie - miasto', 'Jabłonowo Pomorskie - obszar wiejski', 'Osiek', 'Świedziebnia', 'Zbiczno'],
+            "bydgoski": ['Białe Błota', 'Dąbrowa Chełmińska', 'Dobrcz', 'Koronowo - miasto', 'Koronowo - obszar wiejski', 'Nowa Wieś Wielka', 'Osielsko', 'Sicienko', 'Solec Kujawski - miasto'],
+            "Bydgoszcz": ['Bydgoszcz'],
+            "chełmiński": ['Chełmno', 'Chełmno (gm. miejska)', 'Kijewo Królewskie', 'Lisewo', 'Papowo Biskupie', 'Stolno', 'Unisław'],
+            "golubsko-dobrzyński": ['Ciechocin', 'Golub-Dobrzyń', 'Golub-Dobrzyń (gm. miejska)', 'Kowalewo Pomorskie - miasto', 'Kowalewo Pomorskieg - obszar wiejski', 'Radomin', 'Zbójno'],
+            "Grudziądz": ['Grudziądz'],
+            "grudziądzki": ['Grudziądz', 'Gruta', 'Łasin - miasto', 'Łasin - obszar wiejski', 'Radzyń Chełmiński - miasto', 'Radzyń Chełmiński - obszar wiejski', 'Rogóźno', 'Świecie nad Osą'],
+            "inowrocławski": ['Dąbrowa Biskupia', 'Gniewkowo - miasto', 'Gniewkowo - obszar wiejski', 'Inowrocław', 'Inowrocław (gm. miejska)', 'Janikowo - miasto', 'Janikowo - obszar wiejski', 'Kruszwica - miasto', 'Kruszwica - obszar wiejski', 'Pakość - miasto', 'Pakość - obszar wiejski', 'Rojewo', 'Złotniki Kujawskie'],
+            "lipnowski": ['Bobrowniki', 'Chrostkowo', 'Dobrzyń Nad Wisłą - miasto', 'Dobrzyń Nad Wisłą - obszar wiejski', 'Kikół', 'Lipno', 'Lipno (gm. miejska)', 'Skępe - miasto', 'Skępe - obszar wiejski', 'Tłuchowo', 'Wielgie'],
+            "mogileński": ['Dąbrowa', 'Jeziora Wielkie', 'Mogilno - miasto', 'Mogilno - obszar wiejski', 'Strzelno - miasto', 'Strzelno - obszar wiejski'],
+            "nakielski": ['Kcynia - miasto', 'Kcynia - obszar wiejski', 'Mrocza - obszar wiejski', 'Nakło Nad Notecią - miasto', 'Nakło Nad Notecią - obszar wiejski', 'Sadki', 'Szubin - miasto', 'Szubin - obszar wiejski'],
+            "radziejowski": ['Bytoń', 'Dobre', 'Osięciny', 'Piotrków Kujawski - miasto', 'Piotrków Kujawski - obszar wiejski', 'Radziejów', 'Radziejów (gm. miejska)', 'Topólka'],
+            "rypiński": ['Brzuze', 'Rogowo', 'Rypin', 'Rypin (gm. miejska)', 'Skrwilno', 'Wąpielsk'],
+            "sępoleński": ['Kamień Krajeński - miasto', 'Kamień Krajeński - obszar wiejski', 'Sępólno Krajeńskie - miasto', 'Sępólno Krajeńskie - obszar wiejski', 'Sośno', 'Więcbork - miasto', 'Więcbork - obszar wiejski'],
+            "świecki": ['Bukowiec', 'Dragacz', 'Drzycim', 'Jeżewo', 'Nowe - miasto', 'Nowe - obszar wiejski', 'Osie', 'Pruszcz', 'Świecie - miasto', 'Świecie - obszar wiejski', 'Świekatowo', 'Warlubie'],
+            "Toruń": ['Toruń'],
+            "toruński": ['Chełmża', 'Chełmża (gm. miejska)', 'Czernikowo', 'Lubicz', 'Łubianka', 'Łysomice', 'Obrowo', 'Wielka Nieszawka', 'Zławieś Wielka'],
+            "tucholski": ['Cekcyn', 'Gostycyn', 'Kęsowo', 'Lubiewo', 'Śliwice', 'Tuchola - miasto', 'Tuchola - obszar wiejski'],
+            "wąbrzeski": ['Dębowa Łąka', 'Książki', 'Płużnica', 'Wąbrzeźno', 'Wąbrzeźno (gm. miejska)'],
+            "Włocławek": ['Włocławek - miasto'],
+            "włocławski": ['Baruchowo', 'Boniewo', 'Brześć Kujawski - miasto', 'Brześć Kujawski - obszar wiejski', 'Choceń', 'Chodecz - miasto', 'Chodecz - obszar wiejski', 'Fabianki', 'Izbica Kujawska - miasto', 'Izbica Kujawska - obszar wiejski', 'Kowal', 'Kowal (gm. miejska)', 'Lubanie', 'Lubień Kujawski - miasto', 'Lubień Kujawski - obszar wiejski', 'Lubraniec - miasto', 'Lubraniec - obszar wiejski', 'Włocławek - obszar wiejski'],
+            "żniński": ['Barcin - miasto', 'Barcin - obszar wiejski', 'Gąsawa', 'Janowiec Wielkopolski - obszar wiejski', 'Łabiszyn - miasto', 'Łabiszyn - obszar wiejski', 'Rogowo', 'Żnin - miasto', 'Żnin - obszar wiejski'],
+            "bialski": ['Biała Podlaska', 'Drelów', 'Janów Podlaski', 'Kodeń', 'Konstantynów', 'Leśna Podlaska', 'Łomazy', 'Międzyrzec Podlaski', 'Międzyrzec Podlaski (gm. miejska)', 'Piszczac', 'Rokitno', 'Rossosz', 'Sławatycze', 'Sosnówka', 'Terespol', 'Terespol (gm. miejska)', 'Tuczna', 'Wisznice', 'Zalesie'],
+            "Biała Podlaska": ['Biała Podlaska'],
+            "biłgorajski": ['Biłgoraj', 'Biłgoraj (gm. miejska)', 'Biszcza', 'Frampol - miasto', 'Frampol - obszar wiejski', 'Goraj', 'Józefów - miasto', 'Józefów - obszar wiejski', 'Księżpol', 'Łukowa', 'Obsza', 'Potok Górny', 'Tarnogród - miasto', 'Tarnogród - obszar wiejski', 'Tereszpol', 'Turobin'],
+            "Chełm": ['Chełm'],
+            "chełmski": ['Białopole', 'Chełm', 'Dorohusk', 'Dubienka', 'Kamień', 'Leśniowice', 'Rejowiec - miasto', 'Rejowiec - obszar wiejski', 'Rejowiec Fabryczny', 'Rejowiec Fabryczny (gm. miejska)', 'Ruda-Huta', 'Sawin', 'Siedliszcze - miasto', 'Siedliszcze - obszar wiejski', 'Wierzbica', 'Wojsławice', 'Żmudź'],
+            "hrubieszowski": ['Dołhobyczów', 'Horodło', 'Hrubieszów', 'Hrubieszów (gm. miejska)', 'Mircze', 'Trzeszczany', 'Uchanie', 'Werbkowice'],
+            "janowski": ['Batorz', 'Dzwola', 'Godziszów', 'Janów Lubelski - miasto', 'Janów Lubelski - obszar wiejski', 'Modliborzyce - miasto', 'Modliborzyce - obszar wiejski', 'Potok Wielki'],
+            "krasnostawski": ['Fajsławice', 'Gorzków', 'Izbica', 'Krasnystaw', 'Krasnystaw (gm. miejska)', 'Kraśniczyn', 'Łopiennik Górny', 'Rudnik', 'Siennica Różana', 'Żółkiewka'],
+            "kraśnicki": ['Annopol - miasto', 'Annopol - obszar wiejski', 'Dzierzkowice', 'Gościeradów', 'Kraśnik', 'Kraśnik (gm. miejska)', 'Szastarka', 'Trzydnik Duży', 'Urzędów - miasto', 'Urzędów - obszar wiejski', 'Wilkołaz', 'Zakrzówek'],
+            "lubartowski": ['Firlej', 'Jeziorzany', 'Kamionka', 'Kock - miasto', 'Kock - obszar wiejski', 'Lubartów', 'Lubartów (gm. miejska)', 'Michów', 'Niedźwiada', 'Ostrów Lubelski - miasto', 'Ostrów Lubelski - obszar wiejski', 'Ostrówek', 'Serniki'],
+            "lubelski": ['Bełżyce - miasto', 'Bełżyce - obszar wiejski', 'Borzechów', 'Bychawa - miasto', 'Bychawa - obszar wiejski', 'Garbów', 'Głusk', 'Jabłonna', 'Jastków', 'Konopnica', 'Krzczonów', 'Niedrzwica Duża', 'Niemce', 'Strzyżewice', 'Wojciechów', 'Wólka', 'Wysokie', 'Zakrzew'],
+            "Lublin": ['Lublin'],
+            "łęczyński": ['Cyców', 'Ludwin', 'Łęczna - miasto', 'Milejów', 'Puchaczów', 'Spiczyn'],
+            "łukowski": ['Adamów', 'Krzywda', 'Łuków', 'Łuków (gm. miejska)', 'Stanin', 'Stoczek Łukowski', 'Stoczek Łukowski (gm. miejska)', 'Trzebieszów', 'Wojcieszków', 'Wola Mysłowska'],
+            "opolski": ['Chodel', 'Józefów nad Wisłą - miasto', 'Józefów nad Wisłą - obszar wiejski', 'Karczmiska', 'Łaziska', 'Opole Lubelskie - miasto', 'Opole Lubelskie - obszar wiejski', 'Poniatowa - miasto', 'Poniatowa - obszar wiejski', 'Wilków', 'Chrząstowice', 'Dąbrowa', 'Dobrzeń Wielki', 'Komprachcice', 'Łubniany', 'Murów', 'Niemodlin - miasto', 'Niemodlin - obszar wiejski', 'Ozimek - miasto', 'Ozimek - obszar wiejski', 'Popielów', 'Prószków - miasto', 'Prószków - obszar wiejski', 'Tarnów Opolski', 'Tułowice - miasto', 'Tułowice - obszar wiejski', 'Turawa'],
+            "parczewski": ['Dębowa Kłoda', 'Jabłoń', 'Milanów', 'Parczew - miasto', 'Parczew - obszar wiejski', 'Podedwórze', 'Siemień', 'Sosnowica'],
+            "puławski": ['Baranów', 'Janowiec', 'Kazimierz Dolny - miasto', 'Kazimierz Dolny - obszar wiejski', 'Końskowola', 'Kurów', 'Markuszów', 'Nałęczów - miasto', 'Nałęczów - obszar wiejski', 'Puławy', 'Puławy (gm. miejska)', 'Wąwolnica', 'Żyrzyn'],
+            "radzyński": ['Borki', 'Czemierniki', 'Kąkolewnica', 'Komarówka Podlaska', 'Radzyń Podlaski', 'Radzyń Podlaski (gm. miejska)', 'Ulan-Majorat', 'Wohyń'],
+            "rycki": ['Dęblin', 'Kłoczew', 'Ryki - miasto', 'Ryki - obszar wiejski', 'Stężyca', 'Ułęż'],
+            "tomaszowski": ['Bełżec', 'Jarczów', 'Krynice', 'Lubycza Królewska - miasto', 'Lubycza Królewska - obszar wiejski', 'Łaszczów - miasto', 'Łaszczów - obszar wiejski', 'Rachanie', 'Susiec', 'Tarnawatka', 'Telatyn', 'Tomaszów Lubelski', 'Tomaszów Lubelski (gm. miejska)', 'Tyszowce - miasto', 'Tyszowce - obszar wiejski', 'Ulhówek', 'Będków', 'Budziszewice', 'Czerniewice', 'Inowłódz', 'Lubochnia', 'Rokiciny', 'Rzeczyca', 'Tomaszów Mazowiecki', 'Tomaszów Mazowiecki (gm. miejska)', 'Ujazd', 'Żelechlinek'],
+            "włodawski": ['Hanna', 'Hańsk', 'Stary Brus', 'Urszulin', 'Włodawa', 'Włodawa (gm. miejska)', 'Wola Uhruska', 'Wyryki'],
+            "zamojski": ['Adamów', 'Grabowiec', 'Komarów-Osada', 'Krasnobród - miasto', 'Krasnobród - obszar wiejski', 'Łabunie', 'Miączyn', 'Nielisz', 'Radecznica', 'Sitno', 'Skierbieszów', 'Stary Zamość', 'Sułów', 'Szczebrzeszyn - miasto', 'Szczebrzeszyn - obszar wiejski', 'Zamość', 'Zwierzyniec - miasto', 'Zwierzyniec - obszar wiejski'],
+            "Zamość": ['Zamość'],
+            "gorzowski": ['Bogdaniec', 'Deszczno', 'Kłodawa', 'Kostrzyn nad Odrą', 'Lubiszyn', 'Santok', 'Witnica - miasto', 'Witnica - obszar wiejski'],
+            "Gorzów Wielkopolski": ['Gorzów Wielkopolski'],
+            "krośnieński": ['Bobrowice', 'Bytnica', 'Dąbie', 'Gubin', 'Gubin (gm. miejska)', 'Krosno Odrzańskie - miasto', 'Krosno Odrzańskie - obszar wiejski', 'Maszewo', 'Chorkówka', 'Dukla - miasto', 'Dukla - obszar wiejski', 'Iwonicz Zdrój - miasto', 'Iwonicz Zdrój - obszar wiejski', 'Jaśliska', 'Jedlicze - miasto', 'Jedlicze - obszar wiejski', 'Korczyna', 'Krościenko Wyżne', 'Miejsce Piastowe', 'Rymanów - miasto', 'Rymanów - obszar wiejski', 'Wojaszówka'],
+            "międzyrzecki": ['Bledzew', 'Międzyrzecz - miasto', 'Międzyrzecz - obszar wiejski', 'Przytoczna', 'Pszczew', 'Skwierzyna - miasto', 'Skwierzyna - obszar wiejski', 'Trzciel - miasto', 'Trzciel - obszar wiejski'],
+            "nowosolski": ['Bytom Odrzański - miasto', 'Bytom Odrzański - obszar wiejski', 'Kolsko', 'Kożuchów - miasto', 'Kożuchów - obszar wiejski', 'Nowa Sól', 'Nowa Sól (gm. miejska)', 'Nowe Miasteczko - miasto', 'Nowe Miasteczko - obszar wiejski', 'Otyń - miasto', 'Otyń - obszar wiejski', 'Siedlisko'],
+            "słubicki": ['Cybinka - miasto', 'Cybinka - obszar wiejski', 'Górzyca', 'Ośno Lubuskie - miasto', 'Ośno Lubuskie - obszar wiejski', 'Rzepin - miasto', 'Rzepin - obszar wiejski', 'Słubice - miasto', 'Słubice - obszar wiejski'],
+            "strzelecko-drezdenecki": ['Dobiegniew - miasto', 'Dobiegniew - obszar wiejski', 'Drezdenko - miasto', 'Drezdenko - obszar wiejski', 'Stare Kurowo', 'Strzelce Krajeńskie - miasto', 'Strzelce Krajeńskie - obszar wiejski', 'Zwierzyn'],
+            "sulęciński": ['Krzeszyce', 'Lubniewice - miasto', 'Lubniewice - obszar wiejski', 'Słońsk', 'Sulęcin - miasto', 'Sulęcin - obszar wiejski', 'Torzym - miasto', 'Torzym - obszar wiejski'],
+            "świebodziński": ['Lubrza', 'Łagów', 'Skąpe', 'Szczaniec', 'Świebodzin - miasto', 'Świebodzin - obszar wiejski', 'Zbąszynek - miasto', 'Zbąszynek - obszar wiejski'],
+            "wschowski": ['Sława - miasto', 'Sława - obszar wiejski', 'Szlichtyngowa - miasto', 'Szlichtyngowa - obszar wiejski', 'Wschowa - miasto', 'Wschowa - obszar wiejski'],
+            "Zielona Góra": ['Zielona Góra'],
+            "zielonogórski": ['Babimost - miasto', 'Babimost - obszar wiejski', 'Bojadła', 'Czerwieńsk - miasto', 'Czerwieńsk - obszar wiejski', 'Kargowa - miasto', 'Kargowa - obszar wiejski', 'Nowogród Bobrzański - miasto', 'Nowogród Bobrzański - obszar wiejski', 'Sulechów - miasto', 'Sulechów - obszar wiejski', 'Świdnica', 'Trzebiechów', 'Zabór'],
+            "żagański": ['Brzeźnica', 'Gozdnica', 'Iłowa - miasto', 'Iłowa - obszar wiejski', 'Małomice - miasto', 'Małomice - obszar wiejski', 'Niegosławice', 'Szprotawa - miasto', 'Szprotawa - obszar wiejski', 'Wymiarki', 'Żagań', 'Żagań (gm. miejska)'],
+            "żarski": ['Brody', 'Jasień - miasto', 'Jasień - obszar wiejski', 'Lipinki Łużyckie', 'Lubsko - miasto', 'Lubsko - obszar wiejski', 'Łęknica', 'Przewóz', 'Trzebiel', 'Tuplice', 'Żary', 'Żary (gm. miejska)'],
+            "bełchatowski": ['Bełchatów', 'Bełchatów (gm. miejska)', 'Drużbice', 'Kleszczów', 'Kluki', 'Szczerców', 'Zelów - miasto', 'Zelów - obszar wiejski'],
+            "brzeziński": ['Brzeziny', 'Brzeziny (gm. miejska)', 'Dmosin', 'Jeżów', 'Rogów'],
+            "kutnowski": ['Bedlno', 'Dąbrowice', 'Krośniewice - miasto', 'Krośniewice - obszar wiejski', 'Krzyżanów', 'Kutno', 'Kutno (gm. miejska)', 'Łanięta', 'Nowe Ostrowy', 'Oporów', 'Strzelce', 'Żychlin - miasto', 'Żychlin - obszar wiejski'],
+            "łaski": ['Buczek', 'Łask - miasto', 'Łask - obszar wiejski', 'Sędziejowice', 'Widawa', 'Wodzierady'],
+            "łęczycki": ['Daszyna', 'Góra Świętej Małgorzaty', 'Grabów', 'Łęczyca', 'Łęczyca (gm. miejska)', 'Piątek', 'Świnice Warckie', 'Witonia'],
+            "łowicki": ['Bielawy', 'Domaniewice', 'Kiernozia', 'Kocierzew Południowy', 'Łowicz', 'Łowicz (gm. miejska)', 'Łyszkowice', 'Nieborów', 'Zduny'],
+            "łódzki wschodni": ['Brójce', 'Koluszki - obszar wiejski', 'Nowosolna', 'Rzgów - miasto', 'Rzgów - obszar wiejski', 'Tuszyn - miasto', 'Tuszyn - obszar wiejski'],
+            "Łódź": ['Łódź'],
+            "opoczyński": ['Białaczów', 'Drzewica - miasto', 'Mniszków', 'Opoczno - miasto', 'Opoczno - obszar wiejski', 'Paradyż', 'Poświętne', 'Sławno', 'Żarnów'],
+            "pabianicki": ['Dłutów', 'Dobroń', 'Konstantynów Łódzki', 'Ksawerów', 'Lutomiersk', 'Pabianice', 'Pabianice (gm. miejska)'],
+            "pajęczański": ['Działoszyn - miasto', 'Kiełczygłów', 'Nowa Brzeźnica', 'Pajęczno - miasto', 'Pajęczno - obszar wiejski', 'Rząśnia', 'Siemkowice', 'Sulmierzyce'],
+            "piotrkowski": ['Aleksandrów', 'Czarnocin', 'Gorzkowice', 'Grabica', 'Łęki Szlacheckie', 'Moszczenica', 'Ręczno', 'Rozprza', 'Sulejów - miasto', 'Sulejów - obszar wiejski', 'Wola Krzysztoporska', 'Wolbórz - miasto', 'Wolbórz - obszar wiejski'],
+            "Piotrków Trybunalski": ['Piotrków Trybunalski'],
+            "poddębicki": ['Dalików', 'Pęczniew', 'Poddębice - miasto', 'Poddębice - obszar wiejski', 'Uniejów - miasto', 'Uniejów - obszar wiejski', 'Wartkowice', 'Zadzim'],
+            "radomszczański": ['Dobryszyce', 'Gidle', 'Gomunice', 'Kamieńsk - miasto', 'Kamieńsk - obszar wiejski', 'Kobiele Wielkie', 'Kodrąb', 'Lgota Wielka', 'Ładzice', 'Masłowice', 'Przedbórz - miasto', 'Radomsko', 'Radomsko (gm. miejska)', 'Wielgomłyny', 'Żytno'],
+            "rawski": ['Biała Rawska - miasto', 'Biała Rawska - obszar wiejski', 'Cielądz', 'Rawa Mazowiecka', 'Rawa Mazowiecka (gm. miejska)', 'Regnów', 'Sadkowice'],
+            "sieradzki": ['Błaszki - miasto', 'Błaszki - obszar wiejski', 'Brąszewice', 'Brzeźnio', 'Burzenin', 'Goszczanów', 'Klonowa', 'Sieradz', 'Sieradz (gm. miejska)', 'Warta - miasto', 'Warta - obszar wiejski', 'Wróblew', 'Złoczew - miasto', 'Złoczew - obszar wiejski'],
+            "Skierniewice": ['Skierniewice'],
+            "skierniewicki": ['Bolimów', 'Głuchów', 'Godzianów', 'Kowiesy', 'Lipce Reymontowskie', 'Maków', 'Nowy Kawęczyn', 'Skierniewice', 'Słupia'],
+            "wieluński": ['Biała', 'Czarnożyły', 'Konopnica', 'Mokrsko', 'Osjaków', 'Ostrówek', 'Pątnów', 'Skomlin', 'Wieluń - miasto', 'Wieluń - obszar wiejski', 'Wierzchlas'],
+            "wieruszowski": ['Bolesławiec', 'Czastary', 'Galewice', 'Lututów', 'Łubnice', 'Sokolniki', 'Wieruszów - miasto', 'Wieruszów - obszar wiejski'],
+            "zduńskowolski": ['Szadek - miasto', 'Szadek - obszar wiejski', 'Zapolice', 'Zduńska Wola', 'Zduńska Wola (gm. miejska)'],
+            "zgierski": ['Aleksandrów Łódzki - miasto', 'Aleksandrów Łódzki - obszar wiejski', 'Głowno', 'Ozorków', 'Ozorków (gm. miejska)', 'Parzęczew', 'Stryków - miasto', 'Stryków - obszar wiejski', 'Zgierz', 'Zgierz (gm. miejska)'],
+            "bocheński": ['Bochnia', 'Bochnia (gm. miejska)', 'Drwinia', 'Lipnica Murowana', 'Łapanów', 'Nowy Wiśnicz - miasto', 'Nowy Wiśnicz - obszar wiejski', 'Rzezawa', 'Trzciana', 'Żegocina'],
+            "brzeski": ['Borzęcin', 'Brzesko - miasto', 'Brzesko - obszar wiejski', 'Czchów - miasto', 'Czchów - obszar wiejski', 'Dębno', 'Gnojnik', 'Iwkowa', 'Szczurowa', 'Brzeg', 'Grodków - miasto', 'Grodków - obszar wiejski', 'Lewin Brzeski - miasto', 'Lewin Brzeski - obszar wiejski', 'Lubsza', 'Olszanka', 'Skarbimierz'],
+            "chrzanowski": ['Alwernia - miasto', 'Alwernia - obszar wiejski', 'Babice', 'Chrzanów - miasto', 'Chrzanów - obszar wiejski', 'Libiąż - obszar wiejski', 'Trzebinia - miasto', 'Trzebinia - obszar wiejski'],
+            "dąbrowski": ['Bolesław', 'Dąbrowa Tarnowska - miasto', 'Gręboszów', 'Mędrzechów', 'Olesno', 'Radgoszcz', 'Szczucin - miasto', 'Szczucin - obszar wiejski'],
+            "gorlicki": ['Biecz - miasto', 'Biecz - obszar wiejski', 'Bobowa - miasto', 'Bobowa - obszar wiejski', 'Gorlice', 'Gorlice (gm. miejska)', 'Lipinki', 'Łużna', 'Moszczenica', 'Ropa', 'Sękowa', 'Uście Gorlickie'],
+            "krakowski": ['Czernichów', 'Igołomia-Wawrzeńczyce', 'Iwanowice', 'Jerzmanowice-Przeginia', 'Kocmyrzów-Luborzyca', 'Krzeszowice - miasto', 'Krzeszowice - obszar wiejski', 'Liszki', 'Michałowice', 'Mogilany', 'Skała - miasto', 'Skała - obszar wiejski', 'Skawina - miasto', 'Skawina - obszar wiejski', 'Słomniki - miasto', 'Słomniki - obszar wiejski', 'Sułoszowa', 'Świątniki Górne - miasto', 'Świątniki Górne - obszar wiejski', 'Wielka Wieś', 'Zabierzów', 'Zielonki'],
+            "Kraków": ['Kraków'],
+            "limanowski": ['Dobra', 'Jodłownik', 'Kamienica', 'Laskowa', 'Limanowa', 'Limanowa (gm. miejska)', 'Łukowica', 'Mszana Dolna', 'Mszana Dolna (gm. miejska)', 'Niedźwiedź', 'Słopnice', 'Tymbark'],
+            "miechowski": ['Charsznica', 'Gołcza', 'Książ Wielki', 'Miechów - miasto', 'Miechów - obszar wiejski', 'Racławice', 'Słaboszów'],
+            "myślenicki": ['Dobczyce - miasto', 'Dobczyce - obszar wiejski', 'Lubień', 'Myślenice - miasto', 'Myślenice - obszar wiejski', 'Pcim', 'Raciechowice', 'Siepraw', 'Sułkowice - miasto', 'Sułkowice - obszar wiejski', 'Tokarnia', 'Wiśniowa'],
+            "nowosądecki": ['Chełmiec', 'Gródek nad Dunajcem', 'Grybów', 'Grybów (gm. miejska)', 'Kamionka Wielka', 'Korzenna', 'Krynica-Zdrój - miasto', 'Krynica-Zdrój - obszar wiejski', 'Łabowa', 'Łącko', 'Łososina Dolna', 'Muszyna - miasto', 'Muszyna - obszar wiejski', 'Nawojowa', 'Piwniczna-Zdrój - miasto', 'Piwniczna-Zdrój - obszar wiejski', 'Podegrodzie', 'Rytro', 'Stary Sącz - miasto', 'Stary Sącz - obszar wiejski'],
+            "nowotarski": ['Czarny Dunajec', 'Czorsztyn', 'Jabłonka', 'Krościenko nad Dunajcem', 'Lipnica Wielka', 'Łapsze Niżne', 'Nowy Targ', 'Nowy Targ (gm. miejska)', 'Ochotnica Dolna', 'Raba Wyżna', 'Rabka-Zdrój - miasto', 'Rabka-Zdrój - obszar wiejski', 'Spytkowice', 'Szaflary', 'Szczawnica - miasto', 'Szczawnica - obszar wiejski'],
+            "Nowy Sącz": ['Nowy Sącz'],
+            "olkuski": ['Bolesław', 'Klucze', 'Olkusz - miasto', 'Olkusz - obszar wiejski', 'Trzyciąż', 'Wolbrom - miasto', 'Wolbrom - obszar wiejski'],
+            "oświęcimski": ['Brzeszcze - miasto', 'Brzeszcze - obszar wiejski', 'Chełmek - obszar wiejski', 'Kęty - miasto', 'Kęty - obszar wiejski', 'Osiek', 'Oświęcim', 'Oświęcim (gm. miejska)', 'Polanka Wielka', 'Przeciszów', 'Zator - miasto', 'Zator - obszar wiejski'],
+            "proszowicki": ['Koniusza', 'Koszyce - miasto', 'Koszyce - obszar wiejski', 'Nowe Brzesko - miasto', 'Nowe Brzesko - obszar wiejski', 'Pałecznica', 'Proszowice - miasto', 'Proszowice - obszar wiejski', 'Radziemice'],
+            "suski": ['Budzów', 'Bystra-Sidzina', 'Jordanów', 'Jordanów (gm. miejska)', 'Maków Podhalański - miasto', 'Stryszawa', 'Sucha Beskidzka', 'Zawoja', 'Zembrzyce'],
+            "tarnowski": ['Ciężkowice - miasto', 'Ciężkowice - obszar wiejski', 'Gromnik', 'Lisia Góra', 'Pleśna', 'Radłów - miasto', 'Radłów - obszar wiejski', 'Ryglice - miasto', 'Ryglice - obszar wiejski', 'Rzepiennik Strzyżewski', 'Skrzyszów', 'Szerzyny', 'Tarnów', 'Tuchów - miasto', 'Tuchów - obszar wiejski', 'Wierzchosławice', 'Wietrzychowice', 'Wojnicz - miasto', 'Wojnicz - obszar wiejski', 'Zakliczyn - miasto', 'Zakliczyn - obszar wiejski', 'Żabno - miasto', 'Żabno - obszar wiejski'],
+            "Tarnów": ['Tarnów'],
+            "tatrzański": ['Biały Dunajec', 'Bukowina Tatrzańska', 'Kościelisko', 'Poronin', 'Zakopane'],
+            "wadowicki": ['Andrychów - miasto', 'Andrychów - obszar wiejski', 'Brzeźnica', 'Kalwaria Zebrzydowska - miasto', 'Kalwaria Zebrzydowska - obszar wiejski', 'Lanckorona', 'Mucharz', 'Spytkowice', 'Stryszów', 'Tomice', 'Wadowice - miasto', 'Wadowice - obszar wiejski', 'Wieprz'],
+            "wielicki": ['Biskupice', 'Gdów', 'Kłaj', 'Niepołomice - miasto', 'Niepołomice - obszar wiejski', 'Wieliczka - miasto', 'Wieliczka - obszar wiejski'],
+            "białobrzeski": ['Białobrzegi - miasto', 'Białobrzegi - obszar wiejski', 'Promna', 'Radzanów', 'Stara Błotnica', 'Stromiec', 'Wyśmierzyce - miasto', 'Wyśmierzyce - obszar wiejski'],
+            "ciechanowski": ['Ciechanów', 'Ciechanów (gm. miejska)', 'Glinojeck - miasto', 'Glinojeck - obszar wiejski', 'Gołymin-Ośrodek', 'Grudusk', 'Ojrzeń', 'Opinogóra Górna', 'Regimin', 'Sońsk'],
+            "garwoliński": ['Borowie', 'Garwolin', 'Garwolin (gm. miejska)', 'Górzno', 'Maciejowice', 'Miastków Kościelny', 'Parysów', 'Pilawa - miasto', 'Pilawa - obszar wiejski', 'Sobolew', 'Trojanów', 'Wilga', 'Żelechów - miasto'],
+            "gostyniński": ['Gostynin', 'Gostynin (gm. miejska)', 'Pacyna', 'Sanniki - miasto', 'Sanniki - obszar wiejski', 'Szczawin Kościelny'],
+            "grodziski": ['Baranów', 'Grodzisk Mazowiecki - miasto', 'Grodzisk Mazowiecki - obszar wiejski', 'Jaktorów', 'Milanówek', 'Podkowa Leśna', 'Żabia Wola', 'Granowo', 'Grodzisk Wielkopolski - miasto', 'Grodzisk Wielkopolski - obszar wiejski', 'Kamieniec', 'Rakoniewice - miasto', 'Rakoniewice - obszar wiejski', 'Wielichowo - miasto', 'Wielichowo - obszar wiejski'],
+            "grójecki": ['Belsk Duży', 'Błędów', 'Chynów', 'Goszczyn', 'Grójec - miasto', 'Grójec - obszar wiejski', 'Jasieniec', 'Mogielnica - miasto', 'Mogielnica - obszar wiejski', 'Nowe Miasto Nad Pilicą - miasto', 'Nowe Miasto Nad Pilicą - obszar wiejski', 'Pniewy', 'Warka - miasto', 'Warka - obszar wiejski'],
+            "kozienicki": ['Garbatka-Letnisko', 'Głowaczów', 'Gniewoszów', 'Grabów nad Pilicą', 'Kozienice - miasto', 'Kozienice - obszar wiejski', 'Magnuszew', 'Sieciechów'],
+            "legionowski": ['Jabłonna', 'Legionowo', 'Nieporęt', 'Serock - miasto', 'Serock - obszar wiejski', 'Wieliszew'],
+            "lipski": ['Chotcza', 'Ciepielów', 'Lipsko - miasto', 'Lipsko - obszar wiejski', 'Rzeczniów', 'Sienno', 'Solec nad Wisłą'],
+            "łosicki": ['Huszlew', 'Łosice - miasto', 'Łosice - obszar wiejski', 'Olszanka', 'Platerów', 'Sarnaki', 'Stara Kornica'],
+            "makowski": ['Czerwonka', 'Karniewo', 'Krasnosielc', 'Maków Mazowiecki', 'Młynarze', 'Płoniawy-Bramura', 'Różan - miasto', 'Rzewnie', 'Sypniewo', 'Szelków'],
+            "miński": ['Cegłów', 'Dębe Wielkie', 'Dobre', 'Halinów - obszar wiejski', 'Jakubów', 'Kałuszyn - miasto', 'Kałuszyn - obszar wiejski', 'Latowicz', 'Mińsk Mazowiecki', 'Mińsk Mazowiecki (gm. miejska)', 'Mrozy - obszar wiejski', 'Siennica', 'Stanisławów', 'Sulejówek'],
+            "mławski": ['Dzierzgowo', 'Lipowiec Kościelny', 'Mława', 'Radzanów', 'Strzegowo', 'Stupsk', 'Szreńsk', 'Szydłowo', 'Wieczfnia Kościelna', 'Wiśniewo'],
+            "nowodworski": ['Czosnów', 'Leoncin', 'Nasielsk - miasto', 'Nasielsk - obszar wiejski', 'Nowy Dwór Mazowiecki', 'Pomiechówek', 'Zakroczym - miasto', 'Zakroczym - obszar wiejski', 'Krynica Morska', 'Nowy Dwór Gdański - miasto', 'Nowy Dwór Gdański - obszar wiejski', 'Ostaszewo', 'Stegna', 'Sztutowo'],
+            "ostrołęcki": ['Baranowo', 'Czarnia', 'Czerwin', 'Goworowo', 'Kadzidło', 'Lelis', 'Łyse', 'Myszyniec - miasto', 'Olszewo-Borki', 'Rzekuń', 'Troszyn'],
+            "Ostrołęka": ['Ostrołęka'],
+            "ostrowski": ['Andrzejewo', 'Boguty-Pianki', 'Brok - miasto', 'Małkinia Górna', 'Nur', 'Ostrów Mazowiecka', 'Ostrów Mazowiecka (gm. miejska)', 'Stary Lubotyń', 'Szulborze Wielkie', 'Wąsewo', 'Zaręby Kościelne', 'Nowe Skalmierzyce - miasto', 'Nowe Skalmierzyce - obszar wiejski', 'Odolanów - miasto', 'Ostrów Wielkopolski', 'Ostrów Wielkopolski (gm. miejska)', 'Przygodzice', 'Raszków - miasto', 'Raszków - obszar wiejski', 'Sieroszewice', 'Sośnie'],
+            "otwocki": ['Celestynów', 'Józefów', 'Karczew - miasto', 'Karczew - obszar wiejski', 'Kołbiel', 'Osieck', 'Otwock', 'Sobienie-Jeziory', 'Wiązowna'],
+            "piaseczyński": ['Góra Kalwaria - miasto', 'Góra Kalwaria - obszar wiejski', 'Konstancin-Jeziorna - miasto', 'Konstancin-Jeziorna - obszar wiejski', 'Lesznowola', 'Piaseczno - miasto', 'Piaseczno - obszar wiejski', 'Prażmów', 'Tarczyn - miasto', 'Tarczyn - obszar wiejski'],
+            "Płock": ['Płock'],
+            "płocki": ['Bielsk', 'Bodzanów', 'Brudzeń Duży', 'Bulkowo', 'Drobin - miasto', 'Drobin - obszar wiejski', 'Gąbin - miasto', 'Gąbin - obszar wiejski', 'Łąck', 'Mała Wieś', 'Nowy Duninów', 'Radzanowo', 'Słubice', 'Słupno', 'Stara Biała', 'Staroźreby', 'Wyszogród - obszar wiejski', 'Wyszogród- miasto'],
+            "płoński": ['Baboszewo', 'Czerwińsk nad Wisłą', 'Dzierzążnia', 'Joniec', 'Naruszewo', 'Nowe Miasto', 'Płońsk', 'Płońsk (gm. miejska)', 'Raciąż', 'Raciąż (gm. miejska)', 'Sochocin', 'Załuski'],
+            "pruszkowski": ['Brwinów - miasto', 'Brwinów - obszar wiejski', 'Michałowice', 'Nadarzyn', 'Piastów', 'Pruszków', 'Raszyn'],
+            "przasnyski": ['Chorzele - miasto', 'Chorzele - obszar wiejski', 'Czernice Borowe', 'Jednorożec', 'Krasne', 'Krzynowłoga Mała', 'Przasnysz', 'Przasnysz (gm. miejska)'],
+            "przysuski": ['Borkowice', 'Gielniów', 'Klwów', 'Odrzywół', 'Potworów', 'Przysucha - miasto', 'Przysucha - obszar wiejski', 'Rusinów', 'Wieniawa'],
+            "pułtuski": ['Gzy', 'Obryte', 'Pokrzywnica', 'Pułtusk - miasto', 'Pułtusk - obszar wiejski', 'Świercze', 'Winnica', 'Zatory'],
+            "Radom": ['Radom'],
+            "radomski": ['Gózd', 'Iłża - miasto', 'Iłża - obszar wiejski', 'Jastrzębia', 'Jedlińsk', 'Jedlnia-Letnisko', 'Kowala', 'Pionki', 'Pionki (gm. miejska)', 'Przytyk', 'Skaryszew - miasto', 'Skaryszew - obszar wiejski', 'Wierzbica', 'Wolanów', 'Zakrzew'],
+            "Siedlce": ['Siedlce'],
+            "siedlecki": ['Domanice', 'Korczew', 'Kotuń', 'Mokobody', 'Mordy - miasto', 'Paprotnia', 'Przesmyki', 'Siedlce', 'Skórzec', 'Suchożebry', 'Wiśniew', 'Wodynie', 'Zbuczyn'],
+            "sierpecki": ['Gozdowo', 'Mochowo', 'Rościszewo', 'Sierpc', 'Sierpc (gm. miejska)', 'Szczutowo', 'Zawidz'],
+            "sochaczewski": ['Brochów', 'Iłów', 'Młodzieszyn', 'Nowa Sucha', 'Rybno', 'Sochaczew', 'Sochaczew (gm. miejska)', 'Teresin'],
+            "sokołowski": ['Bielany', 'Ceranów', 'Jabłonna Lacka', 'Kosów Lacki - miasto', 'Kosów Lacki - obszar wiejski', 'Repki', 'Sabnie', 'Sokołów Podlaski', 'Sokołów Podlaski (gm. miejska)', 'Sterdyń'],
+            "szydłowiecki": ['Chlewiska', 'Jastrząb', 'Mirów', 'Orońsko', 'Szydłowiec - miasto', 'Szydłowiec - obszar wiejski'],
+            "Warszawa": ['Warszawa'],
+            "warszawski zachodni": ['Błonie - miasto', 'Błonie - obszar wiejski', 'Izabelin', 'Kampinos', 'Leszno', 'Łomianki - miasto', 'Łomianki - obszar wiejski', 'Ożarów Mazowiecki - miasto', 'Ożarów Mazowiecki - obszar wiejski', 'Stare Babice'],
+            "węgrowski": ['Grębków', 'Korytnica', 'Liw', 'Łochów - miasto', 'Łochów - obszar wiejski', 'Miedzna', 'Sadowne', 'Stoczek', 'Węgrów', 'Wierzbno'],
+            "wołomiński": ['Dąbrówka', 'Jadów', 'Klembów', 'Kobyłka', 'Marki', 'Poświętne', 'Radzymin - miasto', 'Strachówka', 'Tłuszcz - miasto', 'Tłuszcz - obszar wiejski', 'Wołomin - miasto', 'Ząbki', 'Zielonka'],
+            "wyszkowski": ['Brańszczyk', 'Długosiodło', 'Rząśnik', 'Somianka', 'Wyszków - miasto', 'Wyszków - obszar wiejski', 'Zabrodzie'],
+            "zwoleński": ['Kazanów', 'Policzna', 'Przyłęk', 'Tczów', 'Zwoleń - miasto', 'Zwoleń - obszar wiejski'],
+            "żuromiński": ['Bieżuń - miasto', 'Bieżuń - obszar wiejski', 'Kuczbork-Osada', 'Lubowidz', 'Lutocin', 'Siemiątkowo', 'Żuromin - miasto', 'Żuromin- obszar wiejski'],
+            "żyrardowski": ['Mszczonów - miasto', 'Mszczonów - obszar wiejski', 'Puszcza Mariańska', 'Radziejowice', 'Wiskitki', 'Żyrardów'],
+            "głubczycki": ['Baborów - miasto', 'Baborów - obszar wiejski', 'Branice', 'Głubczyce - miasto', 'Głubczyce - obszar wiejski', 'Kietrz - miasto', 'Kietrz - obszar wiejski'],
+            "kędzierzyńsko-kozielski": ['Bierawa', 'Cisek', 'Kędzierzyn-Koźle', 'Pawłowiczki', 'Polska Cerekiew', 'Reńska Wieś'],
+            "kluczborski": ['Byczyna - miasto', 'Byczyna - obszar wiejski', 'Kluczbork - miasto', 'Kluczbork - obszar wiejski', 'Lasowice Wielkie', 'Wołczyn - miasto', 'Wołczyn - obszar wiejski'],
+            "krapkowicki": ['Gogolin - miasto', 'Gogolin - obszar wiejski', 'Krapkowice - miasto', 'Krapkowice - obszar wiejski', 'Strzeleczki', 'Walce', 'Zdzieszowice - miasto', 'Zdzieszowice - obszar wiejski'],
+            "namysłowski": ['Domaszowice', 'Namysłów - miasto', 'Namysłów - obszar wiejski', 'Pokój', 'Świerczów', 'Wilków'],
+            "nyski": ['Głuchołazy - miasto', 'Głuchołazy - obszar wiejski', 'Kamiennik', 'Korfantów - miasto', 'Korfantów - obszar wiejski', 'Łambinowice', 'Nysa - miasto', 'Nysa - obszar wiejski', 'Otmuchów - miasto', 'Otmuchów - obszar wiejski', 'Paczków - miasto', 'Paczków - obszar wiejski', 'Pakosławice', 'Skoroszyce'],
+            "oleski": ['Dobrodzień - miasto', 'Dorodzień - obszar wiejski', 'Gorzów Śląski - miasto', 'Gorzów Śląski - obszar wiejski', 'Olesno - miasto', 'Olesno - obszar wiejski', 'Praszka - miasto', 'Praszka - obszar wiejski', 'Radłów', 'Rudniki', 'Zębowice'],
+            "Opole": ['Opole'],
+            "prudnicki": ['Biała - miasto', 'Biała - obszar wiejski', 'Głogówek - miasto', 'Głogówek - obszar wiejski', 'Lubrza', 'Prudnik - miasto', 'Prudnik - obszar wiejski'],
+            "strzelecki": ['Izbicko', 'Jemielnica', 'Kolonowskie - miasto', 'Kolonowskie - obszar wiejski', 'Leśnica - miasto', 'Leśnica - obszar wiejski', 'Strzelce Opolskie - miasto', 'Strzelce Opolskie - obszar wiejski', 'Ujazd - miasto', 'Ujazd - obszar wiejski', 'Zawadzkie - miasto', 'Zawadzkie - obszar wiejski'],
+            "bieszczadzki": ['Czarna', 'Lutowiska', 'Ustrzyki Dolne - miasto', 'Ustrzyki Dolne - obszar wiejski'],
+            "brzozowski": ['Brzozów - miasto', 'Brzozów - obszar wiejski', 'Domaradz', 'Dydnia', 'Haczów', 'Jasienica Rosielna', 'Nozdrzec'],
+            "dębicki": ['Brzostek - miasto', 'Brzostek - obszar wiejski', 'Czarna', 'Dębica', 'Dębica (gm. miejska)', 'Jodłowa', 'Pilzno - miasto', 'Pilzno - obszar wiejski', 'Żyraków'],
+            "jarosławski": ['Chłopice', 'Jarosław', 'Jarosław (gm. miejska)', 'Laszki', 'Pawłosiów', 'Pruchnik - miasto', 'Pruchnik - obszar wiejski', 'Radymno', 'Radymno (gm. miejska)', 'Rokietnica', 'Roźwienica', 'Wiązownica'],
+            "jasielski": ['Brzyska', 'Dębowiec', 'Jasło', 'Jasło (gm. miejska)', 'Kołaczyce - miasto', 'Kołaczyce - obszar wiejski', 'Krempna', 'Nowy Żmigród', 'Osiek Jasielski', 'Skołyszyn', 'Tarnowiec'],
+            "kolbuszowski": ['Cmolas', 'Dzikowiec', 'Kolbuszowa - miasto', 'Kolbuszowa - obszar wiejski', 'Majdan Królewski', 'Niwiska', 'Raniżów'],
+            "Krosno": ['Krosno'],
+            "leski": ['Baligród', 'Cisna', 'Lesko - miasto', 'Lesko - obszar wiejski', 'Olszanica', 'Solina'],
+            "leżajski": ['Grodzisko Dolne', 'Kuryłówka', 'Leżajsk', 'Leżajsk (gm. miejska)', 'Nowa sarzyna - obszar wiejski'],
+            "lubaczowski": ['Cieszanów - miasto', 'Cieszanów - obszar wiejski', 'Horyniec-Zdrój', 'Lubaczów', 'Lubaczów (gm. miejska)', 'Narol - miasto', 'Narol - obszar wiejski', 'Oleszyce - miasto', 'Oleszyce - obszar wiejski', 'Stary Dzików', 'Wielkie Oczy'],
+            "łańcucki": ['Białobrzegi', 'Czarna', 'Łańcut', 'Łańcut (gm. miejska)', 'Markowa', 'Rakszawa', 'Żołynia'],
+            "mielecki": ['Borowa', 'Czermin', 'Gawłuszowice', 'Mielec', 'Mielec (gm. miejska)', 'Padew Narodowa', 'Przecław - miasto', 'Przecław - obszar wiejski', 'Radomyśl Wielki - miasto', 'Radomyśl Wielki - obszar wiejski', 'Tuszów Narodowy', 'Wadowice Górne'],
+            "niżański": ['Harasiuki', 'Jarocin', 'Jeżowe', 'Krzeszów', 'Nisko - miasto', 'Nisko - obszar wiejski', 'Rudnik nad Sanem - miasto', 'Rudnik nad Sanem - obszar wiejski', 'Ulanów - miasto', 'Ulanów - obszar wiejski'],
+            "przemyski": ['Bircza', 'Dubiecko', 'Fredropol', 'Krasiczyn', 'Krzywcza', 'Medyka', 'Orły', 'Przemyśl', 'Stubno', 'Żurawica'],
+            "Przemyśl": ['Przemyśl'],
+            "przeworski": ['Adamówka', 'Gać', 'Jawornik Polski', 'Kańczuga - miasto', 'Kańczuga - obszar wiejski', 'Przeworsk', 'Przeworsk (gm. miejska)', 'Sieniawa - miasto', 'Sieniawa - obszar wiejski', 'Zarzecze'],
+            "ropczycko-sędziszowski": ['Iwierzyce', 'Ostrów', 'Ropczyce - miasto', 'Ropczyce - obszar wiejski', 'Sędziszów Małopolski - miasto', 'Sędziszów Małopolski - obszar wiejski', 'Wielopole Skrzyńskie'],
+            "rzeszowski": ['Błażowa - miasto', 'Błażowa - obszar wiejski', 'Boguchwała - miasto', 'Boguchwała - obszar wiejski', 'Chmielnik', 'Dynów', 'Dynów (gm. miejska)', 'Głogów Małopolski - miasto', 'Głogów Małopolski - obszar wiejski', 'Hyżne', 'Kamień', 'Krasne', 'Lubenia', 'Rzeszów', 'Sokołów Małopolski - miasto', 'Sokołów Małopolski - obszar wiejski', 'Świlcza', 'Trzebownisko', 'Tyczyn - miasto', 'Tyczyn - obszar wiejski'],
+            "Rzeszów": ['Rzeszów'],
+            "sanocki": ['Besko', 'Bukowsko', 'Komańcza', 'Sanok', 'Sanok (gm. miejska)', 'Tyrawa Wołoska', 'Zagórz - miasto', 'Zagórz - obszar wiejski', 'Zarszyn'],
+            "stalowowolski": ['Bojanów', 'Pysznica', 'Radomyśl nad Sanem', 'Stalowa Wola', 'Zaklików - miasto', 'Zaklików - obszar wiejski', 'Zaleszany'],
+            "strzyżowski": ['Czudec', 'Frysztak', 'Niebylec', 'Strzyżów - miasto', 'Strzyżów - obszar wiejski', 'Wiśniowa'],
+            "Tarnobrzeg": ['Tarnobrzeg'],
+            "tarnobrzeski": ['Baranów Sandomierski - miasto', 'Baranów Sandomierski - obszar wiejski', 'Gorzyce', 'Grębów', 'Nowa Dęba - obszar wiejski'],
+            "augustowski": ['Augustów', 'Augustów (gm. miejska)', 'Bargłów Kościelny', 'Lipsk - miasto', 'Lipsk - obszar wiejski', 'Nowinka', 'Płaska', 'Sztabin'],
+            "białostocki": ['Choroszcz - miasto', 'Choroszcz - obszar wiejski', 'Czarna Białostocka - miasto', 'Czarna Białostocka - obszar wiejski', 'Dobrzyniewo Duże', 'Gródek', 'Juchnowiec Kościelny', 'Łapy - miasto', 'Łapy - obszar wiejski', 'Michałowo - miasto', 'Michałowo - obszar wiejski', 'Poświętne', 'Supraśl - miasto', 'Supraśl - obszar wiejski', 'Suraż - miasto', 'Suraż - obszar wiejski', 'Turośń Kościelna', 'Tykocin - miasto', 'Tykocin - obszar wiejski', 'Wasilków - miasto', 'Wasilków - obszar wiejski', 'Zabłudów - miasto', 'Zabłudów - obszar wiejski', 'Zawady'],
+            "Białystok": ['Białystok'],
+            "bielski": ['Bielsk Podlaski', 'Bielsk Podlaski (gm. miejska)', 'Boćki', 'Brańsk', 'Brańsk (gm. miejska)', 'Orla', 'Rudka', 'Wyszki', 'Bestwina', 'Buczkowice', 'Czechowice-Dziedzice - miasto', 'Czechowice-Dziedzice - obszar wiejski', 'Jasienica', 'Jaworze', 'Kozy', 'Porąbka', 'Szczyrk', 'Wilamowice - obszar wiejski', 'Wilkowice'],
+            "grajewski": ['Grajewo', 'Grajewo (gm. miejska)', 'Radziłów', 'Rajgród - miasto', 'Rajgród - obszar wiejski', 'Szczuczyn - miasto', 'Szczuczyn - obszar wiejski', 'Wąsosz'],
+            "hajnowski": ['Białowieża', 'Czeremcha', 'Czyże', 'Dubicze Cerkiewne', 'Hajnówka', 'Hajnówka (gm. miejska)', 'Kleszczele - miasto', 'Kleszczele - obszar wiejski', 'Narew', 'Narewka'],
+            "kolneński": ['Grabowo', 'Kolno', 'Kolno (gm. miejska)', 'Mały Płock', 'Stawiski - miasto', 'Stawiski - obszar wiejski', 'Turośl'],
+            "Łomża": ['Łomża'],
+            "łomżyński": ['Jedwabne - miasto', 'Jedwabne - obszar wiejski', 'Łomża', 'Miastkowo', 'Nowogród - miasto', 'Nowogród - obszar wiejski', 'Piątnica', 'Przytuły', 'Śniadowo', 'Wizna', 'Zbójna'],
+            "moniecki": ['Goniądz - miasto', 'Goniądz - obszar wiejski', 'Jasionówka', 'Jaświły', 'Knyszyn - miasto', 'Knyszyn - obszar wiejski', 'Krypno', 'Mońki - miasto', 'Mońki - obszar wiejski', 'Trzcianne'],
+            "sejneński": ['Giby', 'Krasnopol', 'Puńsk', 'Sejny', 'Sejny (gm. miejska)'],
+            "siemiatycki": ['Drohiczyn - miasto', 'Drohiczyn - obszar wiejski', 'Dziadkowice', 'Grodzisk', 'Mielnik', 'Milejczyce', 'Nurzec-Stacja', 'Perlejewo', 'Siemiatycze', 'Siemiatycze (gm. miejska)'],
+            "sokólski": ['Dąbrowa Białostocka - miasto', 'Dąbrowa Białostocka - obszar wiejski', 'Janów', 'Korycin', 'Krynki - miasto', 'Krynki - obszar wiejski', 'Kuźnica', 'Nowy Dwór', 'Sidra', 'Sokółka - miasto', 'Sokółka - obszar wiejski', 'Suchowola - miasto', 'Suchowola - obszar wiejski', 'Szudziałowo'],
+            "suwalski": ['Bakałarzewo', 'Filipów', 'Jeleniewo', 'Przerośl', 'Raczki', 'Rutka-Tartak', 'Suwałki', 'Szypliszki', 'Wiżajny'],
+            "Suwałki": ['Suwałki'],
+            "wysokomazowiecki": ['Ciechanowiec - miasto', 'Ciechanowiec - obszar wiejski', 'Czyżew - miasto', 'Czyżew - obszar wiejski', 'Klukowo', 'Kobylin-Borzymy', 'Kulesze Kościelne', 'Nowe Piekuty', 'Sokoły', 'Szepietowo - miasto', 'Szepietowo - obszar wiejski', 'Wysokie Mazowieckie', 'Wysokie Mazowieckie (gm. miejska)'],
+            "zambrowski": ['Kołaki Kościelne', 'Rutki', 'Szumowo', 'Zambrów', 'Zambrów (gm. miejska)'],
+            "bytowski": ['Borzytuchom', 'Bytów - miasto', 'Bytów - obszar wiejski', 'Czarna Dąbrówka', 'Kołczygłowy', 'Lipnica', 'Miastko - miasto', 'Miastko - obszar wiejski', 'Parchowo', 'Studzienice', 'Trzebielino', 'Tuchomie'],
+            "chojnicki": ['Brusy - miasto', 'Brusy - obszar wiejski', 'Chojnice', 'Chojnice (gm. miejska)', 'Czersk - miasto', 'Czersk - obszar wiejski', 'Konarzyny'],
+            "człuchowski": ['Czarne - miasto', 'Czarne - obszar wiejski', 'Człuchów', 'Człuchów (gm. miejska)', 'Debrzno - miasto', 'Debrzno - obszar wiejski', 'Koczała', 'Przechlewo', 'Rzeczenica'],
+            "Gdańsk": ['Gdańsk'],
+            "gdański": ['Cedry Wielkie', 'Kolbudy', 'Pruszcz Gdański', 'Pruszcz Gdański (gm. miejska)', 'Przywidz', 'Pszczółki', 'Suchy Dąb', 'Trąbki Wielkie'],
+            "Gdynia": ['Gdynia'],
+            "kartuski": ['Chmielno', 'Kartuzy - miasto', 'Kartuzy - obszar wiejski', 'Przodkowo', 'Sierakowice', 'Somonino', 'Stężyca', 'Sulęczyno', 'Żukowo - miasto', 'Żukowo - obszar wiejski'],
+            "kościerski": ['Dziemiany', 'Karsin', 'Kościerzyna', 'Kościerzyna (gm. miejska)', 'Liniewo', 'Lipusz', 'Nowa Karczma', 'Stara Kiszewa'],
+            "kwidzyński": ['Gardeja', 'Kwidzyn', 'Kwidzyn (gm. miejska)', 'Prabuty - miasto', 'Prabuty - obszar wiejski', 'Ryjewo', 'Sadlinki'],
+            "lęborski": ['Cewice', 'Lębork', 'Łeba', 'Nowa Wieś Lęborska', 'Wicko'],
+            "malborski": ['Lichnowy', 'Malbork', 'Malbork (gm. miejska)', 'Miłoradz', 'Nowy Staw - miasto', 'Nowy Staw - obszar wiejski', 'Stare Pole'],
+            "pucki": ['Hel', 'Jastarnia - miasto', 'Jastarnia - obszar wiejski', 'Kosakowo', 'Krokowa', 'Puck', 'Puck (gm. miejska)', 'Władysławowo - miasto', 'Władysławowo - obszar wiejski'],
+            "Słupsk": ['Słupsk - miasto'],
+            "słupski": ['Damnica', 'Dębnica Kaszubska', 'Główczyce', 'Kępice - obszar wiejski', 'Kobylnica', 'Potęgowo', 'Słupsk - obszar wiejski', 'Smołdzino', 'Ustka', 'Ustka (gm. miejska)'],
+            "Sopot": ['Sopot'],
+            "starogardzki": ['Bobowo', 'Kaliska', 'Lubichowo', 'Osieczna', 'Osiek', 'Skarszewy - miasto', 'Skarszewy - obszar wiejski', 'Skórcz', 'Skórcz (gm. miejska)', 'Smętowo Graniczne', 'Starogard Gdański', 'Starogard Gdański (gm. miejska)', 'Zblewo'],
+            "sztumski": ['Dzierzgoń - miasto', 'Dzierzgoń - obszar wiejski', 'Mikołajki Pomorskie', 'Stary Dzierzgoń', 'Stary Targ', 'Sztum - miasto', 'Sztum - obszar wiejski'],
+            "tczewski": ['Gniew - miasto', 'Gniew - obszar wiejski', 'Morzeszczyn', 'Pelplin - miasto', 'Pelplin - obszar wiejski', 'Subkowy', 'Tczew', 'Tczew (gm. miejska)'],
+            "wejherowski": ['Choczewo', 'Gniewino', 'Luzino', 'Łęczyce', 'Reda', 'Rumia', 'Szemud', 'Wejherowo', 'Wejherowo (gm. miejska)'],
+            "będziński": ['Będzin', 'Bobrowniki', 'Czeladź', 'Mierzęcice', 'Siewierz - miasto', 'Siewierz - obszar wiejski', 'Sławków'],
+            "Bielsko-Biała": ['Bielsko-Biała'],
+            "bieruńsko-lędziński": ['Bieruń', 'Bojszowy', 'Chełm Śląski', 'Imielin', 'Lędziny'],
+            "Bytom": ['Bytom'],
+            "Chorzów": ['Chorzów'],
+            "cieszyński": ['Brenna', 'Cieszyn', 'Dębowiec', 'Goleszów', 'Hażlach', 'Istebna', 'Skoczów - miasto', 'Skoczów - obszar wiejski', 'Strumień - miasto', 'Strumień - obszar wiejski', 'Ustroń', 'Wisła', 'Zebrzydowice'],
+            "Częstochowa": ['Częstochowa'],
+            "częstochowski": ['Blachownia - miasto', 'Dąbrowa Zielona', 'Janów', 'Kłomnice', 'Koniecpol - miasto', 'Konopiska', 'Kruszyna', 'Lelów', 'Mstów', 'Mykanów', 'Olsztyn', 'Przyrów', 'Rędziny'],
+            "Dąbrowa Górnicza": ['Dąbrowa Górnicza'],
+            "Gliwice": ['Gliwice'],
+            "gliwicki": ['Gierałtowice', 'Pilchowice', 'Pyskowice', 'Rudziniec', 'Sośnicowice - miasto', 'Sośnicowice - obszar wiejski', 'Toszek - miasto', 'Toszek - obszar wiejski', 'Wielowieś'],
+            "Jastrzębie-Zdrój": ['Jastrzębie-Zdrój'],
+            "Jaworzno": ['Jaworzno'],
+            "Katowice": ['Katowice'],
+            "kłobucki": ['Kłobuck - miasto', 'Kłobuck - obszar wiejski', 'Krzepice - miasto', 'Krzepice - obszar wiejski', 'Lipie', 'Miedźno', 'Opatów', 'Popów', 'Przystajń', 'Wręczyca Wielka'],
+            "lubliniecki": ['Boronów', 'Ciasna', 'Herby', 'Kochanowice', 'Koszęcin', 'Lubliniec', 'Pawonków', 'Woźniki - miasto', 'Woźniki - obszar wiejski'],
+            "mikołowski": ['Łaziska Górne', 'Mikołów', 'Ornontowice', 'Orzesze', 'Wyry'],
+            "Mysłowice": ['Mysłowice'],
+            "myszkowski": ['Koziegłowy - miasto', 'Koziegłowy - obszar wiejski', 'Myszków', 'Niegowa', 'Poraj', 'Żarki - miasto', 'Żarki - obszar wiejski'],
+            "Piekary Śląskie": ['Piekary Śląskie'],
+            "pszczyński": ['Goczałkowice-Zdrój', 'Kobiór', 'Miedźna', 'Pawłowice', 'Pszczyna - miasto', 'Pszczyna - obszar wiejski', 'Suszec'],
+            "raciborski": ['Kornowac', 'Krzanowice - miasto', 'Krzanowice - obszar wiejski', 'Krzyżanowice', 'Kuźnia Raciborska - obszar wiejski', 'Nędza', 'Pietrowice Wielkie', 'Racibórz', 'Rudnik'],
+            "Ruda Śląska": ['Ruda Śląska'],
+            "rybnicki": ['Czerwionka-Leszczyny - miasto', 'Czerwionka-Leszczyny - obszar wiejski', 'Gaszowice', 'Lyski', 'Świerklany'],
+            "Rybnik": ['Rybnik'],
+            "Siemianowice Śląskie": ['Siemianowice Śląskie'],
+            "Sosnowiec": ['Sosnowiec'],
+            "Świętochłowice": ['Świętochłowice'],
+            "tarnogórski": ['Kalety', 'Krupski Młyn', 'Miasteczko Śląskie', 'Ożarowice', 'Radzionków', 'Świerklaniec', 'Tarnowskie Góry', 'Tworóg', 'Zbrosławice'],
+            "Tychy": ['Tychy'],
+            "wodzisławski": ['Godów', 'Gorzyce', 'Lubomia', 'Mszana', 'Pszów', 'Rydułtowy', 'Wodzisław Śląski'],
+            "Zabrze": ['Zabrze'],
+            "zawierciański": ['Irządze', 'Kroczyce', 'Łazy - obszar wiejski', 'Ogrodzieniec - miasto', 'Ogrodzieniec - obszar wiejski', 'Pilica - miasto', 'Pilica - obszar wiejski', 'Poręba', 'Szczekociny - miasto', 'Szczekociny - obszar wiejski', 'Włodowice', 'Zawiercie', 'Żarnowiec'],
+            "Żory": ['Żory'],
+            "żywiecki": ['Czernichów', 'Gilowice', 'Jeleśnia', 'Koszarawa', 'Lipowa', 'Łękawica', 'Łodygowice', 'Milówka', 'Radziechowy-Wieprz', 'Rajcza', 'Ślemień', 'Ujsoły', 'Węgierska Górka', 'Żywiec'],
+            "buski": ['Busko-Zdrój - miasto', 'Busko-Zdrój - obszar wiejski', 'Gnojno', 'Nowy Korczyn', 'Pacanów - miasto', 'Pacanów - obszar wiejski', 'Solec-Zdrój', 'Stopnica - miasto', 'Stopnica - obszar wiejski', 'Tuczępy', 'Wiślica - miasto', 'Wiślica - obszar wiejski'],
+            "jędrzejowski": ['Imielno', 'Jędrzejów - miasto', 'Jędrzejów - obszar wiejski', 'Małogoszcz - miasto', 'Małogoszcz - obszar wiejski', 'Nagłowice', 'Oksa', 'Sędziszów - miasto', 'Sędziszów - obszar wiejski', 'Słupia (Jędrzejowska)', 'Sobków', 'Wodzisław'],
+            "kazimierski": ['Bejsce', 'Czarnocin', 'Kazimierza Wielka - miasto', 'Kazimierza Wielka - obszar wiejski', 'Opatowiec - miasto', 'Opatowiec - obszar wiejski', 'Skalbmierz - miasto', 'Skalbmierz - obszar wiejski'],
+            "Kielce": ['Kielce'],
+            "kielecki": ['Bieliny', 'Bodzentyn - miasto', 'Bodzentyn - obszar wiejski', 'Chęciny - miasto', 'Chęciny - obszar wiejski', 'Chmielnik - miasto', 'Chmielnik - obszar wiejski', 'Daleszyce - miasto', 'Daleszyce - obszar wiejski', 'Górno', 'Łagów - miasto', 'Łagów - obszar wiejski', 'Łopuszno', 'Masłów', 'Miedziana Góra', 'Mniów', 'Morawica - miasto', 'Morawica - obszar wiejski', 'Nowa Słupia - miasto', 'Nowa Słupia - obszar wiejski', 'Piekoszów', 'Pierzchnica - miasto', 'Pierzchnica - obszar wiejski', 'Raków', 'Sitkówka-Nowiny', 'Strawczyn', 'Zagnańsk'],
+            "konecki": ['Fałków', 'Gowarczów', 'Końskie - miasto', 'Końskie - obszar wiejski', 'Radoszyce - miasto', 'Radoszyce - obszar wiejski', 'Ruda Maleniecka', 'Słupia (Konecka)', 'Smyków', 'Stąporków - obszar wiejski'],
+            "opatowski": ['Baćkowice', 'Iwaniska', 'Lipnik', 'Opatów - miasto', 'Opatów - obszar wiejski', 'Ożarów - miasto', 'Ożarów - obszar wiejski', 'Sadowie', 'Tarłów', 'Wojciechowice'],
+            "ostrowiecki": ['Bałtów', 'Bodzechów', 'Ćmielów - miasto', 'Ćmielów - obszar wiejski', 'Kunów - miasto', 'Kunów - obszar wiejski', 'Ostrowiec Świętokrzyski', 'Waśniów'],
+            "pińczowski": ['Działoszyce - miasto', 'Działoszyce - obszar wiejski', 'Kije', 'Michałów', 'Pińczów - miasto', 'Pińczów - obszar wiejski', 'Złota'],
+            "sandomierski": ['Dwikozy', 'Klimontów', 'Koprzywnica - miasto', 'Koprzywnica - obszar wiejski', 'Łoniów', 'Obrazów', 'Samborzec', 'Sandomierz', 'Wilczyce', 'Zawichost - miasto', 'Zawichost - obszar wiejski'],
+            "skarżyski": ['Bliżyn', 'Skarżysko Kościelne', 'Skarżysko-Kamienna', 'Suchedniów - miasto', 'Suchedniów - obszar wiejski'],
+            "starachowicki": ['Brody', 'Mirzec', 'Pawłów', 'Starachowice', 'Wąchock - miasto', 'Wąchock - obszar wiejski'],
+            "staszowski": ['Bogoria', 'Łubnice', 'Oleśnica', 'Osiek - miasto', 'Osiek - obszar wiejski', 'Połaniec - miasto', 'Połaniec - obszar wiejski', 'Rytwiany', 'Staszów - miasto', 'Staszów - obszar wiejski', 'Szydłów - miasto', 'Szydłów - obszar wiejski'],
+            "włoszczowski": ['Kluczewsko', 'Krasocin', 'Moskorzew', 'Radków', 'Secemin', 'Włoszczowa - miasto', 'Włoszczowa - obszar wiejski'],
+            "bartoszycki": ['Bartoszyce', 'Bartoszyce (gm. miejska)', 'Bisztynek - miasto', 'Bisztynek - obszar wiejski', 'Górowo Iławeckie', 'Górowo Iławeckie (gm. miejska)', 'Sępopol - miasto', 'Sępopol - obszar wiejski'],
+            "braniewski": ['Braniewo', 'Braniewo (gm. miejska)', 'Frombork - miasto', 'Frombork - obszar wiejski', 'Lelkowo', 'Pieniężno - miasto', 'Pieniężno - obszar wiejski', 'Płoskinia', 'Wilczęta'],
+            "działdowski": ['Działdowo', 'Działdowo (gm. miejska)', 'Iłowo-Osada', 'Lidzbark - miasto', 'Lidzbark - obszar wiejski', 'Płośnica', 'Rybno'],
+            "Elbląg": ['Elbląg'],
+            "elbląski": ['Elbląg', 'Godkowo', 'Gronowo Elbląskie', 'Markusy', 'Milejewo', 'Młynary - miasto', 'Młynary - obszar wiejski', 'Pasłęk - miasto', 'Pasłęk - obszar wiejski', 'Rychliki', 'Tolkmicko - miasto', 'Tolkmicko - obszar wiejski'],
+            "ełcki": ['Ełk', 'Ełk (gm. miejska)', 'Kalinowo', 'Prostki', 'Stare Juchy'],
+            "giżycki": ['Giżycko', 'Giżycko (gm. miejska)', 'Kruklanki', 'Miłki', 'Ryn - miasto', 'Ryn - obszar wiejski', 'Wydminy'],
+            "gołdapski": ['Banie Mazurskie', 'Dubeninki', 'Gołdap - miasto', 'Gołdap - obszar wiejski'],
+            "iławski": ['Iława', 'Iława (gm. miejska)', 'Kisielice - miasto', 'Kisielice - obszar wiejski', 'Lubawa', 'Lubawa (gm. miejska)', 'Susz - miasto', 'Susz - obszar wiejski', 'Zalewo - miasto', 'Zalewo - obszar wiejski'],
+            "kętrzyński": ['Barciany', 'Kętrzyn', 'Kętrzyn (gm. miejska)', 'Korsze - miasto', 'Korsze - obszar wiejski', 'Reszel - miasto', 'Reszel - obszar wiejski', 'Srokowo'],
+            "lidzbarski": ['Kiwity', 'Lidzbark Warmiński', 'Lidzbark Warmiński (gm. miejska)', 'Lubomino', 'Orneta - miasto', 'Orneta - obszar wiejski'],
+            "mrągowski": ['Mikołajki - miasto', 'Mikołajki - obszar wiejski', 'Mrągowo', 'Mrągowo (gm. miejska)', 'Piecki', 'Sorkwity'],
+            "nidzicki": ['Janowiec Kościelny', 'Janowo', 'Kozłowo', 'Nidzica - miasto', 'Nidzica - obszar wiejski'],
+            "nowomiejski": ['Biskupiec', 'Grodziczno', 'Kurzętnik', 'Nowe Miasto Lubawskie', 'Nowe Miasto Lubawskie (gm. miejska)'],
+            "olecki": ['Kowale Oleckie', 'Olecko - miasto', 'Olecko - obszar wiejski', 'Świętajno', 'Wieliczki'],
+            "Olsztyn": ['Olsztyn'],
+            "olsztyński": ['Barczewo - miasto', 'Barczewo - obszar wiejski', 'Biskupiec - miasto', 'Biskupiec - obszar wiejski', 'Dobre Miasto - miasto', 'Dobre Miasto - obszar wiejski', 'Dywity', 'Gietrzwałd', 'Jeziorany - miasto', 'Jeziorany - obszar wiejski', 'Jonkowo', 'Kolno', 'Olsztynek - miasto', 'Olsztynek - obszar wiejski', 'Purda', 'Stawiguda', 'Świątki'],
+            "ostródzki": ['Dąbrówno', 'Grunwald', 'Łukta', 'Małdyty', 'Miłakowo - miasto', 'Miłakowo - obszar wiejski', 'Miłomłyn - miasto', 'Miłomłyn - obszar wiejski', 'Morąg - miasto', 'Morąg - obszar wiejski', 'Ostróda', 'Ostróda (gm. miejska)'],
+            "piski": ['Biała Piska - miasto', 'Biała Piska - obszar wiejski', 'Orzysz - miasto', 'Orzysz - obszar wiejski', 'Pisz - miasto', 'Pisz - obszar wiejski', 'Ruciane-Nida - miasto', 'Ruciane-Nida - obszar wiejski'],
+            "szczycieński": ['Dźwierzuty', 'Jedwabno', 'Pasym - miasto', 'Pasym - obszar wiejski', 'Rozogi', 'Szczytno', 'Szczytno (gm. miejska)', 'Świętajno', 'Wielbark - miasto', 'Wielbark - obszar wiejski'],
+            "węgorzewski": ['Budry', 'Pozezdrze', 'Węgorzewo - miasto', 'Węgorzewo - obszar wiejski'],
+            "chodzieski": ['Budzyń', 'Chodzież', 'Chodzież (gm. miejska)', 'Margonin - miasto', 'Margonin - obszar wiejski', 'Szamocin - miasto', 'Szamocin - obszar wiejski'],
+            "czarnkowsko-trzcianecki": ['Czarnków', 'Czarnków (gm. miejska)', 'Drawsko', 'Krzyż Wielkopolski - miasto', 'Krzyż Wielkopolski - obszar wiejski', 'Lubasz', 'Połajewo', 'Trzcianka - miasto', 'Trzcianka - obszar wiejski', 'Wieleń - miasto', 'Wieleń - obszar wiejski'],
+            "gnieźnieński": ['Czerniejewo - miasto', 'Czerniejewo - obszar wiejski', 'Gniezno', 'Gniezno (gm. miejska)', 'Kiszkowo', 'Kłecko - miasto', 'Kłecko - obszar wiejski', 'Łubowo', 'Mieleszyn', 'Niechanowo', 'Trzemeszno - miasto', 'Trzemeszno - obszar wiejski', 'Witkowo - miasto', 'Witkowo - obszar wiejski'],
+            "gostyński": ['Borek Wielkopolski - miasto', 'Borek Wielkopolski - obszar wiejski', 'Gostyń - miasto', 'Gostyń - obszar wiejski', 'Krobia - miasto', 'Krobia - obszar wiejski', 'Pępowo', 'Piaski', 'Pogorzela - miasto', 'Pogorzela - obszar wiejski', 'Poniec - miasto', 'Poniec - obszar wiejski'],
+            "jarociński": ['Jaraczewo - miasto', 'Jaraczewo - obszar wiejski', 'Jarocin - miasto', 'Jarocin - obszar wiejski', 'Kotlin', 'Żerków - miasto', 'Żerków - obszar wiejski'],
+            "kaliski": ['Blizanów', 'Brzeziny', 'Ceków-Kolonia', 'Godziesze Wielkie', 'Koźminek', 'Lisków', 'Mycielin', 'Opatówek - miasto', 'Opatówek - obszar wiejski', 'Stawiszyn - miasto', 'Stawiszyn - obszar wiejski', 'Szczytniki', 'Żelazków'],
+            "Kalisz": ['Kalisz'],
+            "kępiński": ['Baranów', 'Bralin', 'Kępno - miasto', 'Kępno - obszar wiejski', 'Łęka Opatowska', 'Perzów', 'Rychtal', 'Trzcinica'],
+            "kolski": ['Babiak', 'Chodów', 'Dąbie - miasto', 'Dąbie - obszar wiejski', 'Grzegorzew', 'Kłodawa - miasto', 'Kłodawa - obszar wiejski', 'Koło', 'Koło (gm. miejska)', 'Kościelec', 'Olszówka', 'Osiek Mały', 'Przedecz - miasto'],
+            "Konin": ['Konin'],
+            "koniński": ['Golina - miasto', 'Golina - obszar wiejski', 'Grodziec', 'Kazimierz Biskupi', 'Kleczew - miasto', 'Kleczew - obszar wiejski', 'Kramsk', 'Krzymów', 'Rychwał - miasto', 'Rychwał - obszar wiejski', 'Rzgów', 'Skulsk', 'Sompolno - miasto', 'Sompolno - obszar wiejski', 'Stare Miasto', 'Ślesin - miasto', 'Ślesin - obszar wiejski', 'Wierzbinek', 'Wilczyn'],
+            "kościański": ['Czempiń - miasto', 'Czempiń - obszar wiejski', 'Kościan', 'Kościan (gm. miejska)', 'Krzywiń - miasto', 'Krzywiń - obszar wiejski', 'Śmigiel - miasto', 'Śmigiel - obszar wiejski'],
+            "krotoszyński": ['Kobylin - miasto', 'Kobylin - obszar wiejski', 'Koźmin Wielkopolski - miasto', 'Koźmin Wielkopolski - obszar wiejski', 'Krotoszyn - miasto', 'Krotoszyn - obszar wiejski', 'Rozdrażew', 'Sulmierzyce', 'Zduny - miasto', 'Zduny - obszar wiejski'],
+            "leszczyński": ['Krzemieniewo', 'Lipno', 'Osieczna - miasto', 'Osieczna - obszar wiejski', 'Rydzyna - miasto', 'Rydzyna - obszar wiejski', 'Święciechowa', 'Wijewo', 'Włoszakowice'],
+            "Leszno": ['Leszno'],
+            "międzychodzki": ['Chrzypsko Wielkie', 'Kwilcz', 'Międzychód - miasto', 'Międzychód - obszar wiejski', 'Sieraków - miasto', 'Sieraków - obszar wiejski'],
+            "nowotomyski": ['Kuślin', 'Lwówek - miasto', 'Lwówek - obszar wiejski', 'Miedzichowo', 'Nowy Tomyśl - miasto', 'Nowy Tomyśl - obszar wiejski', 'Opalenica - miasto', 'Opalenica - obszar wiejski', 'Zbąszyń - miasto', 'Zbąszyń - obszar wiejski'],
+            "obornicki": ['Oborniki - miasto', 'Oborniki - obszar wiejski', 'Rogoźno - miasto', 'Rogoźno - obszar wiejski', 'Ryczywół'],
+            "ostrzeszowski": ['Doruchów', 'Grabów nad Prosną - miasto', 'Grabów N/Prosną - obszar wiejski', 'Kobyla Góra', 'Kraszewice', 'Mikstat - miasto', 'Mikstat - obszar wiejski', 'Ostrzeszów - miasto', 'Ostrzeszów - obszar wiejski'],
+            "pilski": ['Białośliwie', 'Kaczory', 'Łobżenica - miasto', 'Łobżenica - obszar wiejski', 'Miasteczko Krajeńskie', 'Piła', 'Szydłowo', 'Ujście - miasto', 'Ujście - obszar wiejski', 'Wyrzysk - miasto', 'Wyrzysk - obszar wiejski', 'Wysoka - miasto', 'Wysoka - obszar wiejski'],
+            "pleszewski": ['Chocz - miasto', 'Chocz - obszar wiejski', 'Czermin', 'Dobrzyca - miasto', 'Dobrzyca - obszar wiejski', 'Gizałki', 'Gołuchów', 'Pleszew - miasto', 'Pleszew - obszar wiejski'],
+            "Poznań": ['Poznań'],
+            "poznański": ['Buk - miasto', 'Buk - obszar wiejski', 'Czerwonak', 'Dopiewo', 'Kleszczewo', 'Komorniki', 'Kostrzyn - miasto', 'Kostrzyn - obszar wiejski', 'Kórnik - miasto', 'Kórnik - obszar wiejski', 'Luboń', 'Mosina - miasto', 'Mosina - obszar wiejski', 'Murowana Goślina - miasto', 'Murowana Goślina - obszar wiejski', 'Pobiedziska - miasto', 'Pobiedziska - obszar wiejski', 'Puszczykowo', 'Rokietnica', 'Stęszew - miasto', 'Stęszew - obszar wiejski', 'Suchy Las', 'Swarzędz - miasto', 'Swarzędz - obszar wiejski', 'Tarnowo Podgórne'],
+            "rawicki": ['Bojanowo - miasto', 'Bojanowo - obszar wiejski', 'Jutrosin - miasto', 'Jutrosin - obszar wiejski', 'Miejska Górka - miasto', 'Miejska Górka - obszar wiejski', 'Pakosław', 'Rawicz - miasto', 'Rawicz - obszar wiejski'],
+            "słupecki": ['Lądek', 'Orchowo', 'Ostrowite', 'Powidz', 'Słupca', 'Słupca (gm. miejska)', 'Strzałkowo', 'Zagórów - miasto', 'Zagórów - obszar wiejski'],
+            "szamotulski": ['Duszniki', 'Kaźmierz', 'Obrzycko', 'Obrzycko (gm. miejska)', 'Ostroróg - miasto', 'Ostroróg - obszar wiejski', 'Pniewy - miasto', 'Pniewy - obszar wiejski', 'Szamotuły - miasto', 'Szamotuły - obszar wiejski', 'Wronki - miasto', 'Wronki - obszar wiejski'],
+            "śremski": ['Brodnica', 'Dolsk - miasto', 'Dolsk - obszar wiejski', 'Książ Wielkopolski - miasto', 'Książ Wielkopolski - obszar wiejski', 'Śrem - miasto', 'Śrem - obszar wiejski'],
+            "turecki": ['Brudzew', 'Dobra - miasto', 'Dobra - obszar wiejski', 'Kawęczyn', 'Malanów', 'Przykona', 'Tuliszków - miasto', 'Tuliszków - obszar wiejski', 'Turek', 'Turek (gm. miejska)', 'Władysławów'],
+            "wągrowiecki": ['Damasławek', 'Gołańcz - miasto', 'Gołańcz - obszar wiejski', 'Mieścisko', 'Skoki - miasto', 'Skoki - obszar wiejski', 'Wapno', 'Wągrowiec', 'Wągrowiec (gm. miejska)'],
+            "wolsztyński": ['Przemęt', 'Siedlec', 'Wolsztyn - miasto', 'Wolsztyn - obszar wiejski'],
+            "wrzesiński": ['Kołaczkowo', 'Miłosław - miasto', 'Miłosław - obszar wiejski', 'Nekla - miasto', 'Nekla - obszar wiejski', 'Pyzdry - miasto', 'Pyzdry - obszar wiejski', 'Września - miasto', 'Września - obszar wiejski'],
+            "złotowski": ['Jastrowie - miasto', 'Jastrowie - obszar wiejski', 'Krajenka - miasto', 'Krajenka - obszar wiejski', 'Lipka', 'Okonek - miasto', 'Okonek - obszar wiejski', 'Tarnówka', 'Zakrzewo', 'Złotów', 'Złotów (gm. miejska)'],
+            "białogardzki": ['Białogard', 'Białogard (gm. miejska)', 'Karlino - miasto', 'Karlino - obszar wiejski', 'Tychowo - miasto', 'Tychowo - obszar wiejski'],
+            "choszczeński": ['Bierzwnik', 'Choszczno - miasto', 'Choszczno - obszar wiejski', 'Drawno - miasto', 'Drawno - obszar wiejski', 'Krzęcin', 'Pełczyce - miasto', 'Pełczyce - obszar wiejski', 'Recz - miasto', 'Recz - obszar wiejski'],
+            "drawski": ['Czaplinek - miasto', 'Czaplinek - obszar wiejski', 'Drawsko Pomorskie - miasto', 'Drawsko Pomorskie - obszar wiejski', 'Kalisz Pomorski - miasto', 'Kalisz Pomorski - obszar wiejski', 'Wierzchowo', 'Złocieniec - miasto', 'Złocieniec - obszar wiejski'],
+            "goleniowski": ['Goleniów - miasto', 'Goleniów - obszar wiejski', 'Maszewo - miasto', 'Maszewo - obszar wiejski', 'Nowogard - miasto', 'Nowogard - obszar wiejski', 'Osina', 'Przybiernów', 'Stepnica - miasto', 'Stepnica - obszar wiejski'],
+            "gryficki": ['Brojce', 'Gryfice - miasto', 'Gryfice - obszar wiejski', 'Karnice', 'Płoty - miasto', 'Płoty - obszar wiejski', 'Rewal', 'Trzebiatów - miasto', 'Trzebiatów - obszar wiejski'],
+            "gryfiński": ['Banie', 'Cedynia - miasto', 'Cedynia - obszar wiejski', 'Chojna - miasto', 'Chojna - obszar wiejski', 'Gryfino - miasto', 'Gryfino - obszar wiejski', 'Mieszkowice - miasto', 'Mieszkowice - obszar wiejski', 'Moryń - miasto', 'Moryń - obszar wiejski', 'Stare Czarnowo', 'Trzcińsko Zdrój - miasto', 'Trzcińsko Zdrój - obszar wiejski', 'Widuchowa'],
+            "kamieński": ['Dziwnów - miasto', 'Golczewo - miasto', 'Golczewo - obszar wiejski', 'Kamień Pomorski - miasto', 'Kamień Pomorski - obszar wiejski', 'Międzyzdroje - miasto', 'Międzyzdroje - obszar wiejski', 'Świerzno', 'Wolin - miasto', 'Wolin - obszar wiejski'],
+            "kołobrzeski": ['Dygowo', 'Gościno - miasto', 'Gościno - obszar wiejski', 'Kołobrzeg', 'Kołobrzeg (gm. miejska)', 'Rymań', 'Siemyśl', 'Ustronie Morskie'],
+            "Koszalin": ['Koszalin'],
+            "koszaliński": ['Będzino', 'Biesiekierz', 'Bobolice - miasto', 'Bobolice - obszar wiejski', 'Manowo', 'Mielno - miasto', 'Mielno - obszar wiejski', 'Polanów - miasto', 'Polanów - obszar wiejski', 'Sianów - miasto', 'Sianów - obszar wiejski', 'Świeszyno'],
+            "łobeski": ['Dobra - miasto', 'Dobra - obszar wiejski', 'Łobez - miasto', 'Łobez - obszar wiejski', 'Radowo Małe', 'Resko - miasto', 'Resko - obszar wiejski', 'Węgorzyno - obszar wiejski'],
+            "myśliborski": ['Barlinek - miasto', 'Barlinek - obszar wiejski', 'Boleszkowice', 'Dębno - miasto', 'Dębno - obszar wiejski', 'Myślibórz - miasto', 'Myślibórz - obszar wiejski', 'Nowogródek Pomorski'],
+            "policki": ['Dobra (Szczecińska)', 'Kołbaskowo', 'Nowe Warpno - miasto', 'Nowe Warpno - obszar wiejski', 'Police - miasto', 'Police - obszar wiejski'],
+            "pyrzycki": ['Bielice', 'Kozielice', 'Lipiany - miasto', 'Lipiany - obszar wiejski', 'Przelewice', 'Pyrzyce - miasto', 'Pyrzyce - obszar wiejski', 'Warnice'],
+            "sławieński": ['Darłowo', 'Darłowo (gm. miejska)', 'Malechowo', 'Postomino', 'Sławno', 'Sławno (gm. miejska)'],
+            "stargardzki": ['Chociwel - miasto', 'Chociwel - obszar wiejski', 'Dobrzany - miasto', 'Dobrzany - obszar wiejski', 'Dolice', 'Ińsko - miasto', 'Ińsko - obszar wiejski', 'Kobylanka', 'Marianowo', 'Stara Dąbrowa', 'Stargard', 'Stargard (gm. miejska)', 'Suchań - miasto', 'Suchań - obszar wiejski'],
+            "Szczecin": ['Szczecin'],
+            "szczecinecki": ['Barwice - miasto', 'Barwice - obszar wiejski', 'Biały Bór - miasto', 'Biały Bór - obszar wiejski', 'Borne Sulinowo - obszar wiejski', 'Grzmiąca', 'Szczecinek', 'Szczecinek (gm. miejska)'],
+            "świdwiński": ['Brzeżno', 'Połczyn- miasto', 'Połczyn-Zdrój - obszar wiejski', 'Rąbino', 'Sławoborze', 'Świdwin', 'Świdwin (gm. miejska)'],
+            "Świnoujście": ['Świnoujście'],
+            "wałecki": ['Człopa - miasto', 'Człopa - obszar wiejski', 'Mirosławiec - miasto', 'Mirosławiec - obszar wiejski', 'Tuczno - miasto', 'Tuczno - obszar wiejski', 'Wałcz', 'Wałcz (gm. miejska)'],
+
+        };
+
+        document.getElementById('voivodeship').addEventListener('change', function() {
+            const selectedVoivodeship = this.value;
+            const countyList = document.getElementById('countyList');
+            countyList.innerHTML = '';  // Wyczyszczenie poprzednich opcji
+
+            if (selectedVoivodeship && countiesByVoivodeship[selectedVoivodeship]) {
+                const counties = countiesByVoivodeship[selectedVoivodeship];
+
+                // Dodanie nowych opcji powiatów do datalistu
+                counties.forEach(county => {
+                    const option = document.createElement('option');
+                    option.value = county;
+                    countyList.appendChild(option);
+                });
+            }
+        });
+
+        document.getElementById('county').addEventListener('change', function() {
+            const selectedCounty = this.value;
+            const parishList = document.getElementById('parishList');
+
+            parishList.innerHTML = ''; // Czyszczenie poprzednich opcji
+
+            // Wypełnianie listy gmin
+            if (selectedCounty && parishesByCounty[selectedCounty]) {
+                const parishes = parishesByCounty[selectedCounty];
+
+                parishes.forEach(parish => {
+                    const option = document.createElement('option');
+                    option.value = parish;
+                    parishList.appendChild(option);
+                });
+            }
+        });
+    </script>
+    {% endblock %}
