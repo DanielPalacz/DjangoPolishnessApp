@@ -61,22 +61,6 @@ poznajmypolske.pl
         {% csrf_token %}
         <div class="row mb-3">
             <div class="col-lg-3 col-md-6 col-sm-12 p-1">
-                <input type="text" name="locality" placeholder="...wpisz miejscowość..." class="form-control custom-rounded" autocomplete="off">
-            </div>
-        <div class="col-lg-3 col-md-6 col-sm-12 p-1">
-            <input type="text" id="parish" name="parish" placeholder="...wpisz lub wybierz gminę..." list="parishList" class="form-control custom-rounded" autocomplete="off">
-            <datalist id="parishList">
-                <!-- Lista gmin będzie dynamicznie wypełniana -->
-            </datalist>
-        </div>
-
-        <div class="col-lg-3 col-md-6 col-sm-12 p-1">
-            <input type="text" id="county" name="county" placeholder="...wpisz lub wybierz powiat..." list="countyList" class="form-control custom-rounded" autocomplete="off">
-            <datalist id="countyList">
-                <!-- Zostanie dynamicznie wypełnione przez skrypt -->
-            </datalist>
-        </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 p-1">
                 <select name="voivodeship" id="voivodeship"  class="form-control custom-rounded">
                     <option value="" disabled selected>...wybierz województwo...</option>
                     <option value="dolnośląskie">Dolnośląskie</option>
@@ -96,6 +80,21 @@ poznajmypolske.pl
                     <option value="wielkopolskie">Wielkopolskie</option>
                     <option value="zachodniopomorskie">Zachodniopomorskie</option>
                 </select>
+            </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 p-1">
+            <input type="text" id="county" name="county" placeholder="...wpisz lub wybierz powiat..." list="countyList" class="form-control custom-rounded" autocomplete="off">
+            <datalist id="countyList">
+                <!-- Zostanie dynamicznie wypełnione przez skrypt -->
+            </datalist>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 p-1">
+            <input type="text" id="parish" name="parish" placeholder="...wpisz lub wybierz gminę..." list="parishList" class="form-control custom-rounded" autocomplete="off">
+            <datalist id="parishList">
+                <!-- Lista gmin będzie dynamicznie wypełniana -->
+            </datalist>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 p-1">
+                <input type="text" name="locality" placeholder="...wpisz miejscowość..." class="form-control custom-rounded" autocomplete="off">
             </div>
         </div>
 
