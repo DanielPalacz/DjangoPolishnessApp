@@ -32,6 +32,10 @@ poznajmypolske.pl
         background-color: #F5DECF; /* Delikatny pszeniczny kolor */
     }
 
+    .text-custom {
+        background-color: #F5DECF;
+    }
+
 
 {% endblock %}
 
@@ -78,11 +82,13 @@ poznajmypolske.pl
                         </tbody>
                     </table>
                 </div>
-
+                <div class="text-custom">
+                    <p>{{response_ai}}</p>
+                </div>
             </div>
             <!-- Button with call-to-action -->
                 <a href="https://www.google.com/maps?q={{nature_item.latitude}},{{nature_item.longitude}}" class="btn btn-dark btn-lg mt-3" style="font-weight: bold; text-align: center;">Link do miejsca na mapach Google.</a>
-                <a href="{% url 'polishness:nature_single_ai' nature_item.id %}" class="btn btn-dark btn-lg mt-3" style="font-weight: bold; text-align: center;">Zapytaj sztucznej inteligencji o to miejsce (openai.com).</a>
+                <a href="{% url 'polishness:nature_single_ai' nature_item.id %}" class="btn btn-dark btn-lg mt-3" style="font-weight: bold; text-align: center;">Zapytaj sztucznej inteligencji o więcej informacji o tym miejscu.</a>
 
         </div>
     </div>

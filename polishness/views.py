@@ -211,7 +211,13 @@ def nature_single(request, pk):
         f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
         f"(view: {parent_function_name()!r}, path: {request.path!r})."
     )
-    return render(request, "polishness/nature_single.html", {"nature_item": nature_item})
+    ask_text = (
+        f"Opowiedz mi o obiekcie przyrodniczym: {nature_item.name}. Typ obiektu: {nature_item.geo_object_type}."
+        f" Lokalizacja obiektu: województwo {nature_item.voivodeship}, powiat: {nature_item.county},"
+        f" gmina: {nature_item.parish}. Opis ma mieć maksymalnie 4 zdania."
+    )
+    response_ai = ask_ai(ask=ask_text)
+    return render(request, "polishness/nature_single.html", {"nature_item": nature_item, "response_ai": response_ai})
 
 
 def nature_single_ai(request, pk):
