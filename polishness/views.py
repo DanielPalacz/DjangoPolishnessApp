@@ -83,6 +83,7 @@ def monuments(request):
     if request.method == "POST":
         query_params = MonumentsSupport.get_monument_query_params(request.POST)
         quantity = query_params.pop("quantity")
+        quantity = 100 if int(quantity) > 100 else int(quantity)
         try:
             is_archeological = bool(query_params.pop("is_archeological"))
         except KeyError:
@@ -91,7 +92,7 @@ def monuments(request):
         if is_archeological:
             archeo_monuments_filtered = ArcheologicalMonument.objects.filter(**query_params)
             archeo_monuments = MonumentsSupport.randomize_monuments(
-                quantity=int(quantity), monuments=archeo_monuments_filtered
+                quantity=quantity, monuments=archeo_monuments_filtered
             )
             return render(request, "polishness/archeological-monuments.html", {"archeo_monuments": archeo_monuments})
 
