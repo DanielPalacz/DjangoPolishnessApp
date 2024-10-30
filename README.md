@@ -1,6 +1,6 @@
 # DjangoPolishnessApp
 
-###### Deployed here: http://poznajmypolske.pl/
+###### Deployed here: https://poznajmypolske.pl/
 
 ### Development usage
 ```
