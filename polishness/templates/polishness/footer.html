@@ -1,3 +1,5 @@
+{% block style %}
+
 <style>
         /* Footer Basic Styles */
     footer {
@@ -60,8 +62,29 @@
         width: 100%; /* Full underline on hover */
     }
 
+    /* Styl dla linków do mediów społecznościowych */
+    .social-links a {
+        display: block;
+        margin-bottom: 2px; /* Dodaje odstęp między linkami */
+    }
+
+    /* Dostosowanie kolorów dla poszczególnych platform */
+    .social-links a[href*="facebook"] { color: #b39ddb; }
+    .social-links a[href*="twitter"] { color: #1da1f2; }
+    .social-links a[href*="instagram"] { color: #e1306c; }
+    .social-links a[href*="linkedin"] { color: #d4a5ff; }
+
+    a[href*="danielpalacz.pythonanywhere.com"] {
+        color: #cba6d6; /* Lawendowy */
+    }
+
+    a[href*="danielpalacz.pythonanywhere.com"]:hover {
+        color: #cba6d6;
+    }
+
 </style>
 
+{% endblock %}
 
 <!-- templates/footer.html -->
 <footer class="bg-dark text-white py-2">
@@ -84,18 +107,19 @@
             </div>
 
             <!-- Social Media Links -->
-            <div class="col-md-4 col-sm-12">
-                <h4 style="font-weight: bold;">Inne moje strony:</h4>
-                <a href="https://danielpalacz.pythonanywhere.com/" class="text-white mr-3">
-                    <i class="fab"></i> Prywatna
-                </a>
+            <div class="col-md-4 col-sm-12 social-links">
+                <h4 style="font-weight: bold;">Inne strony:</h4>
+                    <a href="https://danielpalacz.pythonanywhere.com" target="_blank" aria-label="Prywatna">
+                        <i class="fas fa-user"></i> Prywatna
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61558080466350" target="_blank" aria-label="Facebook">
+                        <i class="fab fa-facebook"></i> Facebook
+                    </a>
+                    <a href="https://www.linkedin.com/in/daniel-palacz-17184aa6/" target="_blank" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
             </div>
         </div>
 
-        <div class="row mt-0 mb-0">
-            <div class="col text-center">
-                <p class="mb-0" style="font-size: 0.8rem;">&copy; 2024 PYX Daniel Palacz. Wszystkie prawa zastrzeżone.</p>
-            </div>
-        </div>
     </div>
 </footer>
