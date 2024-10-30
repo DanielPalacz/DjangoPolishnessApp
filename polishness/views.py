@@ -173,7 +173,7 @@ def nature(request):
     if request.method == "POST":
         query_params = GeoObjectsSupport.get_query_params(request.POST)
         quantity = query_params.pop("quantity")
-        quantity = 1000 if int(quantity) > 1000 else int(quantity)
+        quantity = 5000 if int(quantity) > 5000 else int(quantity)
         try:
             nature_object_type = query_params.pop("nature_objects")
         except KeyError:
