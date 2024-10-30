@@ -113,7 +113,18 @@ def monument_single(request, pk):
         f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
         f"(view: {parent_function_name()!r}, path: {request.path!r})."
     )
-    return render(request, "polishness/monument_single.html", {"monument": monument_item})
+
+    ask_text = f"Opowiedz mi o zabytku: {monument_item.name}, {monument_item.locality}"
+    if monument_item.street and monument_item.street != "nan":
+        ask_text += f", {monument_item.street}"
+
+    if monument_item.address_number and monument_item.address_number != "nan":
+        ask_text += f", {monument_item.address_number}"
+
+    ask_text += "Opis ma mieć maksymalnie 4 zdania."
+    response_ai = ask_ai(ask=ask_text)
+
+    return render(request, "polishness/monument_single.html", {"monument": monument_item, "response_ai": response_ai})
 
 
 def monument_single_archeo(request, pk):
@@ -123,7 +134,18 @@ def monument_single_archeo(request, pk):
         f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
         f"(view: {parent_function_name()!r}, path: {request.path!r})."
     )
-    return render(request, "polishness/monument_single_archeo.html", {"monument": monument_item})
+
+    ask_text = (
+        f"Opowiedz mi o zabytku archeogicznym: "
+        f"{monument_item.name}, {monument_item.locality}, {monument_item.chronology}, {monument_item.function}. "
+        f"Opis ma mieć maksymalnie 4 zdania."
+    )
+
+    response_ai = ask_ai(ask=ask_text)
+
+    return render(
+        request, "polishness/monument_single_archeo.html", {"monument": monument_item, "response_ai": response_ai}
+    )
 
 
 def monument_single_ai(request, pk):
