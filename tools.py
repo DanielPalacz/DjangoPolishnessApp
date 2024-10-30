@@ -151,7 +151,7 @@ class GeoObjectsSupport:
     """Class with static method for supporting geographical object functionalities."""
 
     MAPPER = {
-        "doliny": ["dolina", "jar", "wąwóz", "rów", "obiniżenie", "zagłębienie"],
+        "doliny": ["dolina", "jar", "wąwóz", "wąwozy", "rów", "obniżenie", "zagłębienie"],
         "bagna": ["bagna/błota", "bagno/błoto", "torfowiska", "torfowisko"],
         "cyrki": ["cyrk lodowcowy"],
         "gory": ["góry", "góra/szczyt", "wzgórze/wzniesienie", "wzgórza/wzniesienia", "zbocze/stok", "pasmo górskie"],
