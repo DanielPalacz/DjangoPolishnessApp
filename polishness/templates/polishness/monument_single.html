@@ -79,22 +79,35 @@ poznajmypolske.pl
                                 <td class="fw-bold text-end">Miejscowość</td>
                                 <td>{{ monument.locality }}</td>
                             </tr>
-                            <tr>
-                                <td class="fw-bold text-end">Ulica</td>
-                                <td>{% if monument.street == "nan" %}-{% else %}{{ monument.street }}{% endif %}</td>
-                            </tr>
-                            <tr>
-                                <td class="fw-bold text-end">Numer domu</td>
-                                <td>{% if monument.address_number == "nan" %}-{% else %}{{ monument.address_number }}{% endif %}</td>
-                            </tr>
-                            <tr>
-                                <td class="fw-bold text-end">Szerokość geograficzna</td>
-                                <td>{% if monument.latitude == "nan" %}-{% else %}{{ monument.latitude }}{% endif %}</td>
-                            </tr>
-                            <tr>
-                                <td class="fw-bold text-end">Długość geograficzna</td>
-                                <td>{% if monument.longitude == "nan" %}-{% else %}{{ monument.longitude }}{% endif %}</td>
-                            </tr>
+
+                                {% if monument.street == "nan" %}{% else %}
+                                 <tr>
+                                    <td class="fw-bold text-end">Ulica</td>
+                                    <td>{{ monument.street }}</td>
+                                 </tr>
+                                {% endif %}
+
+                                {% if monument.address_number == "nan" %}{% else %}
+                                 <tr>
+                                    <td class="fw-bold text-end">Numer domu</td>
+                                    <td>{{ monument.address_number }}</td>
+                                 </tr>
+                                {% endif %}
+
+                                {% if monument.longitude == "nan" %}{% else %}
+                                 <tr>
+                                    <td class="fw-bold text-end">Szerokość geograficzna</td>
+                                    <td>{{ monument.latitude }}</td>
+                                 </tr>
+                                {% endif %}
+
+                                {% if monument.longitude == "nan" %}{% else %}
+                                 <tr>
+                                    <td class="fw-bold text-end">Długość geograficzna</td>
+                                    <td>{{ monument.longitude }}</td>
+                                 </tr>
+                                {% endif %}
+
                         </tbody>
                     </table>
                 </div>
@@ -102,7 +115,7 @@ poznajmypolske.pl
             </div>
             <!-- Button with call-to-action -->
                 <a href="https://zabytek.pl/pl/obiekty/zabytek?inspire_id={{monument.library_id}}&rejestr=rejestr-zabytk%C3%B3w" class="btn btn-dark btn-lg mt-3" style="font-weight: bold; text-align: center;">Informacje na portalu zabytek.pl.</a>
-                <a href="{% url 'polishness:monument_single_ai' monument.id %}" class="btn btn-dark btn-lg mt-3" style="font-weight: bold; text-align: center;">Zapytaj sztucznej inteligencji o to miejsce (openai.com).</a>
+                <a href="{% url 'polishness:monument_single_ai' monument.id %}" class="btn btn-dark btn-lg mt-1" style="font-weight: bold; text-align: center;">Zapytaj sztucznej inteligencji o to miejsce (openai.com).</a>
 
         </div>
     </div>

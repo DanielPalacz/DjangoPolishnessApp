@@ -51,34 +51,34 @@ poznajmypolske.pl
                                 <td class="fw-bold text-end">Funkcja</td>
                                 <td>{{ monument.function }}</td>
                             </tr>
-                            <tr>
-                                <td class="fw-bold text-end">Numer identyfikacyjny zabytku</td>
-                                <td>{{ monument.library_id }}</td>
-                            </tr>
+<!--                            <tr>-->
+<!--                                <td class="fw-bold text-end">Numer identyfikacyjny zabytku</td>-->
+<!--                                <td>{{ monument.library_id }}</td>-->
+<!--                            </tr>-->
                             <tr>
                                 <td class="fw-bold text-end">Forma ochrony</td>
                                 <td>{{ monument.security_form }}</td>
                             </tr>
-                            <tr>
-                                <td class="fw-bold text-end">Dokładność położenia</td>
-                                <td>{{ monument.location_accuracy }}</td>
-                            </tr>
+<!--                            <tr>-->
+<!--                                <td class="fw-bold text-end">Dokładność położenia</td>-->
+<!--                                <td>{{ monument.location_accuracy }}</td>-->
+<!--                            </tr>-->
                             <tr>
                                 <td class="fw-bold text-end">Obszar AZP</td>
-                                <td>{{ monument.field_azp }}</td>
+                                <td>{% if monument.field_azp == "nan" %}-{% else %}{{ monument.field_azp }}{% endif %}</td>
                             </tr>
                             <tr>
                                 <td class="fw-bold text-end">Numer stanowiska</td>
-                                <td>{{ monument.position_area_number }}</td>
+                                <td>{% if monument.position_area_number == "nan" %}-{% else %}{{ monument.position_area_number }}{% endif %}</td>
                             </tr>
                             <tr>
                                 <td class="fw-bold text-end">Chronologia</td>
                                 <td>{{ monument.chronology }}</td>
                             </tr>
-                            <tr>
-                                <td class="fw-bold text-end">Wykaz dokumentów</td>
-                                <td>{{ monument.documents }}</td>
-                            </tr>
+<!--                            <tr>-->
+<!--                                <td class="fw-bold text-end">Wykaz dokumentów</td>-->
+<!--                                <td>{{ monument.documents }}</td>-->
+<!--                            </tr>-->
                             <tr>
                                 <td class="fw-bold text-end">Data wpisu</td>
                                 <td>{{ monument.registration_date }}</td>
@@ -105,8 +105,8 @@ poznajmypolske.pl
 
             </div>
             <!-- Button with call-to-action -->
-                <a href="https://zabytek.pl/pl/obiekty/zabytek?inspire_id={{monument.library_id}}&rejestr=rejestr-zabytk%C3%B3w" class="btn btn-primary btn-lg mt-3" style="font-weight: bold; text-align: center;">Informacje na portalu zabytek.pl.</a>
-                <a href="{% url 'polishness:monument_archeo_single_ai' monument.id %}" class="btn btn-primary btn-lg mt-3" style="font-weight: bold; text-align: center;">Zapytaj sztucznej inteligencji o to miejsce (openai.com).</a>
+                <a href="https://zabytek.pl/pl/obiekty/zabytek?inspire_id={{monument.library_id}}&rejestr=rejestr-zabytk%C3%B3w" class="btn btn-dark btn-lg mt-3" style="font-weight: bold; text-align: center;">Informacje na portalu zabytek.pl.</a>
+                <a href="{% url 'polishness:monument_archeo_single_ai' monument.id %}" class="btn btn-dark btn-lg mt-3" style="font-weight: bold; text-align: center;">Zapytaj sztucznej inteligencji o to miejsce (openai.com).</a>
         </div>
     </div>
 </div>
