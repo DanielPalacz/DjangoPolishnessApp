@@ -41,7 +41,6 @@ poznajmypolske.pl
         height: 100%;
     }
 
-
 {% endblock %}
 
 
@@ -95,14 +94,13 @@ poznajmypolske.pl
                 </div>
             </div>
             <!-- Button with call-to-action -->
-                <a href="https://www.google.com/maps?q={{nature_item.latitude}},{{nature_item.longitude}}" class="btn btn-dark btn-lg mt-3" style="font-weight: bold; text-align: center;">Link do miejsca na mapach Google.</a>
-                <a href="{% url 'polishness:nature_single_ai' nature_item.id %}" class="btn btn-dark btn-lg mt-1" style="font-weight: bold; text-align: center;">Zapytaj sztucznej inteligencji o więcej informacji.</a>
+            <a href="https://www.google.com/maps/@?api=1&map_action=map&center={{nature_item.latitude}},{{nature_item.longitude}}&zoom=15&basemap=satellite" class="btn btn-dark btn-lg mt-3" style="font-weight: bold; text-align: center;">Link do miejsca na mapach Google.</a>
+            <a href="{% url 'polishness:nature_single_ai' nature_item.id %}" class="btn btn-dark btn-lg mt-1" style="font-weight: bold; text-align: center;">Zapytaj sztucznej inteligencji o więcej informacji.</a>
 
         </div>
     </div>
 </div>
 <br>
-
 
 
 {% endblock %}
