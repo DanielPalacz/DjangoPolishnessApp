@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from datetime import datetime
+from os import getenv
 
 from django.contrib import messages
 from django.core.mail import send_mail
@@ -239,7 +240,12 @@ def nature_single(request, pk):
         f" gmina: {nature_item.parish}. Opis ma mieć maksymalnie 4 zdania."
     )
     response_ai = ask_ai(ask=ask_text)
-    return render(request, "polishness/nature_single.html", {"nature_item": nature_item, "response_ai": response_ai})
+    map_photo_link = get_map_photo_link(latitude=nature_item.latitude, longitude=nature_item.longitude)
+    return render(
+        request,
+        "polishness/nature_single.html",
+        {"nature_item": nature_item, "response_ai": response_ai, "map_photo_link": map_photo_link},
+    )
 
 
 def nature_single_ai(request, pk):
@@ -408,3 +414,21 @@ def trips(request):
         f"(view: {parent_function_name()!r}, path: {request.path!r})."
     )
     return render(request, "polishness/trips.html", {"monuments": monument_items})
+
+
+def get_map_photo_link(latitude: str, longitude=str) -> str:
+    """Prepares link to the map satellite photo.
+
+    Args:
+        latitude: Latitude of geographical point.
+        longitude: Longitude of geografical point.
+
+    Returns:
+        Link to the map satellite photo of geografical point.
+    """
+    google_maps_key = getenv("GOOGLE_MAPS_API_KEY")
+    return (
+        f"https://maps.googleapis.com/maps/api/staticmap?center={latitude},{longitude}&zoom=14&size=1280x1280&"
+        f"scale=2&format=png&maptype=hybrid&markers=color:yellow%7C{latitude},{longitude}&markers=size:mid%&"
+        f"key={google_maps_key}"
+    )

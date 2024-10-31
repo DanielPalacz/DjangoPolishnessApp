@@ -36,6 +36,11 @@ poznajmypolske.pl
         background-color: #F5DECF;
     }
 
+    img {
+        max-width: 100%;
+        height: 100%;
+    }
+
 
 {% endblock %}
 
@@ -84,6 +89,9 @@ poznajmypolske.pl
                 </div>
                 <div class="text-custom">
                     <p>{{response_ai}}</p>
+                </div>
+                <div>
+                    <img src="{{map_photo_link}}" alt="{{nature_item.name}}, {{nature_item.geo_object_type}}" width="1280" height="1280">
                 </div>
             </div>
             <!-- Button with call-to-action -->
