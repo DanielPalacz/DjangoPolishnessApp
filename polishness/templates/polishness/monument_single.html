@@ -57,7 +57,7 @@ poznajmypolske.pl
                             </tr>
                             <tr>
                                 <td class="fw-bold text-end">Chronologia</td>
-                                <td>{{ monument.chronology }}</td>
+                                <td>{% if monument.chronology == "nan" %}-{% else %}{{ monument.chronology }}{% endif %}</td>
                             </tr>
                             <tr>
                                 <td class="fw-bold text-end">Data wpisu</td>
