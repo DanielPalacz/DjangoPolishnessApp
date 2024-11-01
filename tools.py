@@ -132,7 +132,7 @@ def populate_monument_db_table() -> None:
             security_form=input_data[1],
             location_accuracy=input_data[2],
             name=input_data[3],
-            chronology_type=input_data[4],
+            chronology_date=input_data[4],
             function=input_data[5],
             documents=input_data[6],
             registration_date=input_data[7],
