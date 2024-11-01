@@ -183,9 +183,9 @@ class GeoObjectsSupport:
             Dictionary with parsed monument query.
         """
         query_params = {
-            "parish": post_data.get("parish"),
-            "county": post_data.get("county"),
-            "voivodeship": post_data.get("voivodeship"),
+            "parish__icontains": post_data.get("parish"),
+            "county__icontains": post_data.get("county"),
+            "voivodeship__icontains": post_data.get("voivodeship"),
             "quantity": post_data.get("quantity"),
             "nature_objects": post_data.get("nature_objects"),
         }
@@ -231,10 +231,10 @@ class MonumentsSupport:
             Dictionary with parsed monument query/
         """
         query_params = {
-            "locality": post_data.get("locality"),
-            "parish": post_data.get("parish"),
-            "county": post_data.get("county"),
-            "voivodeship": post_data.get("voivodeship"),
+            "locality__icontains": post_data.get("locality"),
+            "parish__icontains": post_data.get("parish"),
+            "county__icontains": post_data.get("county"),
+            "voivodeship__icontains": post_data.get("voivodeship"),
             "quantity": post_data.get("quantity"),
             "is_archeological": post_data.get("is_archeological"),
         }
