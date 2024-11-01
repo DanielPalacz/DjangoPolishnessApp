@@ -237,7 +237,7 @@ class MonumentsSupport:
             "county__icontains": post_data.get("county"),
             "voivodeship__icontains": post_data.get("voivodeship"),
             "function__icontains": post_data.get("function"),
-            "chronology__icontains": post_data.get("chronology"),
+            "chronology": post_data.get("chronology"),
             "quantity": post_data.get("quantity"),
             "is_archeological": post_data.get("is_archeological"),
         }
