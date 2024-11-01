@@ -84,7 +84,7 @@ def monuments(request):
     if request.method == "POST":
         query_params = MonumentsSupport.get_monument_query_params(request.POST)
         quantity = query_params.pop("quantity")
-        quantity = 100 if int(quantity) > 100 else int(quantity)
+        quantity = 1000 if int(quantity) > 1000 else int(quantity)
         try:
             is_archeological = bool(query_params.pop("is_archeological"))
         except KeyError:
