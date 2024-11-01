@@ -122,6 +122,9 @@ def monument_single(request, pk):
     if monument_item.address_number and monument_item.address_number != "nan":
         ask_text += f", {monument_item.address_number}"
 
+    if monument_item.chronology != "Data nieznana":
+        ask_text += f", czas pochodzenia zabytku {monument_item.chronology}"
+
     ask_text += "Opis ma mieć maksymalnie 4 zdania."
     response_ai = ask_ai(ask=ask_text)
 
@@ -159,6 +162,9 @@ def monument_single_ai(request, pk):
 
     if monument_item.address_number and monument_item.address_number != "nan":
         ask_text += f", {monument_item.address_number}"
+
+    if monument_item.chronology != "Data nieznana":
+        ask_text += f", czas pochodzenia zabytku {monument_item.chronology}"
 
     response_ai = ask_ai(ask=ask_text)
 
