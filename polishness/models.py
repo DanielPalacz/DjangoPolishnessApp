@@ -48,7 +48,8 @@ class Monument(models.Model):
     security_form = models.CharField(max_length=100)  # forma ochrony
     location_accuracy = models.CharField(max_length=100)  # dokładność położenia
     name = models.CharField(max_length=100)  # nazwa
-    chronology = models.CharField(max_length=100)  # chronologia
+    chronology_date = models.CharField(max_length=100)  # chronologia
+    chronology = models.CharField(max_length=100)  # chronologia, który wiek
     function = models.CharField(max_length=100)  # funkcja
     documents = models.CharField(max_length=100)  # wykaz dokumentów
     registration_date = models.CharField(max_length=100)  # data wpisu
