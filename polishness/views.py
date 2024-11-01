@@ -33,6 +33,18 @@ def home(request):
         f"Zostanie wyświetlone losowe polskie zdjęcie {photo_data!r} {request.build_absolute_uri()!r}, "
         f"(view: {parent_function_name()}, path: {request.path!r})."
     )
+    ask_text = (
+        "Opowiedz, jak poznawać Polskę i dobrze się przy tym bawić? "
+        "Zwróć tekst w postaci html. Sformatowany, z paragrafami. Ma być 5 akapitów."
+    )
+    response_ai = ask_ai(ask=ask_text)
+    response_ai = response_ai.replace("<h1>Jak poznawać Polskę i dobrze się przy tym bawić?</h1>", "<b>No więc ...</b>")
+    response_ai = response_ai.replace("<body>", "<style>  body {font-family: 'Montserrat', sans-serif;} </style><body>")
+
+    photo_data["response_ai"] = response_ai
+
+    print(response_ai)
+
     LOGGER_VIEWS.debug(
         f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, (view: {parent_function_name()}, "
         f"path: {request.path!r})."

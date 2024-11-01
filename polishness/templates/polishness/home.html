@@ -5,36 +5,91 @@ poznajmypolske.pl
 {% endblock %}
 
 
+{% block style %}
+
+    .text-custom {
+        background-color: #F6EB61;
+        border: 2px solid #000;;
+        border-radius: 10px;
+    }
+    .text-custom:hover {
+        border-color: #000;
+        transform: scale(1.02); /* Slightly enlarge the brand */
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (max-width: 600px) {
+        #myIframe {
+            height: 50vh;  /* Wysokość dla małych ekranów */
+        }
+    }
+
+    @media (min-width: 601px) {
+        #myIframe {
+            height: 40vh;  /* Wysokość dla większych ekranów */
+        }
+    }
+
+
+
+{% endblock %}
+
 {% block content %}
 
 {% if photo_link %}
 
        <div class="row m-3">
            <div class="col-12">
-               <h3 class="text-start">Cześć! Tu Daniel, a to jest moja strona o Polsce. Wizją jest tutaj pomoc w odkrywaniu naszego kraju poprzez dostarczanie prostych, ciekawych narzędzi.</h3>
+               <h3 class="text-start">Cześć! Wizją jest tutaj odkrywanie naszego kraju poprzez różne proste technologicznie narzędzia i <b>zabawa</b>.</h3>
+               <h3 class="text-start">Zapytajmy sztuczną inteligencję ... <b><em>Jak poznawać Polskę i dobrze się przy tym bawić?</em></b></h3>
            </div>
        </div>
-       <hr>
 
-       <div class="row m-3">
-           <div class="col">
-                <h3 class="text-start">Poniżej losowe polskie zdjęcie (unsplash.com).</h3>
-                <a href="{{photo_link}}" download="pobrane_zdjecie.jpg">
-                    <img class="card-img-top" src="{{photo_link}}" alt="Pobierz zdjęcie">
-                </a>
-           </div>
-       </div>
-        <strong style="text-align: right; display: block;"><a href="{{photo_author_link}}?utm_source=DjangoPolishness&utm_medium=referral">{{photo_author}}</a> (<a href="https://unsplash.com/?utm_source=DjangoPolishness&utm_medium=referral">unsplash</a>)</strong>
-       <br>
+        <div class="row m-3">
+            <small class="ml-3">Odpowiedź sztucznej inteligencji (openai.com):</small>
+            <div class="col-12 m-2">
+                         <iframe id="myIframe" class="text-custom" src="data:text/html;charset=UTF-8,
+                                    {{response_ai}}" width="100%">
+                         </iframe>
+            </div>
+        </div>
+
+
+<!--       <div class="row m-3">-->
+<!--           <div class="col">-->
+<!--                <h3 class="text-start">Poniżej losowe polskie zdjęcie (unsplash.com).</h3>-->
+<!--                <a href="{{photo_link}}" download="pobrane_zdjecie.jpg">-->
+<!--                    <img class="card-img-top" src="{{photo_link}}" alt="Pobierz zdjęcie">-->
+<!--                </a>-->
+<!--           </div>-->
+<!--       </div>-->
+<!--        <strong style="text-align: right; display: block;"><a href="{{photo_author_link}}?utm_source=DjangoPolishness&utm_medium=referral">{{photo_author}}</a> (<a href="https://unsplash.com/?utm_source=DjangoPolishness&utm_medium=referral">unsplash</a>)</strong>-->
+<!--       <br>-->
 
 
 {% else %}
     <div class="row m-3">
         <div class="col-12 col-md-8 col-md-4">
-            <h3 class="text-start">Cześć! Tu Daniel, a to jest moja strona o Polsce.</h3>
+               <h3 class="text-start">Cześć! Wizją jest tutaj odkrywanie naszego kraju poprzez różne proste technologicznie narzędzia i <b>zabawa</b>.</h3>
                 </div>
             </div>
             <hr>
 {% endif %}
+
+{% endblock %}
+
+
+
+{% block script %}
+
+<script>
+function resizeIframe(iframe) {
+    // Sprawdza, czy iframe zawiera treść i ustawia wysokość
+    if (iframe.contentDocument) {
+        iframe.style.height = iframe.contentDocument.body.scrollHeight + 'px';
+    }
+}
+</script>
+
 
 {% endblock %}
