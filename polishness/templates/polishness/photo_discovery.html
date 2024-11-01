@@ -56,10 +56,10 @@ poznajmypolske.pl
             <div class="success">Tutaj fotoodkrywamy, losujemy w różny sposób zdjęcia na temat Polski i cieszymy oko albo nie. Na dole znajdziesz frazę użytą do wyszukiwania.</div>
         </div>
     </div>
-    <div class="row m-2">
+    <div class="row2">
     {% for photo_link in photo_google_links %}
                      <div class="col-lg-6">
-                        <div class="card mb-4 box-shadow" style="border: 2px solid #000; padding: 2px;">
+                        <div class="card mb-3 box-shadow" style="border: 2px solid #000; padding: 2px;">
 
                             <div class="card-body">
                                 <div>
@@ -75,7 +75,7 @@ poznajmypolske.pl
     {% endif %}
 
 
-   <small class="m-4" style="text-align: right; display: block;">Zdjęcia były wyszukiwane dla frazy: <b>'{{phrase}}'</b>.</small>
+   <small style="text-align: right; display: block;">Zdjęcia wyszukiwane dla frazy: <b>'{{phrase}}'</b>.</small>
 
 </div>
 
