@@ -62,6 +62,81 @@ def get_polish_photo_data() -> dict:
     return {}
 
 
+def get_polish_photo_google_links() -> list:
+    """Download polish photo data from the google custom search engine api.
+
+    Returns:
+        List with the polish photo links.
+    """
+    query_keywords = [
+        "Polski krajobraz",
+        "Polski pejzaż",
+        "Polskie lasy",
+        "Polskie rzeki",
+        "Polskie góry, Tatry",
+        "Polskie jeziora",
+        "Morze Bałtyckie, Polska",
+        "Wisła, Polska",
+        "Odra, Polska",
+        "Warta, Polska",
+        "Polskie plaże",
+        "Polska przyroda",
+        "Parki Narodowe w Polsce",
+        "Polskie zwierzęta",
+        "Polska grzyby",
+        "Polska wieś",
+        "Polska PRL",
+        "Polskie kościoły",
+        "Polskie zabytki",
+        "Polskie zabytki archeologiczne",
+        "Polskie herby",
+        "Polska sztuka",
+        "Polska noc",
+        "Polska znaczki pocztowe",
+        "Kraków Wawel",
+        "Łazienki Warszawa",
+        "Kraków Rynek",
+        "Warszawa Belweder",
+        "Warszawa Pałac Kultury",
+        "Kraków Kościół Mariacki",
+        "Kraków sukiennice",
+        "Kraków Kazimierz",
+        "Polska Wrocław",
+        "Polska Bydgoszcz",
+        "Polska Lublin",
+        "Polska Zielona Góra",
+        "Polska Łódź",
+        "Polska Kraków",
+        "Polska Warszawa",
+        "Polska Opole",
+        "Polska Rzeszów",
+        "Polska Białystok",
+        "Polska Gdańsk",
+        "Polska Katowice",
+        "Polska Kielce",
+        "Polska Olsztyn",
+        "Polska Poznań",
+        "Polska Szczecin",
+    ]
+    random_number = randbelow(len(query_keywords))
+    random_phrase = query_keywords[random_number]
+
+    google_custom_search_api_key = getenv("GOOGLE_CUSTOM_SEARCH_API_KEY")
+    google_custom_search_engine_id = getenv("GOOGLE_CUSTOM_SEARCH_ENGINE_ID")
+    url_request = (
+        f"https://www.googleapis.com/customsearch/v1?q={random_phrase}&searchType=image&"
+        f"imgSize=xlarge&key={google_custom_search_api_key}&cx={google_custom_search_engine_id}"
+    )
+    response = requests.get(url_request, timeout=60)
+    if response.status_code == 200:
+        photo_items = response.json().get("items", [])
+        # print(photo_items)
+        photo_links = [photo_item.get("link") for photo_item in photo_items]
+        return [photo_links, random_phrase]
+    else:
+        return [[], random_phrase]
+
+
 def populate_archeological_monument_db_table() -> None:
     """Populates data for the monuments table.
 

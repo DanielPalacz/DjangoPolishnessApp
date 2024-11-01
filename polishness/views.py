@@ -17,6 +17,7 @@ from helpers import parent_function_name
 from tools import ask_ai
 from tools import GeoObjectsSupport
 from tools import get_polish_photo_data
+from tools import get_polish_photo_google_links
 from tools import GusApiDbwClient
 from tools import MonumentsSupport
 from tools import TripGenerator
@@ -437,4 +438,27 @@ def get_map_photo_link(latitude: str, longitude=str) -> str:
         f"https://maps.googleapis.com/maps/api/staticmap?center={latitude},{longitude}&zoom=14&size=1280x1280&"
         f"scale=2&format=png&maptype=hybrid&markers=color:yellow%7C{latitude},{longitude}&markers=size:mid%&"
         f"key={google_maps_key}"
+    )
+
+
+def photo_discovery(request):
+    LOGGER_VIEWS.debug(
+        f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
+        f"(view: {parent_function_name()!r}, path: {request.path!r})."
+    )
+    photo_google_links_raw, phrase = get_polish_photo_google_links()
+    # "fbsbx.com"
+    photo_google_links = []
+    for link in photo_google_links_raw:
+        if "facebook" in link:
+            continue
+        elif "fbsbx" in link:
+            continue
+        else:
+            photo_google_links.append(link)
+
+    # print(photo_google_links)
+
+    return render(
+        request, "polishness/photo_discovery.html", {"photo_google_links": photo_google_links, "phrase": phrase}
     )

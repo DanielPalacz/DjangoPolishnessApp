@@ -29,5 +29,6 @@ urlpatterns = [
     path("nature/", views.nature, name="nature"),
     path("nature/<int:pk>/", views.nature_single, name="nature_single"),
     path("nature/<int:pk>/ai/", views.nature_single_ai, name="nature_single_ai"),
+    path("photo_discovery/", views.photo_discovery, name="photo_discovery"),
     path("history/", views.history, name="history"),
 ]
