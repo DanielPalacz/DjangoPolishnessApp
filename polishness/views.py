@@ -194,15 +194,9 @@ def monument_single_photos(request, pk):
     """Monument view for photo search/displaying"""
     monument_item = Monument.objects.get(id=pk)
     phrase = f"{monument_item.name}, {monument_item.function}, {monument_item.locality}"
+
     photo_google_links_raw, phrase = get_polish_photo_google_links(phrase=phrase)
-    photo_google_links = []
-    for link in photo_google_links_raw:
-        if "facebook" in link:
-            continue
-        elif "fbsbx" in link:
-            continue
-        else:
-            photo_google_links.append(link)
+    photo_google_links = _remove_unneeded_photo_links(photo_google_links_raw)
 
     LOGGER_VIEWS.debug(
         f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
@@ -484,18 +478,31 @@ def photo_discovery(request):
         f"(view: {parent_function_name()!r}, path: {request.path!r})."
     )
     photo_google_links_raw, phrase = get_polish_photo_google_links()
-    # "fbsbx.com"
-    photo_google_links = []
-    for link in photo_google_links_raw:
-        if "facebook" in link:
-            continue
-        elif "fbsbx" in link:
-            continue
-        else:
-            photo_google_links.append(link)
-
-    # print(photo_google_links)
+    photo_google_links = _remove_unneeded_photo_links(photo_google_links_raw)
 
     return render(
         request, "polishness/photo_discovery.html", {"photo_google_links": photo_google_links, "phrase": phrase}
     )
+
+
+def _remove_unneeded_photo_links(links: list) -> list:
+    """Function removes unneeded photo links.
+
+    Args:
+        links: Raw, not cleaned photo links.
+
+    Returns:
+        List with the polish photo links.
+    """
+    photo_google_links = []
+    for link in links:
+        if "facebook" in link:
+            continue
+        elif "fbsbx" in link:
+            continue
+        elif "media.licdn.com" in link:
+            continue
+        else:
+            photo_google_links.append(link)
+
+    return photo_google_links
