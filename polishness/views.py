@@ -229,6 +229,30 @@ def monument_archeo_single_ai(request, pk):
     )
 
 
+def monument_archeo_single_photos(request, pk):
+    """Monument view for photo search/displaying"""
+    monument_item = ArcheologicalMonument.objects.get(id=pk)
+
+    phrase = f"zabytek archeologiczny, {monument_item.name}, {monument_item.function}, {monument_item.locality}"
+
+    photo_google_links_raw, phrase = get_polish_photo_google_links(phrase=phrase)
+    photo_google_links = _remove_unneeded_photo_links(photo_google_links_raw)
+
+    LOGGER_VIEWS.debug(
+        f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
+        f"(view: {parent_function_name()!r}, path: {request.path!r})."
+    )
+    return render(
+        request,
+        "polishness/monument_single_photos.html",
+        {
+            "photo_google_links": photo_google_links,
+            "name": monument_item.name.split(",")[0],
+            "locality": monument_item.locality,
+        },
+    )
+
+
 def nature(request):
     """Nature view"""
     nature_items = None
@@ -501,6 +525,8 @@ def _remove_unneeded_photo_links(links: list) -> list:
         elif "fbsbx" in link:
             continue
         elif "media.licdn.com" in link:
+            continue
+        elif "x-raw-image" in link:
             continue
         else:
             photo_google_links.append(link)

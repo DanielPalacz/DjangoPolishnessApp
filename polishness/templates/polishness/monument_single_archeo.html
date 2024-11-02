@@ -115,6 +115,8 @@ poznajmypolske.pl
                         <a href="https://www.google.com/maps/@?api=1&map_action=map&center={{monument.latitude}},{{monument.longitude}}&zoom=15&basemap=satellite" class="btn btn-dark btn-lg mt-1" style="font-weight: bold; text-align: center;">Link do miejsca na mapach Google.</a>
                     {% endif %}
                 {% endif %}
+                <a href="{% url 'polishness:monument_archeo_single_photos' monument.id %}" class="btn btn-dark btn-lg mt-1" style="font-weight: bold; text-align: center;">Wyszukaj zdjęcia dotyczące tego miejsca.</a>
+
         </div>
     </div>
 </div>
