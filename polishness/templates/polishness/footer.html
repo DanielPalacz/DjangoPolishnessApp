@@ -9,13 +9,13 @@
     }
 
     footer a {
-        color: #ffffff;
+        color: #b39ddb;
         text-decoration: none;
         transition: color 0.3s ease, transform 0.3s ease; /* Add smooth color and transform transitions */
     }
 
     footer a:hover {
-        color: #ff5733; /* Change color on hover */
+        color: #b39ddb; /* Change color on hover */
         text-decoration: none;
         transform: translateY(-3px); /* Slightly raise the link on hover */
     }
@@ -72,7 +72,7 @@
     .social-links a[href*="facebook"] { color: #b39ddb; }
     .social-links a[href*="twitter"] { color: #1da1f2; }
     .social-links a[href*="instagram"] { color: #e1306c; }
-    .social-links a[href*="linkedin"] { color: #d4a5ff; }
+    .social-links a[href*="linkedin"] { color: #b39ddb; }
 
     a[href*="danielpalacz.pythonanywhere.com"] {
         color: #cba6d6; /* Lawendowy */
@@ -82,12 +82,18 @@
         color: #cba6d6;
     }
 
+    a,p {
+        color: #b39ddb;
+        display: block;
+    }
+
+
 </style>
 
 {% endblock %}
 
 <!-- templates/footer.html -->
-<footer class="bg-dark text-white py-2">
+<footer class="bg-dark py-2">
     <div class="container">
         <div class="row mt-0 mb-0">
             <!-- About Section -->
@@ -99,24 +105,19 @@
             <!-- Navigation Links -->
             <div class="col-md-4 col-sm-12">
                 <h4 style="font-weight: bold;">Przydatne linki:</h4>
-                <ul class="list-unstyled">
-                    <li><a href="https://www.gov.pl/" class="text-white">Serwis Rzeczypospolitej Polskiej </a></li>
-                    <li><a href="https://stat.gov.pl/" class="text-white">Główny Urząd Statystyczny</a></li>
-                    <li><a href="https://zabytek.pl/pl/" class="text-white">Zabytek.pl</a></li>
-                </ul>
+                    <a href="https://www.gov.pl/" target="_blank" aria-label="www.gov.pl">Serwis Rzeczypospolitej Polskiej </a>
+                    <a href="https://stat.gov.pl/" target="_blank" aria-label="stat.gov.pl">Główny Urząd Statystyczny</a>
+                    <a href="https://zabytek.pl/pl/" target="_blank" aria-label="zabytek.pl">Zabytek.pl</a>
             </div>
 
             <!-- Social Media Links -->
             <div class="col-md-4 col-sm-12 social-links">
                 <h4 style="font-weight: bold;">Inne strony:</h4>
-                    <a href="https://danielpalacz.pythonanywhere.com" target="_blank" aria-label="Prywatna">
-                        <i class="fas fa-user"></i> Prywatna
-                    </a>
-                    <a href="https://www.facebook.com/profile.php?id=61558080466350" target="_blank" aria-label="Facebook">
-                        <i class="fab fa-facebook"></i> Facebook
+                    <a href="https://www.facebook.com/profile.php?id=61567268455849" target="_blank" aria-label="Facebook">
+                        <i class="fab fa-facebook"></i> poznajmypolske.pl
                     </a>
                     <a href="https://www.linkedin.com/in/daniel-palacz-17184aa6/" target="_blank" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin"></i> LinkedIn
+                        <i class="fab fa-linkedin"></i> LinkedIn (prywatny)
                     </a>
             </div>
         </div>
