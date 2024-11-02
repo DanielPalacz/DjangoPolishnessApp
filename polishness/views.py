@@ -36,26 +36,19 @@ def home(request):
     # )
     ask_text = (
         "Opowiedz, jak poznawać Polskę i dobrze się przy tym bawić? "
-        "Zwróć tekst w postaci html. Sformatowany, z paragrafami. Ma być 5 akapitów."
+        "Zwróć tekst sformatowany, z paragrafami. Ma być 5 akapitów."
     )
     response_ai = ask_ai(ask=ask_text)
-    response_ai = response_ai.replace("<body>", "<style>  body {font-family: 'Montserrat', sans-serif;} </style><body>")
-
-    if "<h1>" in response_ai:
-        response_ai = response_ai.replace(
-            "<h1>Jak poznawać Polskę i dobrze się przy tym bawić?</h1>", "<b>No więc ...</b>"
-        )
-    else:
-        response_ai = response_ai.replace("<body>", "<body><b>No więc ...</b>")
-
     # photo_data["response_ai"] = response_ai
+    # response_ai = response_ai.replace("<body>", f"\n{iframe_script}\n<body>")
 
-    print(response_ai)
+    response_ai = response_ai.split("\n\n")
 
     LOGGER_VIEWS.debug(
         f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, (view: {parent_function_name()}, "
         f"path: {request.path!r})."
     )
+
     return render(request, "polishness/home.html", {"response_ai": response_ai})
 
 
