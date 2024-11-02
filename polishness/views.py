@@ -16,11 +16,12 @@ from helpers import configure_logger
 from helpers import parent_function_name
 from tools import ask_ai
 from tools import GeoObjectsSupport
-from tools import get_polish_photo_data
 from tools import get_polish_photo_google_links
 from tools import GusApiDbwClient
 from tools import MonumentsSupport
 from tools import TripGenerator
+
+# from tools import get_polish_photo_data
 
 LOGGER_VIEWS = configure_logger("views")
 LOGGER_CONTACT_FORM = configure_logger("contact_form")
@@ -28,11 +29,11 @@ LOGGER_CONTACT_FORM = configure_logger("contact_form")
 
 def home(request):
     """Homepage view"""
-    photo_data = get_polish_photo_data()
-    LOGGER_VIEWS.debug(
-        f"Zostanie wyświetlone losowe polskie zdjęcie {photo_data!r} {request.build_absolute_uri()!r}, "
-        f"(view: {parent_function_name()}, path: {request.path!r})."
-    )
+    # photo_data = get_polish_photo_data()
+    # LOGGER_VIEWS.debug(
+    #     f"Zostanie wyświetlone losowe polskie zdjęcie {photo_data!r} {request.build_absolute_uri()!r}, "
+    #     f"(view: {parent_function_name()}, path: {request.path!r})."
+    # )
     ask_text = (
         "Opowiedz, jak poznawać Polskę i dobrze się przy tym bawić? "
         "Zwróć tekst w postaci html. Sformatowany, z paragrafami. Ma być 5 akapitów."
@@ -47,7 +48,7 @@ def home(request):
     else:
         response_ai = response_ai.replace("<body>", "<body><b>No więc ...</b>")
 
-    photo_data["response_ai"] = response_ai
+    # photo_data["response_ai"] = response_ai
 
     print(response_ai)
 
@@ -55,7 +56,7 @@ def home(request):
         f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, (view: {parent_function_name()}, "
         f"path: {request.path!r})."
     )
-    return render(request, "polishness/home.html", photo_data)
+    return render(request, "polishness/home.html", {"response_ai": response_ai})
 
 
 def contact(request):
