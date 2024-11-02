@@ -190,6 +190,31 @@ def monument_single_ai(request, pk):
     )
 
 
+def monument_single_photos(request, pk):
+    """Monument view for photo search/displaying"""
+    monument_item = Monument.objects.get(id=pk)
+    phrase = f"{monument_item.name}, {monument_item.function}, {monument_item.locality}"
+    photo_google_links_raw, phrase = get_polish_photo_google_links(phrase=phrase)
+    photo_google_links = []
+    for link in photo_google_links_raw:
+        if "facebook" in link:
+            continue
+        elif "fbsbx" in link:
+            continue
+        else:
+            photo_google_links.append(link)
+
+    LOGGER_VIEWS.debug(
+        f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
+        f"(view: {parent_function_name()!r}, path: {request.path!r})."
+    )
+    return render(
+        request,
+        "polishness/monument_single_photos.html",
+        {"photo_google_links": photo_google_links, "name": monument_item.name, "locality": monument_item.locality},
+    )
+
+
 def monument_archeo_single_ai(request, pk):
     """Archeological monument question to AI view"""
     monument_item = ArcheologicalMonument.objects.get(id=pk)

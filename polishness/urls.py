@@ -14,6 +14,7 @@ urlpatterns = [
     path("monument/<int:pk>/", views.monument_single, name="monument_single"),
     path("monument/archeo/<int:pk>/", views.monument_single_archeo, name="monument_single_archeo"),
     path("monument/<int:pk>/ai/", views.monument_single_ai, name="monument_single_ai"),
+    path("monument/<int:pk>/photos/", views.monument_single_photos, name="monument_single_photos"),
     path("monument/archeo/<int:pk>/ai/", views.monument_archeo_single_ai, name="monument_archeo_single_ai"),
     path("poland-in-numbers/", views.poland_in_numbers, name="poland_in_numbers"),
     path(

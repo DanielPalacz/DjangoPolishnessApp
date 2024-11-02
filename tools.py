@@ -5,6 +5,7 @@ from os import getenv
 from os.path import exists
 from os.path import getsize
 from secrets import randbelow
+from typing import Optional
 
 import pandas as pd
 import requests
@@ -62,8 +63,11 @@ def get_polish_photo_data() -> dict:
     return {}
 
 
-def get_polish_photo_google_links() -> list:
-    """Download polish photo data from the google custom search engine api.
+def get_polish_photo_google_links(phrase: Optional[str] = None) -> list:
+    """Download polish photo data from the Google custom search engine api.
+
+    Args:
+        phrase: Query text.
 
     Returns:
         List with the polish photo links.
@@ -118,13 +122,14 @@ def get_polish_photo_google_links() -> list:
         "Polska Poznań",
         "Polska Szczecin",
     ]
-    random_number = randbelow(len(query_keywords))
-    random_phrase = query_keywords[random_number]
+    if phrase is None:
+        random_number = randbelow(len(query_keywords))
+        phrase = query_keywords[random_number]
 
     google_custom_search_api_key = getenv("GOOGLE_CUSTOM_SEARCH_API_KEY")
     google_custom_search_engine_id = getenv("GOOGLE_CUSTOM_SEARCH_ENGINE_ID")
     url_request = (
-        f"https://www.googleapis.com/customsearch/v1?q={random_phrase}&searchType=image&"
+        f"https://www.googleapis.com/customsearch/v1?q={phrase}&searchType=image&"
         f"imgSize=xlarge&key={google_custom_search_api_key}&cx={google_custom_search_engine_id}"
     )
     response = requests.get(url_request, timeout=60)
@@ -132,9 +137,9 @@ def get_polish_photo_google_links() -> list:
         photo_items = response.json().get("items", [])
         # print(photo_items)
         photo_links = [photo_item.get("link") for photo_item in photo_items]
-        return [photo_links, random_phrase]
+        return [photo_links, phrase]
     else:
-        return [[], random_phrase]
+        return [[], phrase]
 
 
 def populate_archeological_monument_db_table() -> None:
