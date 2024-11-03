@@ -36,11 +36,10 @@ def home(request):
     # )
     ask_text = (
         "Opowiedz, jak poznawać Polskę i dobrze się przy tym bawić? "
-        "Zwróć tekst sformatowany, z paragrafami. Ma być 5 akapitów."
+        "Zwróć tekst sformatowany, z paragrafami. Ma być 4 akapity."
     )
     response_ai = ask_ai(ask=ask_text)
     # photo_data["response_ai"] = response_ai
-    # response_ai = response_ai.replace("<body>", f"\n{iframe_script}\n<body>")
 
     response_ai = response_ai.split("\n\n")
 
