@@ -15,7 +15,9 @@ from .models import Monument
 from helpers import configure_logger
 from helpers import parent_function_name
 from tools import ask_ai
+from tools import current_day_message
 from tools import GeoObjectsSupport
+from tools import get_history_news
 from tools import get_polish_photo_google_links
 from tools import GusApiDbwClient
 from tools import MonumentsSupport
@@ -42,13 +44,18 @@ def home(request):
     # photo_data["response_ai"] = response_ai
 
     response_ai = response_ai.split("\n\n")
+    day = current_day_message()
+
+    history_news = get_history_news().split("\n\n")
 
     LOGGER_VIEWS.debug(
         f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, (view: {parent_function_name()}, "
         f"path: {request.path!r})."
     )
 
-    return render(request, "polishness/home.html", {"response_ai": response_ai})
+    return render(
+        request, "polishness/home.html", {"response_ai": response_ai, "day": day, "history_news": history_news}
+    )
 
 
 def contact(request):

@@ -25,18 +25,6 @@ poznajmypolske.pl
         border: 2px solid #000;
     }
 
-<!--    @media (max-width: 600px) {-->
-<!--        #myIframe {-->
-<!--            height: 50vh;  /* Wysokość dla małych ekranów */-->
-<!--        }-->
-<!--    }-->
-
-<!--    @media (min-width: 601px) {-->
-<!--        #myIframe {-->
-<!--            height: 80vh;  /* Wysokość dla większych ekranów */-->
-<!--        }-->
-<!--    }-->
-
     p {
         color: #000;
     }
@@ -69,18 +57,22 @@ poznajmypolske.pl
 
             </div>
         </div>
+        <hr>
+
+       <div class="row m-3">
+           <div class="col-12">
+               <h3 class="text-start">Przyjrzyjmy się odrobinę historii Polski. Dziś jest <b>{{day}}</b> i oto kilka ważnych wydarzeń z historii naszego kraju, które miały miejsce tego dnia:</h3>
+
+           {% for news in history_news %}
+           <ul>
+                <li><h5 class="text-start">{{news}}</h5></li>
+            </ul>
+            {% endfor %}
 
 
-<!--       <div class="row m-3">-->
-<!--           <div class="col">-->
-<!--                <h3 class="text-start">Poniżej losowe polskie zdjęcie (unsplash.com).</h3>-->
-<!--                <a href="{{photo_link}}" download="pobrane_zdjecie.jpg">-->
-<!--                    <img class="card-img-top" src="{{photo_link}}" alt="Pobierz zdjęcie">-->
-<!--                </a>-->
-<!--           </div>-->
-<!--       </div>-->
-<!--        <strong style="text-align: right; display: block;"><a href="{{photo_author_link}}?utm_source=DjangoPolishness&utm_medium=referral">{{photo_author}}</a> (<a href="https://unsplash.com/?utm_source=DjangoPolishness&utm_medium=referral">unsplash</a>)</strong>-->
-<!--       <br>-->
+           </div>
+       </div>
+
 
 
 {% else %}

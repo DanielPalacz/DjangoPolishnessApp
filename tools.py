@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import datetime
 import json
 from os import getenv
 from os.path import exists
@@ -42,6 +43,86 @@ def ask_ai(ask: str) -> str:
         model="gpt-3.5-turbo",
     )
     return chat_completion.choices[0].message.content
+
+
+def current_day_message() -> str:
+    """Provides current day message (without year).
+
+    Returns:
+        Current day message (without year).
+    """
+    days = {
+        1: "pierwszy",
+        2: "drugi",
+        3: "trzeci",
+        4: "czwarty",
+        5: "piąty",
+        6: "szósty",
+        7: "siódmy",
+        8: "ósmy",
+        9: "dziewiąty",
+        10: "dziesiąty",
+        11: "jedenasty",
+        12: "dwunasty",
+        13: "trzynasty",
+        14: "czternasty",
+        15: "piętnasty",
+        16: "szesnasty",
+        17: "siedemnasty",
+        18: "osiemnasty",
+        19: "dziewiętnasty",
+        20: "dwudziesty",
+        21: "dwudziesty pierwszy",
+        22: "dwudziesty drugi",
+        23: "dwudziesty trzeci",
+        24: "dwudziesty czwarty",
+        25: "dwudziesty piąty",
+        26: "dwudziesty szósty",
+        27: "dwudziesty siódmy",
+        28: "dwudziesty ósmy",
+        29: "dwudziesty dziewiąty",
+        30: "trzydziesty",
+        31: "trzydziesty pierwszy",
+    }
+
+    # Słownik z nazwami miesięcy
+    months = {
+        1: "styczeń",
+        2: "luty",
+        3: "marzec",
+        4: "kwiecień",
+        5: "maj",
+        6: "czerwiec",
+        7: "lipiec",
+        8: "sierpień",
+        9: "wrzesień",
+        10: "październik",
+        11: "listopad",
+        12: "grudzień",
+    }
+
+    current_day = datetime.date.today()
+
+    day_ = days[current_day.day]
+    month_ = months[current_day.month]
+
+    return f"{day_} {month_}"
+
+
+def get_history_news() -> str:
+    """Provides current day message (without year).
+
+    Returns:
+        Current day message (without year).
+    """
+    current_day = datetime.date.today()
+    filename = f"{current_day.day}d_{current_day.month}m.txt"
+    file_path = get_static_dir() + "historical_news/" + filename
+
+    with open(file_path, "r") as file:
+        text = file.read()
+
+    return text
 
 
 def get_polish_photo_data() -> dict:
