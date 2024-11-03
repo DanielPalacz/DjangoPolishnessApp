@@ -1,0 +1,14 @@
+User-agent: *
+Disallow: /
+Disallow: /photo_discovery/
+Disallow: /poland-in-numbers/
+Disallow: /poland-in-numbers/*
+Disallow: /nature/
+Disallow: /nature/*
+Disallow: /trips/
+Disallow: /wyszukaj/
+Disallow: /monuments/
+Disallow: /monuments/*
+Disallow: /contact/
+
+Allow: /
