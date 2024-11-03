@@ -37,7 +37,25 @@ poznajmypolske.pl
      }
     }
 
+    .link-right {
+            display: flex;
+            justify-content: center; /* Wyśrodkowanie w poziomie */
+            align-items: center; /* Wyśrodkowanie w pionie */
+            margin: 0;
+        }
 
+
+    .link-right a {
+             backgrounf-color: yellow;
+             color: yellow;
+        }
+
+    .link-right a:hover {
+             backgrounf-color: yellow;
+             color: yellow;
+             transform: scale(1.02); /* Slightly enlarge the brand */
+             box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+        }
 
 {% endblock %}
 
@@ -58,6 +76,7 @@ poznajmypolske.pl
             <div class="success">Tutaj fotoodkrywamy, losujemy w różny sposób zdjęcia na temat Polski i cieszymy oko albo nie. Na dole znajdziesz frazę użytą do wyszukiwania.</div>
         </div>
     </div>
+
     <div class="row">
     {% for photo_link in photo_google_links %}
                      <div class="col-lg-6">
@@ -78,6 +97,12 @@ poznajmypolske.pl
 
 
    <small style="text-align: right; display: block;">Zdjęcia wyszukiwane frazą: <b>'{{phrase}}'</b>.</small>
+
+    <hr>
+    <div class="link-right mb-4">
+            <a href="{% url 'polishness:photo_discovery' %}" class="btn btn-dark btn-lg mt-1" style="font-weight: bold; text-align: center;">Wyszukaj ponownie zdjęcia.</a>
+    </div>
+
 
 </div>
 
