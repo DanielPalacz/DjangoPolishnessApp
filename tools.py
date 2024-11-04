@@ -117,7 +117,7 @@ def get_history_news() -> str:
     """
     current_day = datetime.date.today()
     filename = f"{current_day.day}d_{current_day.month}m.txt"
-    file_path = get_static_dir() + "historical_news/" + filename
+    file_path = get_static_dir() + "historical_news/" + str(current_day.month) + "/" + filename
 
     with open(file_path, "r") as file:
         text = file.read()
