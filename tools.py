@@ -2,12 +2,14 @@ from __future__ import annotations
 
 import datetime
 import json
+from datetime import date
 from os import getenv
 from os.path import exists
 from os.path import getsize
 from secrets import randbelow
 from typing import Optional
 
+import feedparser
 import pandas as pd
 import requests
 from django.db.models.query import QuerySet
@@ -1005,3 +1007,87 @@ class GusApiDbwClient:
             f"zostanie zwrócona pusta lista."
         )
         return []
+
+
+class PressNewsItem:
+    """Class for representing press news.
+
+    Args:
+        link (str): Link of press news.
+        publisher (str): Publisher of press news.
+        title (str): Title of press news.
+        when (str): Time of press news.
+        minutes (int): Time day converted to number of minutes (for sorting).
+
+    Attributes:
+        link (str): Link of press news.
+        publisher (str): Publisher of press news.
+        publisher_nick (str): Publisher nick of press news.
+        title (str): Title of press news.
+        when (str): Time of press news.
+        minutes (int): Time day converted to number of minutes (for sorting).
+    """
+
+    def __init__(self, link: str, publisher: str, publisher_nick: str, title: str, when: str, minutes: int):
+        self.link = link
+        self.publisher = publisher
+        self.publisher_nick = publisher_nick
+        self.title = title
+        self.when = when
+        self.minutes = minutes
+
+
+def collect_press_news() -> list[PressNewsItem]:
+    """
+    Args:
+        publisher (str or None): Publisher of press news.
+
+    Returns:
+        List with PressNewsItem objects
+    """
+    publisher_rss_channel = {
+        "Polsat": ["polsat", "https://www.polsatnews.pl/rss/polska.xml"],
+        "Onet": ["onet", "https://wiadomosci.onet.pl/.feed"],
+        "WP": ["wp", "https://wiadomosci.wp.pl/rss.xml"],
+        # "Bankier.pl": ["bankier", "https://www.bankier.pl/rss/wiadomosci.xml"],
+        # "Business Insider": ["businessinsider", "https://businessinsider.com.pl/.feed"],
+        "tvn24": ["tvn24", "https://tvn24.pl/wiadomosci-z-kraju,3.xml"],
+        "Interia": ["interia", "http://fakty.interia.pl/polska/feed"],
+        # "rmf24": ["rmf24", "http://www.rmf24.pl/fakty/feed fakty"],
+    }
+
+    press_news = []
+
+    for media, media_data in publisher_rss_channel.items():
+        try:
+            rss_feed = feedparser.parse(media_data[1])
+        except Exception as e:
+            print("Error dla:", media, e)
+            continue
+        for entry in rss_feed.entries:
+
+            time = entry.published_parsed
+            today = date.today()
+            if time.tm_mday != today.day or time.tm_mon != today.month:
+                continue
+
+            if len(str(time.tm_min)) == 1:
+                time_ = f"{time.tm_hour+1}:0{time.tm_min}"
+            else:
+                time_ = f"{time.tm_hour+1}:{time.tm_min}"
+
+            total_minutes = 60 * (time.tm_hour + 1) + time.tm_min
+
+            news = PressNewsItem(
+                link=entry.link,
+                publisher=media,
+                publisher_nick=media_data[0],
+                title=entry.title,
+                when=time_,
+                minutes=total_minutes,
+            )
+            press_news.append(news)
+
+    press_news.sort(key=lambda x: x.minutes, reverse=True)
+
+    return press_news

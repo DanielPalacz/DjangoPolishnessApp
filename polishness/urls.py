@@ -32,5 +32,6 @@ urlpatterns = [
     path("nature/<int:pk>/", views.nature_single, name="nature_single"),
     path("nature/<int:pk>/ai/", views.nature_single_ai, name="nature_single_ai"),
     path("photo_discovery/", views.photo_discovery, name="photo_discovery"),
+    path("press_news/", views.press_news, name="press_news"),
     path("history/", views.history, name="history"),
 ]

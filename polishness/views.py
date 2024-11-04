@@ -15,6 +15,7 @@ from .models import Monument
 from helpers import configure_logger
 from helpers import parent_function_name
 from tools import ask_ai
+from tools import collect_press_news
 from tools import current_day_message
 from tools import GeoObjectsSupport
 from tools import get_history_news
@@ -513,6 +514,16 @@ def photo_discovery(request):
     return render(
         request, "polishness/photo_discovery.html", {"photo_google_links": photo_google_links, "phrase": phrase}
     )
+
+
+def press_news(request):
+    LOGGER_VIEWS.debug(
+        f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
+        f"(view: {parent_function_name()!r}, path: {request.path!r})."
+    )
+    press_news = collect_press_news()
+
+    return render(request, "polishness/press_news.html", {"press_news": press_news})
 
 
 def _remove_unneeded_photo_links(links: list) -> list:

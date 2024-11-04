@@ -1,0 +1,166 @@
+{% extends "polishness/base.html" %}
+
+{% block title %}
+poznajmypolske.pl
+{% endblock %}
+
+{% block style %}
+    .card:hover {
+        border-color: #000;
+        transform: scale(1.05); /* Slightly enlarge the brand */
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+
+    .card {
+        background-color: #F5DECF;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        border: 2px solid #000;
+    }
+
+    img {
+        max-width: 100%;
+        height: 100%;
+    }
+
+    .text-custom {
+        background-color: #F5DECF;
+    }
+
+    @media only screen and (max-width: 992px) {
+     .success {
+        font-size: 16px;
+		padding: 2px;            /* Internal padding */
+		margin-bottom: 4px;       /* Spacing below */
+     }
+    }
+
+
+    .onet {
+            background-color: #ffd200;
+            color: #000;
+        }
+
+    .onet:hover {
+            background-color: #ffd200;
+            color: #000;
+        }
+
+    .polsat {
+            background-color: #00283d;
+            color: #FFF;
+        }
+    .polsat:hover {
+            background-color: #00283d;
+            color: #FFF;
+        }
+
+
+
+    .wp {
+            background-color: #e10000;
+            color: #000;
+        }
+
+    .wp:hover {
+            background-color: #e10000;
+            color: #000;
+        }
+
+    .tvn24 {
+            background-color: #1a4a8f;
+            color: #FFF;
+        }
+
+    .tvn24:hover {
+            background-color: #1a4a8f;
+            color: #FFF;
+        }
+
+    .interia {
+            background-color: #FF6600;
+            color: #000;
+        }
+    .interia:hover {
+            background-color: #FF6600;
+            color: #000;
+        }
+
+{% endblock %}
+
+
+{% block content %}
+
+<div id="photo_discovery">
+
+    {% if not press_news %}
+    <div class="row m-2 p-2">
+        <div class="col">
+            <div class="error">Niestety, nie pobrano prasówki.</div><br>
+        </div>
+    </div>
+    {% else %}
+    <div class="row mt-3 mb-2">
+        <div class="col-9">
+
+            <h3 class="text-start">Poniżej znajdziejsz dzisiejszą prasówkę. Kolory opisują konkretne media. Bloczki zawierają linki bezpośrednio do portali informacyjnych.</h3>
+       </div>
+
+
+        <div class="col-3">
+
+
+            <div style="text-align: right; border: None; padding: 10px; width: 200px; float: right;">
+            <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                <div style="width: 20px; height: 20px; background-color: #00283d; margin-right: 10px;"></div>
+                <span>Polsat</span>
+            </div>
+            <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                <div style="width: 20px; height: 20px; background-color: #ffd200; margin-right: 10px;"></div>
+                <span>Onet</span>
+            </div>
+            <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                <div style="width: 20px; height: 20px; background-color: #FF6600; margin-right: 10px;"></div>
+                <span>Interia</span>
+            </div>
+            <div style="display: flex; align-items: center; margin-bottom: 5px;">
+                <div style="width: 20px; height: 20px; background-color: #e10000; margin-right: 10px;"></div>
+                <span>Wirtualna Polska</span>
+            </div>
+            <div style="display: flex; align-items: center;">
+                <div style="width: 20px; height: 20px; background-color: #1a4a8f; margin-right: 10px;"></div>
+                <span>Tvn24</span>
+
+
+            </div>
+
+        </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+    {% for news in press_news %}
+                     <div class="col-lg-6">
+                        <div class="card mb-4 box-shadow {{news.publisher_nick}}" style="border: 2px solid #000; padding: 2px;">
+
+                            <div class="card-body {{news.publisher_nick}}">
+                                <div>
+                                    <h5 class="{{news.publisher_nick}}"><a class="{{news.publisher_nick}}" href="{{news.link}}">{{news.title}}</a></h5>
+                                    <small style="text-align: right; display: block;">{{news.publisher}}, {{news.when}}</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+    {% endfor %}
+    </div>
+
+    {% endif %}
+
+
+</div>
+
+{% endblock %}

@@ -33,10 +33,8 @@ app.conf.update(
 
 
 # Using a string here means the worker doesn't have to serialize the configuration object to child processes.
-# - namespace='CELERY' means all celery-related configuration keys
-#   should have a `CELERY_` prefix.
+# - namespace='CELERY' means all celery-related configuration keys should have a `CELERY_` prefix.
 app.config_from_object("django.conf:settings", namespace="CELERY")
-
 
 # Tasks autodetection for module celery_tasks:
 app.autodiscover_tasks(["mysite.celery_tasks"])
