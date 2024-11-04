@@ -24,7 +24,7 @@ app.conf.update(
     beat_schedule={
         "website-availability-task": {
             "task": "mysite.celery_tasks.check_website_availability",
-            "schedule": timedelta(seconds=10),
+            "schedule": timedelta(minutes=10),
             # 'schedule': crontab(hour=0, minute=0),  # Każdej nocy o północy
             # 'args': (("data11",)),
         },
