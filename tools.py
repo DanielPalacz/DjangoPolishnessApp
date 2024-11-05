@@ -178,7 +178,6 @@ def get_polish_photo_google_links(phrase: Optional[str] = None) -> list:
         "Polskie zabytki archeologiczne",
         "Polskie herby",
         "Polska sztuka",
-        "Polska noc",
         "Polska znaczki pocztowe",
         "Kraków Wawel",
         "Łazienki Warszawa",
