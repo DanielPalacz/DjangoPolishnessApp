@@ -1052,14 +1052,14 @@ def collect_press_news() -> list[PressNewsItem]:
         # "Business Insider": ["businessinsider", "https://businessinsider.com.pl/.feed"],
         "tvn24": ["tvn24", "https://tvn24.pl/wiadomosci-z-kraju,3.xml"],
         "Interia": ["interia", "http://fakty.interia.pl/polska/feed"],
-        # "rmf24": ["rmf24", "http://www.rmf24.pl/fakty/feed fakty"],
+        "rmf24": ["rmf24", "http://www.rmf24.pl/fakty/feed fakty"],
     }
 
     press_news = []
 
     for media, media_data in publisher_rss_channel.items():
         try:
-            rss_feed = feedparser.parse(media_data[1])
+            rss_feed = feedparser.parse(media_data[1].replace(" ", "%20"))
         except Exception as e:
             print("Error dla:", media, e)
             continue
