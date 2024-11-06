@@ -62,4 +62,4 @@ def get_krs_foundation_data(krs_number: str):
     except json.decoder.JSONDecodeError:
         email = "-"
 
-    return [foundation_name, str(krs_number), supervision, target, repr(email)]
+    return [foundation_name, str(krs_number), supervision, repr(target), email]

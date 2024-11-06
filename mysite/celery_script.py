@@ -14,9 +14,9 @@ for num in range(100, 1000000):
     # print("Status:", result.status)
 
     result = result.get()
-    print(result)
+    # print(result)
     if result is None:
-        print("Brak danych dla nr krs:", num)
+        # print("Brak danych dla nr krs:", num)
         continue
 
     result_str = ";".join(result) + "\n"
