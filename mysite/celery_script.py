@@ -19,6 +19,8 @@ for num in range(100, 1000000):
         # print("Brak danych dla nr krs:", num)
         continue
 
-    result_str = ";".join(result) + "\n"
+    result_cleaned = [item.replace(";", ",") for item in result]
+
+    result_str = ";".join(result_cleaned) + "\n"
     with open("krs_foundations.csv", "a+") as file:
         file.write(result_str)
