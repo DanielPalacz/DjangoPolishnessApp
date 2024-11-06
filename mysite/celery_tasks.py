@@ -128,8 +128,6 @@ def get_krs_company_data(krs_number: str):
 
     try:
         email = response.json()["odpis"]["dane"]["dzial1"]["siedzibaIAdres"]["adresPocztyElektronicznej"].lower()
-
-        print(krs_number, email)
     except KeyError:
         email = "brak"
     except json.decoder.JSONDecodeError:
