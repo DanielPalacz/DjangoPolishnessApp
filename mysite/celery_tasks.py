@@ -73,6 +73,8 @@ def get_krs_company_data(krs_number: str):
         response = requests.get(krs_api_request, timeout=5)
     except (ReadTimeout, ConnectTimeout):
         return None
+    except Exception:
+        return None
 
     if response.status_code != 200:
         return None
@@ -92,6 +94,37 @@ def get_krs_company_data(krs_number: str):
         return None
     except json.decoder.JSONDecodeError:
         return None
+    except IndexError:
+        return None
+    except Exception:
+        return None
+
+    try:
+        main_activity_area = response.json()["odpis"]["dane"]["dzial3"]["przedmiotDzialalnosci"][
+            "przedmiotPrzewazajacejDzialalnosci"
+        ][0]
+        main_activity_area = [v for v in main_activity_area.values()]
+    except KeyError:
+        return None
+    except json.decoder.JSONDecodeError:
+        return None
+    except IndexError:
+        main_activity_area = []
+    except Exception:
+        return None
+
+    try:
+        other_activity_area = response.json()["odpis"]["dane"]["dzial3"]["przedmiotDzialalnosci"][
+            "przedmiotPozostalejDzialalnosci"
+        ]
+    except KeyError:
+        return None
+    except json.decoder.JSONDecodeError:
+        return None
+    except IndexError:
+        other_activity_area = []
+    except Exception:
+        return None
 
     try:
         email = response.json()["odpis"]["dane"]["dzial1"]["siedzibaIAdres"]["adresPocztyElektronicznej"].lower()
@@ -101,5 +134,7 @@ def get_krs_company_data(krs_number: str):
         email = "brak"
     except json.decoder.JSONDecodeError:
         email = "-"
+    except Exception:
+        return None
 
     return [foundation_name, str(krs_number), repr(main_activity_area), repr(other_activity_area), email]
