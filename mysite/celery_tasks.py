@@ -4,6 +4,7 @@ import json
 
 import requests
 from django.core.mail import send_mail
+from requests.exceptions import ConnectionError
 from requests.exceptions import ConnectTimeout
 from requests.exceptions import ReadTimeout
 
@@ -40,7 +41,7 @@ def get_krs_foundation_data(krs_number: str):
     krs_api_request = f"https://api-krs.ms.gov.pl/api/krs/OdpisAktualny/{krs_number}?rejestr=S&format=json"
     try:
         response = requests.get(krs_api_request, timeout=5)
-    except (ReadTimeout, ConnectTimeout):
+    except (ReadTimeout, ConnectTimeout, ConnectionError):
         return None
 
     if response.status_code != 200:
@@ -71,7 +72,7 @@ def get_krs_company_data(krs_number: str):
     # print(krs_api_request)
     try:
         response = requests.get(krs_api_request, timeout=5)
-    except (ReadTimeout, ConnectTimeout):
+    except (ReadTimeout, ConnectTimeout, ConnectionError):
         return None
     except Exception:
         return None
