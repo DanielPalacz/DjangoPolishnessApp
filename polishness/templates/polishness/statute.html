@@ -1,0 +1,154 @@
+{% extends "polishness/base.html" %}
+
+{% block title %}
+poznajmypolske.pl
+{% endblock %}
+
+
+{% block style %}
+
+    .text-custom {
+        background-color: #F5F5DC;
+        border: 2px solid #000;;
+        border-radius: 10px;
+    }
+    .text-custom:hover {
+        border-color: #000;
+        transform: scale(1.02); /* Slightly enlarge the brand */
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    }
+    .card {
+        background-color: #F5F5DC;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        border: 2px solid #000;
+    }
+
+    p {
+        color: #000;
+    }
+
+  .custom-list li {
+    font-size: 16px; /* Zwiększa rozmiar tekstu, co wpływa na rozmiar kropki */
+  }
+
+  /* Opcjonalnie, aby powiększyć tylko kropkę bez zmiany tekstu */
+  .custom-list li::marker {
+    font-size: 1.5em; /* Powiększa tylko kropkę */
+  }
+
+
+{% endblock %}
+
+{% block content %}
+
+        <!-- Page Header -->
+        <div class="row mt-4">
+            <h1 style="font-weight: bold;">Regulamin serwisu „poznajmypolske.pl”</h1>
+        </div>
+        <div class="row my-4">
+            <h4>Serwis internetowy „poznajmypolske.pl” to inicjatywa dostarczająca proste narzędzia wspierająca działania krajoznawcze na terenie Polski.</h4>
+            <h4>Bazując na art. 8 ust. 1 pkt 1 ustawy z 18 lipca 2002 r. dotyczącej świadczenia usług drogą elektroniczną (Dz. U. 2002 nr 144 poz. 1204 i późniejsze zmiany), Serwis internetowy „poznajmypolske.pl” definiuje poniższe zasady korzystania z serwisu.</h4>
+        </div>
+
+        <div class="row mt-4">
+            <br>
+        </div>
+
+        <div class="row mt-4">
+            <h3 style="font-weight: bold;">I. Definicje:</h3>
+        </div>
+
+        <div class="row mt-1">
+            <ul class="custom-list">
+                <li>Cookies (ciasteczka) – pliki służące identyfikacji przeglądarki Użytkownika, w celu optymalizacji działania serwisu.</li>
+                <li>Dane automatyczne – dane zbierane podczas wizyty Użytkownika, np. adres IP, typ przeglądarki, które są anonimowe i mogą służyć analizie statystyk.</li>
+                <li>Dane osobowe – oznaczają informacje o zidentyfikowanej lub możliwej do zidentyfikowania osobie fizycznej („osobie, której dane dotyczą”); możliwa do zidentyfikowania osoba fizyczna to osoba, którą można bezpośrednio lub pośrednio zidentyfikować, w szczególności na podstawie adresu email.</li>
+                <li>Inne usługi - inne bezpłatne usługi elektroniczne wykonywane w ramach Serwisu, np usługa 'Kontakt' pozwalająca skontaktować się z Usługodawcą.</li>
+                <li>Polityka Prywatności - zasady przetwarzania i ochrony danych osobowych przekazanych przez Użytkowników przy użytkowaniu serwisu „poznajmypolske.pl”, wypełnienie obowiązku informacyjnego RODO.</li>
+                <li>Usługi informacyjne - bezpłatne usługi elektroniczne wykonywane w ramach Serwisu, polegające na przedstawianiu Użytkownikowi różnorakich treści krajoznawczych na terenie Polski.</li>
+                <li>Serwis – witryna internetowa https://poznajmypolske.pl dostarczająca proste narzędzia wspierające działania krajoznawcze na terenie Polski.</li>
+                <li>Usługi elektroniczne - wszystkie usługi świadczone na odległość w ramach Serwisu.</li>
+                <li>Usługi informacyjne - bezpłatne usługi elektroniczne wykonywane w ramach Serwisu, polegające na przedstawianiu Użytkownikowi różnorakich treści krajoznawczych na terenie Polski.</li>
+                <li>Usługodawca – Daniel Palacz, osoba prowadząca serwis „poznajmypolske.pl”. Daniel Palacz jednocześnie posiada zarejestrowaną jednoosobową działalność gospodarczą PYX Daniel Palacz (NIP: 6372087213), jednakże w sensie prawnym niniejszy Serwis jest prowadzony niekomercyjnie przez osobę prywatną. Kontakt jest możliwy przez formularz kontaktowy lub adres email daniel.palacz@pyx.solutions.</li>
+                <li>Użytkownik – osoba fizyczna, która odwiedza Serwis i korzysta z dostępnych w nim Usług informacyjnych.</li>
+            </ul>
+
+        </div>
+
+
+        <div class="row mt-4">
+            <h3 style="font-weight: bold;">II. Postanowienia ogólne:</h3>
+        </div>
+        <div class="row mt-1">
+            <ul class="custom-list">
+                <li>Regulamin określa zasady, zakres i warunki funkcjonowania i użytkowania Serwisu „poznajmypolske.pl”. Ponadto, integralną częścią Regulaminu jest Polityka Prywatności. Usługodawca świadczy Usługi informacyjne na podstawie niniejszego Regulaminu.</li>
+                <li>W momencie rozpoczęcia czynności mających na celu skorzystanie z oferowanych w Serwisie usług, każdy Użytkownik jest zobligowany do przestrzegania niniejszego Regulaminu. Wszelkie działania Użytkownika, które mogą zakłócić lub uszkodzić Serwis, są niedozwolone.</li>
+                <li>Użytkownik bierze na siebie pełną odpowiedzialność za sposób wykorzystania materiałów udostępnianych w ramach Serwisu w tym za wykorzystanie ich zgodnie z obowiązującymi przepisami prawa.</li>
+                <li>Prezentowane dane mają charakter poglądowy i nie stanowią dokumentu urzędowego. Usługodawca nie ponosi odpowiedzialności za wykorzystanie ich przez Użytkowników.</li>
+            </ul>
+
+        </div>
+
+        <div class="row mt-4">
+            <h3 style="font-weight: bold;">III. Rodzaje i zakres świadczonych usług:</h3>
+        </div>
+        <div class="row mt-1">
+            <ul class="custom-list">
+                <li>W przeważającej części przedmiotem usług Usługodawcy jest udostępnienie nieodpłatnych Usług Informacyjnych wspierających Użytkownika w działaniach krajoznawczych na terenie Polski. Inną usługą jest 'Kontakt' - formularz kontaktowy pozwalający skontaktować się z Usługodawcą.</li>
+                <li>Prezentowane dane mają charakter poglądowy i nie stanowią dokumentu urzędowego. Usługodawca nie ponosi odpowiedzialności za wykorzystanie ich przez Użytkowników.</li>
+            </ul>
+
+        </div>
+
+        <div class="row mt-4">
+            <h3 style="font-weight: bold;">IV. Warunki świadczenia usług:</h3>
+        </div>
+        <div class="row mt-1">
+            <ul class="custom-list">
+                <li>W sensie prawnym umowa o świadczenie usług elektronicznych jest zawierana w momencie, gdy Użytkownik zaczyna korzystać z Serwisu, zgadzając się przy tym z postanowieniami niniejszego Regulaminu. Użytkownik, który nie zgadza się z Regulaminem nie powinien korzystać z Serwisu.</li>
+                <li>Opuszczając Serwis Użytkownik automatycznie rozwiązuje umowę o świadczenie usługi elektronicznej, bez potrzeby dodatkowych działań.</li>
+                <li>Usługi elektroniczne świadczone przez Serwisu składają się na 'Usługi informacyjne' i 'Inne usługi'. W ramach Innych usług dostarczana funkcjonalność 'Kontakt', gdzie przetwarzane są dane osobowe Użytkownika (adres email) - wymagane jest by dane te były wykorzystywane zgodnie z Polityką Prywatności.</li>
+            </ul>
+
+        </div>
+
+
+        <div class="row mt-4">
+            <h3 style="font-weight: bold;">V. Warunki korzystania z Serwisu:</h3>
+        </div>
+        <div class="row mt-1">
+            <ul class="custom-list">
+                <li>Używanie Serwisu przez każdego z Użytkowników jest nieodpłatne i dobrowolne.</li>
+                <li>Użytkownik ma obowiązek zapoznania się z Regulaminem oraz pozostałymi dokumentami stanowiącymi jego integralną część i muszą zaakceptować w całości jego postanowienia w celu dalszego korzystania z Serwisu.</li>
+                <li>Korzystanie z Serwisu wymaga spełnienia warunków technicznych: dostęp do Internetu; przeglądarka internetowa zdolna do prezentowania dokumentów HTML, obsługująca pliki cookies oraz JavaScript. W przypadku nie spełniania wymogów technicznych jakość oferowanych Usług informacyjnych może być niższa.</li>
+            </ul>
+
+        </div>
+
+
+        <div class="row mt-4">
+            <h3 style="font-weight: bold;">VI. Postanowienia końcowe:</h3>
+        </div>
+        <div class="row mt-1">
+            <ul class="custom-list">
+                <li>Dostawca Usług zastrzega możliwość modyfikacji treści Serwisu, ograniczenia jego dostępności oraz całkowitego zakończenia jego działalności.</li>
+                <li>W miarę konieczności, Regulamin może być modyfikowany. Jeśli zajdzie potrzeba wprowadzenia zmian, Dostawca Usług zapewni dostęp do zaktualizowanej wersji Regulaminu poprzez publikację w Serwisie. Zmiany wchodzą w życie od momentu ich publikacji na stronie serwisu. Kontynuowanie korzystania z Serwisu po takich zmianach traktowane jest jako akceptacja nowych postanowień.</li>
+                <li>Usługodawca zastrzega sobie prawo do dokonania cesji w części lub w całości wszelkich swoich praw i obowiązków związanych z Serwisem, bez zgody i możliwości wyrażania jakichkolwiek sprzeciwów przez Użytkowników.</li>
+                <li>Niniejszy Regulamin zaczyna obowiązywać od 9 listopada 2024 r.</li>
+            </ul>
+
+        </div>
+
+
+
+
+
+{% endblock %}
+
+
+
+{% block script %}
+
+{% endblock %}

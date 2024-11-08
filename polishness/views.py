@@ -525,6 +525,22 @@ def press_news(request):
     return render(request, "polishness/press_news.html", {"press_news": press_news})
 
 
+def privacy_policy(request):
+    LOGGER_VIEWS.debug(
+        f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
+        f"(view: {parent_function_name()!r}, path: {request.path!r})."
+    )
+    return render(request, "polishness/privacy_policy.html", {})
+
+
+def statute(request):
+    LOGGER_VIEWS.debug(
+        f"Zostanie wyświetlona strona {request.build_absolute_uri()!r}, "
+        f"(view: {parent_function_name()!r}, path: {request.path!r})."
+    )
+    return render(request, "polishness/statute.html", {})
+
+
 def _remove_unneeded_photo_links(links: list) -> list:
     """Function removes unneeded photo links.
 

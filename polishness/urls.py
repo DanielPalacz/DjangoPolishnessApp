@@ -34,4 +34,6 @@ urlpatterns = [
     path("photo_discovery/", views.photo_discovery, name="photo_discovery"),
     path("press_news/", views.press_news, name="press_news"),
     path("history/", views.history, name="history"),
+    path("statute/", views.statute, name="statute"),
+    path("privacy_policy/", views.privacy_policy, name="privacy_policy"),
 ]

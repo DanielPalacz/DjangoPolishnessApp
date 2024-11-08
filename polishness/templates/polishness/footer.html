@@ -97,22 +97,28 @@
     <div class="container">
         <div class="row mt-0 mb-0">
             <!-- About Section -->
-            <div class="col-md-4 col-sm-12">
-                <h4 style="font-weight: bold;">Misja:</h4>
+            <div class="col-md-3 col-sm-12 mb-2">
+                <h4 class="mb-1" style="font-weight: bold;">Misja:</h4>
                 <p class="custom-footer">Pomoc w odkrywaniu Polski!</p>
             </div>
 
+            <div class="col-md-3 col-sm-12 social-links mb-2">
+                <h4 class="mb-1" style="font-weight: bold;">Zasady serwisu:</h4>
+                    <a href="{% url 'polishness:statute' %}" target="_blank">Regulamin</a>
+                    <a href="{% url 'polishness:privacy_policy' %}" target="_blank">Polityka prywatności</a>
+            </div>
+
             <!-- Navigation Links -->
-            <div class="col-md-4 col-sm-12">
-                <h4 style="font-weight: bold;">Przydatne linki:</h4>
+            <div class="col-md-3 col-sm-12 mb-2">
+                <h4 class="mb-1" style="font-weight: bold;">Przydatne linki:</h4>
                     <a class="custom-footer" href="https://www.gov.pl/" target="_blank" aria-label="www.gov.pl">Serwis Rzeczypospolitej Polskiej </a>
                     <a class="custom-footer" href="https://stat.gov.pl/" target="_blank" aria-label="stat.gov.pl">Główny Urząd Statystyczny</a>
                     <a class="custom-footer" href="https://zabytek.pl/pl/" target="_blank" aria-label="zabytek.pl">Zabytek.pl</a>
             </div>
 
             <!-- Social Media Links -->
-            <div class="col-md-4 col-sm-12 social-links">
-                <h4 style="font-weight: bold;">Inne strony:</h4>
+            <div class="col-md-3 col-sm-12 social-links mb-2">
+                <h4 class="mb-1" style="font-weight: bold;">Inne strony:</h4>
                     <a href="https://www.facebook.com/profile.php?id=61567268455849" target="_blank" aria-label="Facebook">
                         <i class="fab fa-facebook"></i> poznajmypolske.pl
                     </a>
@@ -120,6 +126,7 @@
                         <i class="fab fa-linkedin"></i> LinkedIn (prywatny)
                     </a>
             </div>
+
         </div>
 
     </div>
