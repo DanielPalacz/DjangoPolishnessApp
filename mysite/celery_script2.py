@@ -2,9 +2,8 @@ from __future__ import annotations
 
 from mysite.celery_setup import app
 from mysite.celery_tasks import get_krs_company_data
-from mysite.celery_tasks import get_krs_foundation_data
 
-app.tasks.register(get_krs_foundation_data)
+app.tasks.register(get_krs_company_data)
 
 for num in range(1, 2000000):
     # Running tasks synchronously
