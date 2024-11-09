@@ -1090,3 +1090,73 @@ def collect_press_news() -> list[PressNewsItem]:
     press_news.sort(key=lambda x: x.minutes, reverse=True)
 
     return press_news
+
+
+class CeidgVoivodeshipClient:
+    """Class with functionalities for downloading data from Ceidg per Voivodeship,
+
+    Args:
+        voivodeship (str): Voivodeship.
+
+    Attributes:
+        CEIDG_API_KEY (str): Limit for trip generation.
+        __voivodeship (str): Voivodeship.
+        __page_number (int): Result page to be processed.
+    """
+
+    CEIDG_API_KEY = f'Bearer {getenv("CEIDG_API_KEY")}'
+    REQUEST_HEADERS = {"accept": "application/json", "Authorization": CEIDG_API_KEY}
+    voivodeships = [
+        "dolnośląskie",
+        "kujawsko-pomorskie",
+        "lubelskie",
+        "lubuskie",
+        "łódzkie",
+        "małopolskie",
+        "mazowieckie",
+        "opolskie",
+        "podkarpackie",
+        "podlaskie",
+        "pomorskie",
+        "śląskie",
+        "świętokrzyskie",
+        "warmińsko-mazurskie",
+        "wielkopolskie",
+        "zachodniopomorskie",
+    ]
+
+    def __init__(self, voivodeship: str):
+        if voivodeship not in self.voivodeships:
+            raise ValueError(
+                "Województwo musi byc odpowiednią wartość ze zbioru województw.",
+                voivodeship,
+                "nie jest taką wartością.",
+            )
+        self.__voivodeship = voivodeship
+        self.__page_number = 0
+        self.__last_process_succeed = False
+
+    def get_inital_request(self) -> dict:
+        url = f"https://dane.biznes.gov.pl/api/ceidg/v2/firmy?wojewodztwo={self.__voivodeship}&limit=25"
+        response = requests.get(url, headers=self.REQUEST_HEADERS, timeout=60)
+        if response.status_code == 200:
+            return response.json()
+        else:
+            print("To nie zadziałało dla:", self.__voivodeship, "Zapytanie zwróciło:", response.status_code)
+            return {}
+
+    def update_page_number(self):
+        self.__last_process_succeed = True
+        self.__page_number += 1
+
+
+# def run_all_voivodeships():
+#     c = CeidgVoivodeshipClient("dolnośląskie")
+#
+#     for voivodeship in c.voivodeships:
+#         cx = CeidgVoivodeshipClient(voivodeship)
+#         data = cx.get_inital_request()
+#         # print(data)
+#         # print(data.get("links"))
+#         num_of_companies = data.get("count")
+#         print(num_of_companies, "-", voivodeship)
