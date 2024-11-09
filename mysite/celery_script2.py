@@ -6,7 +6,7 @@ from mysite.celery_tasks import get_krs_foundation_data
 
 app.tasks.register(get_krs_foundation_data)
 
-for num in range(1000000, 2000000):
+for num in range(1, 2000000):
     # Running tasks synchronously
     result = get_krs_company_data.apply((num,))
 
