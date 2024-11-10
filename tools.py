@@ -1150,13 +1150,13 @@ class CeidgVoivodeshipClient:
         self.__page_number += 1
 
 
-# def run_all_voivodeships():
-#     c = CeidgVoivodeshipClient("dolnośląskie")
-#
-#     for voivodeship in c.voivodeships:
-#         cx = CeidgVoivodeshipClient(voivodeship)
-#         data = cx.get_inital_request()
-#         # print(data)
-#         # print(data.get("links"))
-#         num_of_companies = data.get("count")
-#         print(num_of_companies, "-", voivodeship)
+def run_all_voivodeships():
+    c = CeidgVoivodeshipClient("dolnośląskie")
+
+    for voivodeship in c.voivodeships:
+        cx = CeidgVoivodeshipClient(voivodeship)
+        data = cx.get_inital_request()
+        # print(data)
+        # print(data.get("links"))
+        num_of_companies = data.get("count")
+        print(num_of_companies, "-", voivodeship)

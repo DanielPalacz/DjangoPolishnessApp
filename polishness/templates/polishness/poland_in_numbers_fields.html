@@ -4,6 +4,19 @@
 poznajmypolske.pl
 {% endblock %}
 
+{% block style %}
+    .card:hover {
+        border-color: #007bff;
+        transform: scale(1.05); /* Slightly enlarge the brand */
+        box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-body h5 a {
+        color: #333;
+        text-decoration: none;
+    }
+
+{% endblock %}
 
 {% block content %}
     <div class="row py-3">
