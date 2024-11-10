@@ -40,7 +40,7 @@ def home(request):
     # )
     ask_text = (
         "Opowiedz, jak poznawać Polskę i dobrze się przy tym bawić? "
-        "Zwróć tekst sformatowany, z paragrafami. Ma być 4 akapity."
+        "Zwróć tekst sformatowany, z paragrafami. Ma być 1 akapit."
     )
     response_ai = ask_ai(ask=ask_text)
     # photo_data["response_ai"] = response_ai
