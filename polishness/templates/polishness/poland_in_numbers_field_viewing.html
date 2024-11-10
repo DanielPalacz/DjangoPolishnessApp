@@ -97,12 +97,27 @@ poznajmypolske.pl
         }
     }
 
-    .table td:last-child {
-        width: 80px; /* Dostosuj szerokość według swoich potrzeb */
+    .table td:nth-child(1) {
+        width: 80px; /* Pierwsza kolumna */
     }
 
-    .table th:last-child {
-        width: 80px; /* Dopasuj szerokość nagłówka do szerokości ostatniej kolumny */
+    .table td:nth-child(2) {
+        width: 80px; /* Druga kolumna */
+    }
+    .table td:nth-child(3) {
+        width: 80px; /* Druga kolumna */
+    }
+    .table td:nth-child(4) {
+        width: 80px; /* Druga kolumna */
+    }
+    .table td:nth-child(5) {
+        width: 80px; /* Druga kolumna */
+    }
+    .table td:nth-child(6) {
+        width: 80px; /* Druga kolumna */
+    }
+    .table td:nth-child(7) {
+        width: 80px; /* Druga kolumna */
     }
 
 {% endblock %}
@@ -111,7 +126,7 @@ poznajmypolske.pl
 {% block content %}
 
                 {% if not stats_data %}
-                <h4 style="font-weight: bold;" class="mt-4">Dla zadanych parametrów wyszukiwania nie odnaleziono danych statystycznych.</h4>
+                <h4 style="font-weight: bold;" class="mt-4 error">Dla zadanych parametrów wyszukiwania nie ma danych statystycznych.</h4>
 
                 {% else %}
                 <h4 style="font-weight: bold;" class="mt-4">{{ field_variable_name|capfirst }}:</h4>
@@ -122,6 +137,7 @@ poznajmypolske.pl
                                 <th>Przekrój</th>
                                 <th>Wymiar (1)</th>
                                 <th>Wymiar (2)</th>
+                                <th>Wymiar (3)</th>
                                 <th>Okres czasu</th>
                                 <th>Miara danych</th>
                                 <th>Wartość</th>
@@ -133,6 +149,7 @@ poznajmypolske.pl
                                 <td>{{section_name}}</td>
                                 <td>{{stats.dimension_description}}</td>
                                 <td>{{stats.dimension_description_beta}}</td>
+                                <td>{{stats.dimension_description_gamma}}</td>
                                 <td>{{period_description}}</td>
                                 <td>{{stats.representation_description}}</td>
                                 {% if stats.wartosc == 0.0 %}

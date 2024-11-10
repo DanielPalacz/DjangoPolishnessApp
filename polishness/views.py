@@ -401,6 +401,19 @@ def poland_in_numbers_field_browser(request, field_id, field_variable_id, field_
             except ValueError:
                 stats["dimension_description_beta"] = "-"
 
+            try:
+                dimension_id_gamma = stats["id-wymiar-3"]
+                dimension_position_id_gamma = stats["id-pozycja-3"]
+                dimension_description_gamma = GusApiDbwClient.get_dimension_description(
+                    section_id=section_id,
+                    dimension_id=dimension_id_gamma,
+                    dimension_position_id=dimension_position_id_gamma,
+                    section_dimensions=section_dimensions,
+                )
+                stats["dimension_description_gamma"] = dimension_description_gamma
+            except (ValueError, KeyError):
+                stats["dimension_description_gamma"] = "-"
+
             representation_id = stats["id-sposob-prezentacji-miara"]
             stats["representation_description"] = GusApiDbwClient.get_representation_description(representation_id)
 
