@@ -12,3 +12,4 @@ Disallow: /monuments/*
 Disallow: /contact/
 
 Allow: /
+Sitemap: https://poznajmypolske.pl/sitemap.xml
