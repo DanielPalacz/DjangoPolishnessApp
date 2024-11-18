@@ -11,6 +11,39 @@ poznajmypolske.pl
     border-style: solid;
   }
 
+    /* Ustawia wysokość na 100% dla całego dokumentu */
+    html, body {
+        height: 100%;
+        margin: 0;
+        background-color: #F5F5DC;
+    }
+
+
+  input[type="text"] {
+    color: #d0e7f9;
+    background-color: #d0e7f9;
+  }
+
+  input[type="text"]:focus {
+        background-color: #d0e7f9;  /* Zmieniamy kolor tła */
+  }
+
+  input[type="email"] {
+    color: #d0e7f9;
+    background-color: #d0e7f9;
+  }
+
+  input[type="email"]:focus {
+        background-color: #d0e7f9;  /* Zmieniamy kolor tła */
+  }
+
+  .textarea {
+    background-color: #d0e7f9;
+}
+
+  .textarea:focus {
+    background-color: #d0e7f9;
+}
 
 {% endblock %}
 
@@ -21,7 +54,7 @@ poznajmypolske.pl
 {% block content %}
 		<div id="contact">
 			<br>
-			<h2 align="left">Formularz kontaktowy:</h2>
+			<u><h2 align="left">Chcesz się skontaktować ze mną? Zostaw wiadomość.</h2></u>
 			<div class="row">
 				<div class="col">
 				<form method="post" action="/contact/" class="form-group custom-rounded">

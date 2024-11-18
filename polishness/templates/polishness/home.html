@@ -1,4 +1,6 @@
 {% extends "polishness/base.html" %}
+{% load static %}
+
 
 {% block title %}
 poznajmypolske.pl - tutaj poznajemy Polskę
@@ -29,23 +31,80 @@ poznajmypolske.pl - tutaj poznajemy Polskę
         color: #000;
     }
 
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;  /* Ukrywa poziomy pasek przewijania */
+}
+
+
+.background-container {
+    position: relative;
+    min-height: 100vh;  /* Minimalna wysokość 100vh, ale jeśli zawartość jest większa, to kontener będzie się rozciągał */
+    width: 100%;
+}
+
+
+.background-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* Wideo wypełnia całą przestrzeń kontenera */
+    z-index: 1;  /* Wideo w tle */
+}
+
+        /* Wyszarzenie na wideo */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.01); /* Wyszarzenie (ciemny półprzezroczysty kolor) */
+            z-index: 1; /* Overlay nad wideo */
+        }
+
+        /* Stylizowanie treści na wideo */
+        .content {
+            position: relative;
+            z-index: 2;
+            color: yellow;
+            text-align: left;
+        }
+
 
 {% endblock %}
 
+
+{% block backgroundcontent %}
+    <div class="background-container">
+        <!-- Wideo w tle -->
+        <video autoplay muted loop>
+            <source src="{% static 'iStock-1358939015.mp4' %}" type="video/mp4">
+            Twoja przeglądarka nie wspiera tagu wideo.
+        </video>
+        <!-- Efekt wyszarzenia -->
+<!--        <div class="overlay"></div>-->
+
+{% endblock %}
+
+
 {% block content %}
 
-{% if response_ai %}
-
-       <div class="row m-3">
+      <div class="content">
+      <div class="row m-3">
            <div class="col-12">
-               <h3 class="text-start">Cześć! Wizją jest tutaj odkrywanie naszego kraju poprzez różne proste technologicznie narzędzia i <b>zabawa</b>. W menu nawigacyjnym znadziesz wszystkie obecnie dostępne narzędzia.</h3>
+               <h2 class="text-start"><b>Cześć! Wizją jest tutaj odkrywanie naszego kraju wykorzystując proste technologicznie narzędzia. W menu nawigacyjnym znadziesz wszystkie dostępne funkcjonalności.</b></h2>
                <hr>
-               <h3 class="text-start">Na początek, zapytajmy sztuczną inteligencję ... <b><em>Jak poznawać Polskę i dobrze się przy tym bawić?</em></b></h3>
+               <h2 class="text-start"><b><em>Na początek, zapytajmy sztuczną inteligencję ... Jak poznawać Polskę i dobrze się przy tym bawić?</em></b></h2>
            </div>
        </div>
 
         <div class="row m-3">
-            <small class="ml-3">Odpowiedź sztucznej inteligencji (openai.com):</small>
+            <small class="ml-3 bold-text" style="">Odpowiedź sztucznej inteligencji (openai.com):</small>
             <div class="col-12 m-2">
                 <div class="card mb-4 box-shadow" style="border: 2px solid #000; padding: 2px;">
                     <div class="card-body">
@@ -58,6 +117,7 @@ poznajmypolske.pl - tutaj poznajemy Polskę
 
             </div>
         </div>
+     </div>
 
 <!--       <hr>-->
 <!--       <div class="row m-3">-->
@@ -76,14 +136,12 @@ poznajmypolske.pl - tutaj poznajemy Polskę
 <!--       </div>-->
 
 
-
-{% else %}
-    <div class="row m-3">
-        <div class="col-12 col-md-8 col-md-4">
-               <h3 class="text-start">Cześć! Wizją jest tutaj odkrywanie naszego kraju poprzez różne proste technologicznie narzędzia i <b>zabawa</b>.</h3>
-                </div>
-            </div>
-            <hr>
+<!--    <div class="row m-3">-->
+<!--        <div class="col-12 col-md-8 col-md-4">-->
+<!--               <h3 class="text-start">Cześć! Wizją jest tutaj odkrywanie naszego kraju poprzez różne proste technologicznie narzędzia i <b>zabawa</b>.</h3>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <hr>-->
 <!--       <div class="row m-3">-->
 <!--           <div class="col">-->
 <!--                <h3 class="text-start">Poniżej losowe polskie zdjęcie (unsplash.com).</h3>-->
@@ -96,8 +154,10 @@ poznajmypolske.pl - tutaj poznajemy Polskę
 <!--       <br>-->
 
 
-{% endif %}
+{% endblock %}
 
+{% block backgroundcontentend %}
+        </div>
 {% endblock %}
 
 

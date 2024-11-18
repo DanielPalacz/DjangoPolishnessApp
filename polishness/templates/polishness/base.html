@@ -250,7 +250,6 @@
     }
 
 
-
     {% block style %}
     {% endblock %}
     </style>
@@ -289,6 +288,9 @@
 </nav>
 
 
+    {% block backgroundcontent %}
+    {% endblock %}
+
 
 
     <div class="container content-wrapper">
@@ -296,6 +298,9 @@
         {% endblock %}
     <br>
     </div>
+
+    {% block backgroundcontentend %}
+    {% endblock %}
 
    {% include "polishness/footer.html" %}
 
