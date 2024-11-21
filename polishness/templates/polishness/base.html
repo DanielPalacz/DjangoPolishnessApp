@@ -245,6 +245,17 @@
     }
 
 
+    .poland {
+            background-image: linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.1)), url({% static 'poland_flag.png' %});
+            background-size: cover; /* Dopasowanie do rozmiaru elementu */
+            background-position: center; /* Wyśrodkowanie */
+            background-repeat: no-repeat;
+            color: #000;
+            width: 80px;
+            height: 50px;
+        }
+
+
     {% block style %}
     {% endblock %}
     </style>
@@ -257,7 +268,7 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <strong><a class="navbar-brand m-3 p-2 btn-dark" href="{% url 'polishness:home' %}">poznajmypolske.pl</a></strong>
+    <strong><a class="navbar-brand m-3 p-2 btn-dark poland" href="{% url 'polishness:home' %}"></a></strong>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
