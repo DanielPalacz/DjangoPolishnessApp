@@ -1052,7 +1052,8 @@ def collect_press_news() -> list[PressNewsItem]:
         # "Business Insider": ["businessinsider", "https://businessinsider.com.pl/.feed"],
         "tvn24": ["tvn24", "https://tvn24.pl/wiadomosci-z-kraju,3.xml"],
         "Interia": ["interia", "http://fakty.interia.pl/polska/feed"],
-        "rmf24": ["rmf24", "http://www.rmf24.pl/fakty/feed fakty"],
+        # "rmf24": ["rmf24", "http://www.rmf24.pl/fakty/feed fakty"],
+        "tvpinfo": ["tvpinfo", "https://tvp.info/tvp.info/rss+xml.php"],
     }
 
     press_news = []
@@ -1076,6 +1077,9 @@ def collect_press_news() -> list[PressNewsItem]:
                 time_ = f"{time.tm_hour+1}:{time.tm_min}"
 
             total_minutes = 60 * (time.tm_hour + 1) + time.tm_min
+
+            if media == "tvpinfo":
+                print(entry)
 
             news = PressNewsItem(
                 link=entry.link,
