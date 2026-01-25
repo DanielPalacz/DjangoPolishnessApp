@@ -76,8 +76,8 @@ def contact(request):
             send_mail(
                 subject=subject_text,
                 message=message,  # Message content
-                from_email="contact@poznajmypolske.pl",  # From email
-                recipient_list=["contact@poznajmypolske.pl"],  # Recipient email list
+                from_email=email,  # From email
+                recipient_list=["daniel.palacz@gmail.com"],  # Recipient email list
                 fail_silently=False,  # Raise exception if the email fails to send
             )
             messages.success(request, f"Cześć {name}, Twoja wiadomość została właśnie wysłana do mnie.")
