@@ -158,9 +158,19 @@ INTERNAL_IPS = [
 
 # moved to use web api instead of smtp
 # https://github.com/sklarsa/django-sendgrid-v5
-EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
-SENDGRID_API_KEY = getenv("SENDGRID_API_KEY")
-SENDGRID_SANDBOX_MODE_IN_DEBUG = False
+# EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+# SENDGRID_API_KEY = getenv("SENDGRID_API_KEY")
+# SENDGRID_SANDBOX_MODE_IN_DEBUG = False
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+EMAIL_HOST = "smtp-relay.brevo.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+EMAIL_HOST_USER = getenv("BREVO_HOST_USER")
+EMAIL_HOST_PASSWORD = getenv("BREVO_API_KEY")
+
 
 LOGGING = {
     "version": 1,
