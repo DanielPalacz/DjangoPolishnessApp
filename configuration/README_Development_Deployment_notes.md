@@ -21,7 +21,8 @@ https://django-debug-toolbar.readthedocs.io/en/latest/index.html
     - DNS, SSL, ngnix configuration
 
 3. Run the following:
- - python manage.py makemigration
+ - mkdir -p [...]/DjangoPolishnessApp/logs
+ - python manage.py makemigrations
  - python manage.py migrate
  - python manage.py createsuperuser
  - python manage.py collectstatic
@@ -29,11 +30,18 @@ https://django-debug-toolbar.readthedocs.io/en/latest/index.html
 4. Prepare database. Run from Django shell:
  - python manage.py shell_plus --ipython
  - import tools
+
  - tools.populate_monument_db_table()
+   75449 monuments (25-05-2026)
+
  - tools.populate_archeological_monument_db_table()
+   7801 archeological monuments (25-05-2026)
+
  - tools.populate_geographical_object_table()
+   247565 geographical objects (25-05-2026)
 
 5A. Setup env variables:
+   (load_env_vars.sh)
  - export SENDGRID_API_KEY="SENDGRID_API_KEY_VALUE"
  - export UNPLASH_API_KEY="UNPLASH_API_KEY_VALUE"
  - export OPENAI_API_KEY="OPENAI_API_KEY_VALUE"
