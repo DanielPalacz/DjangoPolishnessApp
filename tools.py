@@ -1072,14 +1072,14 @@ def collect_press_news() -> list[PressNewsItem]:
                 continue
 
             if len(str(time.tm_min)) == 1:
-                time_ = f"{time.tm_hour+1}:0{time.tm_min}"
+                time_ = f"{time.tm_hour+2}:0{time.tm_min}"
             else:
-                time_ = f"{time.tm_hour+1}:{time.tm_min}"
+                time_ = f"{time.tm_hour+2}:{time.tm_min}"
 
-            total_minutes = 60 * (time.tm_hour + 1) + time.tm_min
+            total_minutes = 60 * (time.tm_hour + 2) + time.tm_min
 
-            if media == "tvpinfo":
-                print(entry)
+            # if media == "tvpinfo":
+            #     print(entry)
 
             news = PressNewsItem(
                 link=entry.link,
